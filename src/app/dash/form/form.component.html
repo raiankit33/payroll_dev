@@ -1,0 +1,894 @@
+<!-- <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+               
+                
+                <form id="msform">
+                 
+                    <ul id="progressbar">
+                        <li class="active" id="account"><strong>Account</strong></li>
+                        <li id="personal"><strong>Personal</strong></li>
+                        <li id="payment"><strong>Image</strong></li>
+                        <li id="confirm"><strong>Finish</strong></li>
+                    </ul>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> <br> 
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Account Information:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 1 - 4</h2>
+                                </div>
+                            </div>
+                             <label class="fieldlabels">Email: *</label> 
+                             <ngx-dropzone (change)="onSelect($event)">
+                                <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                </ngx-dropzone-preview>
+                            </ngx-dropzone>
+                             <label class="fieldlabels">Username: *</label> <input type="text" name="uname" placeholder="UserName" /> 
+                             <label class="fieldlabels">Password: *</label> <input type="password" name="pwd" placeholder="Password" />
+                              <label class="fieldlabels">Confirm Password: *</label> 
+                              <input type="password" name="cpwd" placeholder="Confirm Password" />
+                        </div> <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Personal Information:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 2 - 4</h2>
+                                </div>
+                            </div> <label class="fieldlabels">First Name: *</label> <input type="text" name="fname" placeholder="First Name" /> <label class="fieldlabels">Last Name: *</label> <input type="text" name="lname" placeholder="Last Name" /> <label class="fieldlabels">Contact No.: *</label> <input type="text" name="phno" placeholder="Contact No." /> <label class="fieldlabels">Alternate Contact No.: *</label> <input type="text" name="phno_2" placeholder="Alternate Contact No." />
+                        </div> <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Image Upload:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 3 - 4</h2>
+                                </div>
+                            </div> <label class="fieldlabels">Upload Your Photo:</label> <input type="file" name="pic" accept="image/*"> <label class="fieldlabels">Upload Signature Photo:</label> <input type="file" name="pic" accept="image/*">
+                        </div> <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Finish:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 4 - 4</h2>
+                                </div>
+                            </div> <br><br>
+                            <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                            <div class="row justify-content-center">
+                                <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> </div>
+                            </div> <br><br>
+                            <div class="row justify-content-center">
+                                <div class="col-7 text-center">
+                                    <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+<!-- Modal -info -->
+<div class="container">
+    <div id="modal-3" class="modal" data-modal-effect="slide-top">
+        <div class="modal-content">
+            <h2 class="fs-title">Score Index</h2>
+            <h3 class="fs-subtitle">Getting the most out of your data</h3>
+
+            <input type="button" name="next" class="next action-button modal-close" value="Got it!">
+        </div>
+    </div>
+</div>
+
+<form class="steps" [formGroup]="form" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
+
+
+    <div class="progress ">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0"
+            aria-valuemax="100"></div>
+    </div> <br> <!-- fieldsets -->
+
+    <!-- USER INFORMATION FIELD SET -->
+    <fieldset *ngIf="step == 1">
+
+        <h2 class="fs-title">Basic Information</h2>
+        
+        <!-- Begin What's Your First Name Field -->
+        <div class="hs_firstname field hs-form-field">
+
+            <label>Upload File? *</label>
+
+         <ngx-dropzone (change)="onSelect($event)">
+                <ngx-dropzone-label>Drag and Drop!</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of filess" [removable]="true" [multiple]="false"
+                    (removed)="onRemove(f)" accept="image/csv">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </ngx-dropzone> 
+
+            <!-- <input name="file" required id='#table' type="file"  value=""
+                placeholder="" (change)="changeListener($event.target.files)" data-rule-required="true"
+                data-msg-required="Please include your first name">
+            <span class="error1" style="display: none;">
+                <i class="error-log fa fa-exclamation-triangle"></i>
+            </span> -->
+        </div>
+
+
+
+
+        <!-- End What's Your First Name Field -->
+
+
+
+        <!-- <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                   
+                    <th scope="col">unique_id</th>
+                    <th scope="col">worker name</th>
+                    <th scope="col"> title</th>
+                    <th scope="col"> manager</th>
+                    <th scope="col"> department</th>
+                    <th scope="col">comp_code</th>
+                    <th scope="col">pay_rate</th>
+                    <th scope="col">bill_rate</th>
+                    <th scope="col">markup_percantage</th>
+                    <th scope="col">project_end</th>   <th scope="col">agency</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+           
+                </tbody>
+              </table> -->
+              <div class="progress form-group mt-2"  >
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+                </div>
+            </div>
+
+    
+        <div class="scroll"  *ngIf="lines.length > 0" >
+            <table class=" table thead-light table-bordered table-striped mt-4" >
+                <thead>
+                    <tr>
+                        <th *ngFor="let item of lines[0]; let i = index">{{item}}</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+
+                    <tr *ngFor="let item of linesR[0]; let i = index">
+                        <td *ngFor="let itemm of lines[0]; let j = index">{{item[j]}}</td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+       </div>
+
+
+       
+        <!-- End Total Number of Constituents in Your Database Field --><br>
+
+        <!-- <input type="button" data-page="1" name="next" class="next action-button  " *ngIf="reset" style="margin-left: 10px;"  (click)="clickMe()" value="Reset" /> -->
+        <input type="button" data-page="1" name="next" class="next action-button " (click)="next()" value="Next" />
+        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i
+                class="question-log fa fa-question-circle"> </i><a href="../../../assets/data.csv"
+                style="font-size: 19px;">Download Sample File </a> </div>
+
+    </fieldset>
+
+
+
+    <!-- ACQUISITION FIELD SET -->
+    <fieldset *ngIf="step == 2">
+
+        <h2 class="fs-title">Data Import Field Match</h2>
+        <div class="content" >
+        <p style="font-size: 16px; color: black; text-align: left;" ><b>Required Field</b></p>
+       <p class="ff" style="font-size: 16px; color: black; margin-left: 870px;" ><b>Your Field</b></p>
+        </div>
+        <div style="overflow-y:auto;">
+            <div class="user-details" style="height: 460px;">
+
+
+
+                <div class="input-box">
+                   
+                    <input type="text" style="color: black;" formControlName="worker_id"  disabled name="name">
+                  
+                </div>
+
+
+                <!-- imported from csv -->
+
+                <div class="input-box">
+                   
+                    <select name="id" class="form-control" formControlName="id" style="width: 100%;" required [ngClass]="
+                    { 'is-invalid': form.get('id').touched && form.get('id').invalid}" >
+                        <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('id').touched && form.get('id').invalid">
+                        <div *ngIf="form.get('id').errors.required" style="font-size: 15px;"> This field is required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="worker_name"  disabled name="name">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="Name" name="Name" style="width: 100%;" required [ngClass]="
+                    { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}" 
+                        >
+                        <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('Name').touched && form.get('Name').invalid">
+                        <div *ngIf="form.get('Name').errors.required" style="font-size: 15px;"> This field is required
+                        </div>
+                   
+                    </div>
+                </div>
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="worker_title" disabled
+                        name="worker_title">
+
+                </div>
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="Title" name="Title" style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Title').touched && form.get('Title').invalid}" required
+                       >
+                       <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('Title').touched && form.get('Title').invalid">
+                        <div *ngIf="form.get('Title').errors.required" style="font-size: 15px;"> This field is required
+                        </div>
+                  
+                    </div>
+                </div>
+
+
+
+                <div class="input-box">
+
+                    <input type="text" formControlName="worker_manager"  style="color: black; " disabled
+                        name="worker_manager">
+
+                </div>
+
+
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select name="Product code" class="form-control" formControlName="Manager" name="Manager" required
+                        style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Manager').touched && form.get('Manager').invalid}"
+                       >
+                       <option value="">----SELECT----</option>
+
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('Manager').touched && form.get('Manager').invalid">
+                        <div *ngIf="form.get('Manager').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                     
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="worker_dept" disabled
+                        name="worker_dept">
+
+                </div>
+
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="Department" name="Department" required
+                        style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Department').touched && form.get('Department').invalid}"
+                        >
+
+                        <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+                    </select>
+                    <div class="invalid-feedback"
+                        *ngIf="form.get('Department').touched && form.get('Department').invalid">
+                        <div *ngIf="form.get('Department').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                     
+                    </div>
+                </div>
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="worker_location"  disabled
+                        name="name">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select name="Product code" class="form-control" formControlName="Location" name="Location" required
+                        style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Location').touched && form.get('Location').invalid}"
+                      >
+                      <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('Location').touched && form.get('Location').invalid">
+                        <div *ngIf="form.get('Location').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                     
+                    </div>
+                </div>
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="worker_city"  disabled
+                        name="name">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select name="Product code" class="form-control" formControlName="City" name="City" required
+                        style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('City').touched && form.get('City').invalid}"
+                      >
+                      <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('City').touched && form.get('City').invalid">
+                        <div *ngIf="form.get('City').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                     
+                    </div>
+                </div>
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="worker_state"  disabled
+                        name="name">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select name="Product code" class="form-control" formControlName="State" name="State" required
+                        style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('State').touched && form.get('State').invalid}"
+                      >
+                      <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('State').touched && form.get('State').invalid">
+                        <div *ngIf="form.get('State').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                     
+                    </div>
+                </div>
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="worker_zip"  disabled
+                        name="name">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select name="Product code" class="form-control" formControlName="Zip" name="Zip" required
+                        style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Zip').touched && form.get('Zip').invalid}"
+                      >
+                      <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('Zip').touched && form.get('Zip').invalid">
+                        <div *ngIf="form.get('Zip').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                     
+                    </div>
+                </div>
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="worker_code" disabled name="name">
+                   
+                </div>
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select name="Product code" class="form-control" formControlName="Comp_code" name="Comp_code"
+                        required style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Comp_code').touched && form.get('Comp_code').invalid}"
+                       >
+                       <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('Comp_code').touched && form.get('Comp_code').invalid">
+                        <div *ngIf="form.get('Comp_code').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                       
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="invoice" disabled  name="invoice">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select name="Product code" class="form-control" formControlName="Invoice_Number"
+                        name="Invoice_Number" style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Invoice_Number').touched && form.get('Invoice_Number').invalid}"
+                       >
+                       <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback"
+                        *ngIf="form.get('Invoice_Number').touched && form.get('Invoice_Number').invalid">
+                        <div *ngIf="form.get('Invoice_Number').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                       
+                    </div>
+                </div>
+
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="rate" disabled name="rate">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="Pay_Rate" name="Pay_Rate" required [ngClass]="
+                    { 'is-invalid': form.get('Pay_Rate').touched && form.get('Pay_Rate').invalid}" style="width: 100%;"
+                       >
+
+                       <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('Pay_Rate').touched && form.get('Pay_Rate').invalid">
+                        <div *ngIf="form.get('Pay_Rate').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                       
+                    </div>
+                </div>
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="time"  disabled
+                        name="name">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select name="Product code" class="form-control" formControlName="standard_Time" name="standard_Time" required
+                        style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('standard_Time').touched && form.get('standard_Time').invalid}"
+                      >
+                      <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('standard_Time').touched && form.get('standard_Time').invalid">
+                        <div *ngIf="form.get('standard_Time').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                     
+                    </div>
+                </div>
+
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="overtime"  disabled
+                        name="name">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select name="Product code" class="form-control" formControlName="OverTime" name="OverTime" required
+                        style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('OverTime').touched && form.get('OverTime').invalid}"
+                      >
+                      <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('Location').touched && form.get('Location').invalid">
+                        <div *ngIf="form.get('Location').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                     
+                    </div>
+                </div>
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="worker_bill" disabled name="name">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="bill" name="bill" required [ngClass]="
+                    { 'is-invalid': form.get('bill').touched && form.get('bill').invalid}" style="width: 100%;"
+                  >
+
+                  <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('bill').touched && form.get('bill').invalid">
+                        <div *ngIf="form.get('bill').errors.required" style="font-size: 15px;"> This field is required
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- imported from csv -->
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="agency"  disabled name="agency">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+
+                <!-- imported from csv -->
+
+
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="Worker_Agency" name="Worker_Agency" required
+                        [ngClass]="
+                    { 'is-invalid': form.get('Worker_Agency').touched && form.get('Worker_Agency').invalid}"
+                        style="width: 100%;" >
+
+                        <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback"
+                        *ngIf="form.get('Worker_Agency').touched && form.get('Worker_Agency').invalid">
+                        <div *ngIf="form.get('Worker_Agency').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                      
+                    </div>
+                </div>
+
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="percantage"  disabled
+                        name="percantage">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+                <!-- imported from csv -->
+
+                <div class="input-box">
+
+                    <select style="color: black;" formControlName="Markup_Percantage" class="form-control"
+                        name="Markup_Percantage" style="width: 100%;" required
+                        [ngClass]="
+                        { 'is-invalid': form.get('Markup_Percantage').touched && form.get('Markup_Percantage').invalid}" >
+
+                        <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback"
+                        *ngIf="form.get('Markup_Percantage').touched && form.get('Markup_Percantage').invalid">
+                        <div *ngIf="form.get('Markup_Percantage').errors.required" style="font-size: 15px;"> This field
+                            is required
+                        </div>
+                    
+                        
+                    </div>
+                </div>
+
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="date"  disabled name="date">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="Start_Date" name="Start_Date" style="width: 100%;"
+                        required [ngClass]="
+                    { 'is-invalid': form.get('Start_Date').touched && form.get('Start_Date').invalid}"
+                        >
+
+                        <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback"
+                        *ngIf="form.get('Start_Date').touched && form.get('Start_Date').invalid">
+                        <div *ngIf="form.get('Start_Date').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="project"  disabled 
+                        name="project">
+                    
+                </div>
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="Project_End" name="Project_End" style="width: 100%;"
+                        required [ngClass]="
+                    { 'is-invalid': form.get('Project_End').touched && form.get('Project_End').invalid}"
+                        >
+
+                        <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+                    </select>
+                    <div class="invalid-feedback"
+                        *ngIf="form.get('Project_End').touched && form.get('Project_End').invalid">
+                        <div *ngIf="form.get('Project_End').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                      
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+
+
+      
+
+        <!-- THIS FIELD IS NOT EDITABLE | GRAYED OUT -->
+
+        <!-- End Calc of Total Number of Donors Fields -->
+        <input type="button" data-page="2" name="previous" (click)="previous()" class="previous action-button"
+            value="Previous" />
+        <input type="button" data-page="2" name="next" class="next action-button" (click)="next()" value="Next" />
+    
+    </fieldset>
+
+
+
+    <!-- Cultivation FIELD SET -->
+    <fieldset *ngIf="step == 3">
+        <h2 class="fs-title">PayRoll</h2>
+        <div class="">
+            <!-- Begin Average Gift Size in Year 1 Field -->
+            <div class="row justify-content-center">
+                <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" style="height: 200px;" class="fit-image">
+                </div>
+            </div>
+            <!-- End Average Gift Size in Year 1 Field -->
+            <!-- Begin Average Gift Size in Year 2 Field -->
+            <div class="form-item webform-component webform-component-textfield hs_average_gift_size_in_year_2 field hs-form-field"
+                id="webform-component-cultivation--amount-2">
+
+                <label style="color: purple;" style="font-size: 40px;">
+                    Thank You For uploading the PayRoll Document Listed Below </label>
+
+                {{t}}
+                <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+            </div>
+            <!-- End Average Gift Size in Year 2 Field -->
+        </div>
+        <!-- End Average Gift Size Perchent Change Field -->
+        <!-- <input type="button" data-page="3" name="previous" class="previous action-button" value="Previous" /> -->
+        <input type="button" data-page="3" name="" (click)="close()" class="next action-button" value="Close" />
+        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"></div>
+    </fieldset>
+
+
+
+
+
+
+
+
+</form>
