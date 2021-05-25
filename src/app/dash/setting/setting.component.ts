@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { formatDate, JsonPipe } from '@angular/common';
 import { AllserviceService } from 'src/app/service/allservice.service';
+import { NgxCsvParser } from 'ngx-csv-parser';
+import { NgxCSVParserError } from 'ngx-csv-parser';
+import swal from 'sweetalert2'
 
 
 @Component({
@@ -12,28 +15,57 @@ import { AllserviceService } from 'src/app/service/allservice.service';
 })
 export class SettingComponent implements OnInit {
 
-  dropDown:any;
+  dropDown: any;
+  isLoading: boolean = false;
+  Details = [];
+  error: string;
+  SearchDetails = [];
+
 
   constructor(private http: HttpClient,
-    private Service : AllserviceService,) { }
+    private Service: AllserviceService,
+    private ngxCsvParser: NgxCsvParser) { }
 
   ngOnInit(): void {
-    
+    this.getSetting();
+
   }
 
- 
+  userObj = {
+    Delivery_cap: "",
+    Delivery_pct: "",
+    EPLI_cap: "",
+    EPLI_pct: "",
+    FEE_cap: "",
+    FEE_pct: "",
+    FICA_Med_cap: "",
+    FICA_Med_pct: "",
+    FICA_cap: "",
+    FICA_pct: "",
+    FUI_Sol_cap: "",
+    FUI_Sol_pct: "",
+    FUI_cap: "",
+    FUI_pct: "",
+    SUI_cap: "",
+    SUI_pct: "",
+    Sales_Tax_cap: "",
+    Sales_Tax_pct: "",
+    States: "",
+    Tech_cap: "",
+    Tech_pct: "",
+    WC_Admin_cap: "",
+    WC_Admin_pct: "",
+    WC_cap: "",
+    WC_pct: "",
+    id: "",
+  }
 
   files: File[] = [];
+  heading = [];
+  header = [];
 
-onSelect(event) {
-  console.log(event);
-  this.files.push(...event.addedFiles);
-}
 
-onRemove(event) {
-  console.log(event);
-  this.files.splice(this.files.indexOf(event), 1);
-}
+
 
   form = new FormGroup({
 
@@ -47,106 +79,199 @@ onRemove(event) {
     FEE: new FormControl('', Validators.required),
     Tech: new FormControl('', Validators.required),
     Delivery: new FormControl('', Validators.required),
-  
-  
-})
+
+    upload: new FormControl('', Validators.required),
+    state_name: new FormControl('----SELECT----', Validators.required),
+
+  })
 
 
 
-lines = []; //for headings
-linesR = []; // for rows
-filess = [];
-heading = [];
-header = [];
 
-// 
 
-//File upload function
-changeListener(files: FileList){
-  console.log(files);
-  if(files && files.length > 0) {
-     let file : File = files.item(0); 
-       console.log(file.name);
-       console.log(file.size);
-       console.log(file.type);
-       let reader: FileReader = new FileReader();
-       reader.readAsText(file);
-       reader.onload = (e) => {
+  filess = [];
+
+  lines = []; //for headings
+  linesR = []; // for rows
+  csvRecords: any[] = [];
+  progress: number = 0;
+  changeListener(event) {
+    for (this.progress = 0; this.progress <= 100; this.progress++) { }
+    console.log(event)
+    // this.filess.push(...event.addedFiles);
+    const files = event.target.files;
+
+    this.filess.push(files);
+    if (files && files.length > 0) {
+     
+      let file: File = files[0];
+      console.log(file.name);
+
+
+      console.log(file.size);
+      console.log(file.type);
+      //File reader method
+      let reader: FileReader = new FileReader();
+      reader.readAsText(file);
+      reader.onload = (e) => {
         let csv: any = reader.result;
         let allTextLines = [];
-        allTextLines = csv.split(/\r|\n|\r/).filter(function(str){ return  str});
-       // console.log(allTextLines);
-       //Table Headings
-        let headers = allTextLines[0].split(';');
+
+        allTextLines = csv.split(/\r|\n|\r/).filter(function (str) { return str });
+
+
+        //Table Headings 
+        let headers = allTextLines[0].split(',');
         let data = headers;
         let tarr = [];
         for (let j = 0; j < headers.length; j++) {
           tarr.push(data[j]);
+
         }
-        //Pusd headinf to array variable
+        //Pusd headings to array variable
         this.lines.push(tarr);
-    
-       
+        this.heading.push(tarr);
+        this.header = this.heading[0];
+
+
+
         // Table Rows
         let tarrR = [];
-        //Create formdata object
         var myFormData = new FormData();
         let arrl = allTextLines.length;
         let rows = [];
-        
-        for(let i = 1; i < arrl; i++){
-        rows.push(allTextLines[i].split(';'));
-       //  console.log(rows,'gg')
-        if(allTextLines[i]!=""){
-        // Save file data into formdata varibale  
-        myFormData.append("data"+i, allTextLines[i]);
-      }
+        for (let i = 1; i < arrl; i++) {
+
+          rows.push(allTextLines[i].split(','));
+          if (allTextLines[i] != "") {
+            // Save file data into formdata varibale  
+            myFormData.append("data" + i, allTextLines[i]);
+          }
         }
-       
+
         for (let j = 0; j < arrl; j++) {
-         
-          
-           
-            tarrR.push(rows[j]);
-          
-            tarrR = tarrR.filter(function(i){ return i != ""; });
-          
-            
-            // Begin assigning parameters
-           
-           
-         
+
+          tarrR.push(rows[j]);
+
         }
-       //Push rows to array variable
+        //Push rows to array variable
         this.linesR.push(tarrR);
-       
-       console.log(tarrR);
-      
 
-       
-let dd = {
-   dd : JSON.stringify(myFormData)
-}
-console.log(dd,'dddddddddddddd')
 
-       this.Service.register(dd).subscribe( res=> {
-        console.log(res);
-       })
-      
+        // Parse the file you want to select for the operation along with the configuration
+        this.ngxCsvParser.parse(files[0], { header: true, delimiter: ',' })
+          .pipe().subscribe((result: Array<any>) => {
 
-        // return this.http.post('https://ii1q92eb28.execute-api.us-west-1.amazonaws.com/insert'
-        //       , myFormData).subscribe((res: Response) => {
-        //     console.log("User Registration has been done.");       
-        //     });
-        
+
+            this.csvRecords = result;
+
+
+          }, (error: NgxCSVParserError) => {
+            console.log('Error', error);
+          });
+      }
+    }
+  }
+
+  onSubmit() {
+    this.isLoading = true;
+    this.Service.register(this.csvRecords).subscribe(res => {
+
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000, swal.fire(
+        'File uploaded successfully!',
+        '',
+        'success'
+      ));
+      this.getSetting();
+
+    })
+  }
+
+
+
+  // csvRecords: any[] = [];
+
+
+  // @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
+
+  // // Your applications input change listener for the CSV File
+  // fileChangeListener($event: any): void {
+
+  //   // Select the files from the event
+  //   const files = $event.srcElement.files;
+
+  //   // Parse the file you want to select for the operation along with the configuration
+  //   this.ngxCsvParser.parse(files[0], { header: true, delimiter: ',' })
+  //     .pipe().subscribe((result: Array<any>) => {
+
+  //       console.log('Result', result);
+  //       this.csvRecords = result;
+
+  //       this.Service.register(result).subscribe( res=> {
+  //         console.log(res);
+  //        })
+
+  //     }, (error: NgxCSVParserError) => {
+  //       console.log('Error', error);
+  //     });
+
+
+
+  getSetting() {
+
+    this.Service.getSetting().subscribe((res: any) => {
+      this.Details = res.data;
+     
+    }, (error) => {
+      this.error = 'Server Down Please try After Sometime ..! '
     }
 
-
-    
+    );
   }
-}
+
+
+  EditSetting(s) {
+    this.userObj = s;
+    console.log(this.userObj)
+  }
+
+  updateSetting() {
+    this.Service.UpdateSetting(this.userObj).subscribe(res => {
+      this.getSetting();
+      swal.fire(
+        'File updated successfully!',
+        '',
+        'success'
+      )
+    })
+  }
+
+
+  isLoad: boolean = false;
+  sendStateName() {
+    let name = {
+      States: this.form.value.state_name
+    }
+    this.isLoad = true
+    this.Service.PostSetting(name).subscribe((res: any) => {
+      this.SearchDetails = res.data;
+      setTimeout(() => {
+        this.isLoad = false;
+      }, 1000);
+    }
+    )
+
+  }
+
+
+
 
 }
+
+
+
 
 
 

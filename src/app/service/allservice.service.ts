@@ -22,11 +22,42 @@ export class AllserviceService {
 
     constructor(private http: HttpClient) { }
 
+
+    // setting Api
+
     register(tenant) {
 
-      return this.http.post('https://ii1q92eb28.execute-api.us-west-1.amazonaws.com/insert', tenant)
+      return this.http.post('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/PayrollSetting/PayrollSetting ', tenant)
         .pipe(catchError(this.handleError));
     }
+
+    getSetting() {
+
+      return this.http.get('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/getPayrollSetting/getPayrollSetting')
+        .pipe(catchError(this.handleError));
+    }
+
+
+    PostSetting(name) {
+
+      return this.http.post('  https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/getIndivdualPayroll/getPayrollSetting',name)
+        .pipe(catchError(this.handleError));
+    }
+
+    UpdateSetting(userObj) {
+
+      return this.http.put('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/updateSettingPayroll/updateSettingPayroll',userObj)
+        .pipe(catchError(this.handleError));
+    }
+
+    // client api 
+
+    addFile(file) {
+
+      return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/insertdata/insertdata', file)
+        .pipe(catchError(this.handleError));
+    }
+
 
   }
 

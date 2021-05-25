@@ -210,4 +210,34 @@
 }
 
 
+.csv-file-chooser-section {
+  padding: 10px;
+  margin: 5%;
+  border: 1px solid;
+  text-align: center;
+}
 
+.csv-result-table {
+  margin: 5%;
+  border: 1px solid #73AD21;
+
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+
+/* state box Css */
+
+/* .field{
+  width: 280px;
+   margin-left: 130px;
+   
+border-radius: 19px;
+}
+
+.field1{
+  width: 280px;
+   border-radius: 19px;
+} */

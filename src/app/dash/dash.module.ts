@@ -10,7 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SettingComponent } from './setting/setting.component';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { AllserviceService }  from '../service/allservice.service'
- 
+import { NgxCsvParserModule } from 'ngx-csv-parser';
   
 
 @NgModule({
@@ -18,10 +18,12 @@ import { AllserviceService }  from '../service/allservice.service'
   imports: [
     CommonModule,
     DashRoutingModule,
+    NgxCsvParserModule,
     FormsModule,
     ReactiveFormsModule,
     NgxDropzoneModule,
     HttpClientModule,
+   
 
   ],
   providers: [AllserviceService],

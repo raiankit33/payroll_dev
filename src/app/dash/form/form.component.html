@@ -659,9 +659,12 @@
                 </div>
 
 
+               
+
+
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="worker_bill" disabled name="name">
+                    <input type="text" style="color: black;" formControlName="double_time" disabled name="name">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -671,8 +674,8 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="bill" name="bill" required [ngClass]="
-                    { 'is-invalid': form.get('bill').touched && form.get('bill').invalid}" style="width: 100%;"
+                    <select class="form-control" formControlName="Double_time" name="Double_time" required [ngClass]="
+                    { 'is-invalid': form.get('Double_time').touched && form.get('Double_time').invalid}" style="width: 100%;"
                   >
 
                   <option value="">----SELECT----</option>
@@ -688,7 +691,34 @@
                     </div>
                 </div>
 
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="ot_pay_rate" disabled name="name">
+                    <div class="invalid-feedback">
+                        <div> This field is required</div>
+                    </div>
+                </div>
+
+
                 <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="OT_pay_Rate" name="OT_pay_Rate" required [ngClass]="
+                    { 'is-invalid': form.get('OT_pay_Rate').touched && form.get('OT_pay_Rate').invalid}" style="width: 100%;"
+                  >
+
+                  <option value="">----SELECT----</option>
+                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+
+
+
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.get('bill').touched && form.get('bill').invalid">
+                        <div *ngIf="form.get('bill').errors.required" style="font-size: 15px;"> This field is required
+                        </div>
+                        
+                    </div>
+                </div>
 
 
                 <div class="input-box">
@@ -848,14 +878,15 @@
         <!-- End Calc of Total Number of Donors Fields -->
         <input type="button" data-page="2" name="previous" (click)="previous()" class="previous action-button"
             value="Previous" />
-        <input type="button" data-page="2" name="next" class="next action-button" (click)="next()" value="Next" />
+            <input type="button" data-page="2" name="next" class="next action-button" *ngIf="show" (click)="submit()" value="Submit" />
+        <input type="button" data-page="2" name="next" class="next action-button" *ngIf="!show" (click)="next()" value="Next" />
     
     </fieldset>
 
 
 
     <!-- Cultivation FIELD SET -->
-    <fieldset *ngIf="step == 3">
+    <fieldset *ngIf="step == 3" >
         <h2 class="fs-title">PayRoll</h2>
         <div class="">
             <!-- Begin Average Gift Size in Year 1 Field -->
