@@ -7,6 +7,7 @@ import { HttpClientModule  } from '@angular/common/http';
 
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
+import { RecomdationComponent } from './recomdation/recomdation.component';
 
 
 
@@ -16,6 +17,7 @@ import { LoginComponent } from './login/login.component';
    
     HeaderComponent,
     LoginComponent,
+    RecomdationComponent,
    
   
   
@@ -26,7 +28,8 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

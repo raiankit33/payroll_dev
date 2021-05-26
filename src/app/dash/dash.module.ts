@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { DashRoutingModule } from './dash-routing.module';
@@ -11,11 +12,14 @@ import { SettingComponent } from './setting/setting.component';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { AllserviceService }  from '../service/allservice.service'
 import { NgxCsvParserModule } from 'ngx-csv-parser';
-  
+import { BatchesComponent } from './batches/batches.component';
+import { RecomComponent } from './recom/recom.component';
+
 
 @NgModule({
-  declarations: [DashComponent, DashboadComponent, FormComponent, Dashboad1Component, SettingComponent],
+  declarations: [DashComponent, DashboadComponent, FormComponent, Dashboad1Component, SettingComponent, BatchesComponent, RecomComponent],
   imports: [
+
     CommonModule,
     DashRoutingModule,
     NgxCsvParserModule,
@@ -23,6 +27,7 @@ import { NgxCsvParserModule } from 'ngx-csv-parser';
     ReactiveFormsModule,
     NgxDropzoneModule,
     HttpClientModule,
+  
    
 
   ],

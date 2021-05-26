@@ -1,0 +1,116 @@
+<div class="row">
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4 ml-5">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Batches</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" > 200</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Savings (Annual)</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Earnings (Monthly) Card Example -->
+  
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Unique Employee</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">500</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa fa-users fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<br>
+<hr>
+
+
+
+
+
+
+  <div class="row">
+    <!-- Left col -->
+    <section class="col-lg-12 connectedSortable">
+      <!-- Custom tabs (Charts with tabs)-->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            
+            <div class="search_wrap search_wrap_1">
+              <div class="search_box"style="margin-left: 16px;">
+                <input type="text" class="input" placeholder="Search..." style="width: 200px;">
+                <div class="btn btn_common">
+                  <i  class="fas fa-search"></i>
+                </div>
+              </div>
+            </div>
+          </h3>
+          <div class="tools">
+         
+         
+             
+           
+          </div>
+        </div><!-- /.card-header -->
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"> Batch Name</th>
+                <th scope="col">Time Stamp</th>
+                <th scope="col"> No of Employees </th>
+                <th scope="col">Total Cost</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let s of Details">
+                
+                <td>{{s.Batch_Name}}</td>
+                <td>{{s.created_at}}</td>
+                <td>100</td>
+                <td> $ 3200 </td>
+                <td style="color: blue;"><a>View Details</a></td>
+              </tr>
+              
+              
+            </tbody>
+          </table>
+           
+        </div><!-- /.card-body -->
+      </div>
+      </section>
+      </div>
+    

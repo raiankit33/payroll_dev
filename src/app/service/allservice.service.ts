@@ -59,5 +59,21 @@ export class AllserviceService {
     }
 
 
+
+    Show() {
+
+      return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getData/getData')
+        .pipe(catchError(this.handleError));
+    }
+    
+    ShowAll() {
+
+      return this.http.get(' https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getSingleBatch/getData')
+        .pipe(catchError(this.handleError));
+    }
+  
+
+
+
   }
 

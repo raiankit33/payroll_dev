@@ -1,0 +1,36 @@
+
+
+
+<div class="col-xl-12 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="equal">
+            <div class="input-box mt-3 ml-5 mb-4">
+                <span class="details">* Select Batch</span>
+                <select class="form-control"  style="width: 350px;">
+                    <option value="" >----SELECT----</option>
+                    <option value="" *ngFor="let f of Details">{{f.Batch_Name}}</option>
+        
+        
+                </select>
+        
+            </div>
+            <div class="tools">
+        
+            
+                <div class="container" (click)="GOtoForm()">
+        
+                    <div class="pricing-table">
+                        
+                        <h3 class="heading">upload Data </h3>
+                        
+        
+                       
+        
+                    </div>
+              </div> 
+            </div> 
+        </div>
+      </div>
+    </div>
+  </div>

@@ -115,24 +115,41 @@
 <form class="steps" [formGroup]="form" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
 
 
-    <div class="progress ">
+    <!-- <div class="progress ">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0"
             aria-valuemax="100"></div>
-    </div> <br> <!-- fieldsets -->
+    </div> <br> -->
 
     <!-- USER INFORMATION FIELD SET -->
     <fieldset *ngIf="step == 1">
 
         <h2 class="fs-title">Basic Information</h2>
         
+
+        
         <!-- Begin What's Your First Name Field -->
         <div class="hs_firstname field hs-form-field">
+    <div class="user-details">
 
-            <label>Upload File? *</label>
+            <div class="input-box">
+                <!-- <span class="details">* Batch Name</span> -->
+                <input type="text" placeholder="Batch Name "  required name="batch_name" 
+                  formControlName="batch_name" >
+               
+              </div>
+              <div class="input-box">
+                <!-- <span class="details">Remarks</span> -->
+                <input type="text" placeholder="Remarks "  required name="remark"
+                  formControlName="remark">
+               
+              </div>
+            </div>
+            <!-- <label>Upload File? *</label> -->
 
          <ngx-dropzone (change)="onSelect($event)">
+             <!-- <label style="margin-left: 400px;" > Drag and Drop! or Upload File? *</label> -->
                 <ngx-dropzone-label>Drag and Drop!</ngx-dropzone-label>
-                <ngx-dropzone-preview *ngFor="let f of filess" [removable]="true" [multiple]="false"
+                <ngx-dropzone-preview *ngFor="let f of filess" [removable]="true" [multiple]="false" 
                     (removed)="onRemove(f)" accept="image/csv">
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
@@ -243,7 +260,7 @@
 
                 <div class="input-box">
                    
-                    <select name="id" class="form-control" formControlName="id" style="width: 100%;" required [ngClass]="
+                    <select name="id" class="form-control" formControlName="id" (ngModelChange)="CalledNew($event)"  style="width: 100%;" required [ngClass]="
                     { 'is-invalid': form.get('id').touched && form.get('id').invalid}" >
                         <option value="">----SELECT----</option>
                         <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
@@ -878,7 +895,7 @@
         <!-- End Calc of Total Number of Donors Fields -->
         <input type="button" data-page="2" name="previous" (click)="previous()" class="previous action-button"
             value="Previous" />
-            <input type="button" data-page="2" name="next" class="next action-button" *ngIf="show" (click)="submit()" value="Submit" />
+            <input type="button" data-page="2" name="next" class="next action-button"  (click)="submit()" value="Submit" />
         <input type="button" data-page="2" name="next" class="next action-button" *ngIf="!show" (click)="next()" value="Next" />
     
     </fieldset>
@@ -901,8 +918,10 @@
 
                 <label style="color: purple;" style="font-size: 40px;">
                     Thank You For uploading the PayRoll Document Listed Below </label>
-
-                {{t}}
+<div *ngFor="let d of csvRecords">
+   {{d.Standard_Time_H * d.ST_Pay_Rate}}
+</div>
+               
                 <span class="error1" style="display: none;">
                     <i class="error-log fa fa-exclamation-triangle"></i>
                 </span>

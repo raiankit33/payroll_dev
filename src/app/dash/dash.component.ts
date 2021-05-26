@@ -21,4 +21,8 @@ export class DashComponent implements OnInit {
   showMe(){
     this.router.navigate(['dash/dashboad1']);
   }
+
+  Batch(){
+    this.router.navigate(['dash/batch']);
+  }
 }

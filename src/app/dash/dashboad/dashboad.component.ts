@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-dashboad',
   templateUrl: './dashboad.component.html',
@@ -13,10 +14,18 @@ export class DashboadComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  
+  
+    
+  
   }
 
   clickMe(){
     this.router.navigate(['dash/form']);
+  }
+
+  clickMe2(){
+    this.router.navigate(['dash/recom']);
   }
 
 }

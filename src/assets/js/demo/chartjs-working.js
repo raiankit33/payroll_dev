@@ -28,6 +28,17 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+// fetch("https://corona-virus-stats.herokuapp.com/api/v1/cases/general-stats")
+//             //Response resolves to a readable stream, 
+//             //so this statement helps us convert it into 
+//             //a static object
+//             .then(response => response.json()) 
+//             //Now that we have the data, let us see what it looks like in console
+//             .then(responseData => {
+//                 console.log(responseData);
+//             });
+
+
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {

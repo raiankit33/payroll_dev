@@ -39,49 +39,62 @@ setTime : boolean;
   ngOnInit(): void {
     // this.loadedScript("./assets/file.js");
 
-    this.map.set("", "Worker_Unique_Id"); 
-  this.map.set("", "Worker_Name");
- this.map.set("", "Worker_Title");
- this.map.set("", "Worker_Manager");
-  this.map.set("", "Worker_Department");
-  this.map.set("", "Worker_Location");
-  this.map.set("", "Work_City");
-  this.map.set("", "Work_State");
-   this.map.set("", "Work_Zip");
-   this.map.set("", "Worker_Comp_Code");
-   this.map.set("", "Invoice_Number");
-   this.map.set("", "Standard_Time_H");
+//     this.map.set("Po1", "Worker_Unique_Id"); 
+//     this.map.set("po2", "Worker_Name");
+//  this.map.set("", "Worker_Title");
+//  this.map.set("", "Worker_Manager");
+//   this.map.set("", "Worker_Department");
+//   this.map.set("", "Worker_Location");
+//   this.map.set("", "Work_City");
+//   this.map.set("", "Work_State");
+//    this.map.set("", "Work_Zip");
+//    this.map.set("", "Worker_Comp_Code");
+//    this.map.set("", "Invoice_Number");
+//    this.map.set("", "Standard_Time_H");
+//    this.map.set("", "Standard_Time_H");
+//    this.map.set("", "Standard_Time_H");
+//    this.map.set("", "Standard_Time_H");
+//    this.map.set("", "Standard_Time_H");
+// this.map.get('Po1');
 
+  
   }
 
+  CalledNew(event){
+   console.log(event,'kk')
+   this.map.set( "Worker_Unique_Id",event);
+   console.log(this.map.has('Worker_Unique_Id'));
+
+  }
 
   
 
 
  
-//  array =['Worker_Unique_Id',
-//  'Worker_Name',
-//  'Worker_Title',
-//  'Worker_Manager',
-//  'Worker_Department',
-//  'Worker_Location',
-//  'Work_City',
-//  'Work_State',
-//  'Work_Zip',
-//  'Worker_Comp_Code',
-//  'Invoice_Number',
-//  'Standard_Time_H',
-//  'ST_Pay_Rate',
-//  'Over_Time_H',
-//  'OT_Pay_Rate',
-//  'Double_Time_H',
-//  'DT_Pay_Rate',
-//  'Markup_Percantage ',
-//  'Week_Start_Date',
-//  'Project_End ',
-//  'Worker_Agency']
+ array =['Worker_Unique_Id',
+ 'Worker_Name',
+ 'Worker_Title',
+ 'Worker_Manager',
+ 'Worker_Department',
+ 'Worker_Location',
+ 'Work_City',
+ 'Work_State',
+ 'Work_Zip',
+ 'Worker_Comp_Code',
+ 'Invoice_Number',
+ 'Standard_Time_H',
+ 'ST_Pay_Rate',
+ 'Over_Time_H',
+ 'OT_Pay_Rate',
+ 'Double_Time_H',
+ 'DT_Pay_Rate',
+ 'Markup_Percantage ',
+ 'Week_Start_Date',
+ 'Project_End ',
+ 'Worker_Agency']
 
 
+ 
  
 
   form = new FormGroup({
@@ -131,6 +144,9 @@ setTime : boolean;
     OT_pay_Rate: new FormControl('', Validators.required),
     dt_pay_rate: new FormControl('Bill Rate'),
     DT_Pay_Rate: new FormControl('', Validators.required),
+
+    batch_name :new FormControl('', Validators.required),
+    remark :new FormControl('', Validators.required),
   }
    
   
@@ -274,10 +290,49 @@ setTime : boolean;
 
   
 submit(){
+  let form ={
+    batch_name : this.form.value.batch_name,
+  
+    csv : this.csvRecords }
   this.show = false
-  this.Service.addFile(this.csvRecords).subscribe( res=> {
+  this.Service.addFile(form).subscribe( res=> {
     console.log(res);
    })
+
+  let tt = {
+    id: this.form.value.id,
+    Name: this.form.value.Name,
+    Title: this.form.value.Title,
+    Manager:this.form.value.Manager, 
+   Department:this.form.value.Department,
+    Location:this.form.value.Location,
+      City:this.form.value.city,
+    State:this.form.value.State,
+      Zip:this.form.value.zip,
+    OverTime:this.form.value.OverTime,
+      Comp_code:this.form.value.Comp_code,
+
+    Invoice_Number:this.form.value.Invoice_Number,
+
+      Pay_Rate:this.form.value.Pay_Rate,
+
+
+    standard_Time:this.form.value.standard_Time,
+
+      bill:this.form.value.bill,
+
+    Markup_Percantage:this.form.value.Markup_Percantage,
+
+      Start_Date:this.form.value.Start_Date,
+
+    Project_End:this.form.value.Project_End,
+
+      Worker_Agency:this.form.value.Worker_Agency,
+
+      
+      
+  }
+ console.log(tt)
 }
   
 
