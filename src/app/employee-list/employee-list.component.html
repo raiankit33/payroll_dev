@@ -1,207 +1,117 @@
 <div class="row">
-    <h1 class="h3 mb-0 text-gray-800">Employee List</h1>
-    <!-- <div class="col-xl-3 col-md-6 mb-4 ml-5">
-      <div class="card border-left-primary shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2">Total Batches</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2"   > 3</div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-calendar fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-xl-3 col-md-6 mb-4 ml-5">
-      <div class="card border-left-success shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1 ml-2">Savings (Annual)</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">$215,000</div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-   
-  
-  
-    <div class="col-xl-3 col-md-6 mb-4 ml-5">
-      <div class="card border-left-warning shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Unique Employee</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">500</div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa fa-users fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
+    <h1 class="h3 mb-0 text-gray-800 ml-4">Employee List</h1>
+
   </div>
-
-
 <br>
-<hr>
 
 
 
 
 
-
-  <div class="row">
-    <!-- Left col -->
-    <section class="col-lg-12 connectedSortable">
-      <!-- Custom tabs (Charts with tabs)-->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">
-            
-            <div class="search_wrap search_wrap_1">
-              <div class="search_box"style="margin-left: 16px;">
-                <input type="text" class="input mt-2 mb-2" style="font-size: 12px;" placeholder=""   [(ngModel)]="name"  style="width: 200px;">
-                <div class="btn btn_common">
-                  <i  class="fas fa-search"></i>
-                 
-                </div>
-                <br>
-              </div>
-            </div>
-          </h3>
-          <div class="tools">
-         
-         
-             
+<div class="col-xl-12 col-lg-7">
+  <div class="card shadow  mb-4 ml-4 mr-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: white;">
+      <div class="input-box ml-5 searchbox " >
+        <form  [formGroup]="form">    
+          <div class="equal">
+        <select  class="form-control " formControlName="value" name="value"   (ngModelChange)="SendName()"   style="width: 250px;"  >
+                     <option selected disabled value="" >----SELECT---- </option>
+          <option value="{{value}}" *ngFor = "let value of Details">{{value}} </option>
+        </select>
+        <img *ngIf="isLoad" class="ml-4" style="width : 30px" src="../../../assets/icons8-spinner.gif" />
+        <!-- <button class="btn btn-primary ml-4">Search</button> -->
+          </div>
+        </form>
+    </div>
+  
+     
+        
+        <div class="search_wrap search_wrap_1 mr-4 mt-3">
+          <div class="search_box" >
+            <input type="text" class="form-control"  [(ngModel)]="name" (change)="Search()"  placeholder="Search by Name">
+            <div class="btn btn_common">
+              
            
           </div>
-        </div><!-- /.card-header -->
-        <div class="card-body">
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      
+     
+        <!-- <canvas id="myBarChart"></canvas> -->
+        <div class="scroll"   >
+          <table class="table">
+              <thead>
+                <tr>
+                  <th >S.No</th>
+                  <th >Batch Name</th>
+                  <th >Worker  Id</th>
+                  <th >Worker Title</th>
+                  <th scope="col">Worker Name</th>
+                  <th scope="col">Worker Manager</th>
+                  <th scope="col">Worker Location</th>
+                  <th scope="col">Worker Department</th>
+                  <th scope="col">Comp Code</th>
+                  <th scope="col">Worker Agency</th>
+                  <th scope="col">Work City</th>
+                  <th scope="col">Work State</th>
+                  <th scope="col">Work Zip</th>
+          
+        
+    
+                </tr>
+              </thead>
+              <tbody  >
+                <tr *ngFor = " let list of SearchDetails | filter:name  index as i ">
+                  <td> {{i+1}}</td>
+                  <td> {{list.Batch_Name}}</td>
+                  <td >{{list.Worker_Unique_Id}}</td>
+                  <td >{{list.Worker_Title}}</td>
+                  <td >{{list.Worker_Name}}</td>
+                  <td >{{list.Worker_Manager}}</td>
+                  <td >{{list.Worker_Location}}</td>
+                  <td >{{list.Worker_Department}}</td>
+                  <td >{{list.Worker_Comp_Code}}</td>
+                  <td >{{list.Worker_Agency}}</td>
+                  <td >{{list.Work_City}}</td>
+                  <td >{{list.Work_State}}</td>
+                  <td >{{list.Work_Zip}}</td>
+               
+          
+                </tr>
+           
+              </tbody>
+            </table>
          
-            <div class="scroll"   >
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">S.No</th>
-                        <th scope="col">Batch_Name</th>
-                        <th scope="col">Worker_Unique_Id</th>
-                        <th scope="col">Worker_Title</th>
-                        <th scope="col">Worker_Name</th>
-                        <th scope="col">Worker_Manager</th>
-                        <th scope="col">Worker_Location</th>
-                        <th scope="col">Worker_Department</th>
-                        <th scope="col">Worker_Comp_Code</th>
-                        <th scope="col">Worker_Agency</th>
-                        <th scope="col">Work_City</th>
-                        <th scope="col">Work_State</th>
-                        <th scope="col">Work_Zip</th>
-                        <th scope="col">Week_Start_Date</th>
-                        <th scope="col">DT_Pay_Rate</th>
-                        <th scope="col">Delivery_TAX</th>
-                        <th scope="col">Double_Time_H</th>
-                        <th scope="col">Double_Time_Total</th>
-                        <th scope="col">EPLI_TAX</th>
-                        <th scope="col">FEE_TAX</th>
-                        <th scope="col">FICA_Med_TAX</th>
-                        <th scope="col">FICA_TAX</th>
-                        <th scope="col">FUI_Sol_TAX</th>
-                        <th scope="col">FUI_TAX</th>
-                        <th scope="col">Invoice_Number</th>
-                        <th scope="col">Markup</th>
-                        <th scope="col">Markup_percentage</th>
-                        <th scope="col">OT_Pay_Rate</th>
-                        <th scope="col">  Over_Time_Total  </th>
-                        <th scope="col">  Project_End  </th>
-                        <th scope="col"> ST_Pay_Rate   </th>
-                        <th scope="col">  SUI_TAX  </th>
-                        <th scope="col"> Sales_TAX   </th>
-                        <th scope="col"> Saving   </th>
-                        <th scope="col"> Staffing_Company_Cost   </th>
-                        <th scope="col"> Standard_Time_H   </th>
-                        <th scope="col">   Standard_Time_Total </th>
-                        <th scope="col">  Total_COST  </th>
-                        <th scope="col">  Total_PAY  </th>
-                        <th scope="col">  Tech_TAX  </th>
-                        <th scope="col">  WC_Admin_TAX  </th>
-                        <th scope="col">  WC_TAX  </th>
-                      
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor = " let list ">
-                        <td> {{1}}</td>
-                        <td> {{list.Batch_Name}}</td>
-                        <td >{{list.Worker_Unique_Id}}</td>
-                        <td >{{list.Worker_Title}}</td>
-                        <td >{{list.Worker_Name}}</td>
-                        <td >{{list.Worker_Manager}}</td>
-                        <td >{{list.Worker_Location}}</td>
-                        <td >{{list.Worker_Department}}</td>
-                        <td >{{list.Worker_Comp_Code}}</td>
-                        <td >{{list.Worker_Agency}}</td>
-                        <td >{{list.Work_City}}</td>
-                        <td >{{list.Work_State}}</td>
-                        <td >{{list.Work_Zip}}</td>
-                        <td >{{list.Week_Start_Date}}</td>
-                        <td >{{list.DT_Pay_Rate}}</td>
-                        <td >{{list.Delivery_TAX}}</td>
-                        <td >{{list.Double_Time_H}}</td>
-                        <td >{{list.Double_Time_Total}}</td>
-                        <td >{{list.EPLI_TAX}}</td>
-                        <td >{{list.FEE_TAX}}</td>
-                        <td >{{list.FICA_Med_TAX}}</td>
-                        <td >{{list.FICA_TAX}}</td>
-                        <td >{{list.FUI_Sol_TAX}}</td>
-                        <td >{{list.FUI_TAX}}</td>
-                        <td >{{list.Invoice_Number}}</td>
-                        <td >{{list.Markup}}</td>
-                        <td >{{list.Markup_percentage}}</td>
-                        <td >{{list.OT_Pay_Rate}}</td>
-                        <td >  {{list.Over_Time_Total}}  </td>
-                        <td >  {{list.Project_End}}  </td>
-                        <td > {{list.ST_Pay_Rate}}   </td>
-                        <td >  {{list.SUI_TAX}}  </td>
-                        <td > {{list.Sales_TAX}}   </td>
-                        <td > {{list.Saving}}   </td>
-                        <td > {{list.Staffing_Company_Cost}}   </td>
-                        <td > {{list.Standard_Time_H}}   </td>
-                        <td >   {{list.Standard_Time_Total}} </td>
-                        <td >  {{list.Total_COST}}  </td>
-                        <td >  {{list.Total_PAY}}  </td>
-                        <td >  {{list.Tech_TAX}}  </td>
-                        <td >  {{list.WC_Admin_TAX}}  </td>
-                        <td >  {{list.WC_TAX}}  </td>
-                      </tr>
-                 
-                    </tbody>
-                  </table>
-                </div>
+      </div>
 
 
-         
-        </div><!-- /.card-body -->
-        <!-- <div class="card-footer text-center">
-          <nav aria-label="Page navigation example">
-            <div class="pagination">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-          </nav>
-        </div> -->
-      </div>
-      </section>
-      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
+
+  
 
 
 

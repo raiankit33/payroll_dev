@@ -26,7 +26,7 @@ export class BatchesComponent implements OnInit {
 
     this.Service.ShowThem().subscribe((res: any) => {
       this.Details = res.data;
-     console.log(this.Details,"hhhh")
+    
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }

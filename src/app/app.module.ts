@@ -9,7 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RecomdationComponent } from './recomdation/recomdation.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    
+    Ng2SearchPipeModule,
    
   ],
   providers: [],

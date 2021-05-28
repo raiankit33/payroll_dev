@@ -13,12 +13,24 @@ export class RecomComponent implements OnInit {
   ADetails =[];
   error: string;
 Show = []
-hide :boolean =false
+hide :boolean =false;
+
+cost:any;
+  saving :any;
+  markup:any;
+  tax:any;
   constructor(  private router: Router,  private Service : AllserviceService,) { }
 
   ngOnInit(): void {
     this.getSetting()
   }
+
+
+
+  form = new FormGroup({
+   
+    id: new FormControl(''),
+  })
 
   After(){
     this.hide = true
@@ -30,7 +42,7 @@ hide :boolean =false
       this.Details = res.data;
   
     
-     console.log(this.Details)
+    
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
@@ -42,9 +54,14 @@ hide :boolean =false
     let tt ={
       Batch_Name : this.form.value.id
     }
+    console.log(tt)
     this.Service.getSingleBatch(tt).subscribe((res: any) => {
       this.ADetails = res.data;
-
+      this.cost = res.T_Cost;
+      this.markup = res.T_Markup;
+      this.tax = res.T_Tax;
+      this.saving = res.T_Saving;
+   
   })
   }
 
@@ -52,10 +69,7 @@ hide :boolean =false
     this.router.navigate(['dash/form']);
   }
 
-  form = new FormGroup({
-   
-    id: new FormControl('', Validators.required),
-  })
+
 
 }
 

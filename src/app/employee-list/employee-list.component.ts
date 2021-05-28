@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AllserviceService } from '../service/allservice.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -7,9 +9,74 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeListComponent implements OnInit {
 name :any;
-  constructor() { }
+  Details = [];
+  error: string;
+  isLoad:boolean =false
+
+  batches :any =[];
+
+  value : string;
+  SearchDetails: any =[];
+
+  
+  constructor(private Service: AllserviceService,) { }
 
   ngOnInit(): void {
+    this.getList()
+   
+  }
+
+
+  form = new FormGroup({
+   
+    value: new FormControl(''),
+  })
+  
+  Search() {
+    if (this.name == "") {
+      this.SendName();
+    } else {
+      this.SearchDetails = this.SearchDetails.filter(res => {
+        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+      })
+    }
+  }
+
+
+  getList() {
+  
+    this.Service.ShowThem().subscribe((res: any) => {
+      
+      this.Details = res.data;
+   
+    
+    }, (error) => {
+      this.error = 'Server Down Please try After Sometime ..! '
+    }
+
+    );
+  }
+
+  SendName(){
+
+    let g ={
+      Batch_Name : this.form.value.value
+    }
+    console.log(g)
+    this.isLoad =true
+    this.Service.getSingleBatch(g).subscribe((res: any) => {
+      this.SearchDetails = res.data;
+      console.log(res)
+     
+      console.log(this.SearchDetails,"hhhhhhhhh")
+      setTimeout(() => {
+        this.isLoad = false;
+      }, 1000);
+    }, (error) => {
+      this.error = 'Server Down Please try After Sometime ..! '
+    }
+
+    );
   }
 
 }

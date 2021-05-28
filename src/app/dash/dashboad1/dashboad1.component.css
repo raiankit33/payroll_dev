@@ -1,0 +1,16 @@
+.equal{
+    display: flex;
+    direction: row;
+}
+
+
+.tools{
+    position: absolute;
+    right: 50px;
+   
+  }
+
+  .upload{
+      width: 200px;
+      height: 70px;
+  }

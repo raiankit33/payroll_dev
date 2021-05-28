@@ -25,7 +25,7 @@ export class DashboadComponent implements OnInit {
   }
 
   clickMe2(){
-    this.router.navigate(['dash/list']);
+    this.router.navigate(['dash/recom']);
   }
 
 }

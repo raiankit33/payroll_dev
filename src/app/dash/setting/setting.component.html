@@ -297,6 +297,8 @@
                 <tr>
               
                   <th scope="col">State</th>
+                  <th scope="col">States_Abb
+                  </th>
                   <th scope="col-2">SUI_cap</th>
                   <th scope="col">SUI%</th>
                   <th >FICA_cap</th>
@@ -328,6 +330,7 @@
 
                 <tr *ngFor = "let value of Details" >
                   <td >{{value.States}}</td>
+                  <td >{{value.States_Abb}}</td>
                   <td >{{value.SUI_cap}}</td>
                  
                   <td >{{value.SUI_pct}}</td>

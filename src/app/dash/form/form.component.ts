@@ -323,10 +323,10 @@ submit(){
       batch_name : this.form.value.batch_name,
     
       csv : this.csvRecords }
-    this.show = false
+   
     this.isLoading =true
     this.Service.addFile(form).subscribe( res=> {
-      
+      this.show = false
       console.log(res);
       setTimeout(() => {
         this.isLoading = false;
