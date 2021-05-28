@@ -28,7 +28,7 @@ body{
     padding: 20px;
     background: #ccc;
     overflow: hidden;
-    width: 400px;
+    width: 250px;
   
     margin: 10px;
     border-radius: 3px;
@@ -37,8 +37,14 @@ body{
     transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+.bt{
+    background-color: #0abcf9;
+    background-image: linear-gradient(315deg, #0abcf9 0%, #2c69d1 74%);
+}
+
 .container .pricing-table:nth-child(1){
-    background-image: linear-gradient(135deg, #fccf31 10%, #f55555 100%);
+    background-color: #0abcf9;
+    background-image: linear-gradient(315deg, #0abcf9 0%, #2c69d1 74%);
 }
 
 .container .pricing-table:nth-child(2){

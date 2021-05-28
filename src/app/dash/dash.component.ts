@@ -25,4 +25,8 @@ export class DashComponent implements OnInit {
   Batch(){
     this.router.navigate(['dash/batch']);
   }
+
+  Employee(){
+    this.router.navigate(['dash/employeeList']);
+  }
 }

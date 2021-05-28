@@ -93,6 +93,21 @@
                                 </div>
                             </fieldset>
                     
+
+                            <fieldset class="user-details">
+                              <legend ></legend>
+                              <div class="form-inline">
+                                <div class="form-group">
+                                  <b>  <label class="ml-3">FUI Sol</label></b>
+                                  <input type="text" class="input form-control "  value="{{s.FUI_Sol_pct}} %"  disabled style="width: 280px; margin-left: 96px; border-radius: 19px;" >
+                                </div>
+                                <div class="form-group">
+                                  
+                                  <input type="text" class="input form-control ml-4"  value="$ {{s.FUI_Sol_cap}}" disabled style="width: 280px; border-radius: 19px;">
+                                </div>
+                               
+                              </div>
+                          </fieldset>
                     
                             <fieldset class="user-details">
                                 <legend ></legend>
@@ -109,6 +124,22 @@
                                 </div>
                             </fieldset>
                     
+
+                            <fieldset class="user-details">
+                              <legend ></legend>
+                              <div class="form-inline">
+                                <div class="form-group">
+                                  <b>  <label class="ml-3">FICA Med</label></b>
+                                  <input type="text" class="input form-control "  value="{{s.FICA_Med_pct}} %"  disabled style="width: 280px; margin-left: 75px; border-radius: 19px;" >
+                                </div>
+                                <div class="form-group">
+                                  
+                                  <input type="text" class="input form-control ml-4"  value="$ {{s.FICA_Med_cap}}" disabled style="width: 280px; border-radius: 19px;">
+                                </div>
+                               
+                              </div>
+                          </fieldset>
+
                             <fieldset class="user-details">
                                 <legend ></legend>
                                 <div class="form-inline">
@@ -171,6 +202,23 @@
                                 </div>
                             </fieldset>
                     
+
+                            <fieldset class="user-details">
+                              <legend ></legend>
+                              <div class="form-inline">
+                                <div class="form-group">
+                                  <b>  <label class="ml-3">Sales Tax</label></b>
+                                  <input type="text" class="input form-control "  value="{{s.Sales_Tax_pct}} %"  disabled style="width: 280px; margin-left: 82px; border-radius: 19px;" >
+                                </div>
+                                <div class="form-group">
+                                  
+                                  <input type="text" class="input form-control ml-4"  value="$ {{s.Sales_Tax_cap}}" disabled style="width: 280px; border-radius: 19px;">
+                                </div>
+                               
+                              </div>
+                          </fieldset>
+
+
                             <fieldset class="user-details">
                                 <legend ></legend>
                                 <div class="form-inline">
@@ -402,6 +450,21 @@
                 
                 
                         <fieldset class="user-details">
+                          <legend ></legend>
+                          <div class="form-inline">
+                            <div class="form-group">
+                              <b>  <label class="">FUI Sol</label></b>
+                              <input type="text" class="input form-control " [(ngModel)]="userObj.FUI_Sol_pct"  name="FUI_Sol_cap"    style="width: 280px; margin-left: 59px; border-radius: 19px;" >
+                            </div>
+                            <div class="form-group">
+                              
+                              <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.FUI_Sol_cap" name="FUI_Sol_cap"    style="width: 280px; border-radius: 19px;">
+                            </div>
+                           
+                          </div>
+                      </fieldset>
+
+                        <fieldset class="user-details">
                             <legend ></legend>
                             <div class="form-inline">
                               <div class="form-group">
@@ -416,6 +479,22 @@
                             </div>
                         </fieldset>
                 
+
+                        <fieldset class="user-details">
+                          <legend ></legend>
+                          <div class="form-inline">
+                            <div class="form-group">
+                              <b>  <label class="">FICA Med</label></b>
+                              <input type="text" class="input form-control "  [(ngModel)]="userObj.FICA_Med_pct" name="FICA_Med_pct"  style="width: 280px; margin-left: 48px; border-radius: 19px;" >
+                            </div>
+                            <div class="form-group">
+                              
+                              <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.FICA_Med_cap" name="FICA_Med_cap"  style="width: 280px; border-radius: 19px;">
+                            </div>
+                           
+                          </div>
+                      </fieldset>
+
                         <fieldset class="user-details">
                             <legend ></legend>
                             <div class="form-inline">
@@ -477,6 +556,21 @@
                              
                             </div>
                         </fieldset>
+
+                        <fieldset class="user-details">
+                          <legend ></legend>
+                          <div class="form-inline">
+                            <div class="form-group">
+                              <b>  <label class="">Sales Tax</label></b>
+                              <input type="text" class="input form-control "  [(ngModel)]="userObj.Sales_Tax_pct" name="Sales_Tax_pct" style="width: 280px; margin-left: 48px; border-radius: 19px;" >
+                            </div>
+                            <div class="form-group">
+                              
+                              <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.Sales_Tax_cap" name="Sales_Tax_pct" style="width: 280px; border-radius: 19px;">
+                            </div>
+                           
+                          </div>
+                      </fieldset>
                 
                         <fieldset class="user-details">
                             <legend ></legend>

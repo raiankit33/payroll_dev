@@ -733,7 +733,21 @@ display: block;
 }
 
 
+.equal{
+  
+  display: flex;
+  direction: row;
+  
+}
 
+
+
+
+.tools{
+  position: absolute;
+  right: 50px;
+ 
+}
 
 
 .content{
@@ -741,6 +755,11 @@ display: block;
  
 }
 
+.cen{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 

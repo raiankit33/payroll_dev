@@ -22,6 +22,8 @@ export class FormComponent implements OnInit {
   http: any;
   content = [];
   
+  isLoading = false;
+
 setTime : boolean;
  
   progress: number = 0;
@@ -39,7 +41,7 @@ setTime : boolean;
   ngOnInit(): void {
     // this.loadedScript("./assets/file.js");
 
-//     this.map.set("Po1", "Worker_Unique_Id"); 
+    this.map.set( "Worker_Unique_Id","Po1"); 
 //     this.map.set("po2", "Worker_Name");
 //  this.map.set("", "Worker_Title");
 //  this.map.set("", "Worker_Manager");
@@ -60,10 +62,17 @@ setTime : boolean;
   
   }
 
-  CalledNew(event){
+  CalledNew(event,name){
    console.log(event,'kk')
+
    this.map.set( "Worker_Unique_Id",event);
-   console.log(this.map.has('Worker_Unique_Id'));
+   if(this.map.has(event)){
+     this.map.delete(event);
+     this.map.set(event,name);
+   }
+   console.log(this.map);
+  
+    
 
   }
 
@@ -88,7 +97,7 @@ setTime : boolean;
  'OT_Pay_Rate',
  'Double_Time_H',
  'DT_Pay_Rate',
- 'Markup_Percantage ',
+ 'Markup_Percentage ',
  'Week_Start_Date',
  'Project_End ',
  'Worker_Agency']
@@ -98,52 +107,53 @@ setTime : boolean;
  
 
   form = new FormGroup({
-    worker_id: new FormControl('Worker Unique Id'),
+    Worker_Unique_Id: new FormControl('Worker Unique Id'),
     id: new FormControl('', Validators.required),
-    worker_name: new FormControl('Worker Name'),
+    Worker_Name: new FormControl('Worker Name'),
     Name: new FormControl('', Validators.required),
-    worker_title: new FormControl('Worker Title'),
+    Worker_Title: new FormControl('Worker Title'),
     Title: new FormControl('', Validators.required),
-    worker_manager: new FormControl('Worker Manager'),
+    Worker_Manager: new FormControl('Worker Manager'),
     Manager: new FormControl('', Validators.required),
-    worker_dept: new FormControl('Worker Department'),
+    Worker_Department: new FormControl('Worker Department'),
     Department: new FormControl('', Validators.required),
-    worker_location: new FormControl('Worker Location'),
+    Worker_Location: new FormControl('Worker Location'),
     Location: new FormControl('', Validators.required),
-    worker_city: new FormControl('Work City'),
+    Work_City: new FormControl('Work City'),
     City: new FormControl('', Validators.required),
-    worker_state: new FormControl('Work State'),
+    Work_State: new FormControl('Work State'),
     State: new FormControl('', Validators.required),
-    worker_zip: new FormControl('Work Zip'),
+    Work_Zip: new FormControl('Work Zip'),
     Zip: new FormControl('', Validators.required),
-    overtime: new FormControl(' Over Time'),
+    Over_Time_H: new FormControl(' Over Time'),
     OverTime: new FormControl('', Validators.required),
-    worker_code: new FormControl('Worker Comp Code'),
+    Worker_Comp_Code: new FormControl('Worker Comp Code'),
     Comp_code: new FormControl('', Validators.required),
-    invoice: new FormControl('Invoice Number'),
-    Invoice_Number: new FormControl('', Validators.required),
-    rate: new FormControl('ST Pay Rate'),
+    Invoice_Number: new FormControl('Invoice Number'),
+    invoice_Number: new FormControl('', Validators.required),
+    ST_Pay_Rate: new FormControl('ST Pay Rate'),
     Pay_Rate: new FormControl('', Validators.required),
 
-    time: new FormControl('Standard Time'),
+    Standard_Time_H: new FormControl('Standard Time'),
     standard_Time: new FormControl('', Validators.required),
-    worker_bill: new FormControl('Bill Rate'),
-    bill: new FormControl('', Validators.required),
-    percantage: new FormControl('Markup Percantage'),
-    Markup_Percantage: new FormControl('', Validators.required),
-    date: new FormControl('Start Date',),
+    //
+    Staffing_Company_Cost: new FormControl('Staffing Company Cost'),
+    comp_cost: new FormControl('', Validators.required),
+    Markup_Percentage: new FormControl('Markup Percentage'),
+    markup_Percentage: new FormControl('', Validators.required),
+    Week_Start_Date: new FormControl('Start Date',),
     Start_Date: new FormControl('', Validators.required),
-    project: new FormControl('Project End'),
-    Project_End: new FormControl('', Validators.required),
-    agency: new FormControl('Worker Agency'),
-    Worker_Agency: new FormControl('', Validators.required),
+    Project_End: new FormControl('Project End'),
+    project_End: new FormControl('', Validators.required),
+    Worker_Agency: new FormControl('Worker Agency'),
+    worker_Agency: new FormControl('', Validators.required),
 
-    double_time: new FormControl('Double Time Hr'),
+    Double_Time_H: new FormControl('Double Time Hr'),
     Double_time: new FormControl('', Validators.required),
-    ot_pay_rate: new FormControl('OT  Pay Rate'),
-    OT_pay_Rate: new FormControl('', Validators.required),
-    dt_pay_rate: new FormControl('Bill Rate'),
-    DT_Pay_Rate: new FormControl('', Validators.required),
+    OT_Pay_Rate: new FormControl('OT  Pay Rate'),
+    ot_pay_rate: new FormControl('', Validators.required),
+    DT_Pay_Rate: new FormControl('DT Pay Rate'),
+    dT_Pay_Rate: new FormControl('', Validators.required),
 
     batch_name :new FormControl('', Validators.required),
     remark :new FormControl('', Validators.required),
@@ -152,7 +162,16 @@ setTime : boolean;
   
   )
 
-
+  validateAllFormFields(formGroup: FormGroup) {         //{1}
+  Object.keys(formGroup.controls).forEach(field => {  //{2}
+    const control = formGroup.get(field);             //{3}
+    if (control instanceof FormControl) {             //{4}
+      control.markAsTouched({ onlySelf: true });
+    } else if (control instanceof FormGroup) {        //{5}
+      this.validateAllFormFields(control);            //{6}
+    }
+  });
+}
 
 
 
@@ -213,20 +232,20 @@ setTime : boolean;
     if (files && files.length > 0) {
       this.onRemove(this.filess[0])
       let file: File = files[0];
-      console.log(file.name);
+      // console.log(file.name);
     
     
-      console.log(file.size);
-      console.log(file.type);
+      // console.log(file.size);
+      // console.log(file.type);
       //File reader method
       let reader: FileReader = new FileReader();
       reader.readAsText(file);
       reader.onload = (e) => {
         let csv: any = reader.result;
         let allTextLines = [];
-     
+      console.log(allTextLines,'ggggggg')
         allTextLines = csv.split(/\r|\n|\r/).filter(function(str){ return  str});
-
+ 
 
         //Table Headings 
         let headers = allTextLines[0].split(',');
@@ -266,10 +285,19 @@ setTime : boolean;
           // Parse the file you want to select for the operation along with the configuration
   this.ngxCsvParser.parse(files[0], { header: true, delimiter: ',' })
   .pipe().subscribe((result: Array<any>) => {
-
+   
     console.log('Result', result);
     this.csvRecords = result;
-   
+    
+
+    for( var i= 0; i<=this.csvRecords.length; i++){
+      var keys = Object.keys(this.csvRecords[i]);
+        for( var k= 0; k<= keys.length ; k++){
+            var keyValue  = this.map.get(keys[k]);
+            // this.csvRecords[i].keyValue  = 
+        }
+    }
+    
     
   console.log(this.csvRecords)
     
@@ -290,49 +318,24 @@ setTime : boolean;
 
   
 submit(){
-  let form ={
-    batch_name : this.form.value.batch_name,
-  
-    csv : this.csvRecords }
-  this.show = false
-  this.Service.addFile(form).subscribe( res=> {
-    console.log(res);
-   })
-
-  let tt = {
-    id: this.form.value.id,
-    Name: this.form.value.Name,
-    Title: this.form.value.Title,
-    Manager:this.form.value.Manager, 
-   Department:this.form.value.Department,
-    Location:this.form.value.Location,
-      City:this.form.value.city,
-    State:this.form.value.State,
-      Zip:this.form.value.zip,
-    OverTime:this.form.value.OverTime,
-      Comp_code:this.form.value.Comp_code,
-
-    Invoice_Number:this.form.value.Invoice_Number,
-
-      Pay_Rate:this.form.value.Pay_Rate,
-
-
-    standard_Time:this.form.value.standard_Time,
-
-      bill:this.form.value.bill,
-
-    Markup_Percantage:this.form.value.Markup_Percantage,
-
-      Start_Date:this.form.value.Start_Date,
-
-    Project_End:this.form.value.Project_End,
-
-      Worker_Agency:this.form.value.Worker_Agency,
-
+ 
+    let form ={
+      batch_name : this.form.value.batch_name,
+    
+      csv : this.csvRecords }
+    this.show = false
+    this.isLoading =true
+    this.Service.addFile(form).subscribe( res=> {
       
-      
-  }
- console.log(tt)
+      console.log(res);
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
+     })
+ 
+
+
+
 }
   
 
@@ -441,7 +444,7 @@ submit(){
   }
 
   close() {
-    this.router.navigate(['dash/dashboad']);
+    this.router.navigate(['dash/dashboad1']);
    this.setTime =true;
   }
 

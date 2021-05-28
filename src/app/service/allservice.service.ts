@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpClientModule } from "@angular/common/http"
 import { catchError, map } from "rxjs/operators";
 import { Observable, Subject, throwError } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -63,16 +64,56 @@ export class AllserviceService {
     Show() {
 
       return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getData/getData')
+        
+    }
+
+
+    ShowThem() {
+
+      return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getDropDown/getDropDown ')
         .pipe(catchError(this.handleError));
     }
     
-    ShowAll() {
+    ShowAll(list) {
 
-      return this.http.get(' https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getSingleBatch/getData')
+      return this.http.post(' https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getSingleBatch/getData',list)
         .pipe(catchError(this.handleError));
     }
   
+// employee list api 
 
+  
+getList(list) {
+
+  return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/ClientDetails/getDropDown',list)
+    .pipe(catchError(this.handleError));
+}
+
+
+
+// chart api 
+
+getSingleBatch(p){
+  return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getSingleBatch/getData',p)
+  .pipe(catchError(this.handleError));
+  
+
+}
+
+
+Chart(){
+    
+  return this.http.get('')
+  .pipe(catchError(this.handleError));
+  }
+
+
+
+  ChartData(){
+    
+  return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getData/getData')
+  .pipe(catchError(this.handleError));
+  }
 
 
   }

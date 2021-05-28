@@ -170,3 +170,61 @@ body{
     overflow-y: auto;
     height: 150px;
   }
+
+
+
+  
+/* form table css */
+*{
+	box-sizing: border-box;
+}
+
+.table{
+  width: 100%;
+
+	border-collapse: collapse;
+}
+
+
+
+.table td,.table th{
+	font-family: 'Noto Sans JP', sans-serif;
+  padding:12px 15px;
+  border:2px solid black;
+  text-align: center;
+  font-size:15px;
+}
+.tbody{
+  height: 300px;
+}
+
+.table th{
+	background-color:white;
+	color:black;
+}
+
+.table tbody tr:nth-child(even){
+	background-color: #f5f5f5;
+}
+
+
+
+
+
+
+.csv-file-chooser-section {
+  padding: 10px;
+  margin: 5%;
+  border: 1px solid;
+  text-align: center;
+}
+
+.csv-result-table {
+  margin: 5%;
+  border: 1px solid #73AD21;
+
+}
+
+table, th, td {
+  border: 1px solid black;
+}

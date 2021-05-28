@@ -1,100 +1,3 @@
-<!-- <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
-            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-               
-                
-                <form id="msform">
-                 
-                    <ul id="progressbar">
-                        <li class="active" id="account"><strong>Account</strong></li>
-                        <li id="personal"><strong>Personal</strong></li>
-                        <li id="payment"><strong>Image</strong></li>
-                        <li id="confirm"><strong>Finish</strong></li>
-                    </ul>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> <br> 
-                    <fieldset>
-                        <div class="form-card">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h2 class="fs-title">Account Information:</h2>
-                                </div>
-                                <div class="col-5">
-                                    <h2 class="steps">Step 1 - 4</h2>
-                                </div>
-                            </div>
-                             <label class="fieldlabels">Email: *</label> 
-                             <ngx-dropzone (change)="onSelect($event)">
-                                <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-                                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                </ngx-dropzone-preview>
-                            </ngx-dropzone>
-                             <label class="fieldlabels">Username: *</label> <input type="text" name="uname" placeholder="UserName" /> 
-                             <label class="fieldlabels">Password: *</label> <input type="password" name="pwd" placeholder="Password" />
-                              <label class="fieldlabels">Confirm Password: *</label> 
-                              <input type="password" name="cpwd" placeholder="Confirm Password" />
-                        </div> <input type="button" name="next" class="next action-button" value="Next" />
-                    </fieldset>
-
-                    <fieldset>
-                        <div class="form-card">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h2 class="fs-title">Personal Information:</h2>
-                                </div>
-                                <div class="col-5">
-                                    <h2 class="steps">Step 2 - 4</h2>
-                                </div>
-                            </div> <label class="fieldlabels">First Name: *</label> <input type="text" name="fname" placeholder="First Name" /> <label class="fieldlabels">Last Name: *</label> <input type="text" name="lname" placeholder="Last Name" /> <label class="fieldlabels">Contact No.: *</label> <input type="text" name="phno" placeholder="Contact No." /> <label class="fieldlabels">Alternate Contact No.: *</label> <input type="text" name="phno_2" placeholder="Alternate Contact No." />
-                        </div> <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                    </fieldset>
-
-                    <fieldset>
-                        <div class="form-card">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h2 class="fs-title">Image Upload:</h2>
-                                </div>
-                                <div class="col-5">
-                                    <h2 class="steps">Step 3 - 4</h2>
-                                </div>
-                            </div> <label class="fieldlabels">Upload Your Photo:</label> <input type="file" name="pic" accept="image/*"> <label class="fieldlabels">Upload Signature Photo:</label> <input type="file" name="pic" accept="image/*">
-                        </div> <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                    </fieldset>
-
-                    <fieldset>
-                        <div class="form-card">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h2 class="fs-title">Finish:</h2>
-                                </div>
-                                <div class="col-5">
-                                    <h2 class="steps">Step 4 - 4</h2>
-                                </div>
-                            </div> <br><br>
-                            <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
-                            <div class="row justify-content-center">
-                                <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> </div>
-                            </div> <br><br>
-                            <div class="row justify-content-center">
-                                <div class="col-7 text-center">
-                                    <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-
-
 
 
 
@@ -251,7 +154,7 @@
 
                 <div class="input-box">
                    
-                    <input type="text" style="color: black;" formControlName="worker_id"  disabled name="name">
+                    <input type="text" style="color: black;" formControlName="Worker_Unique_Id"  disabled name="name">
                   
                 </div>
 
@@ -260,10 +163,10 @@
 
                 <div class="input-box">
                    
-                    <select name="id" class="form-control" formControlName="id" (ngModelChange)="CalledNew($event)"  style="width: 100%;" required [ngClass]="
+                    <select name="id" class="form-control" formControlName="id" (ngModelChange)="CalledNew($event,'Worker_Unique_Id')"  style="width: 100%;" required [ngClass]="
                     { 'is-invalid': form.get('id').touched && form.get('id').invalid}" >
                         <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item}} " *ngFor="let item of header">{{item}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('id').touched && form.get('id').invalid">
                         <div *ngIf="form.get('id').errors.required" style="font-size: 15px;"> This field is required
@@ -273,7 +176,7 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="worker_name"  disabled name="name">
+                    <input type="text" style="color: black;" formControlName="Worker_Name"  disabled name="name">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -299,8 +202,8 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="worker_title" disabled
-                        name="worker_title">
+                    <input type="text" style="color: black;" formControlName="Worker_Title" disabled
+                        name="Worker_Title">
 
                 </div>
 
@@ -324,8 +227,8 @@
 
                 <div class="input-box">
 
-                    <input type="text" formControlName="worker_manager"  style="color: black; " disabled
-                        name="worker_manager">
+                    <input type="text" formControlName="Worker_Manager"  style="color: black; " disabled
+                        name="Worker_Manager">
 
                 </div>
 
@@ -358,8 +261,8 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="worker_dept" disabled
-                        name="worker_dept">
+                    <input type="text" style="color: black;" formControlName="Worker_Department" disabled
+                        name="Worker_Department">
 
                 </div>
 
@@ -388,8 +291,8 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="worker_location"  disabled
-                        name="name">
+                    <input type="text" style="color: black;" formControlName="Worker_Location"  disabled
+                        name="Worker_Location">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -420,8 +323,8 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="worker_city"  disabled
-                        name="name">
+                    <input type="text" style="color: black;" formControlName="Work_City"  disabled
+                        name="Work_City">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -453,8 +356,8 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="worker_state"  disabled
-                        name="name">
+                    <input type="text" style="color: black;" formControlName="Work_State"  disabled
+                        name="Work_State">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -485,8 +388,8 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="worker_zip"  disabled
-                        name="name">
+                    <input type="text" style="color: black;" formControlName="Work_Zip"  disabled
+                        name="Work_Zip">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -518,7 +421,7 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="worker_code" disabled name="name">
+                    <input type="text" style="color: black;" formControlName="Worker_Comp_Code" disabled name="Worker_Comp_Code">
                    
                 </div>
 
@@ -550,7 +453,7 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="invoice" disabled  name="invoice">
+                    <input type="text" style="color: black;" formControlName="Invoice_Number" disabled  name="invoice">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -560,9 +463,9 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="Invoice_Number"
-                        name="Invoice_Number" style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('Invoice_Number').touched && form.get('Invoice_Number').invalid}"
+                    <select name="Product code" class="form-control" formControlName="invoice_Number"
+                        name="invoice_Number" style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('invoice_Number').touched && form.get('invoice_Number').invalid}"
                        >
                        <option value="">----SELECT----</option>
                         <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
@@ -584,7 +487,7 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="rate" disabled name="rate">
+                    <input type="text" style="color: black;" formControlName="ST_Pay_Rate" disabled name="ST_Pay_Rate">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -612,8 +515,8 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="time"  disabled
-                        name="name">
+                    <input type="text" style="color: black;" formControlName="Standard_Time_H"  disabled
+                        name="Standard_Time_H">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -646,8 +549,8 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="overtime"  disabled
-                        name="name">
+                    <input type="text" style="color: black;" formControlName="Over_Time_H"  disabled
+                        name="Over_Time_H">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -681,7 +584,7 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="double_time" disabled name="name">
+                    <input type="text" style="color: black;" formControlName="Double_Time_H" disabled name="Double_Time_H">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -701,8 +604,8 @@
 
 
                     </select>
-                    <div class="invalid-feedback" *ngIf="form.get('bill').touched && form.get('bill').invalid">
-                        <div *ngIf="form.get('bill').errors.required" style="font-size: 15px;"> This field is required
+                    <div class="invalid-feedback" *ngIf="form.get('Double_time').touched && form.get('Double_time').invalid">
+                        <div *ngIf="form.get('Double_time').errors.required" style="font-size: 15px;"> This field is required
                         </div>
                         
                     </div>
@@ -710,7 +613,7 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="ot_pay_rate" disabled name="name">
+                    <input type="text" style="color: black;" formControlName="OT_Pay_Rate" disabled name="OT_Pay_Rate">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -720,8 +623,8 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="OT_pay_Rate" name="OT_pay_Rate" required [ngClass]="
-                    { 'is-invalid': form.get('OT_pay_Rate').touched && form.get('OT_pay_Rate').invalid}" style="width: 100%;"
+                    <select class="form-control" formControlName="ot_pay_rate" name="ot_pay_rate" required [ngClass]="
+                    { 'is-invalid': form.get('ot_pay_rate').touched && form.get('ot_pay_rate').invalid}" style="width: 100%;"
                   >
 
                   <option value="">----SELECT----</option>
@@ -730,8 +633,8 @@
 
 
                     </select>
-                    <div class="invalid-feedback" *ngIf="form.get('bill').touched && form.get('bill').invalid">
-                        <div *ngIf="form.get('bill').errors.required" style="font-size: 15px;"> This field is required
+                    <div class="invalid-feedback" *ngIf="form.get('ot_pay_rate').touched && form.get('ot_pay_rate').invalid">
+                        <div *ngIf="form.get('ot_pay_rate').errors.required" style="font-size: 15px;"> This field is required
                         </div>
                         
                     </div>
@@ -740,7 +643,7 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="agency"  disabled name="agency">
+                    <input type="text" style="color: black;" formControlName="Worker_Agency"  disabled name="Worker_Agency">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -752,9 +655,9 @@
 
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Worker_Agency" name="Worker_Agency" required
+                    <select class="form-control" formControlName="worker_Agency" name="worker_Agency" required
                         [ngClass]="
-                    { 'is-invalid': form.get('Worker_Agency').touched && form.get('Worker_Agency').invalid}"
+                    { 'is-invalid': form.get('worker_Agency').touched && form.get('worker_Agency').invalid}"
                         style="width: 100%;" >
 
                         <option value="">----SELECT----</option>
@@ -777,8 +680,8 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="percantage"  disabled
-                        name="percantage">
+                    <input type="text" style="color: black;" formControlName="Markup_Percentage"  disabled
+                        name="Markup_Percentage">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -788,10 +691,10 @@
 
                 <div class="input-box">
 
-                    <select style="color: black;" formControlName="Markup_Percantage" class="form-control"
-                        name="Markup_Percantage" style="width: 100%;" required
+                    <select style="color: black;" formControlName="markup_Percentage" class="form-control"
+                        name="Markup_Percentage" style="width: 100%;" required
                         [ngClass]="
-                        { 'is-invalid': form.get('Markup_Percantage').touched && form.get('Markup_Percantage').invalid}" >
+                        { 'is-invalid': form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid}" >
 
                         <option value="">----SELECT----</option>
                         <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
@@ -800,8 +703,8 @@
 
                     </select>
                     <div class="invalid-feedback"
-                        *ngIf="form.get('Markup_Percantage').touched && form.get('Markup_Percantage').invalid">
-                        <div *ngIf="form.get('Markup_Percantage').errors.required" style="font-size: 15px;"> This field
+                        *ngIf="form.get('Markup_Percentage').touched && form.get('Markup_Percentage').invalid">
+                        <div *ngIf="form.get('Markup_Percentage').errors.required" style="font-size: 15px;"> This field
                             is required
                         </div>
                     
@@ -814,7 +717,7 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="date"  disabled name="date">
+                    <input type="text" style="color: black;" formControlName="Week_Start_Date"  disabled name="Week_Start_Date">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
                     </div>
@@ -849,17 +752,17 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="project"  disabled 
-                        name="project">
+                    <input type="text" style="color: black;" formControlName="Project_End"  disabled 
+                        name="Project_End">
                     
                 </div>
 
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Project_End" name="Project_End" style="width: 100%;"
+                    <select class="form-control" formControlName="project_End" name="project_End" style="width: 100%;"
                         required [ngClass]="
-                    { 'is-invalid': form.get('Project_End').touched && form.get('Project_End').invalid}"
+                    { 'is-invalid': form.get('project_End').touched && form.get('project_End').invalid}"
                         >
 
                         <option value="">----SELECT----</option>
@@ -887,15 +790,52 @@
 
         </div>
 
+<!-- ffffff -->
+<!-- <div class="equal" >
 
+   
+
+
+    <div class="input-box">
+       
+        <input type="text" style="color: black;" class="form-control" *ngFor="let item of array[0]; let i = index"  formControlName="worker_id"  disabled name="name">
       
+    </div>
+
+
+   
+    <div class="tools">
+    <div class="input-box">
+       
+        <select name="id" class="form-control" formControlName="id"  *ngFor="let item of lines[0]; let i = index"   style="width: 400px;" required [ngClass]="
+        { 'is-invalid': form.get('id').touched && form.get('id').invalid}" >
+            <option value="">----SELECT----</option>
+            <option value="{{item}} " *ngFor="let item of header">{{item}}</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="form.get('id').touched && form.get('id').invalid">
+            <div *ngIf="form.get('id').errors.required" style="font-size: 15px;"> This field is required
+            </div>
+        </div>
+    </div>
+  </div>
+   
+
+
+
+
+
+
+
+</div> -->
+
 
         <!-- THIS FIELD IS NOT EDITABLE | GRAYED OUT -->
 
         <!-- End Calc of Total Number of Donors Fields -->
         <input type="button" data-page="2" name="previous" (click)="previous()" class="previous action-button"
-            value="Previous" />
-            <input type="button" data-page="2" name="next" class="next action-button"  (click)="submit()" value="Submit" />
+            value="Previous" /> 
+            <img *ngIf="isLoading" style="width : 24px;" class="mr-3"  src="../../../assets/icons8-spinner.gif" />
+            <input type="button" data-page="2" name="next" class="next action-button"  *ngIf="show" (click)="submit()" value="Submit" />
         <input type="button" data-page="2" name="next" class="next action-button" *ngIf="!show" (click)="next()" value="Next" />
     
     </fieldset>
@@ -916,21 +856,23 @@
             <div class="form-item webform-component webform-component-textfield hs_average_gift_size_in_year_2 field hs-form-field"
                 id="webform-component-cultivation--amount-2">
 
-                <label style="color: purple;" style="font-size: 40px;">
-                    Thank You For uploading the PayRoll Document Listed Below </label>
-<div *ngFor="let d of csvRecords">
-   {{d.Standard_Time_H * d.ST_Pay_Rate}}
-</div>
-               
+                <label style="color: purple;" style="font-size: 40px; margin-right: 100px;">
+                    Thank You For uploading the PayRoll Document  </label>
+    <br>
+
+  
+                    
                 <span class="error1" style="display: none;">
                     <i class="error-log fa fa-exclamation-triangle"></i>
                 </span>
             </div>
             <!-- End Average Gift Size in Year 2 Field -->
         </div>
+        <br>
+
         <!-- End Average Gift Size Perchent Change Field -->
         <!-- <input type="button" data-page="3" name="previous" class="previous action-button" value="Previous" /> -->
-        <input type="button" data-page="3" name="" (click)="close()" class="next action-button" value="Close" />
+        <input type="button" data-page="3" name="" (click)="close()"  style="width: 250px; background-color: purple; color: white; margin-left: 400px;" value="Proceed To Dashboad" />
         <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"></div>
     </fieldset>
 
@@ -942,3 +884,8 @@
 
 
 </form>
+
+
+
+
+

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
      if(this.form.value.email == 'admin@gmail.com' && this.form.value.password == '12345'){
       
-      this.router.navigate(['dash/dashboad1']);
+      this.router.navigate(['dash/dashboad']);
      }else{
        console.log('fail to log ')
      }

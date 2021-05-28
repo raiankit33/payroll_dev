@@ -8,6 +8,7 @@ import { HttpClientModule  } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RecomdationComponent } from './recomdation/recomdation.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 
 
@@ -18,6 +19,7 @@ import { RecomdationComponent } from './recomdation/recomdation.component';
     HeaderComponent,
     LoginComponent,
     RecomdationComponent,
+    EmployeeListComponent,
    
   
   
@@ -29,6 +31,7 @@ import { RecomdationComponent } from './recomdation/recomdation.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    
    
   ],
   providers: [],

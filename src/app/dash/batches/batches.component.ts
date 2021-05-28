@@ -8,8 +8,12 @@ import { AllserviceService } from 'src/app/service/allservice.service';
   styleUrls: ['./batches.component.css']
 })
 export class BatchesComponent implements OnInit {
+  p: number = 1;
+  count : number = 5;
   Details = [];
   error: string;
+
+  name: any;
 
   constructor( private router: Router,  private Service : AllserviceService,) { }
 
@@ -20,15 +24,26 @@ export class BatchesComponent implements OnInit {
 
   getSetting() {
 
-    this.Service.Show().subscribe((res: any) => {
+    this.Service.ShowThem().subscribe((res: any) => {
       this.Details = res.data;
-     console.log(this.Details)
+     console.log(this.Details,"hhhh")
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
 
     );
   }
+
+  Search() {
+    if (this.name == "") {
+      this.getSetting();
+    } else {
+      this.Details = this.Details.filter(res => {
+        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+      })
+    }
+  }
+
 
 
 }
