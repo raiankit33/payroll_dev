@@ -1,14 +1,7 @@
 
-/* form table css */
-*{
-	box-sizing: border-box;
-}
 
-.table{
-  width: 100%;
 
-	border-collapse: collapse;
-}
+
 
 .scroll{
   overflow-x: auto;

@@ -11,6 +11,7 @@ import { SettingComponent } from './setting/setting.component';
 import { RecomComponent } from './recom/recom.component';
 import { ListComponent } from './list/list.component';
 import { EmployeeListComponent } from '../employee-list/employee-list.component';
+import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
 
 const routes: Routes = [
   { path: '', component: DashComponent,
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: 'batch', component:BatchesComponent},
     { path: 'recom', component:RecomComponent},
     { path: 'employeeList', component:EmployeeListComponent},
+    { path: 'employeeDetails', component:EmployeeDetailsComponent},
   ]
  }
 ];

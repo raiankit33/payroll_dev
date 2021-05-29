@@ -14,6 +14,8 @@ export class BatchesComponent implements OnInit {
   error: string;
 
   name: any;
+  total_count: any;
+  time: any;
 
   constructor( private router: Router,  private Service : AllserviceService,) { }
 
@@ -26,7 +28,8 @@ export class BatchesComponent implements OnInit {
 
     this.Service.ShowThem().subscribe((res: any) => {
       this.Details = res.data;
-    
+     this.total_count = res.length;
+     this.time = res.time;
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
@@ -44,6 +47,20 @@ export class BatchesComponent implements OnInit {
     }
   }
 
+  deleteBatch(s){
+    let d ={
+      Batch_Name : s
+    }
+  
+    this.Service.deleteBatch(d).subscribe((res: any) => {
+      this.Details = res.data;
+    this.getSetting();
+    }, (error) => {
+      this.error = 'Server Down Please try After Sometime ..! '
+    }
+
+    );
+  }
 
 
 }

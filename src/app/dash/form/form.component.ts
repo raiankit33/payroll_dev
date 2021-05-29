@@ -155,23 +155,13 @@ setTime : boolean;
     DT_Pay_Rate: new FormControl('DT Pay Rate'),
     dT_Pay_Rate: new FormControl('', Validators.required),
 
-    batch_name :new FormControl('', Validators.required),
-    remark :new FormControl('', Validators.required),
+    batch_name :new FormControl(''),
+    remark :new FormControl(''),
   }
    
   
   )
 
-  validateAllFormFields(formGroup: FormGroup) {         //{1}
-  Object.keys(formGroup.controls).forEach(field => {  //{2}
-    const control = formGroup.get(field);             //{3}
-    if (control instanceof FormControl) {             //{4}
-      control.markAsTouched({ onlySelf: true });
-    } else if (control instanceof FormGroup) {        //{5}
-      this.validateAllFormFields(control);            //{6}
-    }
-  });
-}
 
 
 
@@ -183,39 +173,39 @@ setTime : boolean;
   }
 
 
-   tt = {
-      id: this.form.value.id,
-      Name: this.form.value.Name,
-      Title: this.form.value.Title,
-      Manager:this.form.value.Manager, 
-     Department:this.form.value.Department,
-      Location:this.form.value.Location,
-        City:this.form.value.city,
-      State:this.form.value.State,
-        Zip:this.form.value.zip,
-      OverTime:this.form.value.OverTime,
-        Comp_code:this.form.value.Comp_code,
+  //  tt = {
+  //     id: this.form.value.id,
+  //     Name: this.form.value.Name,
+  //     Title: this.form.value.Title,
+  //     Manager:this.form.value.Manager, 
+  //    Department:this.form.value.Department,
+  //     Location:this.form.value.Location,
+  //       City:this.form.value.city,
+  //     State:this.form.value.State,
+  //       Zip:this.form.value.zip,
+  //     OverTime:this.form.value.OverTime,
+  //       Comp_code:this.form.value.Comp_code,
 
-      Invoice_Number:this.form.value.Invoice_Number,
+  //     Invoice_Number:this.form.value.Invoice_Number,
 
-        Pay_Rate:this.form.value.Pay_Rate,
+  //       Pay_Rate:this.form.value.Pay_Rate,
 
 
-      standard_Time:this.form.value.standard_Time,
+  //     standard_Time:this.form.value.standard_Time,
 
-        bill:this.form.value.bill,
+  //       bill:this.form.value.bill,
 
-      Markup_Percantage:this.form.value.Markup_Percantage,
+  //     Markup_Percantage:this.form.value.Markup_Percantage,
 
-        Start_Date:this.form.value.Start_Date,
+  //       Start_Date:this.form.value.Start_Date,
 
-      Project_End:this.form.value.Project_End,
+  //     Project_End:this.form.value.Project_End,
 
-        Worker_Agency:this.form.value.Worker_Agency,
+  //       Worker_Agency:this.form.value.Worker_Agency,
 
         
         
-    }
+  //   }
    
 
   filess = [];
@@ -316,22 +306,39 @@ setTime : boolean;
 
   }
 
+
+  
+  validateAllFormFields(formGroup: FormGroup) {         //{1}
+  Object.keys(formGroup.controls).forEach(field => {  //{2}
+    const control = formGroup.get(field);             //{3}
+    if (control instanceof FormControl) {             //{4}
+      control.markAsTouched({ onlySelf: true });
+    } else if (control instanceof FormGroup) {        //{5}
+      this.validateAllFormFields(control);            //{6}
+    }
+  });
+}
+
   
 submit(){
+ if(this.form){
+  let form ={
+    batch_name : this.form.value.batch_name,
+  
+    csv : this.csvRecords }
  
-    let form ={
-      batch_name : this.form.value.batch_name,
-    
-      csv : this.csvRecords }
-   
-    this.isLoading =true
-    this.Service.addFile(form).subscribe( res=> {
-      this.show = false
-      console.log(res);
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 1000);
-     })
+  this.isLoading =true
+  this.Service.addFile(form).subscribe( res=> {
+    this.show = false
+    console.log(res);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
+   })
+ }else{
+  this.validateAllFormFields(this.form);
+ }
+
  
 
 

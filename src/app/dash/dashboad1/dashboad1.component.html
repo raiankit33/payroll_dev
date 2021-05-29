@@ -18,16 +18,16 @@
                 <form  [formGroup]="form">
                   <span class="details"> Select Batch</span>
                   <select class="form-control"  style="width: 350px;" formControlName="id" name="id"  (ngModelChange)="ShowName()">
-                      
-                      <option value="{{Detail}}"   *ngFor="let Detail of Details">{{Detail}}</option>
-                      
-          
-          
+                    <option value="{{Detail}}"   *ngFor="let Detail of Details">{{Detail}}</option>
                   </select>
          </form>
+         
               </div>
-
-
+      
+              <div class="d ml-2 mt-5">
+               
+                <img *ngIf="isLoad" class="ml-4" width="30px" src="../../../assets/icons8-spinner.gif" /> 
+              </div>
 
 
               <div class="tools">
@@ -124,7 +124,76 @@
       </div>
     </div>
 
+    <div class="row">
+      <!-- Content Column -->
+      <div class="col-lg-6 mb-4">
+        <!-- Project Card Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Highest Saving </h6>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">S.No</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Saving</th>
+              
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of TotalSaving  index as i" >
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{d.Worker_Name}}</td>
+                  <td> ${{d.Saving}}</td>
+                 
+                </tr>
+              
+              
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Color System -->
 
+      </div>
+      <div class="col-lg-6 mb-4">
+        <!-- Illustrations -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Least Saving</h6>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover">
+              <thead>
+                <tr >
+                  <th scope="col">S.No</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Saving</th>
+                
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let l of ss  index as i">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{l.Worker_Name}}</td>
+                  <td>$ {{l.Saving}}</td>
+                 
+                </tr>
+              
+              
+              </tbody>
+            </table>
+          </div>
+          <!-- Approach -->
+
+
+        </div>
+      </div>
+    </div>
 
 
     <!-- Content Row -->

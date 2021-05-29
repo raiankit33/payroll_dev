@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import {Chart} from 'chart.js';
 import { AllserviceService } from 'src/app/service/allservice.service';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -23,7 +23,7 @@ export class Dashboad1Component implements OnInit {
   Chart = []
   Swordtail :any = [];
 Details = [];
-
+isLoad :boolean =false
 
 
 NameDetails =[];
@@ -52,12 +52,15 @@ standard_time_Total: any;
 Tech_tAX: any;
 WC_admin_TAX:any;
 WC_tAX: any;
+  value: any;
 
   constructor( private router: Router,
     private Service: AllserviceService,) { }
 
   ngOnInit(): void {
     this.getSetting();
+
+    
     this.Service.Show().subscribe( res => {
       this.Swordtail = res 
      
@@ -113,13 +116,75 @@ sum = []
     );
   }
 
+
+  // findsum(data){
+  //   this.value = data 
+  //   for(let i =0 ; i < data.length ; i++){
+  //       this.ss + this.value[i].EPLI_TAX
+  //       console.log(this.ss,'kkkk')
+  //   }
+  // }
+
+  ss :any = [];
+  TotalSaving:any = []
   ShowName(){
     let tt ={
       Batch_Name : this.form.value.id
     }
-    console.log(tt)
+    this.isLoad =true
+    
     this.Service.getSingleBatch(tt).subscribe((res: any) => {
       this.NameDetails = res.data;
+     
+     this.TotalSaving = this.NameDetails.filter(x => x.Saving > 1500).slice(0,10).sort(function(a,b){
+      return  b.Saving - a.Saving;
+     })
+     
+
+     this.ss = this.NameDetails.filter(x => x.Saving < 1500).slice(0,10).sort(function(a,b){
+      return  a.Saving - b.Saving;
+     })
+ 
+
+
+
+      for (var i in res.Top_Saving ) {
+        if (res.Top_Saving[i] > 10) {
+          console.log(res.Top_Saving[i],"6666"); // {a: 5, b: 6}
+        }
+      }
+
+    //   var people = [
+    //     {
+    //         "f_name": "john",
+    //         "l_name": "doe",
+    //         "sequence": "0",
+    //         "title" : "president",
+    //         "url" : "google.com",
+    //         "color" : "333333",
+    //     }
+    //     // etc
+    // ];
+    
+    // function sortResults(prop, asc) {
+    //     people.sort(function(a, b) {
+    //         if (asc) {
+    //             return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+    //         } else {
+    //             return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+    //         }
+    //     });
+    //     renderResults();
+    // }
+    
+      
+     console.log(this.ss)
+      // this.TotalSaving = this.NameDetails.filter(d => d.Top_Saving.length > 10);
+      console.log(this.TotalSaving)
+      setTimeout(() => {
+        this.isLoad = false;
+      }, 1000);
+      
       console.log(res)
       this.cost = res.T_Cost;
       this.markup = res.T_Markup;

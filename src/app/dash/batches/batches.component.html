@@ -6,7 +6,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2">Total Batches</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2"   > 3</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2"   > {{total_count}}</div>
             </div>
             <div class="col-auto">
               <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -72,9 +72,7 @@
               <div class="search_wrap search_wrap_1 mr-4">
                 <div class="search_box" >
                   <input type="text" class="form-control"  [(ngModel)]="name" (change)="Search()"  placeholder="search...">
-                  <div class="btn btn_common">
                   
-                  </div>
                 </div>
               </div>
             </div>
@@ -98,17 +96,33 @@
                     <tr *ngFor="let s of Details |  filter: name  ; index as i">
                       <td>{{i+1}}</td>
                       <td>{{s }}</td>
-                      <td>2021/05/28 09:45:45 </td>
+                      <td>{{time}}</td>
                       <td>50</td>
                       <td> $ 3200 </td>
-                      <td style="color: blue;"><a>View Details</a></td>
+                      <td>
+                        <!-- Call to action buttons -->
+                        <ul class="list-inline m-0">
+                            
+                            <li class="list-inline-item">
+                                <button class="btn btn-success btn-sm rounded-0"   type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-eye"></i></button>
+                            </li>
+                            <li class="list-inline-item">
+                                <button class="btn btn-danger btn-sm rounded-0" 
+                                 type="button" data-toggle="tooltip"
+                               (click)="deleteBatch(s)"
+                                  data-placement="top" title="Delete">
+                                  <i class="fa fa-trash"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </td>
                     </tr>
                     
                     
                   </tbody>
                  
                 </table>
-                </div>
+               
             </div>
           </div>
         </div>

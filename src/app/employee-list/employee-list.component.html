@@ -16,7 +16,7 @@
         <form  [formGroup]="form">    
           <div class="equal">
         <select  class="form-control " formControlName="value" name="value"   (ngModelChange)="SendName()"   style="width: 250px;"  >
-                     <option selected disabled value="" >----SELECT---- </option>
+                     <option selected disabled value="" >--- SELECT BATCH ---</option>
           <option value="{{value}}" *ngFor = "let value of Details">{{value}} </option>
         </select>
         <img *ngIf="isLoad" class="ml-4" style="width : 30px" src="../../../assets/icons8-spinner.gif" />
@@ -43,31 +43,28 @@
         <!-- <canvas id="myBarChart"></canvas> -->
         <div class="scroll"   >
           <table class="table">
-              <thead>
+              <thead >
                 <tr>
                   <th >S.No</th>
-                  <th >Batch Name</th>
-                  <th >Worker  Id</th>
+                 
+                  <th  >Worker  Id</th>
                   <th >Worker Title</th>
-                  <th scope="col">Worker Name</th>
-                  <th scope="col">Worker Manager</th>
-                  <th scope="col">Worker Location</th>
-                  <th scope="col">Worker Department</th>
-                  <th scope="col">Comp Code</th>
-                  <th scope="col">Worker Agency</th>
-                  <th scope="col">Work City</th>
-                  <th scope="col">Work State</th>
-                  <th scope="col">Work Zip</th>
-          
-        
-    
+                  <th >Worker Name</th>
+                  <th >Worker Manager</th>
+                  <th >Worker Location</th>
+                  <th >Worker Department</th>
+                  <th >Comp Code</th>
+                  <th >Worker Agency</th>
+                  <th >Work City</th>
+                  <th >Work State</th>
+                  <th >Work Zip</th>
                 </tr>
               </thead>
               <tbody  >
                 <tr *ngFor = " let list of SearchDetails | filter:name  index as i ">
                   <td> {{i+1}}</td>
-                  <td> {{list.Batch_Name}}</td>
-                  <td >{{list.Worker_Unique_Id}}</td>
+                 
+                  <td (click)="DetailsPage(list)" style="color: blue;" >{{list.Worker_Unique_Id}}</td>
                   <td >{{list.Worker_Title}}</td>
                   <td >{{list.Worker_Name}}</td>
                   <td >{{list.Worker_Manager}}</td>

@@ -10,7 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { RecomdationComponent } from './recomdation/recomdation.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import {SharedData} from '../app/Shared/sharedData.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     LoginComponent,
     RecomdationComponent,
     EmployeeListComponent,
+    EmployeeDetailsComponent,
    
   
   
@@ -34,7 +36,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     Ng2SearchPipeModule,
    
   ],
-  providers: [],
+  providers: [SharedData],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

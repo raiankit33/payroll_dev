@@ -73,6 +73,13 @@ export class AllserviceService {
       return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getDropDown/getDropDown ')
         .pipe(catchError(this.handleError));
     }
+
+    deleteBatch(g){
+      return this.http.post(' https://kszaxawodc.execute-api.us-west-2.amazonaws.com/DeleteBatch/DeleteBatch ',g)
+      .pipe(catchError(this.handleError));
+     
+
+    }
     
     ShowAll(list) {
 

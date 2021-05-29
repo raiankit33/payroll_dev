@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AllserviceService } from '../service/allservice.service';
+import { SharedData } from '../Shared/sharedData.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -19,7 +21,9 @@ name :any;
   SearchDetails: any =[];
 
   
-  constructor(private Service: AllserviceService,) { }
+  constructor(private Service: AllserviceService,
+    private router: Router,
+    private shared : SharedData,) { }
 
   ngOnInit(): void {
     this.getList()
@@ -77,6 +81,12 @@ name :any;
     }
 
     );
+  }
+
+
+  DetailsPage(list){
+    this.shared.updateSharedData(list);
+    this.router.navigate(['dash/employeeDetails']);
   }
 
 }
