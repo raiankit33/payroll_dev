@@ -6,6 +6,7 @@ import {Chart} from 'chart.js';
 import { AllserviceService } from 'src/app/service/allservice.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { arrayMax } from 'highcharts';
+import { SharedData } from 'src/app/Shared/sharedData.service';
 
 
 
@@ -56,15 +57,14 @@ WC_tAX: any;
   value: any;
 arr = [];
   constructor( private router: Router,
-    private Service: AllserviceService,) { }
+    private Service: AllserviceService,
+    private shared : SharedData,) { }
 
   ngOnInit(): void {
     this.getSetting();
 
     
-    for(var i =0 ; i< 10;i++){
-      this.arr.push(i);
-    }
+  
 
     }
 
@@ -96,6 +96,7 @@ sum = []
     this.Service.showThem().subscribe((res: any) => {
       this.Details = res.data;
 
+      this.ShowName(this.Details[0]);
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
@@ -111,26 +112,32 @@ sum = []
   //       console.log(this.ss,'kkkk')
   //   }
   // }
- 
+  plot= [];
+ histo = []
   tCost =[];
   lCost = [];
   ss :any = [];
   dd :any
   TotalSaving:any = []
+
+
   ShowName(event){
     let tt ={
       Batch_Name : event
     }
     this.isLoad =true
-    
+    console.log(event,"hello")
     this.Service.getSingleBatch(tt).subscribe((res: any) => {
       this.NameDetails = res.data;
      
+      this.plot = res.data;
 this.dd = res.dd
   console.log(this.dd,"sdsdfssggsgs")
- 
+  for( let index of this.dd){
+    this.histo.push(index)
+  }
     
-   
+    
      this.TotalSaving = this.NameDetails.filter(x => x.Saving > 1500).slice(0,10).sort(function(a,b){
       return  b.Saving - a.Saving;
      })
@@ -212,16 +219,23 @@ this.dd = res.dd
       var myChart = new Chart('myChart', {
         type: 'bar',
         data: {
-            labels: ['Total Cost', 'Total Saving ', 'Total Tax' ],
+            labels: ['WC TAX', 'SUI TAX', 'FUI Tax' ,'Tech_tAX','WC_admin_TAX','FEE_tAX','FICA_med_TAX','EPLI_tAX'],
             datasets: [{
-                label:'',
-                data: [  this.cost,this.saving ,this.tax  ],
+                label:[],
+                data: [  this.WC_tAX,this.sUI_tAX ,this.FUI_tAX ,this.FEE_tAX,this.Delivery_tAX ,this.Tech_tAX,this.WC_admin_TAX,
+                  this.FEE_tAX,this.FICA_med_TAX,this.EPLI_tAX],
                 fill: true,
             
              backgroundColor: [
               'rgb(255, 99, 132)',
               'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)'
+              'rgb(255, 205, 86)',
+              'rgb(54, 162, 235)',
+              'rgb(54, 12, 235)',
+              'rgb(54, 162, 35)',
+              'rgb(255, 205, 86)',
+              'rgb(255, 99, 132)',
+
                 ],
                 borderWidth: 3
             }
@@ -233,11 +247,15 @@ this.dd = res.dd
         options: {
           scales: {
             xAxes: [{
-              
+              scaleLabel: {
+                display: true,
+                labelString: 'Taxes'
+              },
+             
               display: false,
-              barPercentage: 0.4,
+              barPercentage: 0.9,
               ticks: {
-                max: 3,
+               
               }
             }, {
               display: true,
@@ -247,8 +265,9 @@ this.dd = res.dd
               }
             }],
             yAxes: [{
-              ticks: {
-                beginAtZero: true
+              scaleLabel: {
+                display: true,
+                labelString: 'Taxes'
               }
             }]
           }
@@ -261,11 +280,11 @@ this.dd = res.dd
     var myChart = new Chart('Chart', {
       type: 'pie',
       data: {
-          labels: ['Total Cost', 'Total Markup ', 'Total Tax'],
+          labels: ['Double time Total', 'over time Total ', 'standard time Total'],
         
           datasets: [{
              
-              data: [this.cost ,this.markup  ,this.tax ],
+              data: [this.Double_time_Total ,this.over_time_Total  ,this.standard_time_Total ],
               fill: true,
          
            backgroundColor: [
@@ -292,10 +311,12 @@ this.dd = res.dd
       labels:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
       ,
       datasets: [{
-        label: 'Number of Arrivals',
+        label: 'Savings',
         data: [3361.88, 1608.495, 354.8675, 2549.75, 2003.12, 2303.0, 1771.1, 2527.77, 683.225, 2411.36, 2952.8, 2257.9375, 2516.375, 3189.12, 2869.5, 2457.44, 2973.1, 1764.663375, 1918.4475, 1869.5, 2215.365, 2982.72, 2206.7675, 327.472, 337.25, 1720.92, 2247.6125, 2911.36, 217.46925, 2296.12375, 1955.8475, 2414.325, 2496.12875, 2773.2, 3034.6125, 2324.28, 1077.87, 2537.683375, 362.0, 1389.5, 2711.03, 2480.8, 2330.74, 2859.64, 2337.2, 501.93875, 2761.5075, 3773.2, 404.975, 3319.4]
         ,
-        backgroundColor: 'green',
+        backgroundColor: 'rgb(54, 162, 235)',
+        borderColor : 'black',
+        borderWidth: 1,
       }]
     },
     options: {
@@ -310,12 +331,13 @@ this.dd = res.dd
           display: true,
           ticks: {
             autoSkip: false,
-            max: 4,
+           
           }
         }],
         yAxes: [{
-          ticks: {
-            beginAtZero: true
+          scaleLabel: {
+            display: true,
+            labelString: 'Saving'
           }
         }]
       }
@@ -329,11 +351,13 @@ this.dd = res.dd
       labels:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
       ,
       datasets: [{
-        label: '',
+        label: 'Costs',
         data:[638.12, 1891.505, 1645.1325, 950.25, 1496.88, 1197.0, 1728.9, 972.23, 1316.775, 1088.64, 1047.2, 1242.0625, 983.625, 810.88, 1130.5, 1042.56, 1026.9, 1735.336625, 1581.5525, 1130.5, 784.635, 1017.28, 1293.2325, 1672.528, 3662.75, 1279.08, 1252.3875, 1088.64, 1782.53075, 1203.87625, 1544.1525, 1585.675, 1003.87125, 226.8, 965.3875, 1175.72, 1922.13, 1462.316625, 1638.0, 2110.5, 788.97, 1019.2, 1169.26, 1140.36, 1162.8, 1498.06125, 1238.4925, 226.8, 1595.025, 180.6]
 
         ,
-        backgroundColor: 'blue',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor : 'black',
+        borderWidth :1
       }]
     },
     options: {
@@ -348,12 +372,13 @@ this.dd = res.dd
           display: true,
           ticks: {
             autoSkip: false,
-            max: 4,
+          
           }
         }],
         yAxes: [{
-          ticks: {
-            beginAtZero: true
+          scaleLabel: {
+            display: true,
+            labelString: 'Cost '
           }
         }]
       }
@@ -361,38 +386,20 @@ this.dd = res.dd
   });
 
 
-      var myChart = new Chart('Donut', {
-        type: 'doughnut',
-        data: {
-            labels: [ 'FUI_TAX ','SUI_TAX'],
-            datasets: [{
-                label: '',
-                data: [ this.FUI_tAX , this.sUI_tAX],
-                fill: true,
-           
-             backgroundColor: [
-                  'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-                ],
-                borderWidth: 3
-            }
-      
-          ]
-        },
-        options: {
-            
-        }
-      });
-
-
+   
       var myChart = new Chart('Bubble', {
         type: 'bubble',
         data: {
             labels: ['FEE_TAX', 'FICA_TAX', 'Sales_TAX','Delivery_TAX','EPLI_TAX','FUI_Sol_TAX','FICA_Med_TAX','Tech_TAX'],
             datasets: [{
                
-              data: [ this.FEE_tAX, this.FICA_tAX, this.sales_tAX,this.Delivery_tAX,this.EPLI_tAX,this.FUI_tAX,this.FICA_med_TAX,this.Tech_tAX],
+              data: [ 
+                { x: 10, y: 10, r: 10 },
+                { x: 15, y: 5, r: 15 },
+                { x: 26, y: 12, r: 23 },
+                { x: 7, y: 8, r: 8 },
+  
+              ],
                 fill: false,
            
              backgroundColor: [
@@ -412,6 +419,12 @@ this.dd = res.dd
           ]
         },
         options: {
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Range'
+            }
+          }]
             
         }
       });
@@ -419,10 +432,10 @@ this.dd = res.dd
       var myChart = new Chart('scatter', {
         type: 'scatter',
         data: {
-            labels: ['FEE_TAX', 'FICA_TAX'],
+            labels: [],
             datasets: [{
                
-              data: [ this.FEE_tAX, this.FICA_tAX, ],
+              data: [ this.plot ],
                 fill: false,
            
              backgroundColor: [
@@ -442,12 +455,22 @@ this.dd = res.dd
           ]
         },
         options: {
-            
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Range'
+            }
+          }]
         }
       });
   })
   }
 
+
+  sendData(d){
+    this.shared.updateSharedData(d);
+    this.router.navigate(['dash/employeeDetails']);
+  }
 
  
   GOtoForm(){

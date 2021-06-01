@@ -18,7 +18,7 @@
                 <form  [formGroup]="form">
                   <span class="details"> Select Batch</span>
                   <select class="form-control"  style="width: 350px;" formControlName="id" name="id"  (change)="ShowName($event.target.value)">
-                    <option value="{{Detail}}"  *ngFor="let Detail of Details">{{Detail}}</option>
+                    <option value="{{Detail}}"  [selected]="Detail" *ngFor="let Detail of Details">{{Detail}}</option>
                   </select>
          </form>
          
@@ -124,148 +124,209 @@
       </div>
     </div>
 
-    <div class="row">
+    
       <!-- Content Column -->
 
+
+
+      <div class="row">
+        <div class="col-md-6 col-lg- 4">
+          <div class="card card-primary card-tabs">
+            <div class="card-header p-0 pt-1">
+              <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                <h6 class="mt-2 ml-1">Top 10 Employee with</h6>
+                <li class="nav-item ml-3">
+                  <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Highest Savings</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Lowest Savings</a>
+                </li>
+             
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="tab-content" id="custom-tabs-one-tabContent">
+                <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                   
+                 
+                    <!-- Project Card Example -->
+                    <div class="card shadow mb-4">
+                     
+                      <div class="card-body">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">Rank</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Savings</th>
+                          
+                             
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let d of TotalSaving  index as i" >
+                              <th scope="row">{{i+1}}</th>
+                              <td (click)="sendData(d)">{{d.Worker_Name}}</td>
+                              <td> ${{d.Saving}}</td>
+                             
+                            </tr>
+                          
+                          
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- Color System -->
+            
+                 
       
-      <div class="col-lg-6 mb-4">
-        <!-- Project Card Example -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Highest Savings </h6>
-          </div>
-          <div class="card-body">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Rank</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Savings</th>
-              
-                 
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let d of TotalSaving  index as i" >
-                  <th scope="row">{{i+1}}</th>
-                  <td>{{d.Worker_Name}}</td>
-                  <td> ${{d.Saving}}</td>
-                 
-                </tr>
-              
-              
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <!-- Color System -->
-
-      </div>
-      <div class="col-lg-6 mb-4">
-        <!-- Illustrations -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Lowest Savings</h6>
-          </div>
-          <div class="card-body">
-            <table class="table table-hover">
-              <thead>
-                <tr >
-                  <th scope="col">Rank</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Savings</th>
+      
+                </div>
+                <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                 
-                 
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let l of ss  index as i">
-                  <th scope="row">{{i+1}}</th>
-                  <td>{{l.Worker_Name}}</td>
-                  <td>$ {{l.Saving}}</td>
-                 
-                </tr>
+             
+                    <!-- Illustrations -->
+                    <div class="card shadow mb-4">
+                     
+                      <div class="card-body">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr >
+                              <th scope="col">Rank</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Savings</th>
+                            
+                             
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let l of ss  index as i">
+                              <th scope="row">{{i+1}}</th>
+                              <td>{{l.Worker_Name}}</td>
+                              <td>$ {{l.Saving}}</td>
+                             
+                            </tr>
+                          
+                          
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- Approach -->
+            
+            
+                   
+                  </div>
+      
+      
+                </div>
               
-              
-              </tbody>
-            </table>
-          </div>
-          <!-- Approach -->
-
-
-        </div>
+              </div>
+            </div>
       </div>
-
-      <div class="col-lg-6 mb-4">
-        <!-- Project Card Example -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Highest Costs </h6>
-          </div>
-          <div class="card-body">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Rank</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Savings</th>
-              
-                 
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let d of tCost  index as i" >
-                  <th scope="row">{{i+1}}</th>
-                  <td>{{d.Worker_Name}}</td>
-                  <td> ${{d.Total_COST}}</td>
-                 
-                </tr>
-              
-              
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <!-- Color System -->
-
       </div>
-      <div class="col-lg-6 mb-4">
-        <!-- Illustrations -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Lowest Costs</h6>
-          </div>
-          <div class="card-body">
-            <table class="table table-hover">
-              <thead>
-                <tr >
-                  <th scope="col">Rank</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Savings</th>
+     
+      
+      
+      
+     
+        <div class="col-md-6 col-lg- 4">
+          <div class="card card-primary card-tabs">
+            <div class="card-header p-0 pt-1">
+              <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                <h6 class="mt-2 ml-1">Top 10 Employee with</h6>
+                <li class="nav-item ml-3">
+                  <a class="nav-link active" id="custom-tabs-one-tab" data-toggle="pill" href="#custom-tabs-one" role="tab" aria-controls="custom-tabs-one" aria-selected="true">Highest costs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-profile-tab" data-toggle="pill" href="#custom-tabs-profile" role="tab" aria-controls="custom-tabs-profile" aria-selected="false">Lowest Costs</a>
+                </li>
+             
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="tab-content" id="custom-tabs-one-tabContent">
+                <div class="tab-pane fade show active" id="custom-tabs-one" role="tabpanel" aria-labelledby="custom-tabs-one-tab">
+                   
+                 
+                    <!-- Project Card Example -->
+                    <div class="card shadow mb-4">
+                     
+                      <div class="card-body">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">Rank</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Costs</th>
+                          
+                             
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let d of tCost  index as i" >
+                              <th scope="row">{{i+1}}</th>
+                              <td>{{d.Worker_Name}}</td>
+                              <td> ${{d.Total_COST}}</td>
+                             
+                            </tr>
+                          
+                          
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- Color System -->
+            
+                 
+      
+      
+                </div>
+                <div class="tab-pane fade" id="custom-tabs-profile" role="tabpanel" aria-labelledby="custom-tabs-profile-tab">
                 
-                 
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let l of lCost  index as i">
-                  <th scope="row">{{i+1}}</th>
-                  <td>{{l.Worker_Name}}</td>
-                  <td>$ {{l.Total_COST}}</td>
-                 
-                </tr>
+             
+                    <!-- Illustrations -->
+                    <div class="card shadow mb-4">
+                      
+                      <div class="card-body">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr >
+                              <th scope="col">Rank</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Costs</th>
+                            
+                             
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let l of lCost  index as i">
+                              <th scope="row">{{i+1}}</th>
+                              <td>{{l.Worker_Name}}</td>
+                              <td>$ {{l.Total_COST}}</td>
+                             
+                            </tr>
+                          
+                          
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- Approach -->
+            
+            
+                    </div>
+      
+      
+                </div>
               
-              
-              </tbody>
-            </table>
-          </div>
-          <!-- Approach -->
-
-
-        </div>
+              </div>
+            </div>
       </div>
+      </div>
+     
+
     </div>
 
-
+<br>
     <!-- Content Row -->
     <div class="row">
       <!-- Area Chart -->
@@ -273,7 +334,7 @@
         <div class="card shadow mb-4">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary"> Bar Chart Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tax Details</h6>
             <div class="dropdown no-arrow">
               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -299,7 +360,7 @@
         <div class="card shadow mb-4">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Pie Chart Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">working Time Hour </h6>
             <div class="dropdown no-arrow">
               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -351,7 +412,7 @@
         <div class="" style="overflow-x: auto;">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Histogram Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Savings Details</h6>
           </div>
           <div class="card-body">
             <canvas id="yyy"></canvas>
@@ -388,7 +449,7 @@
         <div class="" style="overflow-x: auto;">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Histogram Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Costs Details</h6>
           </div>
           <div class="card-body">
             <canvas id="secondHisto"></canvas>
@@ -401,6 +462,9 @@
     </div>
   </div>
 </div>
+
+
+
 
 
 
