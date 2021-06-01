@@ -185,7 +185,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Name" name="Name" style="width: 100%;" required [ngClass]="
+                    <select class="form-control" formControlName="Name" name="Name"  (ngModelChange)="CalledNew2($event,'Worker_Name')"  style="width: 100%;" required [ngClass]="
                     { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}" 
                         >
                         <option value="">----SELECT----</option>
@@ -210,7 +210,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Title" name="Title" style="width: 100%;" [ngClass]="
+                    <select class="form-control" formControlName="Title" name="Title"  (ngModelChange)="CalledNew3($event,'Worker_Title')"  style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('Title').touched && form.get('Title').invalid}" required
                        >
                        <option value="">----SELECT----</option>
@@ -237,7 +237,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="Manager" name="Manager" required
+                    <select name="Product code" class="form-control" formControlName="Manager" (ngModelChange)="CalledNew4($event,'Worker_Manager')"  name="Manager" required
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('Manager').touched && form.get('Manager').invalid}"
                        >
@@ -270,7 +270,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Department" name="Department" required
+                    <select class="form-control" formControlName="Department" name="Department" required  (ngModelChange)="CalledNew5($event,'Worker_Department')" 
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('Department').touched && form.get('Department').invalid}"
                         >
@@ -291,7 +291,7 @@
 
                 <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Worker_Location"  disabled
+                    <input type="text" style="color: black;" formControlName="Worker_Location"  disabled  
                         name="Worker_Location">
                     <div class="invalid-feedback">
                         <div> This field is required</div>
@@ -302,7 +302,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="Location" name="Location" required
+                    <select name="Product code" class="form-control" formControlName="Location" name="Location" required  (ngModelChange)="CalledNew6($event,'Worker_Location')"
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('Location').touched && form.get('Location').invalid}"
                       >
@@ -334,7 +334,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="City" name="City" required
+                    <select name="Product code" class="form-control" formControlName="City" name="City" required (ngModelChange)="CalledNew7($event,'Work_City')"
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('City').touched && form.get('City').invalid}"
                       >

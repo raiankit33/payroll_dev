@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule  } from '@angular/common/http';
 
-import { HeaderComponent } from './header/header.component';
+
 import { LoginComponent } from './login/login.component';
-import { RecomdationComponent } from './recomdation/recomdation.component';
+
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
@@ -17,9 +17,9 @@ import {SharedData} from '../app/Shared/sharedData.service';
   declarations: [
     AppComponent,
    
-    HeaderComponent,
+  
     LoginComponent,
-    RecomdationComponent,
+   
     EmployeeListComponent,
     EmployeeDetailsComponent,
    

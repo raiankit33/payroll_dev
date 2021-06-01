@@ -26,7 +26,7 @@ export class BatchesComponent implements OnInit {
 
   getSetting() {
 
-    this.Service.ShowThem().subscribe((res: any) => {
+    this.Service.showThem().subscribe((res: any) => {
       this.Details = res.data;
      this.total_count = res.length;
      this.time = res.time;
@@ -62,5 +62,15 @@ export class BatchesComponent implements OnInit {
     );
   }
 
+nameR:any;
+ 
+
+  SearchD :any =[]
+  SendData(event){
+    console.log(event)
+ 
+    console.log(this.SearchD)
+    this.router.navigate(['dash/employeeList']);
+  }
 
 }

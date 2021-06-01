@@ -17,8 +17,8 @@
               <div class="input-box mt-3 ml-5 mb-4">
                 <form  [formGroup]="form">
                   <span class="details"> Select Batch</span>
-                  <select class="form-control"  style="width: 350px;" formControlName="id" name="id"  (ngModelChange)="ShowName()">
-                    <option value="{{Detail}}"   *ngFor="let Detail of Details">{{Detail}}</option>
+                  <select class="form-control"  style="width: 350px;" formControlName="id" name="id"  (change)="ShowName($event.target.value)">
+                    <option value="{{Detail}}"  *ngFor="let Detail of Details">{{Detail}}</option>
                   </select>
          </form>
          
@@ -126,19 +126,21 @@
 
     <div class="row">
       <!-- Content Column -->
+
+      
       <div class="col-lg-6 mb-4">
         <!-- Project Card Example -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Highest Saving </h6>
+            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Highest Savings </h6>
           </div>
           <div class="card-body">
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">S.No</th>
+                  <th scope="col">Rank</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Saving</th>
+                  <th scope="col">Savings</th>
               
                  
                 </tr>
@@ -163,15 +165,15 @@
         <!-- Illustrations -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Least Saving</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Lowest Savings</h6>
           </div>
           <div class="card-body">
             <table class="table table-hover">
               <thead>
                 <tr >
-                  <th scope="col">S.No</th>
+                  <th scope="col">Rank</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Saving</th>
+                  <th scope="col">Savings</th>
                 
                  
                 </tr>
@@ -181,6 +183,74 @@
                   <th scope="row">{{i+1}}</th>
                   <td>{{l.Worker_Name}}</td>
                   <td>$ {{l.Saving}}</td>
+                 
+                </tr>
+              
+              
+              </tbody>
+            </table>
+          </div>
+          <!-- Approach -->
+
+
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-4">
+        <!-- Project Card Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Highest Costs </h6>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Rank</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Savings</th>
+              
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of tCost  index as i" >
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{d.Worker_Name}}</td>
+                  <td> ${{d.Total_COST}}</td>
+                 
+                </tr>
+              
+              
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Color System -->
+
+      </div>
+      <div class="col-lg-6 mb-4">
+        <!-- Illustrations -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Top 10 Employee with Lowest Costs</h6>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover">
+              <thead>
+                <tr >
+                  <th scope="col">Rank</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Savings</th>
+                
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let l of lCost  index as i">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{l.Worker_Name}}</td>
+                  <td>$ {{l.Total_COST}}</td>
                  
                 </tr>
               
@@ -207,25 +277,21 @@
             <div class="dropdown no-arrow">
               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+               
               </a>
-              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Dropdown Header:</div>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
+             
             </div>
           </div>
           <!-- Card Body -->
+        
           <div class="card-body">
             <div class="chart-area">
               <!-- <canvas id="myBarChart"></canvas> -->
               <canvas id="myChart" height="100px"></canvas>
             </div>
-          </div>
+         
+          </div>  
+        
         </div>
       </div>
       <!-- Pie Chart -->
@@ -252,7 +318,7 @@
           <!-- Card Body -->
           <div class="card-body">
             <div class="chart-pie pt-4 pb-2">
-              <canvas id="Chart"></canvas>
+              <canvas id="Chart" height="200px"></canvas>
             </div>
             <div class="mt-4 text-center small">
               <span></span>
@@ -271,10 +337,10 @@
         <!-- Project Card Example -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Doughnut Chart</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Bubble Chart</h6>
           </div>
           <div class="card-body">
-            <canvas id="Donut"></canvas>
+            <canvas id="Bubble"></canvas>
           </div>
         </div>
         <!-- Color System -->
@@ -282,18 +348,59 @@
       </div>
       <div class="col-lg-6 mb-4">
         <!-- Illustrations -->
+        <div class="" style="overflow-x: auto;">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">line Chart Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Histogram Details</h6>
           </div>
           <div class="card-body">
-            <canvas id="line"></canvas>
+            <canvas id="yyy"></canvas>
+          </div>
+          <!-- Approach -->
+
+
+        </div></div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <!-- Content Column -->
+      
+      <div class="col-lg-6 mb-4">
+        <!-- Illustrations -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">scatter Chart Details</h6>
+          </div>
+          <div class="card-body">
+            <canvas id="scatter"></canvas>
           </div>
           <!-- Approach -->
 
 
         </div>
       </div>
+
+
+      <div class="col-lg-6 mb-4">
+        <!-- Illustrations -->
+        <div class="" style="overflow-x: auto;">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Histogram Details</h6>
+          </div>
+          <div class="card-body">
+            <canvas id="secondHisto"></canvas>
+          </div>
+          <!-- Approach -->
+
+
+        </div></div>
+      </div>
     </div>
   </div>
 </div>
+
+
+

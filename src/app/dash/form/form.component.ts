@@ -63,7 +63,7 @@ setTime : boolean;
   }
 
   CalledNew(event,name){
-   console.log(event,'kk')
+ 
 
    this.map.set( "Worker_Unique_Id",event);
    if(this.map.has(event)){
@@ -72,35 +72,106 @@ setTime : boolean;
    }
    console.log(this.map);
   
-    
-
   }
 
+
+  CalledNew2(event,name){
+    this.map.set( "Worker_Name",event);
+    if(this.map.has(event)){
+      this.map.delete(event);
+      this.map.set(event,name);
+    }
+    console.log(this.map);
+   
+   }
+
+
+   CalledNew3(event,name){
+    this.map.set( "Worker_Title",event);
+    if(this.map.has(event)){
+      this.map.delete(event);
+      this.map.set(event,name);
+    }
+    console.log(this.map);
+   
+   }
   
+
+   CalledNew4(event,name){
+    this.map.set( "Worker_Manager",event);
+    if(this.map.has(event)){
+      this.map.delete(event);
+      this.map.set(event,name);
+    }
+    console.log(this.map);
+   
+   }
+
+   CalledNew5(event,name){
+    this.map.set( "Worker_Department",event);
+    if(this.map.has(event)){
+      this.map.delete(event);
+      this.map.set(event,name);
+    }
+    console.log(this.map);
+   
+   }
+
+   CalledNew6(event,name){
+    this.map.set( "Worker_Location",event);
+    if(this.map.has(event)){
+      this.map.delete(event);
+      this.map.set(event,name);
+    }
+    console.log(this.map);
+   
+   }
+
+
+   CalledNew7(event,name){
+    this.map.set( "Work_City",event);
+    if(this.map.has(event)){
+      this.map.delete(event);
+      this.map.set(event,name);
+    }
+    console.log(this.map);
+   
+   }
+
+
+   CalledNew8(event,name){
+    this.map.set( "Worker_Manager",event);
+    if(this.map.has(event)){
+      this.map.delete(event);
+      this.map.set(event,name);
+    }
+    console.log(this.map);
+   
+   }
 
 
  
- array =['Worker_Unique_Id',
- 'Worker_Name',
- 'Worker_Title',
- 'Worker_Manager',
- 'Worker_Department',
- 'Worker_Location',
- 'Work_City',
- 'Work_State',
- 'Work_Zip',
- 'Worker_Comp_Code',
- 'Invoice_Number',
- 'Standard_Time_H',
- 'ST_Pay_Rate',
- 'Over_Time_H',
- 'OT_Pay_Rate',
- 'Double_Time_H',
- 'DT_Pay_Rate',
- 'Markup_Percentage ',
- 'Week_Start_Date',
- 'Project_End ',
- 'Worker_Agency']
+//  array =['Worker_Unique_Id',
+//  'Worker_Name',
+//  'Worker_Title',
+//  'Worker_Manager',
+//  'Worker_Department',
+//  'Worker_Location',
+//  'Work_City',
+//  'Work_State',
+//  'Work_Zip',
+//  'Worker_Comp_Code',
+//  'Invoice_Number',
+//  'Standard_Time_H',
+//  'ST_Pay_Rate',
+//  'Over_Time_H',
+//  'OT_Pay_Rate',
+//  'Double_Time_H',
+//  'DT_Pay_Rate',
+//  'Markup_Percentage ',
+//  'Week_Start_Date',
+//  'Project_End ',
+//  'Worker_Agency']
 
 
  

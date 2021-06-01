@@ -105,6 +105,8 @@ export class EmployeeDetailsComponent implements OnInit {
     Worker_Unique_Id:"",
     created_at: "",
   };
+  Details: any =[];
+  error: string;
    
   
 
@@ -116,7 +118,8 @@ export class EmployeeDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem("user"));
+    this.getState();
+   
 
     var myChart = new Chart('Chart', {
       type: 'pie',
@@ -142,6 +145,34 @@ export class EmployeeDetailsComponent implements OnInit {
       }
   });
      
+  var myChart = new Chart('myChart', {
+    type: 'bar',
+    data: {
+        labels: ['Total Cost','Total Saving ','Total Tax' ],
+        datasets: [{
+            label:'',
+            data: [  150, 250 , 400  ],
+            fill: true,
+        
+         backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+            ],
+            borderWidth: 3
+        }
+  
+      
+      
+      ]
+    },
+    options: {
+    
+    }
+    
+  
+});
+
     this.sharedData.currentSharedData.subscribe(res =>{ 
       this.userObj={
              
@@ -210,6 +241,19 @@ export class EmployeeDetailsComponent implements OnInit {
 
  
 
+}
+
+
+getState() {
+
+  this.Service.getSetting().subscribe((res: any) => {
+    this.Details = res.data;
+   
+  }, (error) => {
+    this.error = 'Server Down Please try After Sometime ..! '
+  }
+
+  );
 }
 
 }

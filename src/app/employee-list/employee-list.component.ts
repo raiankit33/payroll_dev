@@ -49,7 +49,7 @@ name :any;
 
   getList() {
   
-    this.Service.ShowThem().subscribe((res: any) => {
+    this.Service.showThem().subscribe((res: any) => {
       
       this.Details = res.data;
    

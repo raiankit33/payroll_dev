@@ -18,29 +18,8 @@
       <div class="card-body">
         <div class="user-details">
 
-          <div class="col-xl-12 col-md-6 mb-4">
-            <div class="card border-left shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold  text-uppercase mb-1 ml-2"></div>
-                    <div class="row no-gutters align-items-center">
-                      <div class="col-auto">
-                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ml-3 ">{{userObj.Worker_Name}} </div>
-                      </div>
-                      <div class="col">
-      
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-auto">
-                    <!-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <h3>{{userObj.Worker_Name}}</h3> 
+<hr>
           <div class="input-box">
             <span class="details"> Worker Unique Id</span>
            <br>
@@ -62,6 +41,21 @@
             <label style="color:black; font-size: 21px;">{{userObj.Worker_Manager}} </label>
         
           </div>
+<hr>
+<div class="input-box">
+  <span class="details"> Worker States</span>
+  <br>
+  
+  <div class="btn-group">
+    <select name="state_name" class="form-control "  style="width: 270px;" [(ngModel)]="userObj.Work_State"    >
+     
+      <option value="{{value.States}}" *ngFor = "let value of Details">{{value.States}} </option>
+      
+  
+    </select>
+   
+  </div>
+</div>
 <hr>
 
           <div class="input-box">
@@ -106,39 +100,17 @@
  
  
   <div class="col-lg-9 mb-4">
-    <!-- Project Card Example -->
-    <div class="card shadow mb-4">
+   
+   <!-- <div class="card shadow mb-4">
     
       <div class="card-body">
       
-        <div class="equal">
-          <div class="input-box  searchbox " >
-            <select  class="form-control "     style="width: 240px;"  >
-              <option disabled selected>----SELECT---- </option>
-          
-            </select>
-        </div>
-
-        <div class="input-box  searchbox " >
-          <select  class="form-control "    style="width: 240px;"  >
-            <option disabled selected>----SELECT---- </option>
-        
-          </select>
-        </div>
-
-      <div class="input-box  searchbox " >
-        <select  class="form-control "     style="width: 240px;"  >
-          <option disabled selected>----SELECT---- </option>
-      
-        </select>
-      </div>
-        </div>
-        
+     
 
 
       </div>
-    </div>
-    <br>
+    </div> 
+     -->
     <!-- Color System -->
 <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
@@ -149,7 +121,21 @@
               <div class="text-xs font-weight-bold text-info text-uppercase mb-1 ml-2">Total Tax</div>
               <div class="row no-gutters align-items-center">
                 <div class="col-auto">
-                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ml-3 ">$ 300000 </div>
+                 
+                  <div class="more-post-optns"> 
+                    <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> ${{userObj.Total_TAX}}</div>
+                  <ul style="width: 300px;">
+                    <li class="font-weight-bold" style="font-size: 19px;">FUI Tax -{{userObj.FUI_TAX}} </li>
+                    <li class="font-weight-bold" style="font-size: 19px;">SUI Tax -{{userObj.SUI_TAX}}</li>
+                    <li class="font-weight-bold" style="font-size: 19px;">Sales_TAX -{{userObj.Sales_TAX}}</li>
+                    <li class="font-weight-bold" style="font-size: 19px;">FICA_TAX - {{userObj.FICA_TAX}}</li>
+                    <li class="font-weight-bold" style="font-size: 19px;">FEE_TAX- {{userObj.FEE_TAX}}</li>
+                    <li class="font-weight-bold" style="font-size: 19px;">EPLI_TAX - {{userObj.EPLI_TAX}}</li>
+                    <li class="font-weight-bold" style="font-size: 19px;">Delivery_TAX - {{userObj.Delivery_TAX}}</li>
+                    
+                  
+                  </ul>
+                </div>
                 </div>
                 <div class="col">
 
@@ -169,8 +155,9 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2"> Total Markup</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">$ 100000</div>
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2">Markup</div>
+              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ml-2 ">${{userObj.Markup}}  </div>
+             
             </div>
             <div class="col-auto">
               <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
@@ -185,8 +172,8 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2">Total Saving</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">$ 330000</div>
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2"> Saving</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">${{userObj.Saving}}  </div>
             </div>
             <div class="col-auto">
               <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
@@ -200,8 +187,8 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2"> Total Cost</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">$ 555550</div>
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2">Cost</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">${{userObj.Total_COST}} </div>
             </div>
             <div class="col-auto">
               <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
@@ -251,11 +238,11 @@
 </div> 
 
 
-<div class="col-xl-5 col-lg-5">
+<div class="col-xl-6 col-lg-5">
   <div class="card shadow mb-4">
    
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-      <h6 class="m-0 font-weight-bold text-primary"> line Chart Details</h6>
+      <h6 class="m-0 font-weight-bold text-primary"> Bar Chart Details</h6>
       <div class="dropdown no-arrow">
         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -274,7 +261,7 @@
    
     <div class="card-body">
       <div class="chart-pie pt-4 pb-2">
-        <canvas id="Chart"></canvas>
+        <canvas id="myChart" ></canvas>
       </div>
       <div class="mt-4 text-center small">
         <span></span>
@@ -284,6 +271,33 @@
     </div>
   </div>
 </div> 
+
+
+<div class="col-xl-8 col-lg-7">
+  <div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary"> Bar Chart Details</h6>
+      <div class="dropdown no-arrow">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+         
+        </a>
+       
+      </div>
+    </div>
+    <!-- Card Body -->
+  
+    <div class="card-body">
+      <div class="chart-area">
+        <!-- <canvas id="myBarChart"></canvas> -->
+        <canvas id="myChart" height="100px"></canvas>
+      </div>
+   
+    </div>  
+  
+  </div>
+</div>
 </div>
 
  <!-- end -->

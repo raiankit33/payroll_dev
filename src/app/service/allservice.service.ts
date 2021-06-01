@@ -68,7 +68,7 @@ export class AllserviceService {
     }
 
 
-    ShowThem() {
+    showThem() {
 
       return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getDropDown/getDropDown ')
         .pipe(catchError(this.handleError));
