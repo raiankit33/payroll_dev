@@ -13,15 +13,15 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { AllserviceService }  from '../service/allservice.service'
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { BatchesComponent } from './batches/batches.component';
-import { RecomComponent } from './recom/recom.component';
-import { ListComponent } from './list/list.component';
+
+
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
   declarations: [DashComponent, DashboadComponent, FormComponent, Dashboad1Component, SettingComponent, BatchesComponent,
-     RecomComponent,
-     ListComponent],
+     
+     ],
   imports: [
 
     CommonModule,

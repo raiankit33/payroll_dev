@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllserviceService } from 'src/app/service/allservice.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-batches',
@@ -28,8 +29,9 @@ export class BatchesComponent implements OnInit {
 
     this.Service.showThem().subscribe((res: any) => {
       this.Details = res.data;
+      console.log(res,"ttttttt")
      this.total_count = res.length;
-     this.time = res.time;
+     this.time = res.time[0];
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
@@ -48,19 +50,36 @@ export class BatchesComponent implements OnInit {
   }
 
   deleteBatch(s){
-    let d ={
-      Batch_Name : s
-    }
-  
-    this.Service.deleteBatch(d).subscribe((res: any) => {
-      this.Details = res.data;
-    this.getSetting();
-    }, (error) => {
-      this.error = 'Server Down Please try After Sometime ..! '
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let d ={
+          Batch_Name : s
+        }
+        this.Service.deleteBatch(d).subscribe((res: any) => {
+          this.getSetting();
 
-    );
+          Swal.fire(
+            'Deleted!',
+            
+            'success'
+          )
+
+        });
+
+      }
+    })
   }
+    
+  
+  
 
 nameR:any;
  
@@ -72,5 +91,9 @@ nameR:any;
     console.log(this.SearchD)
     this.router.navigate(['dash/employeeList']);
   }
+
+
+
+
 
 }

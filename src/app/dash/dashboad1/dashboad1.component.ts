@@ -96,7 +96,9 @@ sum = []
     this.Service.showThem().subscribe((res: any) => {
       this.Details = res.data;
 
-      this.ShowName(this.Details[0]);
+       var length  =  this.Details.length;
+      this.ShowName(this.Details[length - 1]);
+      
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
@@ -129,13 +131,11 @@ sum = []
     console.log(event,"hello")
     this.Service.getSingleBatch(tt).subscribe((res: any) => {
       this.NameDetails = res.data;
-     
+                    
       this.plot = res.data;
 this.dd = res.dd
   console.log(this.dd,"sdsdfssggsgs")
-  for( let index of this.dd){
-    this.histo.push(index)
-  }
+ 
     
     
      this.TotalSaving = this.NameDetails.filter(x => x.Saving > 1500).slice(0,10).sort(function(a,b){
@@ -221,7 +221,8 @@ this.dd = res.dd
         data: {
             labels: ['WC TAX', 'SUI TAX', 'FUI Tax' ,'Tech_tAX','WC_admin_TAX','FEE_tAX','FICA_med_TAX','EPLI_tAX'],
             datasets: [{
-                label:[],
+                label:'',
+               
                 data: [  this.WC_tAX,this.sUI_tAX ,this.FUI_tAX ,this.FEE_tAX,this.Delivery_tAX ,this.Tech_tAX,this.WC_admin_TAX,
                   this.FEE_tAX,this.FICA_med_TAX,this.EPLI_tAX],
                 fill: true,
@@ -472,6 +473,11 @@ this.dd = res.dd
     this.router.navigate(['dash/employeeDetails']);
   }
 
+
+  sendData1(l){
+    this.shared.updateSharedData(l);
+    this.router.navigate(['dash/employeeDetails']);
+  }
  
   GOtoForm(){
     this.router.navigate(['dash/form']);

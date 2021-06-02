@@ -134,7 +134,7 @@
           <div class="card card-primary card-tabs">
             <div class="card-header p-0 pt-1">
               <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                <h6 class="mt-2 ml-1">Top 10 Employee with</h6>
+                <h6 class="mt-3 ml-1">Top 10 Employee with</h6>
                 <li class="nav-item ml-3">
                   <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Highest Savings</a>
                 </li>
@@ -166,7 +166,7 @@
                           <tbody>
                             <tr *ngFor="let d of TotalSaving  index as i" >
                               <th scope="row">{{i+1}}</th>
-                              <td (click)="sendData(d)">{{d.Worker_Name}}</td>
+                              <td (click)="sendData(d)" style="color: blue;">{{d.Worker_Name}}</td>
                               <td> ${{d.Saving}}</td>
                              
                             </tr>
@@ -202,7 +202,7 @@
                           <tbody>
                             <tr *ngFor="let l of ss  index as i">
                               <th scope="row">{{i+1}}</th>
-                              <td>{{l.Worker_Name}}</td>
+                            <td (click)="sendData1(l)" style="color: blue;">{{l.Worker_Name}}</td>
                               <td>$ {{l.Saving}}</td>
                              
                             </tr>
@@ -233,7 +233,7 @@
           <div class="card card-primary card-tabs">
             <div class="card-header p-0 pt-1">
               <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                <h6 class="mt-2 ml-1">Top 10 Employee with</h6>
+                <h6 class="mt-3 ml-1">Top 10 Employee with</h6>
                 <li class="nav-item ml-3">
                   <a class="nav-link active" id="custom-tabs-one-tab" data-toggle="pill" href="#custom-tabs-one" role="tab" aria-controls="custom-tabs-one" aria-selected="true">Highest costs</a>
                 </li>
@@ -265,7 +265,7 @@
                           <tbody>
                             <tr *ngFor="let d of tCost  index as i" >
                               <th scope="row">{{i+1}}</th>
-                              <td>{{d.Worker_Name}}</td>
+                              <td (click)="sendData1(d)" style="color: blue;">{{d.Worker_Name}}</td>
                               <td> ${{d.Total_COST}}</td>
                              
                             </tr>
@@ -301,7 +301,7 @@
                           <tbody>
                             <tr *ngFor="let l of lCost  index as i">
                               <th scope="row">{{i+1}}</th>
-                              <td>{{l.Worker_Name}}</td>
+                              <td (click)="sendData1(l)" style="color: blue;">{{l.Worker_Name}}</td>
                               <td>$ {{l.Total_COST}}</td>
                              
                             </tr>
@@ -360,7 +360,7 @@
         <div class="card shadow mb-4">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">working Time Hour </h6>
+            <h6 class="m-0 font-weight-bold text-primary">Working Time Hour </h6>
             <div class="dropdown no-arrow">
               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -432,7 +432,7 @@
         <!-- Illustrations -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">scatter Chart Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Scatter Chart Details</h6>
           </div>
           <div class="card-body">
             <canvas id="scatter"></canvas>

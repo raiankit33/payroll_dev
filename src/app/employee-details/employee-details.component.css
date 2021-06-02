@@ -223,7 +223,7 @@ table .th{
   transition: all 0.2s linear 0s;
   visibility: hidden;
   width: 175px;
-  z-index: ;
+  z-index:9 ;
 }
 .more-post-optns {
   cursor: pointer;

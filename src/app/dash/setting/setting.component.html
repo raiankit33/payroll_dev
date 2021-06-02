@@ -287,17 +287,11 @@
           </div> <br>  --><br>
 <hr>
 
-          <div class="col-xl-12 col-lg-7">
+          <div class="col-xl-12 col-md-8">
             <div class="card shadow  mb-4 ml-4 mr-4">
               <!-- Card Header - Dropdown -->
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: white;">
-                <div class="input-box ml-5 searchbox " >
-               
-              </div>
-            
-               
-                  
-               
+  
               </div>
               <div class="card-body">
                 
@@ -309,19 +303,19 @@
                           <tr>
               
                             <th scope="col">State</th>
-                            <th scope="col">States_Abb
+                            <th scope="col">States Abb
                             </th>
-                            <th scope="col-2">SUI_cap</th>
+                            <th scope="col-2">SUI_Cap</th>
                             <th scope="col">SUI%</th>
                             <th >FICA_cap</th>
                             <th scope="col">FICA%</th>
-                            <th scope="col">FICA_Med_cap</th>
+                            <th scope="col">FICA_Med_Cap</th>
                             <th scope="col">FICA_Med%  </th>
                             <th scope="col"> FUI_Cap</th>
                             <th scope="col">FUI%</th>
                             <th scope="col">FUI_Sol_cap</th>
                             <th scope="col">FUI_Sol%</th>
-                            <th scope="col">WC_cap</th>
+                            <th scope="col">WC_Cap</th>
                             <th scope="col">WC% </th>
                             <th scope="col">WC_Admin_Cap </th>
                             <th scope="col">WC_Admin%</th>
@@ -339,6 +333,7 @@
                           </tr>
                         </thead>
                         <tbody  >
+                          
                           <tr *ngFor = "let value of Details" >
                             <td >{{value.States}}</td>
                             <td >{{value.States_Abb}}</td>

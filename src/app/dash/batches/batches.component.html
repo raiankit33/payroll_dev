@@ -21,7 +21,7 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1 ml-2">Savings (Annual)</div>
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1 ml-2">Savings</div>
               <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">$215,000</div>
             </div>
             <div class="col-auto">
@@ -54,16 +54,11 @@
 
 <br>
 
-      <div class="col-xl-12 col-lg-7">
-        <div class="card shadow mb-4 ml-4 mr-4">
+      <div class="col-md-12">
+        <div class="card shadow mb-4 ml-3 mr-3 ">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: white;">
-            <div class="input-box ml-5 searchbox " >
-                      
-            
-             
-              <!-- <button class="btn btn-primary ml-4">Search</button> -->
-          </div>
+       
         
             <div class="dropdown no-arrow">
               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,7 +91,7 @@
                     <tr *ngFor="let s of Details |  filter: name  ; index as i">
                       <td>{{i+1}}</td>
                       <td (click)="SendData(s)"  style="color: blue;">{{s}}</td>
-                      <td>{{time}}</td>
+                      <td >{{time}}</td>
                       <td>50</td>
                       <td> $ 3200 </td>
                       <td>

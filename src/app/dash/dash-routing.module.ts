@@ -8,8 +8,8 @@ import { DashboadComponent } from './dashboad/dashboad.component';
 import { Dashboad1Component } from './dashboad1/dashboad1.component';
 import { FormComponent } from './form/form.component';
 import { SettingComponent } from './setting/setting.component';
-import { RecomComponent } from './recom/recom.component';
-import { ListComponent } from './list/list.component';
+
+
 import { EmployeeListComponent } from '../employee-list/employee-list.component';
 import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
 
@@ -20,9 +20,9 @@ const routes: Routes = [
     { path: 'dashboad1', component:Dashboad1Component},
     { path: 'form', component:FormComponent},
     { path: 'setting', component:SettingComponent},
-    { path: 'list', component:ListComponent},
+    
     { path: 'batch', component:BatchesComponent},
-    { path: 'recom', component:RecomComponent},
+ 
     { path: 'employeeList', component:EmployeeListComponent},
     { path: 'employeeDetails', component:EmployeeDetailsComponent},
   ]
