@@ -240,7 +240,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let d of TotalSaving  index as i" >
+                            <tr *ngFor="let d of highestSaving  index as i" >
                               <th scope="row">{{i+1}}</th>
                               <td (click)="sendData(d)" style="color: blue;">{{d.Worker_Name}}</td>
                               <td> ${{d.Saving}}</td>
@@ -339,7 +339,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let d of tCost  index as i" >
+                            <tr *ngFor="let d of highestCost  index as i" >
                               <th scope="row">{{i+1}}</th>
                               <td (click)="sendData1(d)" style="color: blue;">{{d.Worker_Name}}</td>
                               <td> ${{d.Total_COST}}</td>
@@ -375,7 +375,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let l of lCost  index as i">
+                            <tr *ngFor="let l of leastCost  index as i">
                               <th scope="row">{{i+1}}</th>
                               <td (click)="sendData1(l)" style="color: blue;">{{l.Worker_Name}}</td>
                               <td>$ {{l.Total_COST}}</td>

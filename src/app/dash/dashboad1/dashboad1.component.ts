@@ -97,7 +97,7 @@ sum = []
       this.Details = res.dic;
 
        var length  =  this.Details.length;
-      this.ShowName(this.Details[length - 1].Batch_Name);
+      this.ShowName(this.Details[length - 1]);
       
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
@@ -116,11 +116,11 @@ sum = []
   // }
   plot= [];
  histo = []
-  tCost :any;
-  lCost :any;
-  leastSaving :any;
+ highestCost =[];
+ leastCost = [];
+  leastSaving :any = [];
   dd :any
-  TotalSaving:any ;
+  highestSaving:any = []
 
 
   ShowName(event){
@@ -136,17 +136,24 @@ sum = []
 this.dd = res.dd
   
  
+
     
-    
-     this.TotalSaving = res.Top_highest_Saving ;
-     console.log(this.TotalSaving,"hello")
+     this.highestSaving = this.NameDetails.filter(x => x.Saving > 1500).slice(0,10).sort(function(a,b){
+      return  b.Saving - a.Saving;
+     })
      
-     this.leastSaving = res.Top_least_Saving ;
+     this.leastSaving = this.NameDetails.filter(x => x.Saving < 1500).slice(0,10).sort(function(a,b){
+      return  a.Saving - b.Saving;
+     })
  
       
-     this.tCost = res.Top_highest_Cost ;
+     this.highestCost = this.NameDetails.filter(x => x.Total_COST > 1000).slice(0,10).sort(function(a,b){
+      return  b.Total_COST - a.Total_COST;
+     })
      
-     this.lCost = res.Top_least_Cost ;
+     this.leastCost = this.NameDetails.filter(x => x.Total_COST < 1000).slice(0,10).sort(function(a,b){
+      return  a.Total_COST - b.Total_COST;
+     })
 
 
 
