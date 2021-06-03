@@ -22,20 +22,14 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
-         
             ],
             "styles": [
               "src/styles.css",
               "./node_modules/bootstrap/dist/css/bootstrap.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
-              
-            
             ],
             "scripts": [
-                "src/assets/file.js",
-               
-             
-               
+              "src/assets/file.js",
               "./node_modules/jquery/dist/jquery.js",
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js",
@@ -133,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "payroll"
+    }
+  },
+  "defaultProject": "payroll",
+  "cli": {
+    "analytics": false
+  }
 }

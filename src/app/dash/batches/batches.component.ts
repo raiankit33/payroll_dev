@@ -30,8 +30,8 @@ export class BatchesComponent implements OnInit {
     this.Service.showThem().subscribe((res: any) => {
       this.Details = res.dic;
       console.log(res,"ttttttt")
-     this.total_count = res.length;
-     this.time = res.time[0];
+     this.total_count = res.dic.length;
+     //this.time = res.time[0];
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
