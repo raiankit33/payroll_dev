@@ -18,7 +18,7 @@
                 <form  [formGroup]="form">
                   <span class="details"> Select Batch</span>
                   <select class="form-control"  style="width: 350px;" formControlName="id" name="id"  (change)="ShowName($event.target.value)">
-                    <option value="{{Detail}}"  [selected]="Detail" *ngFor="let Detail of Details">{{Detail}}</option>
+                    <option value="{{Detail.Batch_Name}}"  [selected]="Detail.Batch_Name" *ngFor="let Detail of Details">{{Detail.Batch_Name}}</option>
                   </select>
          </form>
          

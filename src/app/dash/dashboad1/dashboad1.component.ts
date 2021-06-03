@@ -94,10 +94,10 @@ sum = []
   getSetting() {
 
     this.Service.showThem().subscribe((res: any) => {
-      this.Details = res.data;
+      this.Details = res.dic;
 
        var length  =  this.Details.length;
-      this.ShowName(this.Details[length - 1]);
+      this.ShowName(this.Details[length - 1].Batch_Name);
       
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '

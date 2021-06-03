@@ -90,8 +90,8 @@
                   <tbody>
                     <tr *ngFor="let s of Details |  filter: name  ; index as i">
                       <td>{{i+1}}</td>
-                      <td (click)="SendData(s)"  style="color: blue;">{{s}}</td>
-                      <td >{{time}}</td>
+                      <td (click)="SendData(s)"  style="color: blue;">{{s.Batch_Name}}</td>
+                      <td >{{s.created_at}}</td>
                       <td>50</td>
                       <td> $ 3200 </td>
                       <td>

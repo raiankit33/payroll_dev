@@ -17,7 +17,7 @@
           <div class="equal">
         <select  class="form-control " formControlName="value" name="value"   (ngModelChange)="SendName()"   style="width: 250px;"  >
                      <option selected disabled value="" >--- SELECT BATCH ---</option>
-          <option value="{{value}}" *ngFor = "let value of Details">{{value}} </option>
+          <option value="{{value.Batch_Name}}" *ngFor = "let value of Details">{{value.Batch_Name}} </option>
         </select>
         <img *ngIf="isLoad" class="ml-4" style="width : 30px" src="../../../assets/icons8-spinner.gif" />
         <!-- <button class="btn btn-primary ml-4">Search</button> -->
