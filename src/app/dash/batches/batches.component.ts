@@ -28,7 +28,7 @@ export class BatchesComponent implements OnInit {
   getSetting() {
 
     this.Service.showThem().subscribe((res: any) => {
-      this.Details = res.data;
+      this.Details = res.dic;
       console.log(res,"ttttttt")
      this.total_count = res.length;
      this.time = res.time[0];

@@ -2,23 +2,23 @@
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+    <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
   </div>
   <!-- Content Row -->
   <div>
 
 
     <div class="equal">
-      <div class="col-xl-12 col-md-6 mb-4">
+      <div class="col-xl-12 col-md-6 mb-3">
         <div class="card border-left-success shadow h-100 py-2">
           <div class="card-body">
             <div class="equal">
-              <div class="input-box mt-3 ml-5 mb-4">
+              <div class="input-box mt-2 ml-5 mb-2">
                 <form  [formGroup]="form">
-                  <span class="details"> Select Batch</span>
+                  <span class="details"><b> Select Batch</b></span>
                   <select class="form-control"  style="width: 350px;" formControlName="id" name="id"  (change)="ShowName($event.target.value)">
-                    <option value="{{Detail}}"  [selected]="Detail" *ngFor="let Detail of Details">{{Detail}}</option>
+                    <option value="{{Detail.Batch_Name}}"  [selected]="Detail.Batch_Name" *ngFor="let Detail of Details">{{Detail.Batch_Name}}</option>
                   </select>
          </form>
          
@@ -46,6 +46,82 @@
       </div>
     </div> 
 
+
+
+
+     <div class="row">
+    
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+           
+            
+
+
+
+          </div>
+        </div>
+      </div>
+
+   
+      <div class="col-xl-8 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+           <div class="equal">
+ 
+            <div class="input-box mt-2  mb-2">
+              <form  [formGroup]="form">
+                <span class="details"><b> Select Manager </b></span>
+                <select class="form-control"  style="width: 250px;"   (change)="selectManager($event.target.value)">
+                  <option> ---SELECT---</option>
+                  <option value="{{d.Worker_Manager}}"   *ngFor="let d of NameDetails">{{d.Worker_Manager}}</option>
+                </select>
+       </form>
+            </div>
+
+
+      
+
+            <div class="input-box mt-2 ml-5 mb-2">
+              <form  [formGroup]="form">
+                <span class="details"><b> Select Department </b></span>
+                <select class="form-control"  style="width: 250px;"   (change)="selectDepartment($event.target.value)">
+                  <option> ---SELECT---</option>
+                  <option value="{{d.Worker_Department}}"   *ngFor="let d of NameDetails">{{d.Worker_Department}}</option>
+                </select>
+       </form>
+       
+            </div>
+
+
+            <div class="input-box mt-2 ml-5 mb-2">
+              <form  [formGroup]="form">
+                <span class="details"><b> Select worker Agency </b></span>
+                <select class="form-control"  style="width: 250px;"   (change)="selectManager($event.target.value)">
+                  <option> ---SELECT---</option>
+                  <option value="{{d.Worker_Agency}}"   *ngFor="let d of NameDetails">{{d.Worker_Agency}}</option>
+                </select>
+       </form>
+            </div>
+
+
+           </div>
+
+          </div>
+        </div>
+      </div>
+     
+    
+    
+    </div> 
+
+
+
+
+
+
+
+    
 
 
     <br>
@@ -97,7 +173,7 @@
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Markup by Staffing
                 </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">$ {{markup}}</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">${{markup}}</div>
               </div>
               <div class="col-auto">
                 <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
@@ -200,7 +276,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let l of ss  index as i">
+                            <tr *ngFor="let l of leastSaving  index as i">
                               <th scope="row">{{i+1}}</th>
                             <td (click)="sendData1(l)" style="color: blue;">{{l.Worker_Name}}</td>
                               <td>$ {{l.Saving}}</td>

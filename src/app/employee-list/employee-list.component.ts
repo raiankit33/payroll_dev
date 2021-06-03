@@ -51,7 +51,7 @@ name :any;
   
     this.Service.showThem().subscribe((res: any) => {
       
-      this.Details = res.data;
+      this.Details = res.dic;
    
     
     }, (error) => {

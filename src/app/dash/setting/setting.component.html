@@ -290,15 +290,13 @@
           <div class="col-xl-12 col-md-8">
             <div class="card shadow  mb-4 ml-4 mr-4">
               <!-- Card Header - Dropdown -->
-              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: white;">
-  
-              </div>
+              
               <div class="card-body">
                 
                
                   <!-- <canvas id="myBarChart"></canvas> -->
                   <div class="scroll"   >
-                    <table class="table">
+                    <table class="table tableFixHead">
                         <thead>
                           <tr>
               
@@ -332,7 +330,7 @@
                        
                           </tr>
                         </thead>
-                        <tbody  >
+                        <tbody  style="overflow-x: auto;" >
                           
                           <tr *ngFor = "let value of Details" >
                             <td >{{value.States}}</td>

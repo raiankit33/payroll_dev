@@ -26,7 +26,7 @@ export class Dashboad1Component implements OnInit {
   Swordtail :any = [];
 Details = [];
 isLoad :boolean =false
-
+AllDetail : any = [];
 
 NameDetails =[];
 error: string;
@@ -63,7 +63,7 @@ arr = [];
   ngOnInit(): void {
     this.getSetting();
 
-    
+  
   
 
     }
@@ -94,7 +94,7 @@ sum = []
   getSetting() {
 
     this.Service.showThem().subscribe((res: any) => {
-      this.Details = res.data;
+      this.Details = res.dic;
 
        var length  =  this.Details.length;
       this.ShowName(this.Details[length - 1]);
@@ -116,11 +116,11 @@ sum = []
   // }
   plot= [];
  histo = []
-  tCost =[];
-  lCost = [];
-  ss :any = [];
+  tCost :any;
+  lCost :any;
+  leastSaving :any;
   dd :any
-  TotalSaving:any = []
+  TotalSaving:any ;
 
 
   ShowName(event){
@@ -134,26 +134,19 @@ sum = []
                     
       this.plot = res.data;
 this.dd = res.dd
-  console.log(this.dd,"sdsdfssggsgs")
+  
  
     
     
-     this.TotalSaving = this.NameDetails.filter(x => x.Saving > 1500).slice(0,10).sort(function(a,b){
-      return  b.Saving - a.Saving;
-     })
+     this.TotalSaving = res.Top_highest_Saving ;
+     console.log(this.TotalSaving,"hello")
      
-     this.ss = this.NameDetails.filter(x => x.Saving < 1500).slice(0,10).sort(function(a,b){
-      return  a.Saving - b.Saving;
-     })
+     this.leastSaving = res.Top_least_Saving ;
  
       
-     this.tCost = this.NameDetails.filter(x => x.Total_COST > 1000).slice(0,10).sort(function(a,b){
-      return  b.Total_COST - a.Total_COST;
-     })
+     this.tCost = res.Top_highest_Cost ;
      
-     this.lCost = this.NameDetails.filter(x => x.Total_COST < 1000).slice(0,10).sort(function(a,b){
-      return  a.Total_COST - b.Total_COST;
-     })
+     this.lCost = res.Top_least_Cost ;
 
 
 
@@ -483,6 +476,26 @@ this.dd = res.dd
     this.router.navigate(['dash/form']);
   }
 
+
+  selectDate(event){
+    console.log(event)
+
+  }
+
+
+  selectVendor(event){
+console.log(event)
+  }
+
+  selectDepartment(event){
+    console.log(event)
+
+  }
+
+  selectManager(event){
+    console.log(event)
+
+  }
 
   
 }
