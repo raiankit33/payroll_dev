@@ -89,7 +89,7 @@ nameR:any;
     console.log(event)
  
     console.log(this.SearchD)
-    this.router.navigate(['dash/employeeList']);
+    this.router.navigate(['dash/employeeList',{'batchName':event}]);
   }
 
 

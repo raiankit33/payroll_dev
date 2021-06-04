@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { AllserviceService } from '../service/allservice.service';
 import { SharedData } from '../Shared/sharedData.service';
 
@@ -23,11 +23,21 @@ name :any;
   
   constructor(private Service: AllserviceService,
     private router: Router,
+    private actRouter: ActivatedRoute,
     private shared : SharedData,) { }
 
   ngOnInit(): void {
-    this.getList()
-   
+    this.actRouter.paramMap.subscribe(params => {
+      console.log("parammap",params.get('batchName'));
+      var batchName = params.get('batchName');
+      if(batchName != undefined && batchName != "" ){
+        this.getList(batchName);
+      }
+      else{
+        this.getList("")
+      }
+    })
+    
   }
 
 
@@ -38,7 +48,7 @@ name :any;
   
   Search() {
     if (this.name == "") {
-      this.SendName();
+      this.SendName(this.form.value.value);
     } else {
       this.SearchDetails = this.SearchDetails.filter(res => {
         return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
@@ -47,13 +57,14 @@ name :any;
   }
 
 
-  getList() {
+  getList(batchName) {
   
     this.Service.showThem().subscribe((res: any) => {
       
       this.Details = res.dic;
-   
-    
+      if(batchName){
+        this.SendName(batchName);
+      }
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
@@ -61,10 +72,11 @@ name :any;
     );
   }
 
-  SendName(){
+  SendName(batchName){
 
     let g ={
-      Batch_Name : this.form.value.value
+      Batch_Name : batchName
+      //this.form.value.value
     }
     console.log(g)
     this.isLoad =true

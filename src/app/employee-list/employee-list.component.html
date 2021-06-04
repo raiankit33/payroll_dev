@@ -15,7 +15,7 @@
       <div class="input-box ml-5 searchbox " >
         <form  [formGroup]="form">    
           <div class="equal">
-        <select  class="form-control " formControlName="value" name="value"   (ngModelChange)="SendName()"   style="width: 250px;"  >
+        <select  class="form-control " formControlName="value" name="value"   (ngModelChange)="SendName($event)"   style="width: 250px;"  >
                      <option selected disabled value="" >--- SELECT BATCH ---</option>
           <option value="{{value.Batch_Name}}" *ngFor = "let value of Details">{{value.Batch_Name}} </option>
         </select>
