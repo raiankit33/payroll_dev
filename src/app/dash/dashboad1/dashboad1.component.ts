@@ -138,22 +138,14 @@ this.dd = res.dd
  
 
     
-     this.highestSaving = this.NameDetails.filter(x => x.Saving > 1500).slice(0,10).sort(function(a,b){
-      return  b.Saving - a.Saving;
-     })
+     this.highestSaving = res.Top_highest_Saving;
      
-     this.leastSaving = this.NameDetails.filter(x => x.Saving < 1500).slice(0,10).sort(function(a,b){
-      return  a.Saving - b.Saving;
-     })
+     this.leastSaving = res.Top_lowest_Saving;
  
       
-     this.highestCost = this.NameDetails.filter(x => x.Total_COST > 1000).slice(0,10).sort(function(a,b){
-      return  b.Total_COST - a.Total_COST;
-     })
+     this.highestCost = res.Top_highest_Cost ;
      
-     this.leastCost = this.NameDetails.filter(x => x.Total_COST < 1000).slice(0,10).sort(function(a,b){
-      return  a.Total_COST - b.Total_COST;
-     })
+     this.leastCost = res.Top_lowest_Cost ;
 
 
 

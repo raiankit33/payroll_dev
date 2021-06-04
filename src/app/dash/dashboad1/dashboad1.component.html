@@ -14,19 +14,19 @@
         <div class="card border-left-success shadow h-100 py-2">
           <div class="card-body">
             <div class="equal">
-              <div class="input-box mt-2 ml-5 mb-2">
+              <div class="input-box mt-1 ml-5 mb-2">
                 <form  [formGroup]="form">
                   <span class="details"><b> Select Batch</b></span>
-                  <select class="form-control"  style="width: 350px;" formControlName="id" name="id"  (change)="ShowName($event.target.value)">
+                  <select class="form-control mt-1"  style="width: 350px;" formControlName="id" name="id"  (change)="ShowName($event.target.value)">
                     <option value="{{Detail.Batch_Name}}"  [selected]="Detail.Batch_Name" *ngFor="let Detail of Details">{{Detail.Batch_Name}}</option>
                   </select>
          </form>
          
               </div>
       
-              <div class="d ml-2 mt-5">
+              <div class="d ml-2 mt-4">
                
-                <img *ngIf="isLoad" class="ml-4" width="30px" src="../../../assets/icons8-spinner.gif" /> 
+                <img *ngIf="isLoad" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" /> 
               </div>
 
 
@@ -55,14 +55,31 @@
         <div class="card border-left-primary shadow h-100 py-2">
           <div class="card-body">
            
-            
+            <div class="equal">
+              <div class="input-box ">
+                <form  [formGroup]="form">
+                  <span class="details"><b> Select Start Date </b></span>
+                  <input type="date" class="form-control mt-1"  style="width: 165px;"   >
+                  
+         </form>
+              </div>
+           
+
+            <div class="input-box ">
+              <form  [formGroup]="form">
+                <span class="details "><b> Select End Date </b></span>
+                <input type="date" class="form-control mt-1 ml-2"  style="width:130x;"   >
+                
+       </form>
+            </div>
+        
 
 
 
           </div>
         </div>
       </div>
-
+      </div>
    
       <div class="col-xl-8 col-md-6 mb-4">
         <div class="card border-left-info shadow h-100 py-2">
@@ -72,7 +89,7 @@
             <div class="input-box mt-2  mb-2">
               <form  [formGroup]="form">
                 <span class="details"><b> Select Manager </b></span>
-                <select class="form-control"  style="width: 250px;"   (change)="selectManager($event.target.value)">
+                <select class="form-control mt-1"  style="width: 250px;"   (change)="selectManager($event.target.value)">
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Manager}}"   *ngFor="let d of NameDetails">{{d.Worker_Manager}}</option>
                 </select>
@@ -85,7 +102,7 @@
             <div class="input-box mt-2 ml-5 mb-2">
               <form  [formGroup]="form">
                 <span class="details"><b> Select Department </b></span>
-                <select class="form-control"  style="width: 250px;"   (change)="selectDepartment($event.target.value)">
+                <select class="form-control mt-1"  style="width: 250px;"   (change)="selectDepartment($event.target.value)">
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Department}}"   *ngFor="let d of NameDetails">{{d.Worker_Department}}</option>
                 </select>
@@ -97,7 +114,7 @@
             <div class="input-box mt-2 ml-5 mb-2">
               <form  [formGroup]="form">
                 <span class="details"><b> Select worker Agency </b></span>
-                <select class="form-control"  style="width: 250px;"   (change)="selectManager($event.target.value)">
+                <select class="form-control mt-1"  style="width: 250px;"   (change)="selectManager($event.target.value)">
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Agency}}"   *ngFor="let d of NameDetails">{{d.Worker_Agency}}</option>
                 </select>
@@ -242,7 +259,7 @@
                           <tbody>
                             <tr *ngFor="let d of highestSaving  index as i" >
                               <th scope="row">{{i+1}}</th>
-                              <td (click)="sendData(d)" style="color: blue;">{{d.Worker_Name}}</td>
+                              <td (click)="sendData(d)" style="color: blue;">{{d.Name}}</td>
                               <td> ${{d.Saving}}</td>
                              
                             </tr>
@@ -278,7 +295,7 @@
                           <tbody>
                             <tr *ngFor="let l of leastSaving  index as i">
                               <th scope="row">{{i+1}}</th>
-                            <td (click)="sendData1(l)" style="color: blue;">{{l.Worker_Name}}</td>
+                            <td (click)="sendData1(l)" style="color: blue;">{{l.Name}}</td>
                               <td>$ {{l.Saving}}</td>
                              
                             </tr>
@@ -341,8 +358,8 @@
                           <tbody>
                             <tr *ngFor="let d of highestCost  index as i" >
                               <th scope="row">{{i+1}}</th>
-                              <td (click)="sendData1(d)" style="color: blue;">{{d.Worker_Name}}</td>
-                              <td> ${{d.Total_COST}}</td>
+                              <td (click)="sendData1(d)" style="color: blue;">{{d.Name}}</td>
+                              <td> ${{d.Cost}}</td>
                              
                             </tr>
                           
@@ -377,8 +394,8 @@
                           <tbody>
                             <tr *ngFor="let l of leastCost  index as i">
                               <th scope="row">{{i+1}}</th>
-                              <td (click)="sendData1(l)" style="color: blue;">{{l.Worker_Name}}</td>
-                              <td>$ {{l.Total_COST}}</td>
+                              <td (click)="sendData1(l)" style="color: blue;">{{l.Name}}</td>
+                              <td>$ {{l.Cost}}</td>
                              
                             </tr>
                           
