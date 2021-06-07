@@ -37,13 +37,21 @@
             <div class="input-box">
                 <!-- <span class="details">* Batch Name</span> -->
                 <input type="text" placeholder="Batch Name "  required name="batch_name" 
-                  formControlName="batch_name" >
+                  formControlName="batch_name" [ngClass]="
+                  { 'is-invalid': form.get('batch_name').touched && form.get('batch_name').invalid}" >
+                  <div class="invalid-feedback">
+                    <div style="font-size: 13px;"> This field is required</div>
+                  </div>
                
               </div>
               <div class="input-box">
                 <!-- <span class="details">Remarks</span> -->
-                <input type="text" placeholder="SUI Rate"  required name="remark"
-                  formControlName="sui_rate">
+                <input type="text" placeholder="SUI Rate"  required name="sui_rate"
+                  formControlName="sui_rate" [ngClass]="
+                  { 'is-invalid': form.get('sui_rate').touched && form.get('sui_rate').invalid}">
+                  <div class="invalid-feedback">
+                    <div style="font-size: 13px;"> This field is required</div>
+                  </div>
                
               </div>
             </div>
@@ -101,7 +109,7 @@
         <!-- End Total Number of Constituents in Your Database Field --><br>
 
         <!-- <input type="button" data-page="1" name="next" class="next action-button  " *ngIf="reset" style="margin-left: 10px;"  (click)="clickMe()" value="Reset" /> -->
-        <input type="button" data-page="1" name="next" class="next action-button " (click)="next()" value="Next" />
+        <input type="button" data-page="1" name="next" class="next action-button "  (click)="next()" value="Next" />
         <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i
                 class="question-log fa fa-question-circle"> </i><a href="../../../assets/sample/sample.csv"
                 style="font-size: 19px;">Download Sample File </a> </div>

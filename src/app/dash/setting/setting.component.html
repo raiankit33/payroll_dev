@@ -28,7 +28,7 @@
                 
                 <select name="state_name" class="form-control select2"  formControlName="state_name"  (change)="sendStateName($event.target.value)"   style="width: 350px;"  >
                   <option disabled selected>----SELECT---- </option>
-                  <option value="{{value.States}}"  [selected]="value.States"  *ngFor = "let value of Details">{{value.States}} </option>
+                  <option value="{{value.States}}" [selected]="value.States"  *ngFor = "let value of Details">{{value.States}} </option>
                   
               
                 </select>
@@ -278,9 +278,9 @@
             <i class="error-log fa fa-exclamation-triangle"></i>
         </span> 
             <button type="button" class="btn btn-primary"  (click)="onSubmit()">
-              <img *ngIf="isLoading" style="width : 24px;"  src="../../../assets/icons8-spinner.gif" />
-               Upload</button>
             
+               Upload</button>
+               <img *ngIf="isLoading" class="ml-3" style="width : 24px;"  src="../../../assets/icons8-spinner.gif" />
             <!-- <div class="progress mt-3 ">
               <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0"
                   aria-valuemax="100"></div>

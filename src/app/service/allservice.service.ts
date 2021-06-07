@@ -132,5 +132,18 @@ Chart(){
     }
 
 
+    getDepartment(D){
+    
+      return this.http.post('https://lv45no88yg.execute-api.us-west-2.amazonaws.com/filterDepartment/filterDepartment',D)
+      .pipe(catchError(this.handleError));
+      }
+  
+
+
+
+
+    
+
+
   }
 

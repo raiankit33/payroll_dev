@@ -17,7 +17,7 @@
               <div class="input-box mt-1 ml-5 mb-2">
                 <form  [formGroup]="form">
                   <span class="details"><b> Select Batch</b></span>
-                  <select class="form-control mt-1"  style="width: 350px;" formControlName="id" name="id"  (change)="ShowName($event.target.value)">
+                  <select class="form-control mt-1"  style="width: 300px;" formControlName="id" name="id"  (change)="ShowName($event.target.value)">
                     <option value="{{Detail.Batch_Name}}"  [selected]="Detail.Batch_Name" *ngFor="let Detail of Details">{{Detail.Batch_Name}}</option>
                   </select>
          </form>
@@ -88,39 +88,45 @@
  
             <div class="input-box mt-2  mb-2">
               <form  [formGroup]="form">
-                <span class="details"><b> Select Manager </b></span>
-                <select class="form-control mt-1"  style="width: 230px;"   (change)="selectManager($event.target.value)">
+                <span class="details"><b> Select Manager </b></span>  
+                <select class="form-control mt-1"  style="width: 200px;"   (change)="selectManager($event.target.value)">
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Manager}}"   *ngFor="let d of manager  ">{{d.Worker_Manager}}</option>
                 </select>
        </form>
             </div>
-
+            <div class="d ml-1 mt-5">
+              <img *ngIf="isManger" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" /> 
+          
+            </div>
 
       
 
             <div class="input-box mt-2 ml-5 mb-2">
               <form  [formGroup]="form">
                 <span class="details"><b> Select Department </b></span>
-                <select class="form-control mt-1"  style="width: 230px;"   (change)="selectDepartment($event.target.value)">
+                <select class="form-control mt-1"  style="width: 210px;"   (change)="selectDepartment($event.target.value)">
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Department}}"   *ngFor="let d of Department">{{d.Worker_Department}}</option>
                 </select>
        </form>
        
             </div>
-
+            <div class="d ml-1 mt-5">
+              <img *ngIf="isDepartment" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" /> 
+          
+            </div>
 
             <div class="input-box mt-2 ml-5 mb-2">
               <form  [formGroup]="form">
-                <span class="details"><b> Select worker Agency </b></span>
-                <select class="form-control mt-1"  style="width: 230px;"   (change)="selectManager($event.target.value)">
+                <span class="details"><b> Select Worker Agency </b></span>
+                <select class="form-control mt-1"  style="width: 220px;"   (change)="selectManager($event.target.value)">
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Agency}}"   *ngFor="let d of agency">{{d.Worker_Agency}}</option>
                 </select>
        </form>
             </div>
-
+          
 
            </div>
 
@@ -268,7 +274,7 @@
                             <tr *ngFor="let d of highestSaving;  index as i" >
                               <th scope="row">{{i+1}}</th>
                               <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{d.Name}}</td>
-                              <td> {{d.Saving  }}</td>
+                              <td> {{d.Saving | currency:'USD' : 'symbol':'4.2-2'}}</td>
                               <td> ${{d.Staffing_Company_Cost}}</td>
                             
                              

@@ -224,8 +224,9 @@ export class SettingComponent implements OnInit {
     this.Service.getSetting().subscribe((res: any) => {
       this.Details = res.data;
 
-     
-      this.sendStateName(this.Details)
+    var length =this.Details.length
+    
+      this.sendStateName(this.Details[length - 1].States)
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
