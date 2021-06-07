@@ -31,6 +31,7 @@ name :any;
       console.log("parammap",params.get('batchName'));
       var batchName = params.get('batchName');
       if(batchName != undefined && batchName != "" ){
+        this.form.controls['value'].setValue(batchName, {onlySelf: true});
         this.getList(batchName);
       }
       else{
@@ -73,17 +74,14 @@ name :any;
   }
 
   SendName(batchName){
-
     let g ={
       Batch_Name : batchName
-      //this.form.value.value
     }
     console.log(g)
     this.isLoad =true
     this.Service.getSingleBatch(g).subscribe((res: any) => {
       this.SearchDetails = res.data;
       console.log(res)
-     
       console.log(this.SearchDetails,"hhhhhhhhh")
       setTimeout(() => {
         this.isLoad = false;

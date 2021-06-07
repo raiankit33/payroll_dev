@@ -6,6 +6,7 @@ import { MustMatch } from '../../service/must-match.validator.ts';
 import { NgxCsvParser } from 'ngx-csv-parser';
 import { NgxCSVParserError } from 'ngx-csv-parser';
 import { AllserviceService } from 'src/app/service/allservice.service';
+import { __assign } from 'tslib';
 
 declare var $: any;
 
@@ -16,7 +17,7 @@ declare var $: any;
 })
 export class FormComponent implements OnInit {
 
-  map = new Map<string, string>();
+  map = {};
   step: any = 1;
  show :boolean =true
   http: any;
@@ -41,7 +42,7 @@ setTime : boolean;
   ngOnInit(): void {
     // this.loadedScript("./assets/file.js");
 
-    this.map.set( "Worker_Unique_Id","Po1"); 
+    //this.map.set( "Worker_Unique_Id","Po1"); 
 //     this.map.set("po2", "Worker_Name");
 //  this.map.set("", "Worker_Title");
 //  this.map.set("", "Worker_Manager");
@@ -63,120 +64,34 @@ setTime : boolean;
   }
 
   CalledNew(event,name){
- 
-
-   this.map.set( "Worker_Unique_Id",event);
-   if(this.map.has(event)){
-     this.map.delete(event);
-     this.map.set(event,name);
+    //console.log("formcontrol",this.form.controls.name.value);
+   if(this.map && Object.keys(this.map).length == 0){
+     this.map[event] = name;
+    //  this.map.delete(event);
+    //  this.map.set(event,name);
    }
-   console.log(this.map);
+   else{
+    if (Object.values(this.map).indexOf(name) > -1) 
+    {
+      this.deleteByValue(name);
+      this.map[event] = name;
+    }
+    else{
+      this.map[event] = name;
+    }   
+   }
+   //console.log(this.map);
   
   }
 
-
-  CalledNew2(event,name){
-    this.map.set( "Worker_Name",event);
-    if(this.map.has(event)){
-      this.map.delete(event);
-      this.map.set(event,name);
-    }
-    console.log(this.map);
-   
-   }
-
-
-   CalledNew3(event,name){
-    this.map.set( "Worker_Title",event);
-    if(this.map.has(event)){
-      this.map.delete(event);
-      this.map.set(event,name);
-    }
-    console.log(this.map);
-   
-   }
-  
-
-   CalledNew4(event,name){
-    this.map.set( "Worker_Manager",event);
-    if(this.map.has(event)){
-      this.map.delete(event);
-      this.map.set(event,name);
-    }
-    console.log(this.map);
-   
-   }
-
-   CalledNew5(event,name){
-    this.map.set( "Worker_Department",event);
-    if(this.map.has(event)){
-      this.map.delete(event);
-      this.map.set(event,name);
-    }
-    console.log(this.map);
-   
-   }
-
-   CalledNew6(event,name){
-    this.map.set( "Worker_Location",event);
-    if(this.map.has(event)){
-      this.map.delete(event);
-      this.map.set(event,name);
-    }
-    console.log(this.map);
-   
-   }
-
-
-   CalledNew7(event,name){
-    this.map.set( "Work_City",event);
-    if(this.map.has(event)){
-      this.map.delete(event);
-      this.map.set(event,name);
-    }
-    console.log(this.map);
-   
-   }
-
-
-   CalledNew8(event,name){
-    this.map.set( "Worker_Manager",event);
-    if(this.map.has(event)){
-      this.map.delete(event);
-      this.map.set(event,name);
-    }
-    console.log(this.map);
-   
-   }
-
-
+  deleteByValue(val) {
+      for(var prop in this.map) {
+          if(this.map.hasOwnProperty(prop) && this.map[prop] == val) {
+              delete this.map[prop];
+          }
+      }
+  }
  
-//  array =['Worker_Unique_Id',
-//  'Worker_Name',
-//  'Worker_Title',
-//  'Worker_Manager',
-//  'Worker_Department',
-//  'Worker_Location',
-//  'Work_City',
-//  'Work_State',
-//  'Work_Zip',
-//  'Worker_Comp_Code',
-//  'Invoice_Number',
-//  'Standard_Time_H',
-//  'ST_Pay_Rate',
-//  'Over_Time_H',
-//  'OT_Pay_Rate',
-//  'Double_Time_H',
-//  'DT_Pay_Rate',
-//  'Markup_Percentage ',
-//  'Week_Start_Date',
-//  'Project_End ',
-//  'Worker_Agency']
-
-
- 
- 
-
   form = new FormGroup({
     Worker_Unique_Id: new FormControl('Worker Unique Id'),
     id: new FormControl('', Validators.required),
@@ -227,14 +142,8 @@ setTime : boolean;
     dT_Pay_Rate: new FormControl('', Validators.required),
 
     batch_name :new FormControl(''),
-    remark :new FormControl(''),
-  }
-   
-  
-  )
-
-
-
+    sui_rate :new FormControl(''),
+  })
 
   public loadedScript(url) {
     let node = document.createElement('script');
@@ -278,7 +187,6 @@ setTime : boolean;
         
   //   }
    
-
   filess = [];
   heading = [];
   header = [];
@@ -314,14 +222,11 @@ setTime : boolean;
         let tarr = [];
         for (let j = 0; j < headers.length; j++) {
           tarr.push(data[j]);
-
         }
         //Pusd headings to array variable
         this.lines.push(tarr);
         this.heading.push(tarr);
         this.header = this.heading[0];
-      
-
 
         // Table Rows
         let tarrR = [];
@@ -344,23 +249,24 @@ setTime : boolean;
  
 
           // Parse the file you want to select for the operation along with the configuration
-  this.ngxCsvParser.parse(files[0], { header: true, delimiter: ',' })
-  .pipe().subscribe((result: Array<any>) => {
+    this.ngxCsvParser.parse(files[0], { header: true, delimiter: ',' })
+    .pipe().subscribe((result: Array<any>) => {
    
-    console.log('Result', result);
+    //console.log('Result', result);
     this.csvRecords = result;
     
 
-    for( var i= 0; i<=this.csvRecords.length; i++){
-      var keys = Object.keys(this.csvRecords[i]);
-        for( var k= 0; k<= keys.length ; k++){
-            var keyValue  = this.map.get(keys[k]);
-            // this.csvRecords[i].keyValue  = 
-        }
-    }
+    // for( var i= 0; i<=this.csvRecords.length; i++){
+    //   var keys = Object.keys(this.csvRecords[i]);
+    //     for( var k= 0; k<= keys.length ; k++){
+    //         var keyValue  = this.map.get(keys[k]);
+            
+    //     }
+    // }
     
-    
-  console.log(this.csvRecords)
+
+  console.log('csvrecords',this.csvRecords);
+  console.log('csvrecords_type',typeof(this.csvRecords));
     
   }, (error: NgxCSVParserError) => {
     console.log('Error', error);
@@ -369,16 +275,12 @@ setTime : boolean;
     }
   }
 
-
-
   onRemove(event) {
     console.log(event);
     this.filess.splice(this.filess.indexOf(event), 1);
 
   }
 
-
-  
   validateAllFormFields(formGroup: FormGroup) {         //{1}
   Object.keys(formGroup.controls).forEach(field => {  //{2}
     const control = formGroup.get(field);             //{3}
@@ -390,13 +292,43 @@ setTime : boolean;
   });
 }
 
-  
+renameKey(object,key,newKey){
+  const clonedObj = this.clone(object);
+  const targetKey = clonedObj[key];
+  delete clonedObj[key];
+  clonedObj[newKey] = targetKey;
+  return clonedObj;
+}
+
+clone(obj){
+  return Object.assign({}, obj);
+}
+
+normalizeExcel(){
+  let colToBeReplaced = Object.keys(this.map);
+  colToBeReplaced.forEach( colToChange => {
+    for(let i = 0; i < this.csvRecords.length; i++){
+      this.csvRecords[i] =  this.renameKey(this.csvRecords[i],colToChange,this.map[colToChange]);
+    }
+    //console.log('Normalized excel',this.csvRecords);
+    // this.csvRecords.forEach(row => {
+    //   row = this.renameKey(row,colToChange,this.map[colToChange]);
+    //   console.log('updated row',row);
+    // });
+  });
+  console.log('Normalized excel',this.csvRecords);
+  return this.csvRecords;
+}
+
 submit(){
  if(this.form){
+ //this.csvRecords = this.normalizeExcel(); 
   let form ={
     batch_name : this.form.value.batch_name,
-  
+    SUI_pct: this.form.value.sui_rate,
     csv : this.csvRecords }
+  console.log('frm213',form);
+
  
   this.isLoading =true
   this.Service.addFile(form).subscribe( res=> {
@@ -409,28 +341,17 @@ submit(){
  }else{
   this.validateAllFormFields(this.form);
  }
-
- 
-
-
-
 }
   
-
   next() {
     this.step = this.step + 1;
   
     
   }
 
-
-
-
   previous() {
     this.step = this.step - 1;
   }
-
-
 
   download() {
 
@@ -511,12 +432,6 @@ submit(){
      }
    }
    
- 
-
-
-
-
-
   clickMe() {
 
   }

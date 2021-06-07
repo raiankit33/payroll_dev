@@ -42,8 +42,8 @@
               </div>
               <div class="input-box">
                 <!-- <span class="details">Remarks</span> -->
-                <input type="text" placeholder="Remarks "  required name="remark"
-                  formControlName="remark">
+                <input type="text" placeholder="SUI Rate"  required name="remark"
+                  formControlName="sui_rate">
                
               </div>
             </div>
@@ -156,7 +156,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Name" name="Name"  (ngModelChange)="CalledNew2($event,'Worker_Name')"  style="width: 100%;" required [ngClass]="
+                    <select class="form-control" formControlName="Name" name="Name"  (ngModelChange)="CalledNew($event,'Worker_Name')"  style="width: 100%;" required [ngClass]="
                     { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}" 
                         >
                         <option value="">----SELECT----</option>
@@ -175,13 +175,12 @@
 
                     <input type="text" style="color: black;" formControlName="Worker_Title" disabled
                         name="Worker_Title">
-
                 </div>
 
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Title" name="Title"  (ngModelChange)="CalledNew3($event,'Worker_Title')"  style="width: 100%;" [ngClass]="
+                    <select class="form-control" formControlName="Title" name="Title"  (ngModelChange)="CalledNew($event,'Worker_Title')"  style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('Title').touched && form.get('Title').invalid}" required
                        >
                        <option value="">----SELECT----</option>
@@ -208,7 +207,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="Manager" (ngModelChange)="CalledNew4($event,'Worker_Manager')"  name="Manager" required
+                    <select name="Product code" class="form-control" formControlName="Manager" (ngModelChange)="CalledNew($event,'Worker_Manager')"  name="Manager" required
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('Manager').touched && form.get('Manager').invalid}"
                        >
@@ -241,7 +240,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Department" name="Department" required  (ngModelChange)="CalledNew5($event,'Worker_Department')" 
+                    <select class="form-control" formControlName="Department" name="Department" required  (ngModelChange)="CalledNew($event,'Worker_Department')" 
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('Department').touched && form.get('Department').invalid}"
                         >
@@ -273,7 +272,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="Location" name="Location" required  (ngModelChange)="CalledNew6($event,'Worker_Location')"
+                    <select name="Product code" class="form-control" formControlName="Location" name="Location" required  (ngModelChange)="CalledNew($event,'Worker_Location')"
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('Location').touched && form.get('Location').invalid}"
                       >
@@ -305,7 +304,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="City" name="City" required (ngModelChange)="CalledNew7($event,'Work_City')"
+                    <select name="Product code" class="form-control" formControlName="City" name="City" required (ngModelChange)="CalledNew($event,'Work_City')"
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('City').touched && form.get('City').invalid}"
                       >
@@ -338,15 +337,13 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="State" name="State" required
+                    <select name="Product code" class="form-control" formControlName="State" (ngModelChange)="CalledNew($event,'Work_State')"
+                     name="State" required
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('State').touched && form.get('State').invalid}"
                       >
                       <option value="">----SELECT----</option>
                         <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
-
-
-
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('State').touched && form.get('State').invalid">
                         <div *ngIf="form.get('State').errors.required" style="font-size: 15px;"> This field is
@@ -370,7 +367,8 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="Zip" name="Zip" required
+                    <select name="Product code" class="form-control" formControlName="Zip" (ngModelChange)="CalledNew($event,'Work_Zip')"
+                    name="Zip" required
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('Zip').touched && form.get('Zip').invalid}"
                       >
@@ -399,15 +397,13 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="Comp_code" name="Comp_code"
+                    <select name="Product code" class="form-control" formControlName="Comp_code" (ngModelChange)="CalledNew($event,'Worker_Comp_Code')"
+                    name="Comp_code" 
                         required style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('Comp_code').touched && form.get('Comp_code').invalid}"
                        >
                        <option value="">----SELECT----</option>
                         <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
-
-
-
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Comp_code').touched && form.get('Comp_code').invalid">
                         <div *ngIf="form.get('Comp_code').errors.required" style="font-size: 15px;"> This field is
@@ -434,7 +430,7 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="invoice_Number"
+                    <select name="Product code" class="form-control" formControlName="invoice_Number" (ngModelChange)="CalledNew($event,'Invoice_Number')"
                         name="invoice_Number" style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('invoice_Number').touched && form.get('invoice_Number').invalid}"
                        >
@@ -467,7 +463,8 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Pay_Rate" name="Pay_Rate" required [ngClass]="
+                    <select class="form-control" formControlName="Pay_Rate" (ngModelChange)="CalledNew($event,'ST_Pay_Rate')" 
+                        name="Pay_Rate" required [ngClass]="
                     { 'is-invalid': form.get('Pay_Rate').touched && form.get('Pay_Rate').invalid}" style="width: 100%;"
                        >
 
@@ -497,7 +494,8 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="standard_Time" name="standard_Time" required
+                    <select name="Product code" class="form-control" formControlName="standard_Time" (ngModelChange)="CalledNew($event,'Standard_Time_H')"
+                        name="standard_Time" required
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('standard_Time').touched && form.get('standard_Time').invalid}"
                       >
@@ -531,7 +529,8 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="OverTime" name="OverTime" required
+                    <select name="Product code" class="form-control" formControlName="OverTime" (ngModelChange)="CalledNew($event,'Over_Time_H')"
+                        name="OverTime" required
                         style="width: 100%;" [ngClass]="
                     { 'is-invalid': form.get('OverTime').touched && form.get('OverTime').invalid}"
                       >
@@ -565,7 +564,8 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Double_time" name="Double_time" required [ngClass]="
+                    <select class="form-control" formControlName="Double_time" (ngModelChange)="CalledNew($event,'Double_Time_H')"
+                        name="Double_time" required [ngClass]="
                     { 'is-invalid': form.get('Double_time').touched && form.get('Double_time').invalid}" style="width: 100%;"
                   >
 
@@ -594,15 +594,13 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="ot_pay_rate" name="ot_pay_rate" required [ngClass]="
+                    <select class="form-control" formControlName="ot_pay_rate" (ngModelChange)="CalledNew($event,'OT_Pay_Rate')"
+                        name="ot_pay_rate" required [ngClass]="
                     { 'is-invalid': form.get('ot_pay_rate').touched && form.get('ot_pay_rate').invalid}" style="width: 100%;"
                   >
 
                   <option value="">----SELECT----</option>
                         <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
-
-
-
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('ot_pay_rate').touched && form.get('ot_pay_rate').invalid">
                         <div *ngIf="form.get('ot_pay_rate').errors.required" style="font-size: 15px;"> This field is required
@@ -626,7 +624,8 @@
 
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="worker_Agency" name="worker_Agency" required
+                    <select class="form-control" formControlName="worker_Agency" (ngModelChange)="CalledNew($event,'Worker_Agency')"
+                        name="worker_Agency" required
                         [ngClass]="
                     { 'is-invalid': form.get('worker_Agency').touched && form.get('worker_Agency').invalid}"
                         style="width: 100%;" >
@@ -662,16 +661,14 @@
 
                 <div class="input-box">
 
-                    <select style="color: black;" formControlName="markup_Percentage" class="form-control"
+                    <select style="color: black;" formControlName="markup_Percentage" (ngModelChange)="CalledNew($event,'Markup_Percentage')"
+                        class="form-control"
                         name="Markup_Percentage" style="width: 100%;" required
                         [ngClass]="
                         { 'is-invalid': form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid}" >
 
                         <option value="">----SELECT----</option>
                         <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
-
-
-
                     </select>
                     <div class="invalid-feedback"
                         *ngIf="form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid">
@@ -682,9 +679,6 @@
                         
                     </div>
                 </div>
-
-
-
 
                 <div class="input-box">
 
@@ -697,16 +691,13 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="Start_Date" name="Start_Date" style="width: 100%;"
+                    <select class="form-control" formControlName="Start_Date" (ngModelChange)="CalledNew($event,'Week_Start_Date')"
+                        name="Start_Date" style="width: 100%;"
                         required [ngClass]="
                     { 'is-invalid': form.get('Start_Date').touched && form.get('Start_Date').invalid}"
                         >
-
                         <option value="">----SELECT----</option>
                         <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
-
-
-
                     </select>
                     <div class="invalid-feedback"
                         *ngIf="form.get('Start_Date').touched && form.get('Start_Date').invalid">
@@ -716,10 +707,6 @@
                         
                     </div>
                 </div>
-
-
-
-
 
                 <div class="input-box">
 
@@ -731,7 +718,8 @@
                 <!-- imported from csv -->
                 <div class="input-box">
 
-                    <select class="form-control" formControlName="project_End" name="project_End" style="width: 100%;"
+                    <select class="form-control" formControlName="project_End" (ngModelChange)="CalledNew($event,'Project_End')"
+                        name="project_End" style="width: 100%;"
                         required [ngClass]="
                     { 'is-invalid': form.get('project_End').touched && form.get('project_End').invalid}"
                         >
@@ -749,12 +737,6 @@
                       
                     </div>
                 </div>
-
-
-
-
-
-
 
             </div>
 
