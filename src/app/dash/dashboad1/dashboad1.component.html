@@ -89,9 +89,9 @@
             <div class="input-box mt-2  mb-2">
               <form  [formGroup]="form">
                 <span class="details"><b> Select Manager </b></span>
-                <select class="form-control mt-1"  style="width: 250px;"   (change)="selectManager($event.target.value)">
+                <select class="form-control mt-1"  style="width: 230px;"   (change)="selectManager($event.target.value)">
                   <option> ---SELECT---</option>
-                  <option value="{{d.Worker_Manager}}"   *ngFor="let d of NameDetails">{{d.Worker_Manager}}</option>
+                  <option value="{{d.Worker_Manager}}"   *ngFor="let d of manager  ">{{d.Worker_Manager}}</option>
                 </select>
        </form>
             </div>
@@ -102,9 +102,9 @@
             <div class="input-box mt-2 ml-5 mb-2">
               <form  [formGroup]="form">
                 <span class="details"><b> Select Department </b></span>
-                <select class="form-control mt-1"  style="width: 250px;"   (change)="selectDepartment($event.target.value)">
+                <select class="form-control mt-1"  style="width: 230px;"   (change)="selectDepartment($event.target.value)">
                   <option> ---SELECT---</option>
-                  <option value="{{d.Worker_Department}}"   *ngFor="let d of NameDetails">{{d.Worker_Department}}</option>
+                  <option value="{{d.Worker_Department}}"   *ngFor="let d of Department">{{d.Worker_Department}}</option>
                 </select>
        </form>
        
@@ -114,9 +114,9 @@
             <div class="input-box mt-2 ml-5 mb-2">
               <form  [formGroup]="form">
                 <span class="details"><b> Select worker Agency </b></span>
-                <select class="form-control mt-1"  style="width: 250px;"   (change)="selectManager($event.target.value)">
+                <select class="form-control mt-1"  style="width: 230px;"   (change)="selectManager($event.target.value)">
                   <option> ---SELECT---</option>
-                  <option value="{{d.Worker_Agency}}"   *ngFor="let d of NameDetails">{{d.Worker_Agency}}</option>
+                  <option value="{{d.Worker_Agency}}"   *ngFor="let d of agency">{{d.Worker_Agency}}</option>
                 </select>
        </form>
             </div>
@@ -226,20 +226,27 @@
         <div class="col-md-6 col-lg- 4">
           <div class="card card-primary card-tabs">
             <div class="card-header p-0 pt-1">
+              <h5 class="ml-4">Employee List</h5>
               <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                <h6 class="mt-3 ml-1">Top 10 Employee with</h6>
+                <!-- <h6 class="mt-3 ml-1">Top 10 Employee with</h6> -->
                 <li class="nav-item ml-3">
                   <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Highest Savings</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Lowest Savings</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-highest-cost" role="tab" aria-controls="custom-tabs-highest-cost" aria-selected="false">Highest Costs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-lowest-cost" role="tab" aria-controls="custom-tabs-lowest-cost" aria-selected="false">Lowest Costs</a>
+                </li>
              
               </ul>
             </div>
             <div class="card-body">
               <div class="tab-content" id="custom-tabs-one-tabContent">
-                <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-tab-one-home">
                    
                  
                     <!-- Project Card Example -->
@@ -252,15 +259,18 @@
                               <th scope="col">Rank</th>
                               <th scope="col">Name</th>
                               <th scope="col">Savings</th>
+                              <th scope="col">Staffing Cost</th>
                           
                              
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let d of highestSaving  index as i" >
+                            <tr *ngFor="let d of highestSaving;  index as i" >
                               <th scope="row">{{i+1}}</th>
-                              <td (click)="sendData(d)" style="color: blue;">{{d.Name}}</td>
-                              <td> ${{d.Saving}}</td>
+                              <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{d.Name}}</td>
+                              <td> {{d.Saving  }}</td>
+                              <td> ${{d.Staffing_Company_Cost}}</td>
+                            
                              
                             </tr>
                           
@@ -275,7 +285,7 @@
       
       
                 </div>
-                <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-tab-one-profile">
                 
              
                     <!-- Illustrations -->
@@ -288,16 +298,16 @@
                               <th scope="col">Rank</th>
                               <th scope="col">Name</th>
                               <th scope="col">Savings</th>
-                            
+                              <th scope="col">Staffing Cost</th>
                              
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let l of leastSaving  index as i">
+                            <tr *ngFor="let l of leastSaving ; index as i">
                               <th scope="row">{{i+1}}</th>
-                            <td (click)="sendData1(l)" style="color: blue;">{{l.Name}}</td>
+                            <td (click)="sendData(d.Worker_Unique_Id)"style="color: blue;">{{l.Name}}</td>
                               <td>$ {{l.Saving}}</td>
-                             
+                              <td> ${{l.Staffing_Company_Cost}}</td>
                             </tr>
                           
                           
@@ -312,6 +322,83 @@
       
       
                 </div>
+
+                <div class="tab-pane fade show " id="custom-tabs-highest-cost" role="tabpanel" aria-labelledby="custom-tabs-highest-cost">
+                   
+                 
+                  <!-- Project Card Example -->
+                  <div class="card shadow mb-4">
+                   
+                    <div class="card-body">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Rank</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Costs</th>
+                            <th scope="col">Staffing Cost</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let d of highestCost ; index as i" >
+                            <th scope="row">{{i+1}}</th>
+                            <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{d.Name}}</td>
+                            <td> ${{d.Cost}}</td>
+                            <td> ${{d.Staffing_Company_Cost}}</td>
+                          </tr>
+                        
+                        
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- Color System -->
+          
+               
+    
+    
+              </div>  
+            
+              <div class="tab-pane fade" id="custom-tabs-lowest-cost" role="tabpanel" aria-labelledby="custom-tabs-lowest-cost">
+                
+             
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                  
+                  <div class="card-body">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr >
+                          <th scope="col">Rank</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Costs</th>
+                          <th scope="col">Staffing Cost</th>
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let l of leastCost ; index as i">
+                          <th scope="row">{{i+1}}</th>
+                          <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{l.Name}}</td>
+                          <td>$ {{l.Cost}}</td>
+                          <td> ${{l.Staffing_Company_Cost}}</td>
+                        </tr>
+                      
+                      
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- Approach -->
+        
+        
+                </div>
+  
+  
+            </div>
+          
+
+          
               
               </div>
             </div>
@@ -326,12 +413,12 @@
           <div class="card card-primary card-tabs">
             <div class="card-header p-0 pt-1">
               <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                <h6 class="mt-3 ml-1">Top 10 Employee with</h6>
+                <!-- <h6 class="mt-3 ml-1">Top 10 Employee with</h6> -->
                 <li class="nav-item ml-3">
-                  <a class="nav-link active" id="custom-tabs-one-tab" data-toggle="pill" href="#custom-tabs-one" role="tab" aria-controls="custom-tabs-one" aria-selected="true">Highest costs</a>
+                  <a class="nav-link active" id="custom-tabs-one-tab" data-toggle="pill" href="#custom-tabs-one" role="tab" aria-controls="custom-tabs-one" aria-selected="true">Job Type</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-profile-tab" data-toggle="pill" href="#custom-tabs-profile" role="tab" aria-controls="custom-tabs-profile" aria-selected="false">Lowest Costs</a>
+                  <a class="nav-link" id="custom-tabs-profile-tab" data-toggle="pill" href="#custom-tabs-profile" role="tab" aria-controls="custom-tabs-profile" aria-selected="false">Location Wise</a>
                 </li>
              
               </ul>
@@ -342,32 +429,7 @@
                    
                  
                     <!-- Project Card Example -->
-                    <div class="card shadow mb-4">
-                     
-                      <div class="card-body">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr>
-                              <th scope="col">Rank</th>
-                              <th scope="col">Name</th>
-                              <th scope="col">Costs</th>
-                          
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let d of highestCost  index as i" >
-                              <th scope="row">{{i+1}}</th>
-                              <td (click)="sendData1(d)" style="color: blue;">{{d.Name}}</td>
-                              <td> ${{d.Cost}}</td>
-                             
-                            </tr>
-                          
-                          
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+                   
                     <!-- Color System -->
             
                  
@@ -377,36 +439,7 @@
                 <div class="tab-pane fade" id="custom-tabs-profile" role="tabpanel" aria-labelledby="custom-tabs-profile-tab">
                 
              
-                    <!-- Illustrations -->
-                    <div class="card shadow mb-4">
-                      
-                      <div class="card-body">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr >
-                              <th scope="col">Rank</th>
-                              <th scope="col">Name</th>
-                              <th scope="col">Costs</th>
-                            
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let l of leastCost  index as i">
-                              <th scope="row">{{i+1}}</th>
-                              <td (click)="sendData1(l)" style="color: blue;">{{l.Name}}</td>
-                              <td>$ {{l.Cost}}</td>
-                             
-                            </tr>
-                          
-                          
-                          </tbody>
-                        </table>
-                      </div>
-                      <!-- Approach -->
-            
-            
-                    </div>
+                   
       
       
                 </div>

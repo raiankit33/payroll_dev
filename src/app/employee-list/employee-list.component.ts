@@ -19,7 +19,7 @@ name :any;
 
   value : string;
   SearchDetails: any =[];
-
+ 
   
   constructor(private Service: AllserviceService,
     private router: Router,
@@ -30,6 +30,7 @@ name :any;
     this.actRouter.paramMap.subscribe(params => {
       console.log("parammap",params.get('batchName'));
       var batchName = params.get('batchName');
+       
       if(batchName != undefined && batchName != "" ){
         this.getList(batchName);
       }
@@ -37,6 +38,7 @@ name :any;
         this.getList("")
       }
     })
+    
     
   }
 
@@ -63,6 +65,7 @@ name :any;
       
       this.Details = res.dic;
       if(batchName){
+       
         this.SendName(batchName);
       }
     }, (error) => {

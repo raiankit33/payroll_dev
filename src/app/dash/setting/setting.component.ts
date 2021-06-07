@@ -20,7 +20,7 @@ export class SettingComponent implements OnInit {
   Details = [];
   error: string;
   SearchDetails = [];
-
+  p: number = 1;
 
   constructor(private http: HttpClient,
     private Service: AllserviceService,
@@ -223,7 +223,9 @@ export class SettingComponent implements OnInit {
 
     this.Service.getSetting().subscribe((res: any) => {
       this.Details = res.data;
+
      
+      this.sendStateName(this.Details)
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
@@ -250,10 +252,11 @@ export class SettingComponent implements OnInit {
 
 
   isLoad: boolean = false;
-  sendStateName() {
+  sendStateName(event) {
     let name = {
-      States: this.form.value.state_name
+      States:event 
     }
+    console.log(name)
     this.isLoad = true
     this.Service.PostSetting(name).subscribe((res: any) => {
       this.SearchDetails = res.data;

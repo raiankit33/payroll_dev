@@ -33,15 +33,13 @@
 
 
 /* form table css */
-*{
-	box-sizing: border-box;
-}
+
 
 
 
 .scroll{
  
-  overflow-y: auto;
+  overflow-x: auto;
   height: 450px;
 }
 
@@ -60,18 +58,26 @@
    height: 100px;
  }
 
-.tableFixHead thead th { 
+
+.tableFixHead th { 
+ 
   position: sticky;
-   top: 0; z-index: 1;
+  
+   top: 0;
+    z-index:10;
    }
 
 /* Just common table stuff. Really. */
 table 
- { border-collapse: collapse; width: 100%;
+ { border-collapse: collapse;
+   
  }
 th, td { 
-  padding: 8px 16px; 
+  padding: 5px;
+
+  
 }
 th    
  { background:#eee; 
+ 
 }

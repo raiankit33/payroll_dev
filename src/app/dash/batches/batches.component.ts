@@ -61,7 +61,7 @@ export class BatchesComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         let d ={
-          Batch_Name : s
+          Batch_Name : s.Batch_Name
         }
         this.Service.deleteBatch(d).subscribe((res: any) => {
           this.getSetting();

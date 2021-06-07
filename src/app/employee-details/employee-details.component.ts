@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AllserviceService } from '../service/allservice.service';
 import { SharedData } from '../Shared/sharedData.service';
 import {Chart} from 'chart.js';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-details',
@@ -113,12 +114,23 @@ export class EmployeeDetailsComponent implements OnInit {
 
   constructor(
     private Service : AllserviceService,
-   
+    private actRouter: ActivatedRoute,
     private sharedData : SharedData
   ) { }
 
   ngOnInit(): void {
     this.getState();
+
+    this.actRouter.paramMap.subscribe(params => {
+      console.log("parammap",params.get('Worker_Id'));
+      var Worker_Id = params.get('Worker_Id');
+      if(Worker_Id != undefined && Worker_Id != "" ){
+        this.getEmployee(Worker_Id);
+      }
+      else{
+        this.getEmployee("")
+      }
+    })
    
 
     var myChart = new Chart('Chart', {
@@ -241,6 +253,19 @@ export class EmployeeDetailsComponent implements OnInit {
 
  
 
+}
+
+
+getEmployee(Worker_Id){
+let tt ={
+  Worker_Unique_Id : Worker_Id
+}
+
+  this.Service.getEmployeeList(tt).subscribe((res:any) => {
+ console.log(res)
+ this.userObj =  res.data[0]
+
+  })
 }
 
 

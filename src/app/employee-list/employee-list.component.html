@@ -16,8 +16,9 @@
         <form  [formGroup]="form">    
           <div class="equal">
         <select  class="form-control " formControlName="value" name="value"   (ngModelChange)="SendName($event)"   style="width: 250px;"  >
-                     <option selected disabled value="" >--- SELECT BATCH ---</option>
-          <option value="{{value.Batch_Name}}" *ngFor = "let value of Details">{{value.Batch_Name}} </option>
+                     <option disabled  value="" >--- SELECT BATCH --- </option>
+                    
+          <option value="{{value.Batch_Name}}"   *ngFor = "let value of Details">{{value.Batch_Name}} </option>
         </select>
         <img *ngIf="isLoad" class="ml-4" style="width : 30px" src="../../../assets/icons8-spinner.gif" />
         <!-- <button class="btn btn-primary ml-4">Search</button> -->
@@ -29,7 +30,7 @@
         
         <div class="search_wrap search_wrap_1 mr-4 mt-3">
           <div class="search_box" >
-            <input type="text" class="form-control"  [(ngModel)]="name" (change)="Search()"  placeholder="Search by Name">
+            <input type="text" class="form-control"  [(ngModel)]="name" (change)="Search()"  placeholder="Search">
             <div class="btn btn_common">
               
            

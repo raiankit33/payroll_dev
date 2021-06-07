@@ -13,6 +13,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import {SharedData} from '../app/Shared/sharedData.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,7 @@ import {SharedData} from '../app/Shared/sharedData.service';
    
     EmployeeListComponent,
     EmployeeDetailsComponent,
-   
+    
   
   
     

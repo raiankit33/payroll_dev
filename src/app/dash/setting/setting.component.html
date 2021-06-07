@@ -26,9 +26,9 @@
             <span class="details ml-5">Select State</span>
             <div class="input-box ml-5 searchbox " >
                 
-                <select name="state_name" class="form-control select2"  formControlName="state_name"  (change)="sendStateName()"   style="width: 350px;"  >
+                <select name="state_name" class="form-control select2"  formControlName="state_name"  (change)="sendStateName($event.target.value)"   style="width: 350px;"  >
                   <option disabled selected>----SELECT---- </option>
-                  <option value="{{value.States}}" *ngFor = "let value of Details">{{value.States}} </option>
+                  <option value="{{value.States}}"  [selected]="value.States"  *ngFor = "let value of Details">{{value.States}} </option>
                   
               
                 </select>
@@ -296,72 +296,71 @@
                
                   <!-- <canvas id="myBarChart"></canvas> -->
                   <div class="scroll"   >
-                    <table class="table tableFixHead">
+                    <table class="table ">
                         <thead>
-                          <tr>
+                          <tr class="d-flex position-sticky">
               
-                            <th scope="col">State</th>
-                            <th scope="col">States Abb
-                            </th>
-                            <th scope="col-2">SUI_Cap</th>
-                            <th scope="col">SUI%</th>
-                            <th >FICA_cap</th>
-                            <th scope="col">FICA%</th>
-                            <th scope="col">FICA_Med_Cap</th>
-                            <th scope="col">FICA_Med%  </th>
-                            <th scope="col"> FUI_Cap</th>
-                            <th scope="col">FUI%</th>
-                            <th scope="col">FUI_Sol_cap</th>
-                            <th scope="col">FUI_Sol%</th>
-                            <th scope="col">WC_Cap</th>
-                            <th scope="col">WC% </th>
-                            <th scope="col">WC_Admin_Cap </th>
-                            <th scope="col">WC_Admin%</th>
-                            <th scope="col">Sales_Tax_cap</th>
-                            <th scope="col">Sales_Tax%</th>
-                            <th scope="col">EPLI_cap</th>
-                            <th scope="col">EPLI%</th>
-                            <th scope="col">FEE_cap</th>
-                            <th scope="col">FEE%</th>
-                            <th scope="col">Tech_cap</th>
-                            <th scope="col">Tech%</th>
-                            <th scope="col">Delivery_cap</th>
-                            <th scope="col">Delivery%</th>
+                            <th class="col-1 ">State</th>
+                            <th class="col-1">States Abbreviation </th>
+                            <th class="col-1" >SUI Capping</th>
+                            <th class="col-1">SUI %</th>
+                            <th  class="col-1">FICA Capping</th>
+                            <th class="col-1">FICA %</th>
+                            <th class="col-1">FICA Med Capping</th>
+                            <th class="col-1">FICA Med %  </th>
+                            <th class="col-1"> FUI Capping</th>
+                            <th class="col-1">FUI %</th>
+                            <th class="col-1">FUI Sol Capping</th>
+                            <th class="col-1">FUI Sol %</th>
+                            <th class="col-1">WC Capping</th>
+                            <th class="col-1">WC % </th>
+                            <th class="col-1">WC Admin Cap </th>
+                            <th class="col-1">WC Admin %</th>
+                            <th class="col-1">Sales Tax Capping</th>
+                            <th class="col-1">Sales Tax %</th>
+                            <th class="col-1">EPLI Capping</th>
+                            <th class="col-1">EPLI %</th>
+                            <th class="col-1">FEE Capping</th>
+                            <th class="col-1">FEE %</th>
+                            <th class="col-1">Tech Capping</th>
+                            <th class="col-1">Tech %</th>
+                            <th class="col-1">Delivery Capping</th>
+                            <th class="col-1">Delivery %</th>
                        
                           </tr>
                         </thead>
                         <tbody  style="overflow-x: auto;" >
                           
-                          <tr *ngFor = "let value of Details" >
-                            <td >{{value.States}}</td>
-                            <td >{{value.States_Abb}}</td>
-                            <td >{{value.SUI_cap}}</td>
+                          <tr class="d-flex" *ngFor = "let value of Details | paginate: { itemsPerPage: 10, currentPage: p }" >
+                            <td class="col-1">{{value.States}}</td>
+                            <td class="col-1">{{value.States_Abb}}</td>
+                            <td class="col-1">{{value.SUI_cap}}</td>
                            
-                            <td >{{value.SUI_pct}}</td>
-                            <td  >{{value.FICA_cap}}</td>
-                            <td >{{value.FICA_pct}}</td>
-                            <td >{{value.FICA_Med_cap}}</td>
-                            <td >{{value.FICA_Med_pct}}</td>
-                            <td >{{value.FUI_cap}}</td>
-                            <td >{{value.FUI_pct}}</td>
+                            <td class="col-1">{{value.SUI_pct}}</td>
+                            <td class="col-1" >{{value.FICA_cap}}</td>
+                            <td class="col-1">{{value.FICA_pct}}</td>
+                            <td class="col-1">{{value.FICA_Med_cap}}</td>
+                            <td class="col-1">{{value.FICA_Med_pct}}</td>
+                            <td class="col-1">{{value.FUI_cap}}</td>
+                            <td class="col-1">{{value.FUI_pct}}</td>
                             
-                            <td >{{value.FUI_Sol_cap}}</td>
-                            <td >{{value.FUI_Sol_pct}}</td>
-                            <td >{{value.WC_cap}}</td>
-                            <td >{{value.WC_pct}}</td>
-                            <td >{{value.WC_Admin_cap}}</td>
-                            <td >{{value.WC_Admin_pct}}</td>
-                            <td >{{value.Sales_Tax_cap}}</td>
+                            <td class="col-1">{{value.FUI_Sol_cap}}</td>
+                            <td class="col-1">{{value.FUI_Sol_pct}}</td>
+                            <td class="col-1">{{value.WC_cap}}</td>
+                            <td class="col-1">{{value.WC_pct}}</td>
+                            <td class="col-1">{{value.WC_Admin_cap}}</td>
+                            <td class="col-1">{{value.WC_Admin_pct}}</td>
+                            <td class="col-1">{{value.Sales_Tax_cap}}</td>
                          
-                            <td >{{value.Sales_Tax_pct}}</td>
-                            <td >{{value.EPLI_cap}}</td>
-                            <td >{{value.EPLI_pct}}</td>
-                            <td >{{value.FEE_cap}}</td>
-                            <td >{{value.FEE_pct}}</td>
-                            <td >{{value.Tech_cap}}</td>
-                            <td >{{value.Tech_pct}}</td>
-                            <td >{{value.Delivery_cap}}</td>
-                            <td >{{value.Delivery_pct}}</td>
+                            <td class="col-1">{{value.Sales_Tax_pct}}</td>
+                            <td class="col-1">{{value.EPLI_cap}}</td>
+                            <td class="col-1">{{value.EPLI_pct}}</td>
+                            <td class="col-1">{{value.FEE_cap}}</td>
+                            <td class="col-1">{{value.FEE_pct}}</td>
+                            <td class="col-1">{{value.Tech_cap}}</td>
+                            <td class="col-1">{{value.Tech_pct}}</td>
+                            <td class="col-1">{{value.Delivery_cap}}</td>
+                            <td class="col-1">{{value.Delivery_pct}}</td>
                          
                             
           
@@ -369,11 +368,11 @@
                      
                         </tbody>
                       </table>
-                   
+                     
                 </div>
           
           
-                
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
               </div>
             </div>
           </div>

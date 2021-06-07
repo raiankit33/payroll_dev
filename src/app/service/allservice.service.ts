@@ -90,7 +90,7 @@ export class AllserviceService {
 // employee list api 
 
   
-getList(list) {
+getEmployeeList(list) {
 
   return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/ClientDetails/getDropDown',list)
     .pipe(catchError(this.handleError));
@@ -121,6 +121,15 @@ Chart(){
   return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getData/getData')
   .pipe(catchError(this.handleError));
   }
+
+
+  // drop down dashboad api 
+
+  getManager(manager){
+    
+    return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/FilterManager/FilterManager',manager)
+    .pipe(catchError(this.handleError));
+    }
 
 
   }
