@@ -54,8 +54,8 @@ export class AllserviceService {
     // client api 
 
     addFile(file) {
-
-      return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/insertdata/insertdata', file)
+      //https://kszaxawodc.execute-api.us-west-2.amazonaws.com/insertdata/insertdata
+      return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/insertDataClient/insertDataClient', file)
         .pipe(catchError(this.handleError));
     }
 
