@@ -274,8 +274,8 @@
                             <tr *ngFor="let d of highestSaving;  index as i" >
                               <th scope="row">{{i+1}}</th>
                               <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{d.Name}}</td>
-                              <td> {{d.Saving | currency:'USD' : 'symbol':'4.2-2'}}</td>
-                              <td> ${{d.Staffing_Company_Cost}}</td>
+                              <td> {{d.Saving | currency:'USD' : 'symbol':'3.2-2'}}</td>
+                              <td> {{d.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
                             
                              
                             </tr>
@@ -312,8 +312,8 @@
                             <tr *ngFor="let l of leastSaving ; index as i">
                               <th scope="row">{{i+1}}</th>
                             <td (click)="sendData(d.Worker_Unique_Id)"style="color: blue;">{{l.Name}}</td>
-                              <td>$ {{l.Saving}}</td>
-                              <td> ${{l.Staffing_Company_Cost}}</td>
+                              <td>{{l.Saving | currency:'USD' : 'symbol':'3.2-2'}}</td>
+                              <td>{{l.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
                             </tr>
                           
                           
@@ -350,8 +350,8 @@
                           <tr *ngFor="let d of highestCost ; index as i" >
                             <th scope="row">{{i+1}}</th>
                             <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{d.Name}}</td>
-                            <td> ${{d.Cost}}</td>
-                            <td> ${{d.Staffing_Company_Cost}}</td>
+                            <td> {{d.Cost | currency:'USD' : 'symbol':'3.2-2'}}</td>
+                            <td> {{d.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
                           </tr>
                         
                         
@@ -387,8 +387,8 @@
                         <tr *ngFor="let l of leastCost ; index as i">
                           <th scope="row">{{i+1}}</th>
                           <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{l.Name}}</td>
-                          <td>$ {{l.Cost}}</td>
-                          <td> ${{l.Staffing_Company_Cost}}</td>
+                          <td> {{l.Cost | currency:'USD' : 'symbol':'3.1-2'}}</td>
+                          <td> {{l.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
                         </tr>
                       
                       

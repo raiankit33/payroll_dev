@@ -65,7 +65,7 @@
                 <tr *ngFor = " let list of SearchDetails | filter:name  index as i ">
                   <td> {{i+1}}</td>
                  
-                  <td (click)="DetailsPage(list)" style="color: blue;" >{{list.Worker_Unique_Id}}</td>
+                  <td (click)="DetailsPage(list)" style="color: blue; cursor: pointer;" >{{list.Worker_Unique_Id}}</td>
                   <td >{{list.Worker_Title}}</td>
                   <td >{{list.Worker_Name}}</td>
                   <td >{{list.Worker_Manager}}</td>
