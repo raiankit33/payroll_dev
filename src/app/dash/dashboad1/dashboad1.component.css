@@ -1,6 +1,6 @@
 .equal{
     display: flex;
-    direction: row;
+    flex-direction: row;
 }
 
 
@@ -18,4 +18,23 @@
   table td{
       
       cursor: pointer;
+  }
+
+  .table tr{
+    text-align: center;
+  }
+  
+  .drop{
+      width: 270px;
+  }
+
+  @media (max-width: 590px) {
+
+    .drop {
+        width: 170px;
+    }
+    .tools {
+    
+      flex-direction: column;
+    }
   }

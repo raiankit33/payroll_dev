@@ -9,7 +9,9 @@
   height: 450px;
 }
 
-
+.center{
+  justify-content: space-around;
+}
 
 
 .table tr{

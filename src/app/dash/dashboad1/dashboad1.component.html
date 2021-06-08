@@ -9,15 +9,15 @@
   <div>
 
 
-    <div class="equal">
       <div class="col-xl-12 col-md-6 mb-3">
-        <div class="card border-left-success shadow h-100 py-2">
+        <div class="card border-left-success shadow h-100 ">
           <div class="card-body">
+   
             <div class="equal">
               <div class="input-box mt-1 ml-5 mb-2">
                 <form  [formGroup]="form">
                   <span class="details"><b> Select Batch</b></span>
-                  <select class="form-control mt-1"  style="width: 300px;" formControlName="id" name="id"  (change)="ShowName($event.target.value)">
+                  <select class="form-control mt-1 drop"   formControlName="id" name="id"  (change)="ShowName($event.target.value)">
                     <option value="{{Detail.Batch_Name}}"  [selected]="Detail.Batch_Name" *ngFor="let Detail of Details">{{Detail.Batch_Name}}</option>
                   </select>
          </form>
@@ -31,20 +31,14 @@
 
 
               <div class="tools">
-
-
-
                 <button class="btn btn-primary upload mt-2" (click)="GOtoForm()">Upload Data</button>
-
-
-
 
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div> 
+  
 
 
 
@@ -53,6 +47,7 @@
     
       <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
+          <h5 class="ml-3">Employee</h5>
           <div class="card-body">
            
             <div class="equal">
@@ -68,7 +63,7 @@
             <div class="input-box ">
               <form  [formGroup]="form">
                 <span class="details "><b> Select End Date </b></span>
-                <input type="date" class="form-control mt-1 ml-2"  style="width:130x;"   >
+                <input type="date" class="form-control mt-1 ml-2"  style="width:126x;"   >
                 
        </form>
             </div>
@@ -123,13 +118,16 @@
             <div class="input-box mt-2 ml-5 mb-2">
               <form  [formGroup]="form">
                 <span class="details"><b> Select Worker Agency </b></span>
-                <select class="form-control mt-1"  style="width: 220px;"   (change)="selectManager($event.target.value)">
+                <select class="form-control mt-1"  style="width: 220px;"   (change)="selectVendor($event.target.value)">
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Agency}}"   *ngFor="let d of agency">{{d.Worker_Agency}}</option>
                 </select>
        </form>
             </div>
+            <div class="d ml-1 mt-5">
+              <img *ngIf="isVendor" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" /> 
           
+            </div>
 
            </div>
 
@@ -159,7 +157,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2">Total Cost</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">$ {{cost}}</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2"> {{cost | currency:'USD' : 'symbol':'3.2-2'}}</div>
               </div>
               <div class="col-auto">
                 <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
@@ -178,7 +176,7 @@
                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1 ml-2">Total Taxes</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ml-3 "> $ {{tax}}</div>
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ml-3 ">{{tax | currency:'USD' : 'symbol':'3.2-2'}}</div>
                   </div>
                   <div class="col">
 
@@ -199,7 +197,7 @@
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Markup by Staffing
                 </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">${{markup}}</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">{{markup | currency:'USD' : 'symbol':'3.2-2'}}</div>
               </div>
               <div class="col-auto">
                 <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
@@ -215,7 +213,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Saving</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">${{saving}}</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">{{saving | currency:'USD' : 'symbol':'3.2-2'}}</div>
               </div>
               <div class="col-auto">
                 <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
@@ -235,7 +233,7 @@
         <div class="col-md-6 col-lg- 4">
           <div class="card card-primary card-tabs">
             <div class="card-header p-0 pt-1">
-              <h5 class="ml-4">Employee List</h5>
+              <h5 class="ml-4">Employees List</h5>
               <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                 <!-- <h6 class="mt-3 ml-1">Top 10 Employee with</h6> -->
                 <li class="nav-item ml-3">
@@ -253,6 +251,7 @@
              
               </ul>
             </div>
+          
             <div class="card-body">
               <div class="tab-content" id="custom-tabs-one-tabContent">
                 <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-tab-one-home">
@@ -262,6 +261,7 @@
                     <div class="card shadow mb-4">
                      
                       <div class="card-body">
+                        <div class="table-responsive">
                         <table class="table table-hover">
                           <thead>
                             <tr>
@@ -286,6 +286,7 @@
                           
                           </tbody>
                         </table>
+                        </div>
                       </div>
                     </div>
                     <!-- Color System -->
@@ -299,7 +300,7 @@
              
                     <!-- Illustrations -->
                     <div class="card shadow mb-4">
-                     
+                      <div class="table-responsive">
                       <div class="card-body">
                         <table class="table table-hover">
                           <thead>
@@ -323,6 +324,7 @@
                           </tbody>
                         </table>
                       </div>
+                      </div>
                       <!-- Approach -->
             
             
@@ -339,6 +341,7 @@
                   <div class="card shadow mb-4">
                    
                     <div class="card-body">
+                      <div class="table-responsive">
                       <table class="table table-hover">
                         <thead>
                           <tr>
@@ -360,6 +363,7 @@
                         
                         </tbody>
                       </table>
+                      </div>
                     </div>
                   </div>
                   <!-- Color System -->
@@ -376,6 +380,7 @@
                 <div class="card shadow mb-4">
                   
                   <div class="card-body">
+                    <div class="table-responsive">
                     <table class="table table-hover">
                       <thead>
                         <tr >
@@ -397,6 +402,7 @@
                       
                       </tbody>
                     </table>
+                    </div>
                   </div>
                   <!-- Approach -->
         
@@ -411,6 +417,7 @@
               
               </div>
             </div>
+           
       </div>
       </div>
      
@@ -421,6 +428,7 @@
         <div class="col-md-6 col-lg- 4">
           <div class="card card-primary card-tabs">
             <div class="card-header p-0 pt-1">
+              <h5 class="ml-4">Saving By</h5>
               <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                 <!-- <h6 class="mt-3 ml-1">Top 10 Employee with</h6> -->
                 <li class="nav-item ml-3">
@@ -438,7 +446,35 @@
                    
                  
                     <!-- Project Card Example -->
-                   
+                    <div class="card shadow mb-4">
+                  
+                      <div class="card-body">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr >
+                              <th scope="col">Rank</th>
+                              <th scope="col">Jobs type</th>
+                              <th scope="col">Savings</th>
+                             
+                             
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let l of job_type ; index as i">
+                              <th scope="row">{{i+1}}</th>
+                              <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{l.Worker_Title}}</td>
+                              <td> {{l.saving | currency:'USD' : 'symbol':'3.1-2'}}</td>
+                             
+                            </tr>
+                          
+                          
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- Approach -->
+            
+            
+                    </div>
                     <!-- Color System -->
             
                  
@@ -447,7 +483,35 @@
                 </div>
                 <div class="tab-pane fade" id="custom-tabs-profile" role="tabpanel" aria-labelledby="custom-tabs-profile-tab">
                 
-             
+                  <div class="card shadow mb-4">
+                  
+                    <div class="card-body">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr >
+                            <th scope="col">Rank</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Savings</th>
+                           
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let l of locationType ; index as i">
+                            <th scope="row">{{i+1}}</th>
+                            <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{l.State}}</td>
+                            <td> {{l.saving | currency:'USD' : 'symbol':'3.1-2'}}</td>
+                           
+                          </tr>
+                        
+                        
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- Approach -->
+          
+          
+                  </div>
                    
       
       
@@ -547,7 +611,7 @@
         <div class="" style="overflow-x: auto;">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Savings Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Savings Details - Histogram</h6>
           </div>
           <div class="card-body">
             <canvas id="yyy"></canvas>
@@ -584,7 +648,7 @@
         <div class="" style="overflow-x: auto;">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Costs Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Costs Details - Histogram</h6>
           </div>
           <div class="card-body">
             <canvas id="secondHisto"></canvas>

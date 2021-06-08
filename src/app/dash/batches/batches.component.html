@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row center">
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4 ml-5">
+    <div class="col-xl-3 col-md-6 mb-4 ">
       <div class="card border-left-primary shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
@@ -16,7 +16,7 @@
       </div>
     </div>
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4 ml-5">
+    <div class="col-xl-3 col-md-6 mb-4 ">
       <div class="card border-left-success shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
@@ -34,7 +34,7 @@
     <!-- Earnings (Monthly) Card Example -->
   
     <!-- Pending Requests Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4 ml-5">
+    <div class="col-xl-3 col-md-6 mb-4 ">
       <div class="card border-left-warning shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
@@ -55,7 +55,7 @@
 <br>
 
       <div class="col-md-12">
-        <div class="card shadow mb-4 ml-3 mr-3 ">
+        <div class="card shadow mb-4  ">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: white;">
        
@@ -73,7 +73,7 @@
             </div>
           </div>
           <div class="card-body">
-            <div class="chart-area">
+        
               <!-- <canvas id="myBarChart"></canvas> -->
               <div class="scroll"   >
                 <table class="table">
@@ -92,15 +92,15 @@
                       <td>{{i+1}}</td>
                       <td (click)="SendData(s.Batch_Name)"  style="color: blue;">{{s.Batch_Name}}</td>
                       <td >{{s.created_at}}</td>
-                      <td>50</td>
-                      <td> $ 3200 </td>
+                      <td>{{s.employee}}</td>
+                      <td>{{s.Total_COST | currency:'USD' : 'symbol':'3.2-2'}} </td>
                       <td>
                         <!-- Call to action buttons -->
                         <ul class="list-inline m-0">
                             
-                            <li class="list-inline-item">
+                            <!-- <li class="list-inline-item">
                                 <button class="btn btn-success btn-sm rounded-0"   type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-eye"></i></button>
-                            </li>
+                            </li> -->
                             <li class="list-inline-item">
                                 <button class="btn btn-danger btn-sm rounded-0" 
                                  type="button" data-toggle="tooltip"
@@ -118,7 +118,7 @@
                  
                 </table>
                
-            </div>
+         
           </div>
         </div>
       </div>
