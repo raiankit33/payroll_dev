@@ -1,5 +1,6 @@
 <div class="row">
-    <h1 class="h3 mb-0 text-gray-800 ml-4">Employee List</h1>
+    <h1 class="h4 mb-0 text-gray-800 ml-5">Employee List</h1>
+   
 
   </div>
 <br>
@@ -15,7 +16,7 @@
       <div class="input-box ml-5 searchbox " >
         <form  [formGroup]="form">    
           <div class="equal">
-        <select  class="form-control " formControlName="value" name="value"   (ngModelChange)="SendName($event)"   style="width: 250px;"  >
+        <select  class="form-control drop" formControlName="value" name="value"   (ngModelChange)="SendName($event)"    >
                      <option disabled  value="" >--- SELECT BATCH --- </option>
                     
           <option value="{{value.Batch_Name}}"   *ngFor = "let value of Details">{{value.Batch_Name}} </option>

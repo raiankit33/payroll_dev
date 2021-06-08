@@ -21,129 +21,128 @@ export class AllserviceService {
     return throwError(error.message || "server Error...........!")
   }
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
-    // setting Api
+  // start setting Api
 
-    register(tenant) {
+  register(tenant) {
 
-      return this.http.post('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/PayrollSetting/PayrollSetting ', tenant)
-        .pipe(catchError(this.handleError));
-    }
-
-    getSetting() {
-
-      return this.http.get('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/getPayrollSetting/getPayrollSetting')
-        .pipe(catchError(this.handleError));
-    }
-
-
-    PostSetting(name) {
-
-      return this.http.post('  https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/getIndivdualPayroll/getPayrollSetting',name)
-        .pipe(catchError(this.handleError));
-    }
-
-    UpdateSetting(userObj) {
-
-      return this.http.put('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/updateSettingPayroll/updateSettingPayroll',userObj)
-        .pipe(catchError(this.handleError));
-    }
-
-    // client api 
-
-    addFile(file) {
-      //https://kszaxawodc.execute-api.us-west-2.amazonaws.com/insertdata/insertdata
-      return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/insertDataClient/insertDataClient', file)
-        .pipe(catchError(this.handleError));
-    }
-
-
-
-    Show() {
-
-      return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getData/getData')
-        
-    }
-
-
-    showThem() {
-
-      return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getDropDown/getDropDown ')
-        .pipe(catchError(this.handleError));
-    }
-
-    deleteBatch(g){
-      return this.http.post(' https://kszaxawodc.execute-api.us-west-2.amazonaws.com/DeleteBatch/DeleteBatch ',g)
+    return this.http.post('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/PayrollSetting/PayrollSetting ', tenant)
       .pipe(catchError(this.handleError));
-     
-
-    }
-    
-    ShowAll(list) {
-
-      return this.http.post(' https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getSingleBatch/getData',list)
-        .pipe(catchError(this.handleError));
-    }
-  
-// employee list api 
-
-  
-getEmployeeList(list) {
-
-  return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/ClientDetails/getDropDown',list)
-    .pipe(catchError(this.handleError));
-}
-
-
-
-// chart api 
-
-getSingleBatch(p){
-  return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getSingleBatch/getData',p)
-  .pipe(catchError(this.handleError));
-  
-
-}
-
-
-Chart(){
-    
-  return this.http.get('')
-  .pipe(catchError(this.handleError));
   }
 
+  getSetting() {
 
-
-  ChartData(){
-    
-  return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getData/getData')
-  .pipe(catchError(this.handleError));
-  }
-
-
-  // drop down dashboad api 
-
-  getManager(manager){
-    
-    return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/FilterManager/FilterManager',manager)
-    .pipe(catchError(this.handleError));
-    }
-
-
-    getDepartment(D){
-    
-      return this.http.post('https://lv45no88yg.execute-api.us-west-2.amazonaws.com/filterDepartment/filterDepartment',D)
+    return this.http.get('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/getPayrollSetting/getPayrollSetting')
       .pipe(catchError(this.handleError));
-      }
-  
+  }
+
+
+  PostSetting(name) {
+
+    return this.http.post('  https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/getIndivdualPayroll/getPayrollSetting', name)
+      .pipe(catchError(this.handleError));
+  }
+
+  UpdateSetting(userObj) {
+
+    return this.http.put('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/updateSettingPayroll/updateSettingPayroll', userObj)
+      .pipe(catchError(this.handleError));
+  }
+
+   // end setting Api
+
+   
+  // client api 
+
+  addFile(file) {
+    //https://kszaxawodc.execute-api.us-west-2.amazonaws.com/insertdata/insertdata
+    return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/insertDataClient/insertDataClient', file)
+      .pipe(catchError(this.handleError));
+  }
 
 
 
+  Show() {
 
-    
+    return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getData/getData')
+
+  }
+
+
+  showThem() {
+
+    return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getDropDown/getDropDown ')
+      .pipe(catchError(this.handleError));
+  }
+
+  deleteBatch(g) {
+    return this.http.post(' https://kszaxawodc.execute-api.us-west-2.amazonaws.com/DeleteBatch/DeleteBatch ', g)
+      .pipe(catchError(this.handleError));
 
 
   }
+
+  ShowAll(list) {
+
+    return this.http.post(' https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getSingleBatch/getData', list)
+      .pipe(catchError(this.handleError));
+  }
+
+  // employee list api 
+
+
+  getEmployeeList(list) {
+
+    return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/ClientDetails/getDropDown', list)
+      .pipe(catchError(this.handleError));
+  }
+
+
+
+  // chart api 
+
+  getSingleBatch(p) {
+    return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getSingleBatch/getData', p)
+      .pipe(catchError(this.handleError));
+
+  }
+
+
+  ChartData() {
+
+    return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getData/getData')
+      .pipe(catchError(this.handleError));
+  }
+
+
+  // start drop down dashboad api 
+
+  getManager(manager) {
+
+    return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/FilterManager/FilterManager', manager)
+      .pipe(catchError(this.handleError));
+  }
+
+
+  getDepartment(D) {
+
+    return this.http.post('https://lv45no88yg.execute-api.us-west-2.amazonaws.com/filterDepartment/filterDepartment', D)
+      .pipe(catchError(this.handleError));
+  }
+
+
+  getVendor(v) {
+
+    return this.http.post('https://lv45no88yg.execute-api.us-west-2.amazonaws.com/filterVendor/filterVendor', v)
+      .pipe(catchError(this.handleError));
+  }
+
+  // end drop down dashboad api 
+
+
+
+
+}
 

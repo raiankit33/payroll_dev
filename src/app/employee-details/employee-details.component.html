@@ -61,30 +61,30 @@
           <div class="input-box">
             <span class="details"> Worker Location</span>
             <br>
-            <label style="color:black; font-size: 21px;" >{{userObj.Worker_Unique_Id}} </label>
+            <label style="color:black; font-size: 21px;" >{{userObj.Worker_Location}} </label>
           </div>
 <hr>
           <div class="input-box">
             <span class="details"> Worker Department</span>
            <br>
-            <label style="color:black; font-size: 21px;" >{{userObj.Worker_Location}} </label>
+            <label style="color:black; font-size: 21px;" >{{userObj.Worker_Department}} </label>
           </div>
  <hr>
           <div class="input-box">
             <span class="details"> Company Code</span>
             <br>
-            <label style="color:black; font-size: 21px;"  >{{userObj.Worker_Department}} </label>
+            <label style="color:black; font-size: 21px;"  >{{userObj.Worker_Comp_Code}} </label>
           </div>
 <hr>
           <div class="input-box">
-            <span class="details"> Worker_Department</span>
+            <span class="details"> Worker City</span>
            <br>
-            <label style="color:black; font-size: 21px;" >{{userObj.Worker_Comp_Code}} </label>
+            <label style="color:black; font-size: 21px;" >{{userObj.Work_City}} </label>
             
           </div>
 <hr>
           <div class="input-box">
-            <span class="details"> Worker_Department</span>
+            <span class="details"> Worker Agency</span>
             <br>
             <label style="color:black; font-size: 21px;" >{{userObj.Worker_Agency}} </label>
           </div>
@@ -121,7 +121,7 @@
               <div class="text-xs font-weight-bold text-info text-uppercase mb-1 ml-2">Total Tax</div>
               <div class="row no-gutters align-items-center">
                 <div class="col-auto">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> ${{userObj.Total_TAX}}</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> {{userObj.Total_TAX | currency:'USD' : 'symbol':'3.2-2'}}</div>
                   <div class="more-post-optns" style="margin-left: 180px; margin-top: 1;"> 
                    
                     <i class="fas fa-fw fa-dot-circle"></i>
@@ -156,7 +156,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2">Markup</div>
-              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ml-2 ">${{userObj.Markup}}  </div>
+              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ml-2 ">{{userObj.Markup | currency:'USD' : 'symbol':'3.2-2'}}  </div>
              
             </div>
             <div class="col-auto">
@@ -173,7 +173,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2"> Saving</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">${{userObj.Saving}}  </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">{{userObj.Saving | currency:'USD' : 'symbol':'3.2-2'}}  </div>
             </div>
             <div class="col-auto">
               <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
@@ -188,7 +188,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2">Cost</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">${{userObj.Total_COST}} </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">{{userObj.Total_COST | currency:'USD' : 'symbol':'3.2-2'}} </div>
             </div>
             <div class="col-auto">
               <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->

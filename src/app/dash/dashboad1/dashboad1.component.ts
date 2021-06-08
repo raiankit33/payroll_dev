@@ -29,6 +29,7 @@ export class Dashboad1Component implements OnInit {
   AllDetail: any = [];
 
   NameDetails = [];
+  vendorDetails :any = [];
   error: string;
   Show = []
   hide: boolean = false;
@@ -122,6 +123,9 @@ export class Dashboad1Component implements OnInit {
   manager: any = [];
   agency: any = [];
 
+  job_type : any = [];
+  locationType : any = [];
+
   ShowName(event) {
     let tt = {
       Batch_Name: event
@@ -136,6 +140,7 @@ export class Dashboad1Component implements OnInit {
       this.plot = res.data;
       this.dd = res.dd
 
+    
       const unique = [];
       const Dept = [];
       const vendor = [];
@@ -152,6 +157,8 @@ export class Dashboad1Component implements OnInit {
       this.agency = vendor;
 
 
+      this.job_type = res.Title_saving.slice(0,10) ;
+      this.locationType = res.location_saving;
 
 
       this.highestSaving = res.Top_highest_Saving;
@@ -487,9 +494,44 @@ this.scatterChart();
 
   }
 
+  isVendor : boolean = false ;
 
   selectVendor(event) {
     console.log(event)
+    const v = {
+      Worker_Agency: event,
+      data: this.NameDetails
+    }
+    console.log(v)
+    this.isVendor = true;
+    this.Service.getVendor(v).subscribe((res: any) => {
+      this.vendorDetails = res.data;
+console.log(this.vendorDetails)
+      this.cost = res.T_Cost;
+      this.markup = res.T_Markup;
+      this.tax = res.T_Tax;
+      this.saving = res.T_Saving;
+      this.EPLI_tAX = res.EPLI_TAX;
+      this.FEE_tAX = res.FEE_TAX;
+      this.FICA_med_TAX = res.FICA_Med_TAX;
+      this.FICA_tAX = res.FICA_TAX;
+      this.FUI_tol_TAX = res.FUI_Sol_TAX;
+      this.FUI_tAX = res.FUI_TAX;
+      this.over_time_Total = res.Over_Time_Total;
+      this.sUI_tAX = res.SUI_TAX;
+      this.Tech_tAX = res.Tech_TAX;
+      this.WC_admin_TAX = res.WC_Admin_TAX;
+      this.WC_tAX = res.WC_TAX;
+
+      this.barChart();
+this.pieChart();
+      setTimeout(() => {
+        this.isVendor = false;
+      }, 1000);
+
+
+    })
+
   }
 
   selectDepartment(event) {
@@ -545,6 +587,8 @@ this.scatterChart();
     this.Service.getManager(m).subscribe((res: any) => {
       this.managerDetails = res.data;
 
+      // this.job_type = res.Title_saving;
+console.log(res)
       this.cost = res.T_Cost;
       this.markup = res.T_Markup;
       this.tax = res.T_Tax;

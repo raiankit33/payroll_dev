@@ -56,3 +56,13 @@ table .th{
 
 }
 
+.drop{
+  width: 250px;
+}
+
+@media screen and (max-width: 580px) {
+.drop{
+  width: 180px;
+  margin-left: -10px;
+}
+}
