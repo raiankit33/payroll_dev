@@ -62,12 +62,13 @@ export class Dashboad1Component implements OnInit {
 
   ngOnInit(): void {
     this.getSetting();
-
-
-
-
   }
 
+  config = {
+    displayKey: 'Worker_Manager', // if objects array passed which key to be displayed defaults to description
+    search: true,
+    limitTo: 0,
+  };
 
   form = new FormGroup({
 
@@ -200,12 +201,12 @@ export class Dashboad1Component implements OnInit {
       this.WC_admin_TAX = res.WC_Admin_TAX;
       this.WC_tAX = res.WC_TAX;
 
-this.barChart();
-this.pieChart();
-this.histogramChart();
-this.histogramSecondChart();
-this.bubbleChart();
-this.scatterChart();
+      this.barChart();
+      this.pieChart();
+      this.histogramChart();
+      this.histogramSecondChart();
+      this.bubbleChart();
+      this.scatterChart();
 
     })
   }
@@ -535,7 +536,7 @@ this.scatterChart();
   managerDetails: any = [];
 
   selectManager(event) {
-
+    console.log('select manager',event);
     const m = {
       Manager: event,
       data: this.NameDetails

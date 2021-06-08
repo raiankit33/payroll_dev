@@ -63,6 +63,16 @@ setTime : boolean;
   
   }
 
+  disableIfSelected(colName){
+    let selectedColNames = Object.keys(this.map);
+    if(selectedColNames.includes(colName)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
   CalledNew(event,name){
     //console.log("formcontrol",this.form.controls.name.value);
    if(this.map && Object.keys(this.map).length == 0){
@@ -80,8 +90,7 @@ setTime : boolean;
       this.map[event] = name;
     }   
    }
-   //console.log(this.map);
-  
+   console.log(this.map);
   }
 
   deleteByValue(val) {
@@ -124,7 +133,9 @@ setTime : boolean;
     standard_Time: new FormControl('', Validators.required),
     //
     Staffing_Company_Cost: new FormControl('Staffing Company Cost'),
-    comp_cost: new FormControl('', Validators.required),
+    staffing_Company_Cost: new FormControl('', Validators.required),
+    Work_State_Abb: new FormControl('Work State Abb'),
+    work_State_Abb: new FormControl('', Validators.required),
     Markup_Percentage: new FormControl('Markup Percentage'),
     markup_Percentage: new FormControl('', Validators.required),
     Week_Start_Date: new FormControl('Start Date',),
@@ -226,8 +237,11 @@ setTime : boolean;
         //Pusd headings to array variable
         this.lines.push(tarr);
         this.heading.push(tarr);
-        this.header = this.heading[0];
-
+        this.heading[0].forEach(header => {
+          let headObj = {'name':header, 'active':true};
+          this.header.push(headObj);
+        });
+        //this.header = this.heading[0];
         // Table Rows
         let tarrR = [];
 
@@ -264,7 +278,7 @@ setTime : boolean;
     //     }
     // }
     
-
+  console.log('headerdrpdn',this.header);    
   console.log('csvrecords',this.csvRecords);
   console.log('csvrecords_type',typeof(this.csvRecords));
     
@@ -297,6 +311,9 @@ renameKey(object,key,newKey){
   const targetKey = clonedObj[key];
   delete clonedObj[key];
   clonedObj[newKey] = targetKey;
+  if(newKey == 'Worker_Unique_Id'){
+    console.log(clonedObj);
+  }
   return clonedObj;
 }
 
@@ -308,13 +325,8 @@ normalizeExcel(){
   let colToBeReplaced = Object.keys(this.map);
   colToBeReplaced.forEach( colToChange => {
     for(let i = 0; i < this.csvRecords.length; i++){
-      this.csvRecords[i] =  this.renameKey(this.csvRecords[i],colToChange,this.map[colToChange]);
+      this.csvRecords[i] =  this.renameKey(this.csvRecords[i],colToChange.trim(),this.map[colToChange].trim());
     }
-    //console.log('Normalized excel',this.csvRecords);
-    // this.csvRecords.forEach(row => {
-    //   row = this.renameKey(row,colToChange,this.map[colToChange]);
-    //   console.log('updated row',row);
-    // });
   });
   console.log('Normalized excel',this.csvRecords);
   return this.csvRecords;
@@ -322,7 +334,7 @@ normalizeExcel(){
 
 submit(){
  if(this.form){
- //this.csvRecords = this.normalizeExcel(); 
+ this.csvRecords = this.normalizeExcel(); 
   let form ={
     batch_name : this.form.value.batch_name,
     SUI_pct: this.form.value.sui_rate,

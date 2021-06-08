@@ -86,14 +86,17 @@
           <div class="card-body">
            <div class="equal">
  
-            <div class="input-box mt-2  mb-2">
+            <div class="col s10 l6">
               <form  [formGroup]="form">
                 <span class="details"><b> Select Manager </b></span>  
-                <select class="form-control mt-1"  style="width: 200px;"   (change)="selectManager($event.target.value)">
+                <ngx-select-dropdown (change)="selectManager($event.value.Worker_Manager)" tabindex="0"
+                    [multiple]="false" [config]="config" [options]="manager">
+                </ngx-select-dropdown>
+                <!-- <select class="form-control mt-1"  style="width: 200px;"   (change)="selectManager($event.target.value)">
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Manager}}"   *ngFor="let d of manager  ">{{d.Worker_Manager}}</option>
-                </select>
-       </form>
+                </select> -->
+            </form>
             </div>
             <div class="d ml-1 mt-5">
               <img *ngIf="isManger" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" /> 
@@ -109,7 +112,7 @@
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Department}}"   *ngFor="let d of Department">{{d.Worker_Department}}</option>
                 </select>
-       </form>
+              </form>
        
             </div>
             <div class="d ml-1 mt-5">

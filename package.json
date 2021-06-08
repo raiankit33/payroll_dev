@@ -28,6 +28,7 @@
     "ngx-csv-parser": "0.0.7",
     "ngx-dropzone": "^3.0.0",
     "ngx-pagination": "^5.0.0",
+    "ngx-select-dropdown": "^2.1.0",
     "rxjs": "~6.5.5",
     "sweetalert2": "^11.0.11",
     "tslib": "^2.0.0",

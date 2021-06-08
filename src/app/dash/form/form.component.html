@@ -141,7 +141,7 @@
                     <select name="id" class="form-control" formControlName="id" (ngModelChange)="CalledNew($event,'Worker_Unique_Id')"  style="width: 100%;" required [ngClass]="
                     { 'is-invalid': form.get('id').touched && form.get('id').invalid}" >
                         <option value="">----SELECT----</option>
-                        <option value="{{item}} " *ngFor="let item of header">{{item}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}} " *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('id').touched && form.get('id').invalid">
                         <div *ngIf="form.get('id').errors.required" style="font-size: 15px;"> This field is required
@@ -164,7 +164,7 @@
                     { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}" 
                         >
                         <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Name').touched && form.get('Name').invalid">
                         <div *ngIf="form.get('Name').errors.required" style="font-size: 15px;"> This field is required
@@ -188,7 +188,7 @@
                     { 'is-invalid': form.get('Title').touched && form.get('Title').invalid}" required
                        >
                        <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Title').touched && form.get('Title').invalid">
                         <div *ngIf="form.get('Title').errors.required" style="font-size: 15px;"> This field is required
@@ -217,7 +217,7 @@
                        >
                        <option value="">----SELECT----</option>
 
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
                     </select>
@@ -250,7 +250,7 @@
                         >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
                     </select>
                     <div class="invalid-feedback"
@@ -281,7 +281,7 @@
                     { 'is-invalid': form.get('Location').touched && form.get('Location').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -313,7 +313,7 @@
                     { 'is-invalid': form.get('City').touched && form.get('City').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -347,7 +347,7 @@
                     { 'is-invalid': form.get('State').touched && form.get('State').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('State').touched && form.get('State').invalid">
                         <div *ngIf="form.get('State').errors.required" style="font-size: 15px;"> This field is
@@ -377,7 +377,7 @@
                     { 'is-invalid': form.get('Zip').touched && form.get('Zip').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Zip').touched && form.get('Zip').invalid">
@@ -403,7 +403,7 @@
                     { 'is-invalid': form.get('Comp_code').touched && form.get('Comp_code').invalid}"
                        >
                        <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Comp_code').touched && form.get('Comp_code').invalid">
                         <div *ngIf="form.get('Comp_code').errors.required" style="font-size: 15px;"> This field is
@@ -430,7 +430,7 @@
                     { 'is-invalid': form.get('invoice_Number').touched && form.get('invoice_Number').invalid}"
                        >
                        <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -461,7 +461,7 @@
                        >
 
                        <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Pay_Rate').touched && form.get('Pay_Rate').invalid">
                         <div *ngIf="form.get('Pay_Rate').errors.required" style="font-size: 15px;"> This field is
@@ -490,7 +490,7 @@
                     { 'is-invalid': form.get('standard_Time').touched && form.get('standard_Time').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -522,7 +522,7 @@
                     { 'is-invalid': form.get('OverTime').touched && form.get('OverTime').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -557,7 +557,7 @@
                   >
 
                   <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -587,7 +587,7 @@
                   >
 
                   <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('ot_pay_rate').touched && form.get('ot_pay_rate').invalid">
                         <div *ngIf="form.get('ot_pay_rate').errors.required" style="font-size: 15px;"> This field is required
@@ -618,7 +618,7 @@
                         style="width: 100%;" >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -655,7 +655,7 @@
                         { 'is-invalid': form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid}" >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback"
                         *ngIf="form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid">
@@ -684,7 +684,7 @@
                     { 'is-invalid': form.get('Start_Date').touched && form.get('Start_Date').invalid}"
                         >
                         <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback"
                         *ngIf="form.get('Start_Date').touched && form.get('Start_Date').invalid">
@@ -712,7 +712,7 @@
                         >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item}}" *ngFor="let item of header">{{item}}</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
                     </select>
@@ -725,6 +725,95 @@
                     </div>
                 </div>
 
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="DT_Pay_Rate"  disabled 
+                        name="DT_Pay_Rate">
+                    
+                </div>
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="dT_Pay_Rate" (ngModelChange)="CalledNew($event,'DT_Pay_Rate')"
+                        name="dT_Pay_Rate" style="width: 100%;"
+                        required [ngClass]="
+                    { 'is-invalid': form.get('dT_Pay_Rate').touched && form.get('dT_Pay_Rate').invalid}"
+                        >
+
+                        <option value="">----SELECT----</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+
+
+                    </select>
+                    <div class="invalid-feedback"
+                        *ngIf="form.get('dT_Pay_Rate').touched && form.get('dT_Pay_Rate').invalid">
+                        <div *ngIf="form.get('dT_Pay_Rate').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                      
+                    </div>
+                </div>
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="Work_State_Abb"  disabled 
+                        name="Work_State_Abb">
+                    
+                </div>
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="work_State_Abb" (ngModelChange)="CalledNew($event,'Work_State_Abb')"
+                        name="work_State_Abb" style="width: 100%;"
+                        required [ngClass]="
+                    { 'is-invalid': form.get('work_State_Abb').touched && form.get('work_State_Abb').invalid}"
+                        >
+
+                        <option value="">----SELECT----</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+
+
+                    </select>
+                    <div class="invalid-feedback"
+                        *ngIf="form.get('work_State_Abb').touched && form.get('work_State_Abb').invalid">
+                        <div *ngIf="form.get('work_State_Abb').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                      
+                    </div>
+                </div>
+
+                <div class="input-box">
+
+                    <input type="text" style="color: black;" formControlName="Staffing_Company_Cost"  disabled 
+                        name="Staffing_Company_Cost">
+                    
+                </div>
+
+                <!-- imported from csv -->
+                <div class="input-box">
+
+                    <select class="form-control" formControlName="staffing_Company_Cost" (ngModelChange)="CalledNew($event,'Staffing_Company_Cost')"
+                        name="staffing_Company_Cost" style="width: 100%;"
+                        required [ngClass]="
+                    { 'is-invalid': form.get('staffing_Company_Cost').touched && form.get('staffing_Company_Cost').invalid}"
+                        >
+
+                        <option value="">----SELECT----</option>
+                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+
+
+                    </select>
+                    <div class="invalid-feedback"
+                        *ngIf="form.get('staffing_Company_Cost').touched && form.get('staffing_Company_Cost').invalid">
+                        <div *ngIf="form.get('staffing_Company_Cost').errors.required" style="font-size: 15px;"> This field is
+                            required
+                        </div>
+                      
+                    </div>
+                </div>
             </div>
 
 
@@ -815,13 +904,6 @@
         <input type="button" data-page="3" name="" (click)="close()"  style="width: 250px; background-color: purple; color: white; margin-left: 400px;" value="Proceed To Dashboad" />
         <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"></div>
     </fieldset>
-
-
-
-
-
-
-
 
 </form>
 

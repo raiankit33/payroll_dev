@@ -14,7 +14,7 @@ import { AllserviceService }  from '../service/allservice.service'
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { BatchesComponent } from './batches/batches.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
@@ -33,7 +33,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ReactiveFormsModule,
     NgxDropzoneModule,
     HttpClientModule,
-  
+    SelectDropDownModule
    
 
   ],
