@@ -164,7 +164,7 @@
                     { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}" 
                         >
                         <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Name').touched && form.get('Name').invalid">
                         <div *ngIf="form.get('Name').errors.required" style="font-size: 15px;"> This field is required
@@ -188,7 +188,7 @@
                     { 'is-invalid': form.get('Title').touched && form.get('Title').invalid}" required
                        >
                        <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Title').touched && form.get('Title').invalid">
                         <div *ngIf="form.get('Title').errors.required" style="font-size: 15px;"> This field is required
@@ -217,7 +217,7 @@
                        >
                        <option value="">----SELECT----</option>
 
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
                     </select>
@@ -250,7 +250,7 @@
                         >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
                     </select>
                     <div class="invalid-feedback"
@@ -281,7 +281,7 @@
                     { 'is-invalid': form.get('Location').touched && form.get('Location').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -313,7 +313,7 @@
                     { 'is-invalid': form.get('City').touched && form.get('City').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -347,7 +347,7 @@
                     { 'is-invalid': form.get('State').touched && form.get('State').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('State').touched && form.get('State').invalid">
                         <div *ngIf="form.get('State').errors.required" style="font-size: 15px;"> This field is
@@ -377,7 +377,7 @@
                     { 'is-invalid': form.get('Zip').touched && form.get('Zip').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Zip').touched && form.get('Zip').invalid">
@@ -403,7 +403,7 @@
                     { 'is-invalid': form.get('Comp_code').touched && form.get('Comp_code').invalid}"
                        >
                        <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Comp_code').touched && form.get('Comp_code').invalid">
                         <div *ngIf="form.get('Comp_code').errors.required" style="font-size: 15px;"> This field is
@@ -430,7 +430,7 @@
                     { 'is-invalid': form.get('invoice_Number').touched && form.get('invoice_Number').invalid}"
                        >
                        <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -461,7 +461,7 @@
                        >
 
                        <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('Pay_Rate').touched && form.get('Pay_Rate').invalid">
                         <div *ngIf="form.get('Pay_Rate').errors.required" style="font-size: 15px;"> This field is
@@ -490,7 +490,7 @@
                     { 'is-invalid': form.get('standard_Time').touched && form.get('standard_Time').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -522,7 +522,7 @@
                     { 'is-invalid': form.get('OverTime').touched && form.get('OverTime').invalid}"
                       >
                       <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -557,7 +557,7 @@
                   >
 
                   <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -587,7 +587,7 @@
                   >
 
                   <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="form.get('ot_pay_rate').touched && form.get('ot_pay_rate').invalid">
                         <div *ngIf="form.get('ot_pay_rate').errors.required" style="font-size: 15px;"> This field is required
@@ -618,7 +618,7 @@
                         style="width: 100%;" >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
@@ -655,7 +655,7 @@
                         { 'is-invalid': form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid}" >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback"
                         *ngIf="form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid">
@@ -684,7 +684,7 @@
                     { 'is-invalid': form.get('Start_Date').touched && form.get('Start_Date').invalid}"
                         >
                         <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
                     </select>
                     <div class="invalid-feedback"
                         *ngIf="form.get('Start_Date').touched && form.get('Start_Date').invalid">
@@ -712,7 +712,7 @@
                         >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
                     </select>
@@ -742,7 +742,7 @@
                         >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
                     </select>
@@ -772,7 +772,7 @@
                         >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
                     </select>
@@ -802,7 +802,7 @@
                         >
 
                         <option value="">----SELECT----</option>
-                        <option value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
                     </select>

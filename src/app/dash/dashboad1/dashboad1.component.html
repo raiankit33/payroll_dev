@@ -84,7 +84,7 @@
             <div class="col s10 l6">
               <form  [formGroup]="form">
                 <span class="details"><b> Select Manager </b></span>  
-                <ngx-select-dropdown (change)="selectManager($event.value.Worker_Manager)" tabindex="0"
+                <ngx-select-dropdown (change)="selectManager($event.value.name)" tabindex="0"
                     [multiple]="false" [config]="config" [options]="manager">
                 </ngx-select-dropdown>
                 <!-- <select class="form-control mt-1"  style="width: 200px;"   (change)="selectManager($event.target.value)">
@@ -100,13 +100,16 @@
 
       
 
-            <div class="input-box mt-2 ml-5 mb-2">
+            <div class="col s10 l6">
               <form  [formGroup]="form">
                 <span class="details"><b> Select Department </b></span>
-                <select class="form-control mt-1"  style="width: 210px;"   (change)="selectDepartment($event.target.value)">
+                <ngx-select-dropdown (change)="selectDepartment($event.value.name)" tabindex="0"
+                    [multiple]="false" [config]="config" [options]="Department">
+                </ngx-select-dropdown>
+                <!-- <select class="form-control mt-1"  style="width: 210px;"   (change)="selectDepartment($event.target.value)">
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Department}}"   *ngFor="let d of Department">{{d.Worker_Department}}</option>
-                </select>
+                </select> -->
               </form>
        
             </div>
@@ -115,13 +118,16 @@
           
             </div>
 
-            <div class="input-box mt-2 ml-5 mb-2">
+            <div class="col s10 l6">
               <form  [formGroup]="form">
                 <span class="details"><b> Select Worker Agency </b></span>
-                <select class="form-control mt-1"  style="width: 220px;"   (change)="selectVendor($event.target.value)">
+                <ngx-select-dropdown (change)="selectVendor($event.value.name)" tabindex="0"
+                    [multiple]="false" [config]="config" [options]="agency">
+                </ngx-select-dropdown>
+                <!-- <select class="form-control mt-1"  style="width: 220px;"   (change)="selectVendor($event.target.value)">
                   <option> ---SELECT---</option>
                   <option value="{{d.Worker_Agency}}"   *ngFor="let d of agency">{{d.Worker_Agency}}</option>
-                </select>
+                </select> -->
        </form>
             </div>
             <div class="d ml-1 mt-5">

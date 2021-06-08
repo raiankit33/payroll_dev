@@ -64,8 +64,8 @@ setTime : boolean;
   }
 
   disableIfSelected(colName){
-    let selectedColNames = Object.keys(this.map);
-    if(selectedColNames.includes(colName)){
+    let selectedColNames = Object.keys(this.map).map(k => k = k.trim());
+    if(selectedColNames.includes(colName.trim())){
       return true;
     }
     else{
@@ -74,11 +74,8 @@ setTime : boolean;
   }
 
   CalledNew(event,name){
-    //console.log("formcontrol",this.form.controls.name.value);
    if(this.map && Object.keys(this.map).length == 0){
      this.map[event] = name;
-    //  this.map.delete(event);
-    //  this.map.set(event,name);
    }
    else{
     if (Object.values(this.map).indexOf(name) > -1) 
@@ -311,9 +308,6 @@ renameKey(object,key,newKey){
   const targetKey = clonedObj[key];
   delete clonedObj[key];
   clonedObj[newKey] = targetKey;
-  if(newKey == 'Worker_Unique_Id'){
-    console.log(clonedObj);
-  }
   return clonedObj;
 }
 
@@ -328,7 +322,6 @@ normalizeExcel(){
       this.csvRecords[i] =  this.renameKey(this.csvRecords[i],colToChange.trim(),this.map[colToChange].trim());
     }
   });
-  console.log('Normalized excel',this.csvRecords);
   return this.csvRecords;
 }
 
@@ -339,9 +332,6 @@ submit(){
     batch_name : this.form.value.batch_name,
     SUI_pct: this.form.value.sui_rate,
     csv : this.csvRecords }
-  console.log('frm213',form);
-
- 
   this.isLoading =true
   this.Service.addFile(form).subscribe( res=> {
     this.show = false

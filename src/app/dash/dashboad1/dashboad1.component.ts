@@ -66,7 +66,7 @@ export class Dashboad1Component implements OnInit {
   }
 
   config = {
-    displayKey: 'Worker_Manager', // if objects array passed which key to be displayed defaults to description
+    displayKey: 'name', // if objects array passed which key to be displayed defaults to description
     search: true,
     limitTo: 0,
   };
@@ -146,15 +146,15 @@ export class Dashboad1Component implements OnInit {
       const Dept = [];
       const vendor = [];
 
-      this.NameDetails.map(x => unique.filter(a => a.Worker_Manager == x.Worker_Manager).length > 0 ? null : unique.push(x));
+      this.NameDetails.map(x => unique.filter(a => a.name == x.Worker_Manager).length > 0 ? null : unique.push({'name':x.Worker_Manager}));
       this.manager = unique;
 
 
-      this.NameDetails.map(y => Dept.filter(b => b.Worker_Department == y.Worker_Department).length > 0 ? null : Dept.push(y));
+      this.NameDetails.map(y => Dept.filter(b => b.name == y.Worker_Department).length > 0 ? null : Dept.push({'name':y.Worker_Department}));
       this.Department = Dept;
 
 
-      this.NameDetails.map(z => vendor.filter(a => a.Worker_Agency == z.Worker_Agency).length > 0 ? null : vendor.push(z));
+      this.NameDetails.map(z => vendor.filter(a => a.name == z.Worker_Agency).length > 0 ? null : vendor.push({'name':z.Worker_Agency}));
       this.agency = vendor;
 
 
