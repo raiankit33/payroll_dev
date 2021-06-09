@@ -26,7 +26,7 @@
             <span class="details ml-5">Select State</span>
             <div class="input-box ml-5 searchbox " >
                 
-                <select name="state_name" class="form-control select2"  formControlName="state_name"  (change)="sendStateName($event.target.value)"   style="width: 350px;"  >
+                <select name="state_name" class="form-control select2"   (change)="sendStateName($event.target.value)"   style="width: 350px;"  >
                   <option disabled selected>----SELECT---- </option>
                   <option value="{{value.States}}" [selected]="value.States"  *ngFor = "let value of Details">{{value.States}} </option>
                   
@@ -263,28 +263,24 @@
         <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
           <br>
          
-          <!-- <ngx-dropzone (change)="onSelect($event)" style="width: 600px;">
-            <ngx-dropzone-label>Drag and Drop!</ngx-dropzone-label>
-            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" [multiple]="false"
-                (removed)="onRemove(f)" accept="image/csv">
-                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-            </ngx-dropzone-preview>
-        </ngx-dropzone>  -->
-
+          <form  [formGroup]="form" (ngSubmit)="onSubmit()">
             
-            <input name="file" required  type="file"  value=""    (change)="changeListener($event)">
+            <input name="file" required  type="file"   formControlName="upload" name="upload"   (change)="changeListener($event)">
            
         <span class="error1" style="display: none;">
             <i class="error-log fa fa-exclamation-triangle"></i>
         </span> 
-            <button type="button" class="btn btn-primary"  (click)="onSubmit()">
+            <button type="button" class="btn btn-primary" [disabled]="form.invalid"  >
             
                Upload</button>
                <img *ngIf="isLoading" class="ml-3" style="width : 24px;"  src="../../../assets/icons8-spinner.gif" />
             <!-- <div class="progress mt-3 ">
               <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0"
                   aria-valuemax="100"></div>
-          </div> <br>  --><br>
+                  
+          </div> <br>  -->
+          </form>
+          <br>
 <hr>
 
           <div class="col-xl-12 col-md-8">

@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { Chart } from 'chart.js';
 import { AllserviceService } from 'src/app/service/allservice.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { arrayMax } from 'highcharts';
 import { SharedData } from 'src/app/Shared/sharedData.service';
-
+import {  formatDate } from "@angular/common";
 
 
 
@@ -57,12 +57,16 @@ export class Dashboad1Component implements OnInit {
   WC_tAX: any;
   value: any;
   arr = [];
+  post: any;
   constructor(private router: Router,
     private Service: AllserviceService,
-    private shared: SharedData,) { }
+    private shared: SharedData,) {
+    }
 
   ngOnInit(): void {
     this.getSetting();
+
+    this.form.get('start_date').patchValue(this.formatDate(new Date()));
   }
 
   config = {
@@ -74,8 +78,15 @@ export class Dashboad1Component implements OnInit {
   form = new FormGroup({
 
     id: new FormControl(''),
+    // start_date:[formatDate(this.post.start_date,'MM-DD-YY','en'), [Validators.required]],
+     start_date:new FormControl(''),
+   end_date: new FormControl('',[Validators.required]),
+
   })
 
+ 
+
+ 
   sum = []
 
 
@@ -490,9 +501,61 @@ export class Dashboad1Component implements OnInit {
   }
 
 
-  selectDate(event) {
-    console.log(event)
+  dateRange :any = [];
 
+  private formatDate(date){
+    const d = new Date(date) ;
+    let month = ''+ (d.getMonth() + 1);
+    let day = '' + d.getDate();
+   const year = d.getFullYear();
+   if(month.length < 2 )month = '0' + month ;
+     if(day.length <2 ) day = '0' + day ;
+     return [month, day , year].join('-');
+  }
+
+
+  selectDate() {
+  
+    var date = {
+        Week_Start_Date : this.formatDate(this.form.value.start_date),
+        Week_End_Date : this.formatDate(this.form.value.end_date),
+        data : this.NameDetails
+    }
+    var data =[{
+   
+    }]
+    var d = { date , data}
+ console.log(d)
+
+ this.Service.getDate(date).subscribe( (res:any)=>{
+     this.dateRange = res.date
+
+
+     
+     this.job_type = res.Title_saving;
+     this.locationType = res.location_saving;
+
+     this.highestSaving = res.Top_highest_Saving;
+     this.leastSaving = res.Top_lowest_Saving ;
+     this.highestCost = res.Top_highest_Cost;
+     this.leastCost = res.Top_lowest_Cost ;
+     
+     this.cost = res.T_Cost;
+     this.markup = res.T_Markup;
+     this.tax = res.T_Tax;
+     this.saving = res.T_Saving;
+     this.EPLI_tAX = res.EPLI_TAX;
+     this.FEE_tAX = res.FEE_TAX;
+     this.FICA_med_TAX = res.FICA_Med_TAX;
+     this.FICA_tAX = res.FICA_TAX;
+     this.FUI_tol_TAX = res.FUI_Sol_TAX;
+     this.FUI_tAX = res.FUI_TAX;
+     this.over_time_Total = res.Over_Time_Total;
+     this.sUI_tAX = res.SUI_TAX;
+     this.Tech_tAX = res.Tech_TAX;
+     this.WC_admin_TAX = res.WC_Admin_TAX;
+     this.WC_tAX = res.WC_TAX;
+ })
   }
 
   isVendor : boolean = false ;
@@ -507,6 +570,16 @@ export class Dashboad1Component implements OnInit {
     this.isVendor = true;
     this.Service.getVendor(v).subscribe((res: any) => {
       this.vendorDetails = res.data;
+
+
+      this.job_type = res.Title_saving;
+      this.locationType = res.location_saving;
+
+      this.highestSaving = res.Top_highest_Saving;
+      this.leastSaving = res.Top_lowest_Saving ;
+      this.highestCost = res.Top_highest_Cost;
+      this.leastCost = res.Top_lowest_Cost ;
+
 console.log(this.vendorDetails)
       this.cost = res.T_Cost;
       this.markup = res.T_Markup;
@@ -545,6 +618,14 @@ this.pieChart();
     this.isDepartment = true;
     this.Service.getDepartment(m).subscribe((res: any) => {
       this.managerDetails = res.data;
+
+      this.job_type = res.Title_saving;
+      this.locationType = res.location_saving;
+
+      this.highestSaving = res.Top_highest_Saving;
+      this.leastSaving = res.Top_lowest_Saving ;
+      this.highestCost = res.Top_highest_Cost;
+      this.leastCost = res.Top_lowest_Cost ;
 
       this.cost = res.T_Cost;
       this.markup = res.T_Markup;
@@ -588,7 +669,13 @@ this.pieChart();
     this.Service.getManager(m).subscribe((res: any) => {
       this.managerDetails = res.data;
 
-      // this.job_type = res.Title_saving;
+      this.job_type = res.Title_saving;
+      this.locationType = res.location_saving;
+
+      this.highestSaving = res.Top_highest_Saving;
+      this.leastSaving = res.Top_lowest_Saving ;
+      this.highestCost = res.Top_highest_Cost;
+      this.leastCost = res.Top_lowest_Cost ;
 console.log(res)
       this.cost = res.T_Cost;
       this.markup = res.T_Markup;

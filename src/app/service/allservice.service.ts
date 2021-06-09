@@ -139,6 +139,11 @@ export class AllserviceService {
       .pipe(catchError(this.handleError));
   }
 
+
+  getDate(d){
+     return this.http.post('https://lv45no88yg.execute-api.us-west-2.amazonaws.com/filterDate/filterDate',d).pipe(catchError(this.handleError))
+  }
+
   // end drop down dashboad api 
 
 

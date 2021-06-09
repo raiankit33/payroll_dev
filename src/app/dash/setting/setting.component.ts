@@ -69,19 +69,22 @@ export class SettingComponent implements OnInit {
 
   form = new FormGroup({
 
-    id: new FormControl('', Validators.required),
-    SUI: new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{2}")]),
-    FUI: new FormControl('', Validators.required),
-    FICA: new FormControl('', Validators.required),
-    WC: new FormControl('', Validators.required),
-    WC_Admin: new FormControl('', Validators.required),
-    EPLI: new FormControl('', Validators.required),
-    FEE: new FormControl('', Validators.required),
-    Tech: new FormControl('', Validators.required),
-    Delivery: new FormControl('', Validators.required),
+    // id: new FormControl('', Validators.required),
+    // SUI: new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{2}")]),
+    // FUI: new FormControl('', Validators.required),
+    // FICA: new FormControl('', Validators.required),
+    // WC: new FormControl('', Validators.required),
+    // WC_Admin: new FormControl('', Validators.required),
+    // EPLI: new FormControl('', Validators.required),
+    // FEE: new FormControl('', Validators.required),
+    // Tech: new FormControl('', Validators.required),
+    // Delivery: new FormControl('', Validators.required),
 
     upload: new FormControl('', Validators.required),
-    state_name: new FormControl('----SELECT----', Validators.required),
+    // state_name: new FormControl('----SELECT----', Validators.required),
+
+    //
+
 
   })
 
@@ -175,18 +178,21 @@ export class SettingComponent implements OnInit {
 
   onSubmit() {
     this.isLoading = true;
-    this.Service.register(this.csvRecords).subscribe(res => {
+    if(this.form.value.upload){
+      this.Service.register(this.csvRecords).subscribe(res => {
 
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 1000, swal.fire(
-        'File uploaded successfully!',
-        '',
-        'success'
-      ));
-      this.getSetting();
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000, swal.fire(
+          'File uploaded successfully!',
+          '',
+          'success'
+        ));
+        this.getSetting();
+  
+      })
+    }
 
-    })
   }
 
 
@@ -194,28 +200,6 @@ export class SettingComponent implements OnInit {
   // csvRecords: any[] = [];
 
 
-  // @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
-
-  // // Your applications input change listener for the CSV File
-  // fileChangeListener($event: any): void {
-
-  //   // Select the files from the event
-  //   const files = $event.srcElement.files;
-
-  //   // Parse the file you want to select for the operation along with the configuration
-  //   this.ngxCsvParser.parse(files[0], { header: true, delimiter: ',' })
-  //     .pipe().subscribe((result: Array<any>) => {
-
-  //       console.log('Result', result);
-  //       this.csvRecords = result;
-
-  //       this.Service.register(result).subscribe( res=> {
-  //         console.log(res);
-  //        })
-
-  //     }, (error: NgxCSVParserError) => {
-  //       console.log('Error', error);
-  //     });
 
 
 
