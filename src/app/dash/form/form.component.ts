@@ -28,6 +28,7 @@ export class FormComponent implements OnInit {
 setTime : boolean;
  
   progress: number = 0;
+  user: any;
 
   constructor(private router: Router,
     private Service : AllserviceService,
@@ -40,6 +41,7 @@ setTime : boolean;
 
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
     // this.loadedScript("./assets/file.js");
 
     //this.map.set( "Worker_Unique_Id","Po1"); 
@@ -331,7 +333,9 @@ submit(){
   let form ={
     batch_name : this.form.value.batch_name,
     SUI_pct: this.form.value.sui_rate,
-    csv : this.csvRecords }
+    csv : this.csvRecords,
+    user_id : this.user.id,
+   }
   this.isLoading =true
   this.Service.addFile(form).subscribe( res=> {
     this.show = false

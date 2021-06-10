@@ -7,10 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./dash.component.css']
 })
 export class DashComponent implements OnInit {
+  user: any;
 
   constructor(private router: Router,) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 
 

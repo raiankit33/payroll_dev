@@ -58,14 +58,16 @@ export class Dashboad1Component implements OnInit {
   value: any;
   arr = [];
   post: any;
+  user: any;
   constructor(private router: Router,
     private Service: AllserviceService,
     private shared: SharedData,) {
     }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
     this.getSetting();
-
+  
     this.form.get('start_date').patchValue(this.formatDate(new Date()));
   }
 
@@ -105,8 +107,12 @@ export class Dashboad1Component implements OnInit {
 
 
   getSetting() {
+    let tt ={
+      user_id : this.user.id,
+     
+    }
 
-    this.Service.showThem().subscribe((res: any) => {
+    this.Service.showThem(tt).subscribe((res: any) => {
       this.Details = res.dic;
 
 
@@ -140,7 +146,8 @@ export class Dashboad1Component implements OnInit {
 
   ShowName(event) {
     let tt = {
-      Batch_Name: event
+      Batch_Name: event,
+      user_id : this.user.id
     }
     console.log(event, "first load")
     this.isLoad = true
@@ -519,13 +526,12 @@ export class Dashboad1Component implements OnInit {
     var date = {
         Week_Start_Date : this.formatDate(this.form.value.start_date),
         Week_End_Date : this.formatDate(this.form.value.end_date),
-        data : this.NameDetails
+        data : this.NameDetails,
+        user_id : this.user.id
+
     }
-    var data =[{
-   
-    }]
-    var d = { date , data}
- console.log(d)
+  
+
 
  this.Service.getDate(date).subscribe( (res:any)=>{
      this.dateRange = res.date
@@ -539,7 +545,7 @@ export class Dashboad1Component implements OnInit {
      this.leastSaving = res.Top_lowest_Saving ;
      this.highestCost = res.Top_highest_Cost;
      this.leastCost = res.Top_lowest_Cost ;
-     
+
      this.cost = res.T_Cost;
      this.markup = res.T_Markup;
      this.tax = res.T_Tax;
@@ -564,7 +570,8 @@ export class Dashboad1Component implements OnInit {
     console.log(event)
     const v = {
       Worker_Agency: event,
-      data: this.NameDetails
+      data: this.NameDetails,
+      user_id : this.user.id
     }
     console.log(v)
     this.isVendor = true;
@@ -612,7 +619,8 @@ this.pieChart();
     console.log(event)
     const m = {
       Worker_Department: event,
-      data: this.NameDetails
+      data: this.NameDetails,
+      user_id : this.user.id
     }
     console.log(m)
     this.isDepartment = true;
@@ -662,7 +670,8 @@ this.pieChart();
     console.log('select manager',event);
     const m = {
       Manager: event,
-      data: this.NameDetails
+      data: this.NameDetails,
+      user_id : this.user.id
     }
     console.log(m)
     this.isManger = true;

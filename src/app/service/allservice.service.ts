@@ -57,7 +57,7 @@ export class AllserviceService {
   // client api 
 
   addFile(file) {
-    //https://kszaxawodc.execute-api.us-west-2.amazonaws.com/insertdata/insertdata
+
     return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/insertDataClient/insertDataClient', file)
       .pipe(catchError(this.handleError));
   }
@@ -71,9 +71,9 @@ export class AllserviceService {
   }
 
 
-  showThem() {
+  showThem(d) {
 
-    return this.http.get('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getDropDown/getDropDown ')
+    return this.http.post('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/getDropDown',d)
       .pipe(catchError(this.handleError));
   }
 

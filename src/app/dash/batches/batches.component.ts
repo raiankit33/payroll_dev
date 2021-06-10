@@ -17,19 +17,28 @@ export class BatchesComponent implements OnInit {
   name: any;
   total_count: any;
   time: any;
+  user: any;
 
   constructor( private router: Router,  private Service : AllserviceService,) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
     this.getSetting();
+   
   }
 
 
   getSetting() {
+    let tt ={
+      user_id : this.user.id,
+     
+      
 
-    this.Service.showThem().subscribe((res: any) => {
+    }
+    
+    this.Service.showThem(tt).subscribe((res: any) => {
       this.Details = res.dic;
-      console.log(res,"ttttttt")
+     
      this.total_count = res.dic.length;
      //this.time = res.time[0];
     }, (error) => {
