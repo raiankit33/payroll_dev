@@ -100,6 +100,12 @@ setTime : boolean;
       }
   }
  
+  Myform = new FormGroup({
+    batch_name :new FormControl(''),
+    sui_rate :new FormControl(''),
+    upload :new FormControl(''),
+  })
+
   form = new FormGroup({
     Worker_Unique_Id: new FormControl('Worker Unique Id'),
     id: new FormControl('', Validators.required),
@@ -151,8 +157,7 @@ setTime : boolean;
     DT_Pay_Rate: new FormControl('DT Pay Rate'),
     dT_Pay_Rate: new FormControl('', Validators.required),
 
-    batch_name :new FormControl(''),
-    sui_rate :new FormControl(''),
+   
   })
 
   public loadedScript(url) {
@@ -163,39 +168,7 @@ setTime : boolean;
   }
 
 
-  //  tt = {
-  //     id: this.form.value.id,
-  //     Name: this.form.value.Name,
-  //     Title: this.form.value.Title,
-  //     Manager:this.form.value.Manager, 
-  //    Department:this.form.value.Department,
-  //     Location:this.form.value.Location,
-  //       City:this.form.value.city,
-  //     State:this.form.value.State,
-  //       Zip:this.form.value.zip,
-  //     OverTime:this.form.value.OverTime,
-  //       Comp_code:this.form.value.Comp_code,
 
-  //     Invoice_Number:this.form.value.Invoice_Number,
-
-  //       Pay_Rate:this.form.value.Pay_Rate,
-
-
-  //     standard_Time:this.form.value.standard_Time,
-
-  //       bill:this.form.value.bill,
-
-  //     Markup_Percantage:this.form.value.Markup_Percantage,
-
-  //       Start_Date:this.form.value.Start_Date,
-
-  //     Project_End:this.form.value.Project_End,
-
-  //       Worker_Agency:this.form.value.Worker_Agency,
-
-        
-        
-  //   }
    
   filess = [];
   heading = [];
@@ -328,7 +301,7 @@ normalizeExcel(){
 }
 
 submit(){
- if(this.form){
+ if(this.form.valid){
  this.csvRecords = this.normalizeExcel(); 
   let form ={
     batch_name : this.form.value.batch_name,
@@ -350,7 +323,15 @@ submit(){
 }
   
   next() {
-    this.step = this.step + 1;
+ if(this.Myform.valid){
+  console.log("ddd")
+  this.step = this.step + 1;
+ }else{
+  this.validateAllFormFields(this.Myform);
+ }
+   
+  
+    
   
     
   }

@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<form class="steps" [formGroup]="form" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
+<form class="steps" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
 
 
     <!-- <div class="progress ">
@@ -20,7 +20,7 @@
 
     <!-- USER INFORMATION FIELD SET -->
     <fieldset *ngIf="step == 1">
-
+<form  [formGroup]="Myform" >
         <h2 class="fs-title">Basic Information</h2>
         
 
@@ -33,9 +33,9 @@
                 <!-- <span class="details">* Batch Name</span> -->
                 <input type="text" placeholder="Batch Name "  required name="batch_name" 
                   formControlName="batch_name" [ngClass]="
-                  { 'is-invalid': form.get('batch_name').touched && form.get('batch_name').invalid}" >
+                  { 'is-invalid': Myform.get('batch_name').touched && Myform.get('batch_name').invalid}" >
                   <div class="invalid-feedback">
-                    <div style="font-size: 13px;"> This field is required</div>
+                    <div style="font-size: 13px;"> Batch Name is required</div>
                   </div>
                
               </div>
@@ -44,14 +44,11 @@
 
                 <input type="text" placeholder=" Average SUI Rate"  required name="sui_rate"
                   formControlName="sui_rate" [ngClass]="
-                  { 'is-invalid': form.get('sui_rate').touched && form.get('sui_rate').invalid}">
-                  <div class="invalid-feedback">
-                    <div style="font-size: 13px;"> This field is required</div>
-                  </div>
+                  { 'is-invalid': Myform.get('sui_rate').touched && Myform.get('sui_rate').invalid}">
                
-
-  
-
+                  <div class="invalid-feedback">
+                    <div style="font-size: 13px;"> SUI Rate is required</div>
+                  </div>
               </div>
             </div>
             <!-- <label>Upload File? *</label> -->
@@ -60,17 +57,17 @@
              <!-- <label style="margin-left: 400px;" > Drag and Drop! or Upload File? *</label> -->
                 <ngx-dropzone-label>Drag and Drop!</ngx-dropzone-label>
                 <ngx-dropzone-preview *ngFor="let f of filess" [removable]="true" [multiple]="false" 
-                    (removed)="onRemove(f)" accept="image/csv">
+                    (removed)="onRemove(f)" accept="image/csv" formControlName="upload" name="upload" [ngClass]="
+                    { 'is-invalid': Myform.get('upload').touched && Myform.get('upload').invalid}">
+                 
+                 
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
+                <div class="invalid-feedback">
+                    <div style="font-size: 13px;"> SUI Rate is required</div>
+                  </div>
             </ngx-dropzone> 
-
-            <!-- <input name="file" required id='#table' type="file"  value=""
-                placeholder="" (change)="changeListener($event.target.files)" data-rule-required="true"
-                data-msg-required="Please include your first name">
-            <span class="error1" style="display: none;">
-                <i class="error-log fa fa-exclamation-triangle"></i>
-            </span> -->
+           
         </div>
 
         <!-- End What's Your First Name Field -->
@@ -105,18 +102,18 @@
         <!-- End Total Number of Constituents in Your Database Field --><br>
 
         <!-- <input type="button" data-page="1" name="next" class="next action-button  " *ngIf="reset" style="margin-left: 10px;"  (click)="clickMe()" value="Reset" /> -->
-        <input type="button" data-page="1" name="next" class="next action-button "  (click)="next()" value="Next" />
+        <input type="button" data-page="1" name="next" class="next action-button "   (click)="next()" value="Next" />
         <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i
                 class="question-log fa fa-question-circle"> </i><a href="../../../assets/sample/sample.csv"
                 style="font-size: 19px;">Download Sample File </a> </div>
-
+</form>
     </fieldset>
 
 
 
     <!-- ACQUISITION FIELD SET -->
     <fieldset *ngIf="step == 2">
-
+        <form  [formGroup]="form" >
         <h2 class="fs-title">Data Import Field Match</h2>
         <div class="content" >
         <p style="font-size: 16px; color: black; text-align: left;" ><b>Required Field</b></p>
@@ -867,6 +864,7 @@
             <input type="button" data-page="2" name="next" class="next action-button"  *ngIf="show" (click)="submit()" value="Submit" />
         <input type="button" data-page="2" name="next" class="next action-button" *ngIf="!show" (click)="next()" value="Next" />
     
+   </form>
     </fieldset>
 
 

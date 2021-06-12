@@ -242,6 +242,20 @@ input {
 	justify-content: center;
 }
 
+
+img {  
+	object-fit: cover;  
+	}  
+
+	
+.card{
+	width: 200px;
+  height: 90px;
+ 
+  /* border-color: #eee; */
+  background-color: #eee;
+}
+
 .round{
 	border-radius: 15px;
 }

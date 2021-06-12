@@ -18,7 +18,7 @@
                 <form  [formGroup]="form">
                   <span class="details"><b> Select Batch</b></span>
                   <select class="form-control mt-1 drop"   formControlName="id" name="id"  (change)="ShowName($event.target.value)">
-                    <option value="{{Detail.Batch_Name}}"  [selected]="Detail.Batch_Name" *ngFor="let Detail of Details">{{Detail.Batch_Name}}</option>
+                    <option value="{{Detail.id}}"  [selected]="Detail.id" *ngFor="let Detail of Details">{{Detail.Batch_Name}}</option>
                   </select>
          </form>
          
@@ -45,7 +45,7 @@
 
      <div class="row">
     
-      <div class="col-xl-4 col-md-6 mb-4">
+      <div class="col-xl-6 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
          
           <h5 class="ml-3">Employee</h5>
@@ -61,7 +61,7 @@
                   <input type="date" class="form-control " formControlName="start_date"  name="start_date"   style="width: 165px;"   >
                   
          </form>
-         <button class="btn btn-primary mt-1" (click)="selectDate()">Search</button>
+        
               </div>
            
 
@@ -73,7 +73,7 @@
        </form>
             </div>
         
-
+            <button class="btn btn-primary mt-3 ml-3" (click)="selectDate()" style="width: 110px; height: 50px;">Search</button>
 
 
           </div>
@@ -81,10 +81,10 @@
       </div>
       </div>
    
-      <div class="col-xl-8 col-md-6 mb-4">
+      <div class="col-xl-6 col-md-6 mb-4">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
-           <div class="equal">
+           <div class="space">
  
             <div class="col s10 l6">
               <form  [formGroup]="form">
@@ -99,7 +99,7 @@
             </form>
             </div>
             <div class="d ml-1 mt-5">
-              <img *ngIf="isManger" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" /> 
+              <!-- <img *ngIf="isManger" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" />  -->
           
             </div>
 
@@ -119,13 +119,17 @@
        
             </div>
             <div class="d ml-1 mt-5">
-              <img *ngIf="isDepartment" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" /> 
+              <!-- <img *ngIf="isDepartment" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" />  -->
           
             </div>
 
+
+           </div>
+
+           <div class="space">
             <div class="col s10 l6">
               <form  [formGroup]="form">
-                <span class="details"><b> Select Worker Agency </b></span>
+                <span class="details"><b> Select Agency </b></span>
                 <ngx-select-dropdown (change)="selectVendor($event.value.name)" tabindex="0"
                     [multiple]="false" [config]="config" [options]="agency">
                 </ngx-select-dropdown>
@@ -136,12 +140,29 @@
        </form>
             </div>
             <div class="d ml-1 mt-5">
-              <img *ngIf="isVendor" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" /> 
+              <!-- <img *ngIf="isVendor" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" />  -->
           
             </div>
 
-           </div>
 
+            <div class="col s10 l6">
+              <form  [formGroup]="form">
+                <span class="details"><b> Select State</b></span>
+                <ngx-select-dropdown (change)="selectState($event.value.name)" tabindex="0"
+                    [multiple]="false" [config]="config" [options]="state">
+                </ngx-select-dropdown>
+                <!-- <select class="form-control mt-1"  style="width: 220px;"   (change)="selectVendor($event.target.value)">
+                  <option> ---SELECT---</option>
+                  <option value="{{d.Worker_Agency}}"   *ngFor="let d of agency">{{d.Worker_Agency}}</option>
+                </select> -->
+       </form>
+            </div>
+            <div class="d ml-1 mt-5">
+              <!-- <img *ngIf="isVendor" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" />  -->
+          
+            </div>
+          
+</div>
           </div>
         </div>
       </div>
@@ -326,7 +347,7 @@
                           <tbody>
                             <tr *ngFor="let l of leastSaving ; index as i">
                               <th scope="row">{{i+1}}</th>
-                            <td (click)="sendData(d.Worker_Unique_Id)"style="color: blue;">{{l.Name}}</td>
+                            <td (click)="sendData(l.Worker_Unique_Id)"style="color: blue;">{{l.Name}}</td>
                               <td>{{l.Saving | currency:'USD' : 'symbol':'3.2-2'}}</td>
                               <td>{{l.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
                             </tr>
@@ -405,7 +426,7 @@
                       <tbody>
                         <tr *ngFor="let l of leastCost ; index as i">
                           <th scope="row">{{i+1}}</th>
-                          <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{l.Name}}</td>
+                          <td (click)="sendData(l.Worker_Unique_Id)" style="color: blue;">{{l.Name}}</td>
                           <td> {{l.Cost | currency:'USD' : 'symbol':'3.1-2'}}</td>
                           <td> {{l.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
                         </tr>

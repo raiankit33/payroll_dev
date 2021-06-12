@@ -114,11 +114,11 @@ export class Dashboad1Component implements OnInit {
 
     this.Service.showThem(tt).subscribe((res: any) => {
       this.Details = res.dic;
-
+console.log(this.Details)
 
 
       var length = this.Details.length;
-      this.ShowName(this.Details[length - 1].Batch_Name);
+      this.ShowName(this.Details[length - 1].id);
 
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
@@ -140,13 +140,14 @@ export class Dashboad1Component implements OnInit {
   Department: any;
   manager: any = [];
   agency: any = [];
-
+ state : any = [];
   job_type : any = [];
   locationType : any = [];
 
   ShowName(event) {
+    
     let tt = {
-      Batch_Name: event,
+      id: event,
       user_id : this.user.id
     }
     console.log(event, "first load")
@@ -163,6 +164,7 @@ export class Dashboad1Component implements OnInit {
       const unique = [];
       const Dept = [];
       const vendor = [];
+      const states = [];
 
       this.NameDetails.map(x => unique.filter(a => a.name == x.Worker_Manager).length > 0 ? null : unique.push({'name':x.Worker_Manager}));
       this.manager = unique;
@@ -172,8 +174,11 @@ export class Dashboad1Component implements OnInit {
       this.Department = Dept;
 
 
-      this.NameDetails.map(z => vendor.filter(a => a.name == z.Worker_Agency).length > 0 ? null : vendor.push({'name':z.Worker_Agency}));
-      this.agency = vendor;
+      this.NameDetails.map(z => vendor.filter(c => c.name == z.Worker_Agency).length > 0 ? null : vendor.push({'name':z.Worker_Agency}));
+      this.agency = vendor; 
+
+      this.NameDetails.map(i => states.filter(d => d.name == i.Work_State).length > 0 ? null : states.push({'name':i.Work_State}));
+      this.state = states;
 
 
       this.job_type = res.Title_saving.slice(0,10) ;
@@ -495,9 +500,10 @@ export class Dashboad1Component implements OnInit {
 
 
   sendData(event) {
-    // this.shared.updateSharedData(d);
-    console.log(event)
-    this.router.navigate(['dash/employeeDetails', { 'Worker_Id': event }]);
+    this.shared.dashboadData(this.NameDetails);
+   
+   
+    this.router.navigate(['dash/employeeDetails', { 'Worker': event }]);
   }
 
 
@@ -713,7 +719,54 @@ this.pieChart();
 
   }
 
-
+  selectState(event){
+    
+      console.log('select manager',event);
+      const m = {
+        Work_State: event,
+        data: this.NameDetails,
+        user_id : this.user.id
+      }
+      console.log(m)
+      this.isManger = true;
+      this.Service.getState(m).subscribe((res: any) => {
+        this.managerDetails = res.data;
+  
+        this.job_type = res.Title_saving;
+        this.locationType = res.location_saving;
+  
+        this.highestSaving = res.Top_highest_Saving;
+        this.leastSaving = res.Top_lowest_Saving ;
+        this.highestCost = res.Top_highest_Cost;
+        this.leastCost = res.Top_lowest_Cost ;
+  console.log(res)
+        this.cost = res.T_Cost;
+        this.markup = res.T_Markup;
+        this.tax = res.T_Tax;
+        this.saving = res.T_Saving;
+        this.EPLI_tAX = res.EPLI_TAX;
+        this.FEE_tAX = res.FEE_TAX;
+        this.FICA_med_TAX = res.FICA_Med_TAX;
+        this.FICA_tAX = res.FICA_TAX;
+        this.FUI_tol_TAX = res.FUI_Sol_TAX;
+        this.FUI_tAX = res.FUI_TAX;
+        this.over_time_Total = res.Over_Time_Total;
+        this.sUI_tAX = res.SUI_TAX;
+        this.Tech_tAX = res.Tech_TAX;
+        this.WC_admin_TAX = res.WC_Admin_TAX;
+        this.WC_tAX = res.WC_TAX;
+  
+        this.barChart();
+  this.pieChart();
+        setTimeout(() => {
+          this.isManger = false;
+        }, 1000);
+  
+  
+      })
+  
+    }
+  
 
 
 

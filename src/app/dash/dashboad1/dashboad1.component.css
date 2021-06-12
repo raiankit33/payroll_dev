@@ -4,6 +4,12 @@
 }
 
 
+.space{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .tools{
     position: absolute;
     right: 50px;

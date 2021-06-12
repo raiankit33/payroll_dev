@@ -21,8 +21,8 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1 ml-2">Savings</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">$215,000</div>
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1 ml-2"> Total Savings</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2" >{{total_Saving }}</div>
             </div>
             <div class="col-auto">
               <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -39,8 +39,8 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Unique Employee</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">500</div>
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Cost</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2" >{{total_Cost}}</div>
             </div>
             <div class="col-auto">
               <i class="fas fa fa-users fa-2x text-gray-300"></i>
@@ -83,6 +83,7 @@
                       <th scope="col"> Batch Name</th>
                       <th scope="col">Time Stamp</th>
                       <th scope="col"> No of Employees </th>
+                      <th scope="col">Total Saving</th>
                       <th scope="col">Total Cost</th>
                       <th scope="col">Action</th>
                     </tr>
@@ -93,7 +94,8 @@
                       <td (click)="SendData(s.Batch_Name)"  style="color: blue;">{{s.Batch_Name}}</td>
                       <td >{{s.created_at}}</td>
                       <td>{{s.employee}}</td>
-                      <td>{{s.Total_COST | currency:'USD' : 'symbol':'3.2-2'}} </td>
+                      <td>{{s.Saving | currency:'USD' : 'symbol':'3.2-2'}} </td>
+                      <td>{{s.COST | currency:'USD' : 'symbol':'3.2-2'}} </td>
                       <td>
                         <!-- Call to action buttons -->
                         <ul class="list-inline m-0">

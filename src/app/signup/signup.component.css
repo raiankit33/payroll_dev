@@ -7,10 +7,15 @@
 
 .content{
     height: 730px;
-	background: rgb(0,255,255);
-	background: radial-gradient(circle, rgba(0,255,255,1) 0%, rgba(70,130,180,1) 84%);
+	background: #eee;
+
     
 }
+
+img {  
+	object-fit: cover;  
+	}  
+
 
 body {
 	background: #7819d8;

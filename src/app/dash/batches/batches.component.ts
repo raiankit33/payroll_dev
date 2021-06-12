@@ -18,6 +18,8 @@ export class BatchesComponent implements OnInit {
   total_count: any;
   time: any;
   user: any;
+  total_Saving : any;
+  total_Cost : any;
 
   constructor( private router: Router,  private Service : AllserviceService,) { }
 
@@ -32,14 +34,18 @@ export class BatchesComponent implements OnInit {
     let tt ={
       user_id : this.user.id,
      
-      
-
     }
     
     this.Service.showThem(tt).subscribe((res: any) => {
       this.Details = res.dic;
-     
+
+
+     console.log(this.Details)
      this.total_count = res.dic.length;
+
+     this.total_Saving = res.totalSaving ;
+    
+     this.total_Cost = res.totalCost;
      //this.time = res.time[0];
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '

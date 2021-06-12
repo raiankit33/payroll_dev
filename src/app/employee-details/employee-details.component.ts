@@ -109,6 +109,7 @@ export class EmployeeDetailsComponent implements OnInit {
   Details: any =[];
   error: string;
    
+  allData : any ;
   
 
 
@@ -122,68 +123,19 @@ export class EmployeeDetailsComponent implements OnInit {
     this.getState();
 
     this.actRouter.paramMap.subscribe(params => {
-      console.log("parammap",params.get('Worker_Id'));
-      var Worker_Id = params.get('Worker_Id');
-      if(Worker_Id != undefined && Worker_Id != "" ){
-        this.getEmployee(Worker_Id);
+      console.log("parammap",params.get('Worker'));
+      // console.log("paramma2",JSON.parse( params.get('data')));
+      var Worker_Id = params.get('Worker');
+  
+      if(Worker_Id != undefined && Worker_Id != ""  ){
+        this.dashboadData(Worker_Id);
+        
       }
       else{
-        this.getEmployee("")
+        this.dashboadData("")
       }
     })
-   
-
-    var myChart = new Chart('Chart', {
-      type: 'pie',
-      data: {
-          labels: ['Total Cost', 'Total Saving ', 'Total Tax'],
-          datasets: [{
-             
-              data: [2,4 ,7],
-              fill: true,
-         
-           backgroundColor: [
-                'rgb(255, 99, 132)',
-        'rgb(54, 162, 235)',
-        'rgb(255, 205, 86)'
-              ],
-              borderWidth: 3
-          }
-    
-        ]
-      },
-      options: {
-          
-      }
-  });
-     
-  var myChart = new Chart('myChart', {
-    type: 'bar',
-    data: {
-        labels: ['Total Cost','Total Saving ','Total Tax' ],
-        datasets: [{
-            label:'',
-            data: [  150, 250 , 400  ],
-            fill: true,
-        
-         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-            ],
-            borderWidth: 3
-        }
   
-      
-      
-      ]
-    },
-    options: {
-    
-    }
-    
-  
-});
 
     this.sharedData.currentSharedData.subscribe(res =>{ 
       this.userObj={
@@ -236,17 +188,73 @@ export class EmployeeDetailsComponent implements OnInit {
             created_at: res['created_at'],
 
           }
-          console.log(res);
+          
           console.log(this.userObj,'lllllll');
 
     })
 
 
+  
+
 
   }
   
-
+pieChart(){
+  var myChart = new Chart('Chart', {
+    type: 'pie',
+    data: {
+        labels: ['Total Cost', 'Total Saving ', 'Total Tax'],
+        datasets: [{
+           
+            data: [2,4 ,7],
+            fill: true,
+       
+         backgroundColor: [
+              'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+            ],
+            borderWidth: 3
+        }
+  
+      ]
+    },
+    options: {
+        
+    }
+});
+}
  
+
+barChart(){
+  var myChart = new Chart('myChart', {
+    type: 'bar',
+    data: {
+        labels: ['Total Cost','Total Saving ','Total Tax' ],
+        datasets: [{
+            label:'',
+            data: [  150, 250 , 400  ],
+            fill: true,
+        
+         backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+            ],
+            borderWidth: 3
+        }
+  
+      
+      
+      ]
+    },
+    options: {
+    
+    }
+    
+  
+});
+}
 
   updateDriver(){
     
@@ -256,10 +264,20 @@ export class EmployeeDetailsComponent implements OnInit {
 }
 
 
-getEmployee(Worker_Id){
-let tt ={
-  Worker_Unique_Id : Worker_Id
+dashboadData(Worker_Id){
+  this.sharedData.currentData.subscribe(res => {
+    this.allData = res 
+    this.getEmployee(this.allData,Worker_Id),
+    console.log(this.allData ,"dashdata")
+     })
 }
+
+getEmployee(allData ,Worker_Id,){
+let tt ={
+  Worker_Unique_Id : Worker_Id,
+  data : allData
+}
+console.log(tt,"tt")
 
   this.Service.getEmployeeList(tt).subscribe((res:any) => {
  console.log(res)

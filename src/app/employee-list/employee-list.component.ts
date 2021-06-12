@@ -19,6 +19,7 @@ name :any;
 
   value : string;
   SearchDetails: any =[];
+  user: any;
  
   
   constructor(private Service: AllserviceService,
@@ -27,6 +28,7 @@ name :any;
     private shared : SharedData,) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
     this.actRouter.paramMap.subscribe(params => {
       console.log("parammap",params.get('batchName'));
       var batchName = params.get('batchName');
@@ -61,8 +63,12 @@ name :any;
 
 
   getList(batchName) {
+
+    let d ={
+      user_id : this.user.id
+    }
   
-    this.Service.showThem().subscribe((res: any) => {
+    this.Service.showThem(d).subscribe((res: any) => {
       
       this.Details = res.dic;
       if(batchName){
@@ -78,7 +84,8 @@ name :any;
 
   SendName(batchName){
     let g ={
-      Batch_Name : batchName
+      id : batchName,
+      user_id : this.user.id
     }
     console.log(g)
     this.isLoad =true
@@ -97,9 +104,9 @@ name :any;
   }
 
 
-  DetailsPage(list){
-    this.shared.updateSharedData(list);
-    this.router.navigate(['dash/employeeDetails']);
+  DetailsPage(event){
+    this.shared.updateSharedData(this.SearchDetails);
+    this.router.navigate(['dash/employeeDetails', { 'Worker': event }]);
   }
 
 }
