@@ -120,7 +120,12 @@ export class EmployeeDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
     this.getState();
+
+
+
+
 
     this.actRouter.paramMap.subscribe(params => {
       console.log("parammap",params.get('Worker'));
@@ -194,19 +199,19 @@ export class EmployeeDetailsComponent implements OnInit {
     })
 
 
-  
+
 
 
   }
   
 pieChart(){
   var myChart = new Chart('Chart', {
-    type: 'pie',
+    type: 'doughnut',
     data: {
-        labels: ['Total Cost', 'Total Saving ', 'Total Tax'],
+        labels: ['Standard_Time_Total', 'Over_Time_Total ', 'Double_Time_Total'],
         datasets: [{
            
-            data: [2,4 ,7],
+            data: [this.userObj.Standard_Time_Total, this.userObj.Over_Time_Total ,this.userObj.Double_Time_Total],
             fill: true,
        
          backgroundColor: [
@@ -226,20 +231,38 @@ pieChart(){
 }
  
 
+
 barChart(){
   var myChart = new Chart('myChart', {
     type: 'bar',
     data: {
-        labels: ['Total Cost','Total Saving ','Total Tax' ],
+        labels: ['FICA_TAX','FICA_Med_TAX','FEE_TAX','EPLI_TAX','Delivery_TAX','FUI_Sol_TAX','FUI_TAX','SUI_TAX',
+        'Sales_TAX','WC_Admin_TAX','Tech_TAX','FUI_Sol_TAX'],
         datasets: [{
             label:'',
-            data: [  150, 250 , 400  ],
+            data: [  this.userObj.FICA_TAX, this.userObj.FICA_Med_TAX , this.userObj.FEE_TAX, this.userObj.EPLI_TAX , 
+              this.userObj.Delivery_TAX , this.userObj.FUI_Sol_TAX ,this.userObj.FUI_TAX , this.userObj.SUI_TAX , this.userObj.Sales_TAX ,
+               this.userObj.WC_Admin_TAX , this.userObj.Tech_TAX , this.FUI_Sol_TAX  ],
             fill: true,
         
          backgroundColor: [
           'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
+          'rgb(54, 12, 235)',
+          'rgb(25, 66, 68)',
+          'rgb(25, 99, 132)',
+          'rgb(54, 162, 25)',
+          'rgb(255, 205, 86)',
+          'rgb(25, 99, 132)',
+          'rgb(54, 162, 83)',
+          'rgb(255, 25, 86)',
+          'rgb(255, 93, 12)',
+          'rgb(54, 162, 23)',
+          'rgb(255, 25, 8)',
+    
+            ],
+            borderColor :[
+      
+        
             ],
             borderWidth: 3
         }
@@ -249,7 +272,93 @@ barChart(){
       ]
     },
     options: {
+      scales: {
+        xAxes: [
+          {
+          display: false,
+          barPercentage: 0.9,
+          ticks: {
+
+          }
+        },{
+          scaleLabel: {
+            display: true,
+            labelString: ' Types of Taxes '
+          }
+        }, {
+          display: false,
+          ticks: {
+            autoSkip: false,
+
+          }
+        }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: ' Taxes in Dollar '
+          }
+        }]
+      }
+    }
     
+  
+});
+}
+
+
+doughnutChart(){
+  var myChart = new Chart('doughnut', {
+    type: 'bar',
+    data: {
+        labels: ['','Staffing Company Cost','Total COST','Total Saving ','Markup','Total_PAY'],
+        datasets: [{
+            label:'',
+            data: [  this.userObj.Staffing_Company_Cost, this.userObj.Total_COST , this.userObj.Saving , this.userObj.Markup ,this.userObj.Total_PAY   ],
+            fill: true,
+        
+         backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          'rgb(255, 99, 12)',
+          'rgb(54, 16, 235)',
+
+            ],
+            borderWidth: 3
+        }
+  
+      
+      
+      ]
+    },
+    options: {
+      scales: {
+        xAxes: [
+          {
+          display: false,
+          barPercentage: 0.9,
+          ticks: {
+
+          }
+        },{
+          scaleLabel: {
+            display: false,
+            labelString: ' Types of Amount'
+          }
+        }, {
+          display: false,
+          ticks: {
+            autoSkip: false,
+
+          }
+        }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: ' Amount in Dollar '
+          }
+        }]
+      }
     }
     
   
@@ -282,7 +391,9 @@ console.log(tt,"tt")
   this.Service.getEmployeeList(tt).subscribe((res:any) => {
  console.log(res)
  this.userObj =  res.data[0]
-
+this.barChart();
+this.doughnutChart();
+this.pieChart();
   })
 }
 
@@ -297,6 +408,22 @@ getState() {
   }
 
   );
+}
+
+
+getEmployeeStateData(event){
+  let send ={
+    State :  event ,
+    data : this.userObj,
+  
+  }
+
+  this.Service.getEmployeeState(send).subscribe((res : any )=>{
+      this.userObj = res.data
+           this.pieChart();
+           this.doughnutChart();
+           this.barChart();             
+  })
 }
 
 }

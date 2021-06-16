@@ -22,7 +22,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1 ml-2"> Total Savings</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2" >{{total_Saving }}</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2" >{{total_Saving | currency:'USD' : 'symbol':'3.2-2'}}</div>
             </div>
             <div class="col-auto">
               <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -40,7 +40,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Cost</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2" >{{total_Cost}}</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2" >{{total_Cost | currency:'USD' : 'symbol':'3.2-2'}}</div>
             </div>
             <div class="col-auto">
               <i class="fas fa fa-users fa-2x text-gray-300"></i>
@@ -91,7 +91,7 @@
                   <tbody>
                     <tr *ngFor="let s of Details |  filter: name  ; index as i">
                       <td>{{i+1}}</td>
-                      <td (click)="SendData(s.Batch_Name)"  style="color: blue;">{{s.Batch_Name}}</td>
+                      <td (click)="SendData(s.id)"  style="color: blue;">{{s.Batch_Name}}</td>
                       <td >{{s.created_at}}</td>
                       <td>{{s.employee}}</td>
                       <td>{{s.Saving | currency:'USD' : 'symbol':'3.2-2'}} </td>

@@ -7,6 +7,7 @@ import { NgxCsvParser } from 'ngx-csv-parser';
 import { NgxCSVParserError } from 'ngx-csv-parser';
 import { AllserviceService } from 'src/app/service/allservice.service';
 import { __assign } from 'tslib';
+import { isString } from 'highcharts';
 
 declare var $: any;
 
@@ -29,13 +30,16 @@ setTime : boolean;
  
   progress: number = 0;
   user: any;
+  err: string;
+  open: boolean = false;
+
+
+  execelValidationError = []
 
   constructor(private router: Router,
     private Service : AllserviceService,
     private ngxCsvParser: NgxCsvParser) { 
 
-    
-   
     }
 
 
@@ -44,23 +48,6 @@ setTime : boolean;
     this.user = JSON.parse(localStorage.getItem("user"));
     // this.loadedScript("./assets/file.js");
 
-    //this.map.set( "Worker_Unique_Id","Po1"); 
-//     this.map.set("po2", "Worker_Name");
-//  this.map.set("", "Worker_Title");
-//  this.map.set("", "Worker_Manager");
-//   this.map.set("", "Worker_Department");
-//   this.map.set("", "Worker_Location");
-//   this.map.set("", "Work_City");
-//   this.map.set("", "Work_State");
-//    this.map.set("", "Work_Zip");
-//    this.map.set("", "Worker_Comp_Code");
-//    this.map.set("", "Invoice_Number");
-//    this.map.set("", "Standard_Time_H");
-//    this.map.set("", "Standard_Time_H");
-//    this.map.set("", "Standard_Time_H");
-//    this.map.set("", "Standard_Time_H");
-//    this.map.set("", "Standard_Time_H");
-// this.map.get('Po1');
 
   
   }
@@ -290,6 +277,32 @@ clone(obj){
   return Object.assign({}, obj);
 }
 
+
+
+
+matchUniqueBatch(event){
+  let m ={
+    Batch_Name : event,
+    user_id : this.user.id
+  }
+  console.log(event)
+  this.Service.getMatchBatch(m).subscribe((res : any) =>{
+  if(res.statusCode == 200 ){
+
+  }else if(res.statusCode == 201)
+  {
+    this.err = "Batch Name  already registered. ",
+    this.open = true;
+    setTimeout(() => {
+      this.open = false
+    }, 4000);
+  }
+  })
+}
+  
+
+
+
 normalizeExcel(){
   let colToBeReplaced = Object.keys(this.map);
   colToBeReplaced.forEach( colToChange => {
@@ -300,12 +313,96 @@ normalizeExcel(){
   return this.csvRecords;
 }
 
+
+Method(){
+for(var i = 0; i< this.csvRecords.length ;i++ ){
+  this.csvRecords[i] 
+  this.uniqueIdValidation(this.csvRecords[i]);
+  // this.uniqueNameValidation(this.csvRecords[i]);
+  this.uniqueTitleValidation(this.csvRecords[i].Worker_Title);
+  this.uniqueZipValidation(this.csvRecords[i]);
+  this.uniqueCompanyValidation(this.csvRecords[i]);
+}
+console.log(this.execelValidationError)
+}
+
+
+
+
+uniqueIdValidation(csvRecords){
+    
+    if(isNaN(csvRecords["Worker_Unique_Id"])){
+       let error = { "Message" : "worker Unique Id does not contain String"}
+
+       this.execelValidationError.push(error);   
+    }
+ 
+     
+}
+
+uniqueNameValidation(csvRecords){
+  
+  if(isString(csvRecords["Worker_Name"])){
+   
+       let error = { "Message" : " worker Name doest not contain Number"}
+        this.execelValidationError.push(error);
+        
+  }
+ 
+
+}
+
+uniqueTitleValidation(csvRecords){
+  
+  // if(isString(csvRecords["Worker_Title"]) ){
+  //     return true
+
+  //        }else{
+  //         let error = { "Message" : " Worker_Title doest not contain Number"}
+  //         this.execelValidationError.push(error);
+  //        }
+  var user = csvRecords["Worker_Title"];
+  if (typeof user === 'string') {
+    console.log('user is a string');
+} else {
+    console.log('user is not a string');
+}
+  
+}
+
+
+uniqueZipValidation(csvRecords){
+    
+  if(isNaN(csvRecords["Work_Zip"])){
+     let error = { "Message" : "worker Zip does not contain String"}
+
+     this.execelValidationError.push(error);   
+  }
+
+   
+}
+
+uniqueCompanyValidation(csvRecords){
+    
+  if(isNaN(csvRecords["Worker_Comp_Code"])){
+     let error = { "Message" : "Worker_Comp_Code does not contain String"}
+
+     this.execelValidationError.push(error);   
+  }
+
+   
+}
+
+
+
 submit(){
  if(this.form.valid){
  this.csvRecords = this.normalizeExcel(); 
+
+//  this.Method()
   let form ={
-    batch_name : this.form.value.batch_name,
-    SUI_pct: this.form.value.sui_rate,
+    batch_name : this.Myform.value.batch_name,
+    SUI_pct: this.Myform.value.sui_rate,
     csv : this.csvRecords,
     user_id : this.user.id,
    }
@@ -324,16 +421,13 @@ submit(){
   
   next() {
  if(this.Myform.valid){
-  console.log("ddd")
+  
   this.step = this.step + 1;
  }else{
   this.validateAllFormFields(this.Myform);
  }
    
-  
-    
-  
-    
+ 
   }
 
   previous() {
@@ -420,7 +514,6 @@ submit(){
    }
    
   clickMe() {
-
   }
 
   close() {
@@ -428,4 +521,23 @@ submit(){
    this.setTime =true;
   }
 
+}
+
+
+
+
+class ValidationError {
+  validationError:[] = [];
+  validationObj = {};
+  constructor(validationObj:any){
+      this.validationObj = validationObj;
+  }
+
+  get ValidationError(){  
+      return this.validationError; 
+  }  
+
+  set ValidationError(validationObj:any) {  
+       this.ValidationError.push(validationObj)
+  }  
 }

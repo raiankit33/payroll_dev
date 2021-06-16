@@ -9,7 +9,7 @@
   <div>
 
 
-      <div class="col-xl-12 col-md-6 mb-3">
+      <div class="col-xl-12 col-md-6 mb-3 sticky-top">
         <div class="card border-left-success shadow h-100 ">
           <div class="card-body">
    
@@ -42,8 +42,7 @@
 
 
 
-
-     <div class="row">
+     <div class="row  " >
     
       <div class="col-xl-6 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
@@ -81,7 +80,7 @@
       </div>
       </div>
    
-      <div class="col-xl-6 col-md-6 mb-4">
+      <div class="col-xl-6 col-md-6 mb-4  ">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
            <div class="space">
@@ -561,11 +560,28 @@
     <!-- Content Row -->
     <div class="row">
       <!-- Area Chart -->
-      <div class="col-xl-8 col-lg-7">
-        <div class="card shadow mb-4">
+      <div class="col-xl-12 col-lg-7">
+        <div class="card shadow mb-4" style="height: 490px;">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary" title="This is a bar graph of the division of total taxes of the selected data.">Tax Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tax Details</h6>
+            <div class="row no-gutters align-items-center">
+              <div class="col-auto">
+                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                <div class="more-post-optns "   style="margin-right: 1060px;" > 
+                 
+                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                <ul >
+               <p>
+                This is a bar graph of the division of Taxes for the selected data.
+               </p>
+                </ul>
+              </div>
+              </div>
+              <div class="col">
+
+              </div>
+            </div> 
             <div class="dropdown no-arrow">
               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -579,7 +595,7 @@
           <div class="card-body">
             <div class="chart-area">
               <!-- <canvas id="myBarChart"></canvas> -->
-              <canvas id="myChart" height="100px"></canvas>
+              <canvas id="myChart" height="90px"></canvas>
             </div>
          
           </div>  
@@ -587,11 +603,28 @@
         </div>
       </div>
       <!-- Pie Chart -->
-      <div class="col-xl-4 col-lg-5">
+      <div class="col-xl-6 col-lg-5">
         <div class="card shadow mb-4">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary" title="This is a bar graph of the division of working hours for the selected data.">Working Time Hour </h6>
+            <h6 class="m-0 font-weight-bold text-primary" >Working Time Hour </h6>
+            <div class="row no-gutters align-items-center">
+              <div class="col-auto">
+                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                <div class="more-post-optns "   style="margin-right: 370px;" > 
+                 
+                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                <ul  >
+               <p  > 
+                This is a Pie Chart graph of the division of working hours for the selected data.
+               </p>
+                </ul>
+              </div>
+              </div>
+              <div class="col">
+
+              </div>
+            </div> 
             <div class="dropdown no-arrow">
               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -610,7 +643,7 @@
           <!-- Card Body -->
           <div class="card-body">
             <div class="chart-pie pt-4 pb-2">
-              <canvas id="Chart" height="200px"></canvas>
+              <canvas id="Chart" height="130px"></canvas>
             </div>
             <div class="mt-4 text-center small">
               <span></span>
@@ -620,77 +653,236 @@
           </div>
         </div>
       </div>
+
+      <div class="col-xl-6 col-lg-5">
+        <div class="card shadow mb-4">
+          <!-- Card Header - Dropdown -->
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Bubble Chart</h6>
+            <div class="row no-gutters align-items-center">
+              <div class="col-auto">
+                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                <div class="more-post-optns "   style="margin-right: 410px;" > 
+                 
+                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                <ul >
+               <p>
+                This is a Bubble graph of the division of working hours for the selected data.
+               </p>
+                </ul>
+              </div>
+              </div>
+              <div class="col">
+
+              </div>
+            </div> 
+            <div class="dropdown no-arrow">
+              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Dropdown Header:</div>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card Body -->
+          <div class="card-body">
+            <div class="chart-pie pt-4 pb-2">
+              <canvas id="Bubble" height="140px"></canvas>
+            </div>
+            <div class="mt-4 text-center small">
+              <span></span>
+              <br>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- Content Row -->
     <div class="row">
       <!-- Content Column -->
-      <div class="col-lg-6 mb-4">
-        <!-- Project Card Example -->
+
+
+
+     
+
+
+
+      <div class="col-xl-6 col-lg-5">
         <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Bubble Chart</h6>
+          <!-- Card Header - Dropdown -->
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary" >Savings Details - Histogram</h6>
+            <div class="row no-gutters align-items-center">
+              <div class="col-auto">
+                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                <div class="more-post-optns "   style="margin-right: 310px; " > 
+                 
+                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                <ul >
+               <p>
+                This is a Histogram graph of the division of Savings for the selected data.
+               </p>
+                </ul>
+              </div>
+              </div>
+              <div class="col">
+
+              </div>
+            </div> 
+            <div class="dropdown no-arrow">
+              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Dropdown Header:</div>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
           </div>
+          <!-- Card Body -->
           <div class="card-body">
-            <canvas id="Bubble"></canvas>
+            <div class="chart-pie pt-4 pb-2">
+              <canvas id="yyy" height="160px"></canvas>
+            </div>
+            <div class="mt-4 text-center small">
+              <span></span>
+              <br>
+
+            </div>
           </div>
         </div>
-        <!-- Color System -->
-
       </div>
-      <div class="col-lg-6 mb-4">
-        <!-- Illustrations -->
-        <div class="" style="overflow-x: auto;">
+
+
+      <div class="col-xl-6 col-lg-5">
         <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary" title="This is a bar graph of the division of savings of the selected data.">Savings Details - Histogram</h6>
+          <!-- Card Header - Dropdown -->
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Scatter Chart Details</h6>
+            <div class="row no-gutters align-items-center">
+              <div class="col-auto">
+                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                <div class="more-post-optns "   style="margin-right: 330px;" > 
+                 
+                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                <ul >
+               <p>
+                This is a Scatter graph of the division of  hours for the selected data.
+               </p>
+                </ul>
+              </div>
+              </div>
+              <div class="col">
+
+              </div>
+            </div> 
+            <div class="dropdown no-arrow">
+              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Dropdown Header:</div>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
           </div>
+          <!-- Card Body -->
           <div class="card-body">
-            <canvas id="yyy"></canvas>
+            <div class="chart-pie pt-4 pb-2">
+              <canvas id="scatter" height="160px"></canvas>
+            </div>
+            <div class="mt-4 text-center small">
+              <span></span>
+              <br>
+
+            </div>
           </div>
-          <!-- Approach -->
-
-
-        </div></div>
+        </div>
       </div>
+
+    
+
+      <div class="col-xl-6 col-lg-5">
+        <div class="card shadow mb-4">
+          <!-- Card Header - Dropdown -->
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary" >Costs Details - Histogram</h6>
+            <div class="row no-gutters align-items-center">
+              <div class="col-auto">
+                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                <div class="more-post-optns "   style="margin-right: 330px;" > 
+                 
+                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                <ul >
+               <p>
+                This is a Histogram graph of the division of Costs for the selected data.
+               </p>
+                </ul>
+              </div>
+              </div>
+              <div class="col">
+
+              </div>
+            </div> 
+            <div class="dropdown no-arrow">
+              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Dropdown Header:</div>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card Body -->
+          <div class="card-body">
+            <div class="chart-pie pt-4 pb-2">
+              <canvas id="secondHisto" height="140px"></canvas>
+            </div>
+            <div class="mt-4 text-center small">
+              <span></span>
+              <br>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
 
     <div class="row">
       <!-- Content Column -->
       
-      <div class="col-lg-6 mb-4">
-        <!-- Illustrations -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Scatter Chart Details</h6>
-          </div>
-          <div class="card-body">
-            <canvas id="scatter"></canvas>
-          </div>
-          <!-- Approach -->
+    
 
 
-        </div>
-      </div>
-
-
-      <div class="col-lg-6 mb-4">
-        <!-- Illustrations -->
-        <div class="" style="overflow-x: auto;">
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            
-            <h6 class="m-0 font-weight-bold text-primary" title="This is a bar graph of the division of cost details of the selected data.">Costs Details - Histogram</h6>
-          </div>
-          <div class="card-body">
-            <canvas id="secondHisto"></canvas>
-          </div>
-          <!-- Approach -->
-
-
-        </div></div>
-      </div>
+    
     </div>
   </div>
 </div>

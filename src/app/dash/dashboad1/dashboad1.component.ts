@@ -59,6 +59,9 @@ export class Dashboad1Component implements OnInit {
   arr = [];
   post: any;
   user: any;
+  Worker_Agency: any;
+  stackSaving: any;
+  stackcost: any;
   constructor(private router: Router,
     private Service: AllserviceService,
     private shared: SharedData,) {
@@ -143,7 +146,7 @@ console.log(this.Details)
  state : any = [];
   job_type : any = [];
   locationType : any = [];
-
+stackBar : any = [];
   ShowName(event) {
     
     let tt = {
@@ -195,6 +198,9 @@ console.log(this.Details)
 
       this.leastCost = res.Top_lowest_Cost;
 
+this.Worker_Agency  = res.chart.Worker_Agency 
+this.stackSaving = res.chart.saving 
+this.stackcost= res.chart.Cost 
 
 
       // for (var i in res.dd ) {
@@ -242,68 +248,133 @@ console.log(this.Details)
   }
 
   barChart(){
-    const myChart = new Chart('myChart', {
-    type: 'bar',
-    data: {
-      labels: ['WC TAX', 'SUI TAX', 'FUI Tax', 'Tech_tAX', 'WC_admin_TAX', 'FEE_tAX', 'FICA_med_TAX', 'EPLI_tAX'],
-      datasets: [{
-        label: '',
+    var myChart = new Chart('myChart', {
+      type: 'bar',
+      data: {
+          labels: ['FICA_TAX','FICA_Med_TAX','FEE_TAX','EPLI_TAX','Delivery_TAX','FUI_Sol_TAX','FUI_TAX','SUI_TAX',
+          'Sales_TAX','WC_Admin_TAX','Tech_TAX','FUI_Sol_TAX'],
+          datasets: [{
+              label:'',
+              data: [  this.FICA_tAX, this.FICA_med_TAX , this.FEE_tAX, this.EPLI_tAX , 
+                this.Delivery_tAX , this.FUI_tol_TAX ,this.FUI_tAX , this.sUI_tAX , this.sales_tAX ,
+                 this.WC_admin_TAX , this.Tech_tAX , this.FUI_tol_TAX  ],
+              fill: true,
+          
+           backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 12, 235)',
+            'rgb(25, 66, 68)',
+            'rgb(25, 99, 132)',
+            'rgb(54, 162, 25)',
+            'rgb(255, 205, 86)',
+            'rgb(25, 99, 132)',
+            'rgb(54, 162, 83)',
+            'rgb(255, 25, 86)',
+            'rgb(255, 93, 12)',
+            'rgb(54, 162, 23)',
+            'rgb(255, 25, 8)',
+      
+              ],
+              borderColor : "white",
+                
+          
 
-        data: [this.WC_tAX, this.sUI_tAX, this.FUI_tAX, this.FEE_tAX, this.Delivery_tAX, this.Tech_tAX, this.WC_admin_TAX,
-        this.FEE_tAX, this.FICA_med_TAX, this.EPLI_tAX],
-        fill: true,
+              borderWidth: 3
+          }
+    
+        
+        
+        ]
+      },
+      options: {
+        scales: {
+          xAxes: [
+            {
+            display: false,
+            barPercentage: 0.9,
+            ticks: {
 
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(54, 162, 235)',
-          'rgb(54, 12, 235)',
-          'rgb(54, 162, 35)',
-          'rgb(255, 205, 86)',
-          'rgb(255, 99, 132)',
+            }
+          },{
+            scaleLabel: {
+              display: true,
+              labelString: ' Types of Taxes '
+            }
+          }, {
+            display: false,
+            ticks: {
+              autoSkip: false,
 
-        ],
-        borderWidth: 3
+            }
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: ' Taxes in Dollar '
+            }
+          }]
+        }
       }
-
-
-
-      ]
-    },
-    options: {
-
-      scales: {
-        xAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Taxes'
-          },
-
-          display: false,
-          barPercentage: 0.9,
-          ticks: {
-
-          }
-        }, {
-          display: true,
-          ticks: {
-            autoSkip: false,
-            max: 4,
-          }
-        }],
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Taxes'
-          }
-        }]
-      }
-    }
-
-
+      
+    
   });
   }
+
+ 
+  barBChart(){
+    var myChart = new Chart('BChart', {
+      type: 'bar',
+      data: {
+          labels: ['Stack Cost'],
+          datasets: [
+            {
+              label:'data 1',
+              data: [  this.stackcost  ],
+              fill: true,
+          
+           backgroundColor: [
+            'rgba(102, 255, 102,0.7)',
+     
+      
+              ],
+              borderColor :[
+                'rgb(102, 255, 102)',
+           
+          
+              ],
+              borderWidth: 3
+          },
+          {
+            label:'data 2',
+            data: [  this.stackSaving  ],
+            fill: true,
+        
+         backgroundColor: [
+          'rgba(102, 255, 10,0.7)',
+   
+    
+            ],
+            borderColor :[
+              'rgb(102, 25, 102)',
+         
+        
+            ],
+            borderWidth: 3
+        }
+  
+    
+        
+        
+        ]
+      },
+      options: {
+      
+      }
+      
+    
+  });
+  }
+
 
 
   pieChart(){
@@ -350,23 +421,29 @@ console.log(this.Details)
       },
       options: {
         scales: {
-          xAxes: [{
+          xAxes: [
+            {
             display: false,
             barPercentage: 1.3,
             ticks: {
-
+  
+            }
+          },{
+            scaleLabel: {
+              display: true,
+              labelString: ' No of Employee '
             }
           }, {
-            display: true,
+            display: false,
             ticks: {
               autoSkip: false,
-
+  
             }
           }],
           yAxes: [{
             scaleLabel: {
               display: true,
-              labelString: 'Saving'
+              labelString: ' Savings '
             }
           }]
         }
@@ -392,23 +469,29 @@ console.log(this.Details)
       },
       options: {
         scales: {
-          xAxes: [{
+          xAxes: [
+            {
             display: false,
             barPercentage: 1.3,
             ticks: {
-
+  
+            }
+          },{
+            scaleLabel: {
+              display: true,
+              labelString: ' No of Employee '
             }
           }, {
-            display: true,
+            display: false,
             ticks: {
               autoSkip: false,
-
+  
             }
           }],
           yAxes: [{
             scaleLabel: {
               display: true,
-              labelString: 'Cost '
+              labelString: ' Costs '
             }
           }]
         }

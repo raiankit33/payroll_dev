@@ -38,6 +38,7 @@ import { SignupComponent } from './signup/signup.component';
     AppRoutingModule,
     Ng2SearchPipeModule,
    
+   
   ],
   providers: [SharedData],
   bootstrap: [AppComponent]

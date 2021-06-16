@@ -105,8 +105,11 @@ name :any;
 
 
   DetailsPage(event){
-    this.shared.updateSharedData(this.SearchDetails);
+    this.shared.dashboadData(this.SearchDetails);
+  
     this.router.navigate(['dash/employeeDetails', { 'Worker': event }]);
+    // this.shared.updateSharedData(list);
+    // this.router.navigate(['dash/employeeDetails']);
   }
 
 }

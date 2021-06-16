@@ -31,13 +31,15 @@
 
             <div class="input-box">
                 <!-- <span class="details">* Batch Name</span> -->
-                <input type="text" placeholder="Batch Name "  required name="batch_name" 
+                <input type="text" placeholder="Batch Name "  required name="batch_name" (change)="matchUniqueBatch($event.target.value)"
                   formControlName="batch_name" [ngClass]="
                   { 'is-invalid': Myform.get('batch_name').touched && Myform.get('batch_name').invalid}" >
                   <div class="invalid-feedback">
                     <div style="font-size: 13px;"> Batch Name is required</div>
                   </div>
-               
+                  <div *ngIf="err">
+                    <span *ngIf="open" style="color: red; font-size: 13px;"> {{err}}</span>
+                </div>
               </div>
               <div class="input-box">
                 <!-- <span class="details">Remarks</span> -->
@@ -97,6 +99,8 @@
             </table>
        </div>
 
+
+  
 
        
         <!-- End Total Number of Constituents in Your Database Field --><br>
@@ -816,50 +820,17 @@
 
         </div>
 
-<!-- ffffff -->
-<!-- <div class="equal" >
 
-   
-
-
-    <div class="input-box">
-       
-        <input type="text" style="color: black;" class="form-control" *ngFor="let item of array[0]; let i = index"  formControlName="worker_id"  disabled name="name">
-      
-    </div>
-
-
-   
-    <div class="tools">
-    <div class="input-box">
-       
-        <select name="id" class="form-control" formControlName="id"  *ngFor="let item of lines[0]; let i = index"   style="width: 400px;" required [ngClass]="
-        { 'is-invalid': form.get('id').touched && form.get('id').invalid}" >
-            <option value="">----SELECT----</option>
-            <option value="{{item}} " *ngFor="let item of header">{{item}}</option>
-        </select>
-        <div class="invalid-feedback" *ngIf="form.get('id').touched && form.get('id').invalid">
-            <div *ngIf="form.get('id').errors.required" style="font-size: 15px;"> This field is required
-            </div>
-        </div>
-    </div>
-  </div>
-   
-
-
-
-
-
-
-
-</div> -->
-
+        
 
         <!-- THIS FIELD IS NOT EDITABLE | GRAYED OUT -->
 
         <!-- End Calc of Total Number of Donors Fields -->
         <input type="button" data-page="2" name="previous" (click)="previous()" class="previous action-button"
             value="Previous" /> 
+            
+<!-- <button type="button" data-toggle="modal" 
+data-target=".bd-example-modal-lg" class="btn btn-primary">Add </button> -->
             <img *ngIf="isLoading" style="width : 24px;" class="mr-3"  src="../../../assets/icons8-spinner.gif" />
             <input type="button" data-page="2" name="next" class="next action-button"  *ngIf="show" (click)="submit()" value="Submit" />
         <input type="button" data-page="2" name="next" class="next action-button" *ngIf="!show" (click)="next()" value="Next" />
@@ -908,4 +879,30 @@
 
 
 
+<div class="modal fade bd-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Error</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  
+        <div class="content" *ngFor ="let error of execelValidationError">
+   <label>{{error.Message}}</label><br>
+   <label>error 2</label><br>
+   <label>error 3</label><br>
+   <label>error 4</label><br>
+   
+         
+        </div>
+     
 
+
+    
+  </div>
+</div>
+
+</div> 

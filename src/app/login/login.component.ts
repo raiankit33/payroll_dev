@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService} from  '../service/auth.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,6 +13,7 @@ export class LoginComponent implements OnInit {
   user: any;
 
   constructor(private router: Router,
+    // private toastr: ToastrService,
     private service : AuthService) { }
 
   ngOnInit(): void {
@@ -55,9 +57,9 @@ export class LoginComponent implements OnInit {
         
           } else {
             console.log('error');
-            alert('error')
+            alert('Oops ! Failed to logged In')
             // this.toastr.error('Oops','Failed to logged In');
-            // this.router.navigate(['login']);
+            this.router.navigate(['/']);
           }
         },
         (error) => {

@@ -152,8 +152,16 @@ export class AllserviceService {
  }
 
 
-
+getEmployeeState(e){
+   return this.http.put('https://kszaxawodc.execute-api.us-west-2.amazonaws.com/updateClientData/getData',e).pipe(catchError(this.handleError))
+}
    
+getMatchBatch(m){
+  return this.http.post('https://3c9jp16lpb.execute-api.us-west-2.amazonaws.com/validateBatchName/validateBatchName',m)
+}
+
+
+
 
 
 }
