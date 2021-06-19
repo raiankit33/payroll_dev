@@ -1,5 +1,6 @@
 <!-- Modal -info -->
-<div class="container">
+<br>
+<div class="container mt-5">
     <div id="modal-3" class="modal" data-modal-effect="slide-top">
         <div class="modal-content">
             <h2 class="fs-title">Score Index</h2>
@@ -10,6 +11,7 @@
     </div>
 </div>
 
+<div  style="height: 700px;">
 <form class="steps" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
 
 
@@ -829,10 +831,12 @@
         <input type="button" data-page="2" name="previous" (click)="previous()" class="previous action-button"
             value="Previous" /> 
             
-<!-- <button type="button" data-toggle="modal" 
-data-target=".bd-example-modal-lg" class="btn btn-primary">Add </button> -->
+<button type="button" data-toggle="modal" 
+data-target=".bd-example-modal-lg" class="btn btn-primary">Add </button>
             <img *ngIf="isLoading" style="width : 24px;" class="mr-3"  src="../../../assets/icons8-spinner.gif" />
-            <input type="button" data-page="2" name="next" class="next action-button"  *ngIf="show" (click)="submit()" value="Submit" />
+            <!-- <input type="button" data-page="2" name="next" class="next action-button"  *ngIf="run" (click)="validate()"  value="Validate" />
+            <input type="button" data-page="2" name="next" class="next action-button"  *ngIf=" !run"   value="submit" /> -->
+            <input type="button" data-page="2" name="next" class="next action-button"  *ngIf="show "(click)="submit()" value="Submit" />
         <input type="button" data-page="2" name="next" class="next action-button" *ngIf="!show" (click)="next()" value="Next" />
     
    </form>
@@ -875,7 +879,7 @@ data-target=".bd-example-modal-lg" class="btn btn-primary">Add </button> -->
     </fieldset>
 
 </form>
-
+</div>
 
 
 
@@ -892,9 +896,7 @@ aria-hidden="true">
   
         <div class="content" *ngFor ="let error of execelValidationError">
    <label>{{error.Message}}</label><br>
-   <label>error 2</label><br>
-   <label>error 3</label><br>
-   <label>error 4</label><br>
+
    
          
         </div>

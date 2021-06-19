@@ -1,293 +1,456 @@
-<div class="container-fluid">
-  <!-- Page Heading -->
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-    <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-  </div>
-  <!-- Content Row -->
-  <div>
+
+<!-- <div class="wrapper">
+  
+  <nav id="sidebar">
+      <div class="sidebar-header">
+          <h3>Bootstrap Sidebar</h3>
+      </div>
+
+      <ul class="list-unstyled components">
+          <p>Dummy Heading</p>
+          <li class="active">
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                  <li>
+                      <a href="#">Home 1</a>
+                  </li>
+                  <li>
+                      <a href="#">Home 2</a>
+                  </li>
+                  <li>
+                      <a href="#">Home 3</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <a href="#">About</a>
+          </li>
+          <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                  <li>
+                      <a href="#">Page 1</a>
+                  </li>
+                  <li>
+                      <a href="#">Page 2</a>
+                  </li>
+                  <li>
+                      <a href="#">Page 3</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <a href="#">Portfolio</a>
+          </li>
+          <li>
+              <a href="#">Contact</a>
+          </li>
+      </ul>
+  </nav>
 
 
-      <div class="col-xl-12 col-md-6 mb-3 sticky-top">
-        <div class="card border-left-success shadow h-100 ">
-          <div class="card-body">
+
    
-            <div class="equal">
-              <div class="input-box mt-1 ml-5 mb-2">
-                <form  [formGroup]="form">
-                  <span class="details"><b> Select Batch</b></span>
-                  <select class="form-control mt-1 drop"   formControlName="id" name="id"  (change)="ShowName($event.target.value)">
-                    <option value="{{Detail.id}}"  [selected]="Detail.id" *ngFor="let Detail of Details">{{Detail.Batch_Name}}</option>
-                  </select>
-         </form>
+    <div id="content">
+     
+  </div>
+
+</div> -->
+
+<br>
+
+
+<div class="wrapper">
+  <div class="left-nav" >
+ 
+  <!-- Sidebar -->
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar - Brand -->
+   
+    <!-- Divider -->
+   
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+      <div class="input-box mt-1 ml-2  mb-2">
          
-              </div>
+        <span class="details text-white"><b> Select Batch</b></span>
+        <select class="form-control mt-1 drop"   formControlName="id" name="id" (change)="ShowName($event.target.value)" 
+        style="width: 200px;" >
+          <option value="{{Detail.id}}"  [selected]="Detail.id" *ngFor="let Detail of Details">{{Detail.Batch_Name}}</option>
+        </select>
+
+        <button class="btn btn-primary upload mt-2 ml-5 " (click)="uploadPage()" >Upload Data</button>
+  
+    </div>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+      Interface
+    </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Select Manager </span>
+      </a>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+       
+          <span class="details text-white"><b> Select Manager </b></span>  
+          <ngx-select-dropdown (change)="selectManager($event.value.name)" tabindex="0"
+              [multiple]="false" [config]="config" [options]="manager">
+          </ngx-select-dropdown>
       
-              <div class="d ml-2 mt-4">
-               
-                <img *ngIf="isLoad" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" /> 
+      </div>
+    </li>
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Select Department</span>
+      </a>
+      <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <ngx-select-dropdown (change)="selectDepartment($event.value.name)" tabindex="0"
+              [multiple]="false" [config]="config" [options]="Department">
+          </ngx-select-dropdown>
+        
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2" aria-expanded="true" aria-controls="collapseUtilities2">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Select Agency </span>
+      </a>
+      <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      
+        <ngx-select-dropdown (change)="selectVendor($event.value.name)" tabindex="0"
+      [multiple]="false" [config]="config" [options]="agency">
+  </ngx-select-dropdown>
+        
+      </div>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true" aria-controls="collapseUtilities3">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span> Select State </span>
+      </a>
+      <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <ngx-select-dropdown (change)="selectState($event.value.name)" tabindex="0"
+        [multiple]="false" [config]="config" [options]="state">
+      </ngx-select-dropdown>
+        
+      </div>
+    </li>
+
+
+    
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4" aria-expanded="true" aria-controls="collapseUtilities4">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span> Select Date</span>
+      </a>
+      <div id="collapseUtilities4" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div class="input-box ">
+          <span class="details text-white ml-3"><b> Select Start Date </b></span>
+          <input type="date" class="form-control ml-2 " formControlName="start_date"  name="start_date"   style="width: 200px;"   >   
+      </div>
+
+
+    <div class="input-box ">
+        <span class="details text-white"><b> Select End Date </b></span>
+        <input type="date" class="form-control  ml-2" formControlName="end_date"  id="date" name="end_date"  style="width:200px;"   >
+      
+    </div>
+    <button class="btn btn-primary  mt-3 " (click)="selectDate()"  style="width: 80px; height: 40px;">Search</button>
+    <!-- <button type="button" class="btn btn-outline-success text-white border-white">Success</button> -->
+ 
+   
+        
+      </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+  
+    <!-- Nav Item - Pages Collapse Menu -->
+  
+    <!-- Nav Item - Tables -->
+    
+    <!-- Divider -->
+   
+    <!-- Sidebar Toggler (Sidebar) -->
+    <!-- <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div> -->
+  </ul>
+  <!-- End of Sidebar -->
+</div>
+
+  <div id="content-wrapper col-md-10"   >
+    <!-- We'll fill this with dummy content -->
+    
+    <div class="col-md-10 " style="margin-left: 250px;" >
+
+ 
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+     
+      <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+          class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+    </div>
+    <!-- Content Row -->
+    
+  
+
+
+  
+  
+  
+  
+      
+  
+  
+      <br>
+      <div class="row">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2">Total Cost</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2"> {{cost | currency:'USD' : 'symbol':'3.2-2'}}</div>
+                </div>
+                <div class="col-auto">
+                  <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
+                </div>
               </div>
-
-
-              <div class="tools">
-                <button class="btn btn-primary upload mt-2" (click)="GOtoForm()">Upload Data</button>
-
+            </div>
+          </div>
+        </div>
+  
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1 ml-2">Total Taxes</div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col-auto">
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ml-3 ">{{tax | currency:'USD' : 'symbol':'3.2-2'}}</div>
+                    </div>
+                    <div class="col">
+  
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <!-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Markup by Staffing
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">{{markup | currency:'USD' : 'symbol':'3.2-2'}}</div>
+                </div>
+                <div class="col-auto">
+                  <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Saving</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">{{saving | currency:'USD' : 'symbol':'3.2-2'}}</div>
+                </div>
+                <div class="col-auto">
+                  <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
   
-
-
-
-     <div class="row  " >
-    
-      <div class="col-xl-6 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-         
-          <h5 class="ml-3">Employee</h5>
-          <div class="tools">
-        
-          </div>
-          <div class="card-body">
-           
-            <div class="equal">
-              <div class="input-box ">
-                <form  [formGroup]="form" >
-                  <span class="details"><b> Select Start Date </b></span>
-                  <input type="date" class="form-control " formControlName="start_date"  name="start_date"   style="width: 165px;"   >
-                  
-         </form>
-        
-              </div>
-           
-
-            <div class="input-box ">
-              <form  [formGroup]="form">
-                <span class="details "><b> Select End Date </b></span>
-                <input type="date" class="form-control  ml-2" formControlName="end_date"  id="date" name="end_date"  style="width:126x;"   >
-                
-       </form>
-            </div>
-        
-            <button class="btn btn-primary mt-3 ml-3" (click)="selectDate()" style="width: 110px; height: 50px;">Search</button>
-
-
-          </div>
-        </div>
-      </div>
-      </div>
-   
-      <div class="col-xl-6 col-md-6 mb-4  ">
-        <div class="card border-left-info shadow h-100 py-2">
-          <div class="card-body">
-           <div class="space">
- 
-            <div class="col s10 l6">
-              <form  [formGroup]="form">
-                <span class="details"><b> Select Manager </b></span>  
-                <ngx-select-dropdown (change)="selectManager($event.value.name)" tabindex="0"
-                    [multiple]="false" [config]="config" [options]="manager">
-                </ngx-select-dropdown>
-                <!-- <select class="form-control mt-1"  style="width: 200px;"   (change)="selectManager($event.target.value)">
-                  <option> ---SELECT---</option>
-                  <option value="{{d.Worker_Manager}}"   *ngFor="let d of manager  ">{{d.Worker_Manager}}</option>
-                </select> -->
-            </form>
-            </div>
-            <div class="d ml-1 mt-5">
-              <!-- <img *ngIf="isManger" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" />  -->
-          
-            </div>
-
       
-
-            <div class="col s10 l6">
-              <form  [formGroup]="form">
-                <span class="details"><b> Select Department </b></span>
-                <ngx-select-dropdown (change)="selectDepartment($event.value.name)" tabindex="0"
-                    [multiple]="false" [config]="config" [options]="Department">
-                </ngx-select-dropdown>
-                <!-- <select class="form-control mt-1"  style="width: 210px;"   (change)="selectDepartment($event.target.value)">
-                  <option> ---SELECT---</option>
-                  <option value="{{d.Worker_Department}}"   *ngFor="let d of Department">{{d.Worker_Department}}</option>
-                </select> -->
-              </form>
-       
-            </div>
-            <div class="d ml-1 mt-5">
-              <!-- <img *ngIf="isDepartment" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" />  -->
-          
-            </div>
-
-
-           </div>
-
-           <div class="space">
-            <div class="col s10 l6">
-              <form  [formGroup]="form">
-                <span class="details"><b> Select Agency </b></span>
-                <ngx-select-dropdown (change)="selectVendor($event.value.name)" tabindex="0"
-                    [multiple]="false" [config]="config" [options]="agency">
-                </ngx-select-dropdown>
-                <!-- <select class="form-control mt-1"  style="width: 220px;"   (change)="selectVendor($event.target.value)">
-                  <option> ---SELECT---</option>
-                  <option value="{{d.Worker_Agency}}"   *ngFor="let d of agency">{{d.Worker_Agency}}</option>
-                </select> -->
-       </form>
-            </div>
-            <div class="d ml-1 mt-5">
-              <!-- <img *ngIf="isVendor" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" />  -->
-          
-            </div>
-
-
-            <div class="col s10 l6">
-              <form  [formGroup]="form">
-                <span class="details"><b> Select State</b></span>
-                <ngx-select-dropdown (change)="selectState($event.value.name)" tabindex="0"
-                    [multiple]="false" [config]="config" [options]="state">
-                </ngx-select-dropdown>
-                <!-- <select class="form-control mt-1"  style="width: 220px;"   (change)="selectVendor($event.target.value)">
-                  <option> ---SELECT---</option>
-                  <option value="{{d.Worker_Agency}}"   *ngFor="let d of agency">{{d.Worker_Agency}}</option>
-                </select> -->
-       </form>
-            </div>
-            <div class="d ml-1 mt-5">
-              <!-- <img *ngIf="isVendor" class="ml-2" width="30px" src="../../../assets/icons8-spinner.gif" />  -->
-          
-            </div>
-          
-</div>
-          </div>
-        </div>
-      </div>
-     
-    
-    
-    </div> 
-
-
-
-
-
-
-
-    
-
-
-    <br>
-    <div class="row">
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ml-2">Total Cost</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2"> {{cost | currency:'USD' : 'symbol':'3.2-2'}}</div>
-              </div>
-              <div class="col-auto">
-                <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1 ml-2">Total Taxes</div>
-                <div class="row no-gutters align-items-center">
+        <!-- Content Column -->
+        <div class="row">
+          <!-- Area Chart -->
+          <div class="col-xl-12 col-lg-7">
+            <div class="card shadow mb-4" style="height: 460px;">
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Tax Details</h6>
+                <div class="row no-gutters align-items-center tools">
                   <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ml-3 ">{{tax | currency:'USD' : 'symbol':'3.2-2'}}</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                    <div class="more-post-optns "   > 
+                     
+                      <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                    <ul  style="width: 500px;">
+                   <p>
+                    This is a bar graph of the division of Taxes for the selected data.
+                   </p>
+                    </ul>
+                  </div>
                   </div>
                   <div class="col">
-
-                  </div>
-                </div>
-              </div>
-              <div class="col-auto">
-                <!-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Markup by Staffing
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">{{markup | currency:'USD' : 'symbol':'3.2-2'}}</div>
-              </div>
-              <div class="col-auto">
-                <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Pending Requests Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 ml-2">Total Saving</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-2">{{saving | currency:'USD' : 'symbol':'3.2-2'}}</div>
-              </div>
-              <div class="col-auto">
-                <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     
-      <!-- Content Column -->
-
-
-
-      <div class="row">
-        <div class="col-md-6 col-lg- 4">
-          <div class="card card-primary card-tabs">
-            <div class="card-header p-0 pt-1">
-              <h5 class="ml-4">Employees List</h5>
-              <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                <!-- <h6 class="mt-3 ml-1">Top 10 Employee with</h6> -->
-                <li class="nav-item ml-3">
-                  <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Highest Savings</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Lowest Savings</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-highest-cost" role="tab" aria-controls="custom-tabs-highest-cost" aria-selected="false">Highest Costs</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-lowest-cost" role="tab" aria-controls="custom-tabs-lowest-cost" aria-selected="false">Lowest Costs</a>
-                </li>
-             
-              </ul>
-            </div>
-          
-            <div class="card-body">
-              <div class="tab-content" id="custom-tabs-one-tabContent">
-                <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-tab-one-home">
+                  </div>
+                </div> 
+                <div class="dropdown no-arrow">
+                  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                    
+                  </a>
                  
+                </div>
+              </div>
+              <!-- Card Body -->
+            
+              <div class="card-body">
+                <div class="chart-area">
+                  <!-- <canvas id="myBarChart"></canvas> -->
+                  <canvas id="myChart" height="90px"></canvas>
+                </div>
+             
+              </div>  
+            
+            </div>
+          </div>
+          <!-- Pie Chart -->
+         
+    
+        </div>
+  
+  
+        <div class="row">
+          <div class="col-md-6 col-lg- 4">
+            <div class="card card-primary card-tabs">
+              <div class="card-header p-0 pt-1">
+                <h5 class="ml-4">Employees List</h5>
+                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                  <!-- <h6 class="mt-3 ml-1">Top 10 Employee with</h6> -->
+                  <li class="nav-item ml-3">
+                    <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Highest Savings</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Lowest Savings</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-highest-cost" role="tab" aria-controls="custom-tabs-highest-cost" aria-selected="false">Highest Costs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-lowest-cost" role="tab" aria-controls="custom-tabs-lowest-cost" aria-selected="false">Lowest Costs</a>
+                  </li>
+               
+                </ul>
+              </div>
+            
+              <div class="card-body">
+                <div class="tab-content" id="custom-tabs-one-tabContent">
+                  <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-tab-one-home">
+                     
+                   
+                      <!-- Project Card Example -->
+                      <div class="card shadow mb-4">
+                       
+                        <div class="card-body">
+                          <div class="table-responsive">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">Rank</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Savings</th>
+                                <th scope="col">Staffing Cost</th>
+                            
+                               
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let d of highestSaving;  index as i" >
+                                <th scope="row">{{i+1}}</th>
+                                <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{d.Name}}</td>
+                                <td> {{d.Saving | currency:'USD' : 'symbol':'3.2-2'}}</td>
+                                <td> {{d.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
+                              
+                               
+                              </tr>
+                            
+                            
+                            </tbody>
+                          </table>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Color System -->
+              
+                   
+        
+        
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-tab-one-profile">
+                  
+               
+                      <!-- Illustrations -->
+                      <div class="card shadow mb-4">
+                        <div class="table-responsive">
+                        <div class="card-body">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr >
+                                <th scope="col">Rank</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Savings</th>
+                                <th scope="col">Staffing Cost</th>
+                               
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let l of leastSaving ; index as i">
+                                <th scope="row">{{i+1}}</th>
+                              <td (click)="sendData(l.Worker_Unique_Id)"style="color: blue;">{{l.Name}}</td>
+                                <td>{{l.Saving | currency:'USD' : 'symbol':'3.2-2'}}</td>
+                                <td>{{l.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
+                              </tr>
+                            
+                            
+                            </tbody>
+                          </table>
+                        </div>
+                        </div>
+                        <!-- Approach -->
+              
+              
+                     
+                    </div>
+        
+        
+                  </div>
+  
+                  <div class="tab-pane fade show " id="custom-tabs-highest-cost" role="tabpanel" aria-labelledby="custom-tabs-highest-cost">
+                     
+                   
                     <!-- Project Card Example -->
                     <div class="card shadow mb-4">
                      
@@ -298,20 +461,17 @@
                             <tr>
                               <th scope="col">Rank</th>
                               <th scope="col">Name</th>
-                              <th scope="col">Savings</th>
+                              <th scope="col">Costs</th>
                               <th scope="col">Staffing Cost</th>
-                          
                              
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let d of highestSaving;  index as i" >
+                            <tr *ngFor="let d of highestCost ; index as i" >
                               <th scope="row">{{i+1}}</th>
                               <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{d.Name}}</td>
-                              <td> {{d.Saving | currency:'USD' : 'symbol':'3.2-2'}}</td>
+                              <td> {{d.Cost | currency:'USD' : 'symbol':'3.2-2'}}</td>
                               <td> {{d.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
-                            
-                             
                             </tr>
                           
                           
@@ -325,57 +485,19 @@
                  
       
       
-                </div>
-                <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-tab-one-profile">
-                
-             
-                    <!-- Illustrations -->
-                    <div class="card shadow mb-4">
-                      <div class="table-responsive">
-                      <div class="card-body">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr >
-                              <th scope="col">Rank</th>
-                              <th scope="col">Name</th>
-                              <th scope="col">Savings</th>
-                              <th scope="col">Staffing Cost</th>
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let l of leastSaving ; index as i">
-                              <th scope="row">{{i+1}}</th>
-                            <td (click)="sendData(l.Worker_Unique_Id)"style="color: blue;">{{l.Name}}</td>
-                              <td>{{l.Saving | currency:'USD' : 'symbol':'3.2-2'}}</td>
-                              <td>{{l.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
-                            </tr>
-                          
-                          
-                          </tbody>
-                        </table>
-                      </div>
-                      </div>
-                      <!-- Approach -->
-            
-            
-                   
-                  </div>
-      
-      
-                </div>
-
-                <div class="tab-pane fade show " id="custom-tabs-highest-cost" role="tabpanel" aria-labelledby="custom-tabs-highest-cost">
-                   
-                 
-                  <!-- Project Card Example -->
+                </div>  
+              
+                <div class="tab-pane fade" id="custom-tabs-lowest-cost" role="tabpanel" aria-labelledby="custom-tabs-lowest-cost">
+                  
+               
+                  <!-- Illustrations -->
                   <div class="card shadow mb-4">
-                   
+                    
                     <div class="card-body">
                       <div class="table-responsive">
                       <table class="table table-hover">
                         <thead>
-                          <tr>
+                          <tr >
                             <th scope="col">Rank</th>
                             <th scope="col">Name</th>
                             <th scope="col">Costs</th>
@@ -384,11 +506,11 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let d of highestCost ; index as i" >
+                          <tr *ngFor="let l of leastCost ; index as i">
                             <th scope="row">{{i+1}}</th>
-                            <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{d.Name}}</td>
-                            <td> {{d.Cost | currency:'USD' : 'symbol':'3.2-2'}}</td>
-                            <td> {{d.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
+                            <td (click)="sendData(l.Worker_Unique_Id)" style="color: blue;">{{l.Name}}</td>
+                            <td> {{l.Cost | currency:'USD' : 'symbol':'3.1-2'}}</td>
+                            <td> {{l.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
                           </tr>
                         
                         
@@ -396,104 +518,102 @@
                       </table>
                       </div>
                     </div>
-                  </div>
-                  <!-- Color System -->
+                    <!-- Approach -->
           
-               
+          
+                  </div>
     
     
-              </div>  
-            
-              <div class="tab-pane fade" id="custom-tabs-lowest-cost" role="tabpanel" aria-labelledby="custom-tabs-lowest-cost">
-                
-             
-                <!-- Illustrations -->
-                <div class="card shadow mb-4">
-                  
-                  <div class="card-body">
-                    <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr >
-                          <th scope="col">Rank</th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Costs</th>
-                          <th scope="col">Staffing Cost</th>
-                         
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let l of leastCost ; index as i">
-                          <th scope="row">{{i+1}}</th>
-                          <td (click)="sendData(l.Worker_Unique_Id)" style="color: blue;">{{l.Name}}</td>
-                          <td> {{l.Cost | currency:'USD' : 'symbol':'3.1-2'}}</td>
-                          <td> {{l.Staffing_Company_Cost | currency:'USD' : 'symbol':'4.2-2'}}</td>
-                        </tr>
-                      
-                      
-                      </tbody>
-                    </table>
-                    </div>
-                  </div>
-                  <!-- Approach -->
-        
-        
-                </div>
-  
-  
-            </div>
-          
-
-          
-              
               </div>
-            </div>
-           
-      </div>
-      </div>
-     
-      
-      
-      
-     
-        <div class="col-md-6 col-lg- 4">
-          <div class="card card-primary card-tabs">
-            <div class="card-header p-0 pt-1">
-              <h5 class="ml-4">Saving By</h5>
-              <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                <!-- <h6 class="mt-3 ml-1">Top 10 Employee with</h6> -->
-                <li class="nav-item ml-3">
-                  <a class="nav-link active" id="custom-tabs-one-tab" data-toggle="pill" href="#custom-tabs-one" role="tab" aria-controls="custom-tabs-one" aria-selected="true">Job Type</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-profile-tab" data-toggle="pill" href="#custom-tabs-profile" role="tab" aria-controls="custom-tabs-profile" aria-selected="false">Location Wise</a>
-                </li>
+            
+  
+            
+                
+                </div>
+              </div>
              
-              </ul>
-            </div>
-            <div class="card-body">
-              <div class="tab-content" id="custom-tabs-one-tabContent">
-                <div class="tab-pane fade show active" id="custom-tabs-one" role="tabpanel" aria-labelledby="custom-tabs-one-tab">
+        </div>
+        </div>
+       
+        
+        
+        
+       
+          <div class="col-md-6 col-lg- 4">
+            <div class="card card-primary card-tabs">
+              <div class="card-header p-0 pt-1">
+                <h5 class="ml-4">Saving By</h5>
+                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                  <!-- <h6 class="mt-3 ml-1">Top 10 Employee with</h6> -->
+                  <li class="nav-item ml-3">
+                    <a class="nav-link active" id="custom-tabs-one-tab" data-toggle="pill" href="#custom-tabs-one" role="tab" aria-controls="custom-tabs-one" aria-selected="true">Job Type</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-profile-tab" data-toggle="pill" href="#custom-tabs-profile" role="tab" aria-controls="custom-tabs-profile" aria-selected="false">Location Wise</a>
+                  </li>
+               
+                </ul>
+              </div>
+              <div class="card-body">
+                <div class="tab-content" id="custom-tabs-one-tabContent">
+                  <div class="tab-pane fade show active" id="custom-tabs-one" role="tabpanel" aria-labelledby="custom-tabs-one-tab">
+                     
                    
-                 
-                    <!-- Project Card Example -->
-                    <div class="card shadow mb-4">
+                      <!-- Project Card Example -->
+                      <div class="card shadow mb-4">
+                    
+                        <div class="card-body">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr >
+                                <th scope="col">Rank</th>
+                                <th scope="col">Jobs type</th>
+                                <th scope="col">Savings</th>
+                               
+                               
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let l of job_type ; index as i">
+                                <th scope="row">{{i+1}}</th>
+                                <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{l.Worker_Title}}</td>
+                                <td> {{l.saving | currency:'USD' : 'symbol':'3.1-2'}}</td>
+                               
+                              </tr>
+                            
+                            
+                            </tbody>
+                          </table>
+                        </div>
+                        <!-- Approach -->
+              
+              
+                      </div>
+                      <!-- Color System -->
+              
+                   
+        
+        
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-profile" role="tabpanel" aria-labelledby="custom-tabs-profile-tab">
                   
+                    <div class="card shadow mb-4">
+                    
                       <div class="card-body">
                         <table class="table table-hover">
                           <thead>
                             <tr >
                               <th scope="col">Rank</th>
-                              <th scope="col">Jobs type</th>
+                              <th scope="col">Location</th>
                               <th scope="col">Savings</th>
                              
                              
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let l of job_type ; index as i">
+                            <tr *ngFor="let l of locationType ; index as i">
                               <th scope="row">{{i+1}}</th>
-                              <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{l.Worker_Title}}</td>
+                              <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{l.State}}</td>
                               <td> {{l.saving | currency:'USD' : 'symbol':'3.1-2'}}</td>
                              
                             </tr>
@@ -506,386 +626,366 @@
             
             
                     </div>
-                    <!-- Color System -->
-            
-                 
-      
-      
-                </div>
-                <div class="tab-pane fade" id="custom-tabs-profile" role="tabpanel" aria-labelledby="custom-tabs-profile-tab">
-                
-                  <div class="card shadow mb-4">
-                  
-                    <div class="card-body">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr >
-                            <th scope="col">Rank</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Savings</th>
-                           
-                           
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let l of locationType ; index as i">
-                            <th scope="row">{{i+1}}</th>
-                            <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{l.State}}</td>
-                            <td> {{l.saving | currency:'USD' : 'symbol':'3.1-2'}}</td>
-                           
-                          </tr>
-                        
-                        
-                        </tbody>
-                      </table>
-                    </div>
-                    <!-- Approach -->
-          
-          
+                     
+        
+        
                   </div>
-                   
-      
-      
+                
                 </div>
-              
               </div>
-            </div>
+        </div>
+        </div>
+       
+  
       </div>
-      </div>
-     
-
-    </div>
-
 <br>
-    <!-- Content Row -->
-    <div class="row">
-      <!-- Area Chart -->
-      <div class="col-xl-12 col-lg-7">
-        <div class="card shadow mb-4" style="height: 490px;">
-          <!-- Card Header - Dropdown -->
-          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Tax Details</h6>
-            <div class="row no-gutters align-items-center">
-              <div class="col-auto">
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
-                <div class="more-post-optns "   style="margin-right: 1060px;" > 
-                 
-                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
-                <ul >
-               <p>
-                This is a bar graph of the division of Taxes for the selected data.
-               </p>
-                </ul>
-              </div>
-              </div>
-              <div class="col">
 
-              </div>
-            </div> 
-            <div class="dropdown no-arrow">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-               
-              </a>
-             
-            </div>
-          </div>
-          <!-- Card Body -->
-        
-          <div class="card-body">
-            <div class="chart-area">
-              <!-- <canvas id="myBarChart"></canvas> -->
-              <canvas id="myChart" height="90px"></canvas>
-            </div>
-         
-          </div>  
-        
-        </div>
-      </div>
-      <!-- Pie Chart -->
-      <div class="col-xl-6 col-lg-5">
-        <div class="card shadow mb-4">
-          <!-- Card Header - Dropdown -->
-          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary" >Working Time Hour </h6>
-            <div class="row no-gutters align-items-center">
-              <div class="col-auto">
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
-                <div class="more-post-optns "   style="margin-right: 370px;" > 
-                 
-                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
-                <ul  >
-               <p  > 
-                This is a Pie Chart graph of the division of working hours for the selected data.
-               </p>
-                </ul>
-              </div>
-              </div>
-              <div class="col">
+      <div class="row">
 
-              </div>
-            </div> 
-            <div class="dropdown no-arrow">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Dropdown Header:</div>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </div>
-          </div>
-          <!-- Card Body -->
-          <div class="card-body">
-            <div class="chart-pie pt-4 pb-2">
-              <canvas id="Chart" height="130px"></canvas>
-            </div>
-            <div class="mt-4 text-center small">
-              <span></span>
-              <br>
 
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary" >Working Time Hour </h6>
+              <div class="row no-gutters align-items-center tools">
+                <div class="col-auto">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                  <div class="more-post-optns "   > 
+                   
+                    <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                  <ul  style="width: 500px;" >
+                 <p  > 
+                  This is a Pie Chart graph of the division of working hours for the selected data.
+                 </p>
+                  </ul>
+                </div>
+                </div>
+                <div class="col">
+  
+                </div>
+              </div> 
+              <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                  aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2">
+                <canvas id="Chart" height="130px"></canvas>
+              </div>
+              <div class="mt-4 text-center small">
+                <span></span>
+                <br>
+  
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-xl-6 col-lg-5">
-        <div class="card shadow mb-4">
-          <!-- Card Header - Dropdown -->
-          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Bubble Chart</h6>
-            <div class="row no-gutters align-items-center">
-              <div class="col-auto">
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
-                <div class="more-post-optns "   style="margin-right: 410px;" > 
-                 
-                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
-                <ul >
-               <p>
-                This is a Bubble graph of the division of working hours for the selected data.
-               </p>
-                </ul>
-              </div>
-              </div>
-              <div class="col">
-
-              </div>
-            </div> 
-            <div class="dropdown no-arrow">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Dropdown Header:</div>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+  
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Bubble Chart</h6>
+              <div class="row no-gutters align-items-center tools ">
+                <div class="col-auto">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                  <div class="more-post-optns "    > 
+                   
+                    <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                  <ul style="width: 500px;" >
+                 <p>
+                  This is a Bubble graph of the division of working hours for the selected data.
+                 </p>
+                  </ul>
+                </div>
+                </div>
+                <div class="col">
+  
+                </div>
+              </div> 
+              <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                  aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- Card Body -->
-          <div class="card-body">
-            <div class="chart-pie pt-4 pb-2">
-              <canvas id="Bubble" height="140px"></canvas>
-            </div>
-            <div class="mt-4 text-center small">
-              <span></span>
-              <br>
-
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2">
+                <canvas id="Bubble" height="140px"></canvas>
+              </div>
+              <div class="mt-4 text-center small">
+                <span></span>
+                <br>
+  
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-    </div>
-
-    <!-- Content Row -->
-    <div class="row">
-      <!-- Content Column -->
-
-
-
+  
+  <br>
+      <!-- Content Row -->
      
-
-
-
-      <div class="col-xl-6 col-lg-5">
-        <div class="card shadow mb-4">
-          <!-- Card Header - Dropdown -->
-          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary" >Savings Details - Histogram</h6>
-            <div class="row no-gutters align-items-center">
-              <div class="col-auto">
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
-                <div class="more-post-optns "   style="margin-right: 310px; " > 
-                 
-                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
-                <ul >
-               <p>
-                This is a Histogram graph of the division of Savings for the selected data.
-               </p>
-                </ul>
-              </div>
-              </div>
-              <div class="col">
-
-              </div>
-            </div> 
-            <div class="dropdown no-arrow">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Dropdown Header:</div>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </div>
-          </div>
-          <!-- Card Body -->
-          <div class="card-body">
-            <div class="chart-pie pt-4 pb-2">
-              <canvas id="yyy" height="160px"></canvas>
-            </div>
-            <div class="mt-4 text-center small">
-              <span></span>
-              <br>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-xl-6 col-lg-5">
-        <div class="card shadow mb-4">
-          <!-- Card Header - Dropdown -->
-          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Scatter Chart Details</h6>
-            <div class="row no-gutters align-items-center">
-              <div class="col-auto">
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
-                <div class="more-post-optns "   style="margin-right: 330px;" > 
-                 
-                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
-                <ul >
-               <p>
-                This is a Scatter graph of the division of  hours for the selected data.
-               </p>
-                </ul>
-              </div>
-              </div>
-              <div class="col">
-
-              </div>
-            </div> 
-            <div class="dropdown no-arrow">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Dropdown Header:</div>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+  
+      <!-- Content Row -->
+      <div class="row">
+        <!-- Content Column -->
+  
+  
+  
+       
+  
+  
+  
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary" >Stack - Department </h6>
+              <div class="row no-gutters align-items-center tools ">
+                <div class="col-auto">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                  <div class="more-post-optns "   > 
+                   
+                    <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                  <ul style="width: 500px;" >
+                 <p>
+                  This is a Histogram graph of the division of Savings for the selected data.
+                 </p>
+                  </ul>
+                </div>
+                </div>
+                <div class="col">
+  
+                </div>
+              </div> 
+              <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                  aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- Card Body -->
-          <div class="card-body">
-            <div class="chart-pie pt-4 pb-2">
-              <canvas id="scatter" height="160px"></canvas>
-            </div>
-            <div class="mt-4 text-center small">
-              <span></span>
-              <br>
-
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2">
+                <canvas id="stack3" height="170px"></canvas>
+              </div>
+              <div class="mt-4 text-center small">
+                <span></span>
+                <br>
+  
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-    
-
-      <div class="col-xl-6 col-lg-5">
-        <div class="card shadow mb-4">
-          <!-- Card Header - Dropdown -->
-          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary" >Costs Details - Histogram</h6>
-            <div class="row no-gutters align-items-center">
-              <div class="col-auto">
-                <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
-                <div class="more-post-optns "   style="margin-right: 330px;" > 
-                 
-                  <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
-                <ul >
-               <p>
-                This is a Histogram graph of the division of Costs for the selected data.
-               </p>
-                </ul>
-              </div>
-              </div>
-              <div class="col">
-
-              </div>
-            </div> 
-            <div class="dropdown no-arrow">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Dropdown Header:</div>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+  
+  
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Stacked Chart - Manager Details</h6>
+              <div class="row no-gutters align-items-center tools">
+                <div class="col-auto">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                  <div class="more-post-optns "   > 
+                   
+                    <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                  <ul style="width: 500px;" >
+                 <p>
+                  This is a Scatter graph of the division of  hours for the selected data.
+                 </p>
+                  </ul>
+                </div>
+                </div>
+                <div class="col">
+  
+                </div>
+              </div> 
+              <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                  aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- Card Body -->
-          <div class="card-body">
-            <div class="chart-pie pt-4 pb-2">
-              <canvas id="secondHisto" height="140px"></canvas>
-            </div>
-            <div class="mt-4 text-center small">
-              <span></span>
-              <br>
-
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2">
+                <canvas id="stack2" height="170px"></canvas>
+              </div>
+              <div class="mt-4 text-center small">
+                <span></span>
+                <br>
+  
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-    </div>
-
-
-    <div class="row">
-      <!-- Content Column -->
+  
       
-    
-
-
-    
+  
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary" >Stack chart - Location</h6>
+              <div class="row no-gutters align-items-center tools">
+                <div class="col-auto">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                  <div class="more-post-optns "   > 
+                   
+                    <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                  <ul  style="width: 500px;">
+                 <p>
+                  This is a Histogram graph of the division of Costs for the selected data.
+                 </p>
+                  </ul>
+                </div>
+                </div>
+                <div class="col">
+  
+                </div>
+              </div> 
+              <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                  aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2">
+                <canvas id="bubble" height="170px"></canvas>
+              </div>
+              <div class="mt-4 text-center small">
+                <span></span>
+                <br>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary" >Stack Bar </h6>
+              <div class="row no-gutters align-items-center tools">
+                <div class="col-auto">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+                  <div class="more-post-optns "   > 
+                   
+                    <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+                  <ul  style="width: 500px;">
+                 <p>
+                  This is a Histogram graph of the division of Costs for the selected data.
+                 </p>
+                  </ul>
+                </div>
+                </div>
+                <div class="col">
+  
+                </div>
+              </div> 
+              <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                  aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2">
+                <canvas id="BChart" height="170px"></canvas>
+              </div>
+              <div class="mt-4 text-center small">
+                <span></span>
+                <br>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+  
+  
+      <div class="row">
+        <!-- Content Column -->
+        
+      
+  
+  
+      
+      </div>
     </div>
-  </div>
+  
 </div>
+</div>
+
+
 
 
 

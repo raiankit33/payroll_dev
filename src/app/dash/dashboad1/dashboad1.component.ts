@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { filter, map } from 'rxjs/operators';
 import { Chart } from 'chart.js';
@@ -64,13 +64,28 @@ export class Dashboad1Component implements OnInit {
   stackcost: any;
   constructor(private router: Router,
     private Service: AllserviceService,
+    private actRouter: ActivatedRoute,
     private shared: SharedData,) {
     }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.getSetting();
-  
+
+  this.actRouter.paramMap.subscribe(params => {
+    console.log("parammap",params.get('Batch'));
+    // console.log("paramma2",JSON.parse( params.get('data')));
+    var Batch = params.get('Batch');
+   
+
+    if(Batch != undefined && Batch != ""   ){
+      this.ShowName(Batch);
+    
+    }
+    else{
+      this.ShowName("")
+    }
+  })
     this.form.get('start_date').patchValue(this.formatDate(new Date()));
   }
 
@@ -89,7 +104,9 @@ export class Dashboad1Component implements OnInit {
 
   })
 
- 
+  uploadPage(){
+    this.router.navigate(['dash/dashboad']);
+  }
 
  
   sum = []
@@ -130,7 +147,15 @@ console.log(this.Details)
     );
   }
 
-
+getField(input , field){
+  var output = [];
+  for(var i = 0 ; i <input.length ; i++){
+output.push(input[i][field])
+return output
+  }
+  console.log(output,'out')
+  
+}
 
 
   plot = [];
@@ -146,11 +171,33 @@ console.log(this.Details)
  state : any = [];
   job_type : any = [];
   locationType : any = [];
+
+  stackName = []
 stackBar : any = [];
-  ShowName(event) {
+stackTax = [];
+stackMarkup
+     stackPay = []
+
+     stackManagerName = [];
+     stackManagerTax = [];
+     stackManagerPay = [];
+     stackManagerMarkup = [];
+
+//
+stackDepartmentName = [];
+     stackDepartmentTax = [];
+     stackDepartmentPay = [];
+     stackDepartmentMarkup = [];
+//
+     stackLocationState = [];
+     stackLocationTax = [];
+     stackLocationPay = [];
+     stackLocationMarkup = [];
+
+  ShowName(Batch) {
     
     let tt = {
-      id: event,
+      id: Batch,
       user_id : this.user.id
     }
     console.log(event, "first load")
@@ -169,6 +216,8 @@ stackBar : any = [];
       const vendor = [];
       const states = [];
 
+
+
       this.NameDetails.map(x => unique.filter(a => a.name == x.Worker_Manager).length > 0 ? null : unique.push({'name':x.Worker_Manager}));
       this.manager = unique;
 
@@ -183,6 +232,38 @@ stackBar : any = [];
       this.NameDetails.map(i => states.filter(d => d.name == i.Work_State).length > 0 ? null : states.push({'name':i.Work_State}));
       this.state = states;
 
+    
+    //   for(var item of res.chart){
+    //      this.stackTax.push(item.Taxes)
+    //      this.stackPay.push(item.Pay)
+    //  console.log(this.stackTax)
+    //   }
+
+    this.stackTax = res.chart.map(a =>a.Taxes)
+    console.log(this.stackTax)
+     
+    this.stackName = res.chart.map(b =>b.Worker_Agency)
+    this.stackPay = res.chart.map(b =>b.Pay)
+    this.stackPay = res.chart.map(b =>b.Pay)
+    this.stackMarkup = res.chart.map(b =>b.Markup)
+
+    this.stackDepartmentName = res.chart_Department.map(x =>x.Worker_Department)
+    this.stackDepartmentTax = res.chart_Department.map(x =>x.Taxes)
+    this.stackDepartmentPay = res.chart_Department.map(y =>y.Pay)
+    this.stackDepartmentMarkup = res.chart_Department.map(y =>y.Markup)
+
+    //manager
+    this.stackManagerName = res.chart_Manager.map(l =>l.Worker_Manager)
+    this.stackManagerTax = res.chart_Manager.map(l =>l.Taxes)
+    this.stackManagerPay = res.chart_Manager.map(m =>m.Pay)
+    this.stackManagerMarkup = res.chart_Manager.map(m =>m.Markup)
+
+    //location
+    this.stackLocationState = res.location_saving.map(l =>l.State)
+    this.stackLocationTax = res.location_saving.map(l =>l.Taxes)
+    this.stackLocationPay = res.location_saving.map(m =>m.Pay)
+    this.stackLocationMarkup = res.location_saving.map(m =>m.Markup)
+   
 
       this.job_type = res.Title_saving.slice(0,10) ;
       this.locationType = res.location_saving;
@@ -203,11 +284,7 @@ this.stackSaving = res.chart.saving
 this.stackcost= res.chart.Cost 
 
 
-      // for (var i in res.dd ) {
-      //   if (res.Top_Saving[i] > 50) {
-      //     console.log(res.dd[i],"6666"); // {a: 5, b: 6}
-      //   }
-      // }
+  
 
 
 
@@ -243,136 +320,454 @@ this.stackcost= res.chart.Cost
       this.histogramSecondChart();
       this.bubbleChart();
       this.scatterChart();
-
+      this.Stack();
+this.barBChart();
     })
   }
 
   barChart(){
-    var myChart = new Chart('myChart', {
-      type: 'bar',
-      data: {
-          labels: ['FICA_TAX','FICA_Med_TAX','FEE_TAX','EPLI_TAX','Delivery_TAX','FUI_Sol_TAX','FUI_TAX','SUI_TAX',
-          'Sales_TAX','WC_Admin_TAX','Tech_TAX','FUI_Sol_TAX'],
-          datasets: [{
-              label:'',
-              data: [  this.FICA_tAX, this.FICA_med_TAX , this.FEE_tAX, this.EPLI_tAX , 
-                this.Delivery_tAX , this.FUI_tol_TAX ,this.FUI_tAX , this.sUI_tAX , this.sales_tAX ,
-                 this.WC_admin_TAX , this.Tech_tAX , this.FUI_tol_TAX  ],
-              fill: true,
+  //   var myChart = new Chart('myChart', {
+  //     type: 'bar',
+  //     data: {
+  //         labels: ['FICA TAX','FICA MED TAX','FEE TAX','EPLI TAX','DELIVERY TAX','FUI SOL TAX','FUI TAX','SUI TAX',
+  //         'SALES TAX','WC ADMIN_TAX','TECH TAX','FUI SOL TAX'],
+  //         datasets: [{
+  //             label:'',
+  //             data: [  this.FICA_tAX, this.FICA_med_TAX , this.FEE_tAX, this.EPLI_tAX , 
+  //               this.Delivery_tAX , this.FUI_tol_TAX ,this.FUI_tAX , this.sUI_tAX , this.sales_tAX ,
+  //                this.WC_admin_TAX , this.Tech_tAX , this.FUI_tol_TAX  ],
+  //             fill: true,
           
-           backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 12, 235)',
-            'rgb(25, 66, 68)',
-            'rgb(25, 99, 132)',
-            'rgb(54, 162, 25)',
-            'rgb(255, 205, 86)',
-            'rgb(25, 99, 132)',
-            'rgb(54, 162, 83)',
-            'rgb(255, 25, 86)',
-            'rgb(255, 93, 12)',
-            'rgb(54, 162, 23)',
-            'rgb(255, 25, 8)',
+  //          backgroundColor: [
+  //           'rgb(255, 99, 132)',
+  //           'rgb(54, 12, 235)',
+  //           'rgb(25, 66, 68)',
+  //           'rgb(25, 99, 132)',
+  //           'rgb(54, 162, 25)',
+  //           'rgb(255, 205, 86)',
+  //           'rgb(25, 99, 132)',
+  //           'rgb(54, 162, 83)',
+  //           'rgb(255, 25, 86)',
+  //           'rgb(255, 93, 12)',
+  //           'rgb(54, 162, 23)',
+  //           'rgb(255, 25, 8)',
       
-              ],
-              borderColor : "white",
+  //             ],
+  //             borderColor : "white",
                 
           
 
-              borderWidth: 3
-          }
+  //             borderWidth: 3
+  //         }
     
         
         
-        ]
-      },
-      options: {
-        scales: {
-          xAxes: [
+  //       ]
+  //     },
+  //     options: {
+  //       scales: {
+  //         xAxes: [
+  //           {
+  //           display: false,
+  //           barPercentage: 0.9,
+  //           ticks: {
+
+  //           }
+  //         },{
+  //           scaleLabel: {
+  //             display: true,
+  //             labelString: ' Types of Taxes '
+  //           }
+  //         }, {
+  //           display: false,
+  //           ticks: {
+  //             autoSkip: false,
+
+  //           }
+  //         }],
+  //         yAxes: [{
+  //           scaleLabel: {
+  //             display: true,
+  //             labelString: ' Taxes in Dollar '
+  //           }
+  //         }]
+  //       }
+  //     },
+
+    
+  // });
+
+
+
+  var chartData = {
+    labels: ['FICA TAX','FICA MED TAX','FEE TAX','EPLI TAX','DELIVERY TAX','FUI SOL TAX','FUI TAX','SUI TAX',
+          'SALES TAX','WC ADMIN_TAX','TECH TAX','FUI SOL TAX'],
+        datasets: [
             {
-            display: false,
-            barPercentage: 0.9,
-            ticks: {
+                fillColor: "#79D1CF",
+                strokeColor: "#79D1CF",
+                data: [  this.FICA_tAX, this.FICA_med_TAX , this.FEE_tAX, this.EPLI_tAX , 
+                  this.Delivery_tAX , this.FUI_tol_TAX ,this.FUI_tAX , this.sUI_tAX , this.sales_tAX ,
+                   this.WC_admin_TAX , this.Tech_tAX , this.FUI_tol_TAX  ],
+                   backgroundColor: [
+                              'rgb(255, 99, 132)',
+                              'rgb(54, 12, 235)',
+                              'rgb(25, 66, 68)',
+                              'rgb(25, 99, 132)',
+                              'rgb(54, 162, 25)',
+                              'rgb(255, 205, 86)',
+                              'rgb(25, 99, 132)',
+                              'rgb(54, 162, 83)',
+                              'rgb(255, 25, 86)',
+                              'rgb(255, 93, 12)',
+                              'rgb(54, 162, 23)',
+                              'rgb(255, 25, 8)',
+                        
+                                ],
+            }
+        ]
+    };
 
-            }
-          },{
-            scaleLabel: {
-              display: true,
-              labelString: ' Types of Taxes '
-            }
-          }, {
-            display: false,
-            ticks: {
-              autoSkip: false,
+var opt = {
+    events: false,
+    tooltips: {
+        enabled: false
+    },
+    hover: {
+        animationDuration: 0
+    },
+    animation: {
+        duration: 1,
+        onComplete: function () {
+            var chartInstance = this.chart,
+                ctx = chartInstance.ctx;
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
 
-            }
-          }],
-          yAxes: [{
-            scaleLabel: {
-              display: true,
-              labelString: ' Taxes in Dollar '
-            }
-          }]
+            this.data.datasets.forEach(function (dataset, i) {
+                var meta = chartInstance.controller.getDatasetMeta(i);
+                meta.data.forEach(function (bar, index) {
+                    var data = dataset.data[index];                            
+                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                });
+            });
         }
-      }
-      
-    
-  });
+    }
+};
+ var ctx = document.getElementById("myChart"),
+     myLineChart = new Chart(ctx, {
+        type: 'bar',
+        data: chartData,
+        options: opt
+     });
+
   }
 
+
+  Stack(){
+    var chartData = {
+      labels: ['PAY','TAXES','MARKUP'],
+      // labels: [this.stackDepartmentName[0],this.stackDepartmentName[1],this.stackDepartmentName[2]],
+          datasets: [
+              {
+                  fillColor: "#79D1CF",
+                  strokeColor: "#79D1CF",
+                  label:'data 1',
+                  data:  [ this.stackLocationPay[0],this.stackLocationPay[1] ,this.stackLocationPay[2]],
+              
+              
+                     backgroundColor: 
+                                'rgb(255, 99, 182)',
+              },
+              {
+                fillColor: "#79D1CF",
+                strokeColor: "#79D1CF",
+                label:'data 2',
+                data: [ this.stackLocationTax[0],this.stackLocationTax[1],this.stackLocationTax[2]],
+            
+            
+                   backgroundColor: 
+                              'rgb(25, 99, 132)', 
+            },
+            {
+              fillColor: "#79D1CF",
+              strokeColor: "#79D1CF",
+              label:'data 3',
+              data: [ this.stackLocationMarkup[0],this.stackLocationMarkup[1],this.stackLocationMarkup[2]],
+          
+          
+                 backgroundColor: 
+                            'rgb(255, 929, 132)',  
+          },
+  
+          ]
+      };
+  
+  var opt = {
+      events: false,
+      tooltips: {
+          enabled: false
+      },
+      scales:{
+        xAxes:[{
+          stacked :true
+         },//{ scaleLabel: {
+                  
+        //  } 
+       // },
+       {
+         display: false,
+                   ticks: {
+                     autoSkip: true,
+       
+                   } }],
+        yAxes:[{
+          stacked :true
+        }]
+      },
+      hover: {
+          animationDuration: 0
+      },
+      animation: {
+          duration: 1,
+          onComplete: function () {
+              var chartInstance = this.chart,
+                  ctx = chartInstance.ctx;
+              ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'center';
+  
+              this.data.datasets.forEach(function (dataset, i) {
+                  var meta = chartInstance.controller.getDatasetMeta(i);
+                  meta.data.forEach(function (bar, index) {
+                      var data = dataset.data[index];                            
+                      ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                  });
+              });
+          }
+      }
+  };
+   var ctx = document.getElementById("bubble"),
+       myLineChart = new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: opt
+       });
+  }
  
   barBChart(){
-    var myChart = new Chart('BChart', {
-      type: 'bar',
-      data: {
-          labels: ['Stack Cost'],
-          datasets: [
-            {
-              label:'data 1',
-              data: [  this.stackcost  ],
-              fill: true,
+  //   var myChart = new Chart('BChart', {
+  //     type: 'bar',
+  //     data: {
+  //         labels: ['Stack Cost','Stack Cost','Stack Cost'],
+  //         datasets: [
+  //           {
+  //             label:'data 1',
+  //             data: [ this.stackPay[0],this.stackTax[0]],
+  //             fill: true,
           
-           backgroundColor: [
-            'rgba(102, 255, 102,0.7)',
-     
-      
-              ],
-              borderColor :[
-                'rgb(102, 255, 102)',
-           
+  //          backgroundColor: 
+  //           'rgb(255, 99, 132)',
+         
           
-              ],
-              borderWidth: 3
-          },
-          {
-            label:'data 2',
-            data: [  this.stackSaving  ],
-            fill: true,
+
+  //             borderColor :[
+               
+          
+  //             ],
+  //             borderWidth: 3
+  //         },
+  //         {
+  //           label:'data 2',
+  //           data: [this.stackPay[1], this.stackTax[1]],
+  //           fill: true,
         
-         backgroundColor: [
-          'rgba(102, 255, 10,0.7)',
-   
-    
-            ],
-            borderColor :[
-              'rgb(102, 25, 102)',
+  //        backgroundColor:   'rgb(54, 162, 235)',
+      
+        
+            
+  //           borderColor :[
+            
          
         
-            ],
-            borderWidth: 3
-        }
+  //           ],
+  //           borderWidth: 3
+  //       },
+  //       {
+  //         label:'data 3',
+  //         data: [this.stackPay[3], this.stackTax[3]],
+  //         fill: true,
+      
+  //      backgroundColor:     'rgb(255, 99, 12)',
   
     
-        
-        
-        ]
-      },
-      options: {
+  //         borderColor :[
+          
+       
       
-      }
+  //         ],
+  //         borderWidth: 3
+  //     },
+  //     {
+  //       label:'data 4',
+  //       data: [this.stackPay[4], this.stackTax[4]],
+  //       fill: true,
+    
+  //    backgroundColor:   'rgb(255, 205, 86)',
+
+    
+    
+  //       borderColor :[
+        
+     
+    
+  //       ],
+  //       borderWidth: 3
+  //   },
+ 
+   
+    
+        
+        
+  //       ]
+  //     },
+  //     options: {
+  //       scales: {
+  //         xAxes: [ {
+  // stacked : true
+  //         },
+  //           {
+  //           display: false,
+  //           barPercentage: 1.2,
+  //           ticks: {
+
+  //           }
+  //         },{
+  //           scaleLabel: {
+  //             display: true,
+  //             labelString: ' Types of Taxes '
+  //           }
+  //         }, {
+  //           display: false,
+  //           ticks: {
+  //             autoSkip: false,
+
+  //           }
+  //         }],
+  //         yAxes: [{
+  // stacked : true
+  //         },
+            
+  //           {
+  //           scaleLabel: {
+            
+  //             display: true,
+  //             labelString: ' Taxes in Dollar '
+  //           }
+  //         }]
+  //       }
+  //     }
       
     
-  });
+  // });
+
+
+  var chartData = {
+    labels: ['PAY','TAXES'],
+    // labels: [this.stackName[0],this.stackName[1],this.stackName[2]],
+        datasets: [
+            {
+                fillColor: "#79D1CF",
+                strokeColor: "#79D1CF",
+                label:'data 1',
+                data: [ this.stackPay[0],this.stackPay[1],this.stackPay[2]],
+            
+            
+                   backgroundColor: 
+                              'rgb(255, 99, 82)',
+            },
+            {
+              fillColor: "#79D1CF",
+              strokeColor: "#79D1CF",
+              label:'data 2',
+              data: [this.stackTax[0], this.stackTax[1],this.stackTax[2]],
+          
+          
+                 backgroundColor: 
+                            'rgb(25, 199, 152)', 
+          },
+          {
+            fillColor: "#79D1CF",
+            strokeColor: "#79D1CF",
+            label:'data 3',
+            data: [this.stackMarkup[0], this.stackMarkup[1],this.stackMarkup[2]],
+        
+        
+               backgroundColor: 
+                          'rgb(255, 92, 13)',  
+        },
+        {
+          fillColor: "#79D1CF",
+          strokeColor: "#79D1CF",
+          label:'data 4',
+        data: [this.stackPay[4], this.stackTax[4]],
+      
+      
+             backgroundColor: 
+                        'rgb(255, 29, 105)',  
+      },
+        ]
+    };
+
+var opt = {
+    events: false,
+    tooltips: {
+        enabled: false
+    },
+    scales:{
+      xAxes:[{
+        stacked :true
+       
+      },{
+       display: false,
+                 ticks: {
+                   autoSkip: true,
+     
+                 } }],
+      yAxes:[{
+        stacked :true
+      }]
+    },
+    hover: {
+        animationDuration: 0
+    },
+    animation: {
+        duration: 1,
+        onComplete: function () {
+            var chartInstance = this.chart,
+                ctx = chartInstance.ctx;
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'center';
+
+            this.data.datasets.forEach(function (dataset, i) {
+                var meta = chartInstance.controller.getDatasetMeta(i);
+                meta.data.forEach(function (bar, index) {
+                    var data = dataset.data[index];                            
+                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                });
+            });
+        }
+    }
+};
+ var ctx = document.getElementById("BChart"),
+     myLineChart = new Chart(ctx, {
+        type: 'bar',
+        data: chartData,
+        options: opt
+     });
+
   }
 
 
@@ -402,53 +797,241 @@ this.stackcost= res.chart.Cost
 
       }
     });
+
+
+    
+
+//   var chartData = {
+//      labels: ['Double time Total', 'over time Total ', 'standard time Total'],
+//         datasets: [
+//             {
+//                 fillColor: "#79D1CF",
+//                 strokeColor: "#79D1CF",
+//                 data: [this.Double_time_Total, this.over_time_Total, this.standard_time_Total],
+//                    backgroundColor: [
+//                     'rgb(255, 99, 132)',
+//                         'rgb(54, 162, 235)',
+//                       'rgb(255, 205, 86)'
+//                                 ],
+//             }
+//         ]
+//     };
+
+// var opt = {
+//     events: false,
+//     tooltips: {
+//         enabled: false
+//     },
+//     hover: {
+//         animationDuration: 0
+//     },
+//     animation: {
+//         duration: 1,
+//         onComplete: function () {
+//             var chartInstance = this.chart,
+//                 ctx = chartInstance.ctx;
+//             ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+//             ctx.textAlign = 'justify';
+//             ctx.textBaseline = 'bottom';
+
+//             this.data.datasets.forEach(function (dataset, i) {
+//                 var meta = chartInstance.controller.getDatasetMeta(i);
+//                 meta.data.forEach(function (pie, index) {
+//                     var data = dataset.data[index];                            
+//                     ctx.fillText(data, pie._model.x, pie._model.y - 5);
+//                 });
+//             });
+//         }
+//     }
+// };
+//  var ctx = document.getElementById("Chart"),
+//      myLineChart = new Chart(ctx, {
+//         type: 'pie',
+//         data: chartData,
+//         options: opt
+//      });
+
+  
   }
 
   histogramChart(){
-    const mychart = new Chart("yyy", {
-      type: 'bar',
-      data: {
-        labels: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, , 44, 46, 48, 50]
-        ,
-        datasets: [{
-          label: 'Savings',
-          data: [3361.88, 1608.495, 354.8675, 2549.75, 2003.12, 2303.0, 1771.1, 2527.77, 683.225, 2411.36, 2952.8, 2257.9375, 2516.375, 3189.12, 2869.5, 2457.44, 2973.1, 1764.663375, 1918.4475, 1869.5, 2215.365, 2982.72, 2206.7675, 327.472, 337.25, 1720.92, 2247.6125, 2911.36, 217.46925, 2296.12375, 1955.8475, 2414.325, 2496.12875, 2773.2, 3034.6125, 2324.28, 1077.87, 2537.683375, 362.0, 1389.5, 2711.03, 2480.8, 2330.74, 2859.64, 2337.2, 501.93875, 2761.5075, 3773.2, 404.975, 3319.4]
-          ,
-          backgroundColor: 'rgb(54, 162, 235)',
-          borderColor: 'black',
-          borderWidth: 1,
-        }]
-      },
-      options: {
-        scales: {
-          xAxes: [
+  //   var myChart = new Chart('stack2', {
+  //     type: 'bar',
+  //     data: {
+  //         labels: ['Stack Cost','Stack Cost','Stack Cost'],
+  //         datasets: [
+  //           {
+  //             label:'data 1',
+  //             data: [ this.stackManagerPay[0],this.stackManagerTax[0]],
+  //             fill: true,
+          
+  //          backgroundColor: 
+  //           'rgb(255, 99, 132)',
+         
+          
+
+  //             borderColor :[
+               
+          
+  //             ],
+  //             borderWidth: 3
+  //         },
+  //         {
+  //           label:'data 2',
+  //           data: [ this.stackManagerPay[1],this.stackManagerTax[1]],
+  //           fill: true,
+        
+  //        backgroundColor:   'rgb(54, 162, 235)',
+      
+        
+            
+  //           borderColor :[
+            
+         
+        
+  //           ],
+  //           borderWidth: 3
+  //       },
+  //       {
+  //         label:'data 3',
+  //         data: [ this.stackManagerPay[3],this.stackManagerTax[3]],
+  //         fill: true,
+      
+  //      backgroundColor:     'rgb(255, 99, 12)',
+  
+    
+  //         borderColor :[
+          
+       
+      
+  //         ],
+  //         borderWidth: 3
+  //     },
+  //     {
+  //       label:'data 4',
+  //       data: [ this.stackManagerPay[4],this.stackManagerTax[4]],
+  //       fill: true,
+    
+  //    backgroundColor:   'rgb(255, 205, 86)',
+
+    
+    
+  //       borderColor :[
+        
+     
+    
+  //       ],
+  //       borderWidth: 3
+  //   },
+ 
+   
+    
+        
+        
+  //       ]
+  //     },
+  //     options: {
+  //       scales: {
+  //         xAxes: [ {
+  // stacked : true
+  //         },
+     
+  //         ],
+  //         yAxes: [{
+  // stacked : true
+  //         },
+            
+         
+  //         ]
+  //       }
+  //     }
+      
+    
+  // });
+
+
+  var chartData = {
+    labels: [this.stackManagerName[0],this.stackManagerName[1],this.stackManagerName[2],],
+        datasets: [
             {
-            display: false,
-            barPercentage: 1.3,
-            ticks: {
-  
-            }
-          },{
-            scaleLabel: {
-              display: true,
-              labelString: ' No of Employee '
-            }
-          }, {
-            display: false,
-            ticks: {
-              autoSkip: false,
-  
-            }
-          }],
-          yAxes: [{
-            scaleLabel: {
-              display: true,
-              labelString: ' Savings '
-            }
-          }]
+                fillColor: "#79D1CF",
+                strokeColor: "#79D1CF",
+                label :"Data 1",
+                data:  [ this.stackManagerPay[0],this.stackManagerPay[1],this.stackManagerPay[2]],
+            
+            
+                   backgroundColor: 
+                              'rgb(255, 99, 182)',
+            },
+            {
+              fillColor: "#79D1CF",
+              strokeColor: "#79D1CF",
+              label :"Data 2",
+              data: [ this.stackManagerTax[0],this.stackManagerTax[1],this.stackManagerTax[2]],
+          
+          
+                 backgroundColor: 
+                            'rgb(25, 919, 132)', 
+          },
+          {
+            fillColor: "#79D1CF",
+            strokeColor: "#79D1CF",
+            label :"Data 3",
+            data: [ this.stackManagerMarkup[0],this.stackManagerMarkup[1],this.stackManagerMarkup[2]],
+        
+        
+               backgroundColor: 
+                          'rgb(255, 929, 12)',  
+        },
+    
+        ]
+    };
+
+var opt = {
+    events: false,
+    tooltips: {
+        enabled: false
+    },
+    scales:{
+      xAxes:[{
+        stacked :true
+      }],
+      yAxes:[{
+        stacked :true
+      }]
+    },
+    hover: {
+        animationDuration: 0
+    },
+    animation: {
+        duration: 1,
+        onComplete: function () {
+            var chartInstance = this.chart,
+                ctx = chartInstance.ctx;
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'center';
+
+            this.data.datasets.forEach(function (dataset, i) {
+                var meta = chartInstance.controller.getDatasetMeta(i);
+                meta.data.forEach(function (bar, index) {
+                    var data = dataset.data[index];                            
+                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                });
+            });
         }
-      }
-    });
+    }
+};
+ var ctx = document.getElementById("stack2"),
+     myLineChart = new Chart(ctx, {
+        type: 'bar',
+        data: chartData,
+        options: opt
+     });
+
+
+
+  
   }
 
   histogramSecondChart(){
@@ -500,47 +1083,103 @@ this.stackcost= res.chart.Cost
   }
 
   bubbleChart(){
-    var myChart = new Chart('Bubble', {
-      type: 'bubble',
-      data: {
-        labels: ['FEE_TAX', 'FICA_TAX', 'Sales_TAX', 'Delivery_TAX', 'EPLI_TAX', 'FUI_Sol_TAX', 'FICA_Med_TAX', 'Tech_TAX'],
-        datasets: [{
-
-          data: [
-            { x: 10, y: 10, r: 10 },
-            { x: 15, y: 5, r: 15 },
-            { x: 26, y: 12, r: 23 },
-            { x: 7, y: 8, r: 8 },
-
-          ],
-          fill: false,
-
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(25, 205, 86)',
-            'rgb(255, 205, 6)',
-            'rgb(25, 205, 86)',
-            'rgb(255, 205, 8)'
-          ],
-          borderColor: [
-            'rgb(255, 99, 132)',
-          ],
-          borderWidth: 9
-        }
-
-        ]
+    var chartData = {
+      labels: ['PAY','TAXES'],
+          datasets: [
+              {
+                  fillColor: "#79D1CF",
+                  strokeColor: "#79D1CF",
+                  label :"Data 1",
+                  data:  [ this.stackLocationPay[0],this.stackDepartmentTax[0]],
+              
+              
+                     backgroundColor: 
+                                'rgb(25, 99, 182)',
+              },
+              {
+                fillColor: "#79D1CF",
+                strokeColor: "#79D1CF",
+                label :"Data 2",
+                data: [ this.stackDepartmentPay[1],this.stackDepartmentTax[1]],
+            
+            
+                   backgroundColor: 
+                              'rgb(25, 199, 132)', 
+            },
+            {
+              fillColor: "#79D1CF",
+              strokeColor: "#79D1CF",
+              label :"Data 3",
+              data: [ this.stackDepartmentPay[2],this.stackDepartmentTax[2]],
+          
+          
+                 backgroundColor: 
+                            'rgb(255, 99, 132)',  
+          },
+          {
+            fillColor: "#79D1CF",
+            strokeColor: "#79D1CF",
+            label :"Data 4",
+            data: [ this.stackDepartmentPay[3],this.stackDepartmentTax[3]],
+        
+        
+               backgroundColor: 
+                          'rgb(255, 99, 12)',  
+        },
+          ]
+      };
+  
+  var opt = {
+      events: false,
+      tooltips: {
+          enabled: false
       },
-      options: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Range'
+      scales:{
+        xAxes:[{
+          stacked :true
+        },{ scaleLabel: {
+                     
+         } 
+        },{
+         display: false,
+                   ticks: {
+                     autoSkip: true,
+       
+                   } }],
+        yAxes:[
+        {
+          stacked :true
+            }]
+      },
+      hover: {
+          animationDuration: 0
+      },
+      animation: {
+          duration: 1,
+          onComplete: function () {
+              var chartInstance = this.chart,
+                  ctx = chartInstance.ctx;
+              ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+              ctx.textAlign = 'justify';
+              ctx.textBaseline = 'center';
+  
+              this.data.datasets.forEach(function (dataset, i) {
+                  var meta = chartInstance.controller.getDatasetMeta(i);
+                  meta.data.forEach(function (bar, index) {
+                      var data = dataset.data[index];                            
+                      ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                  });
+              });
           }
-        }]
-
       }
-    });
+  };
+   var ctx = document.getElementById("stack3"),
+       myLineChart = new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: opt
+       });
+  
   }
  
 
@@ -693,7 +1332,34 @@ console.log(this.vendorDetails)
       this.WC_admin_TAX = res.WC_Admin_TAX;
       this.WC_tAX = res.WC_TAX;
 
-      this.barChart();
+
+      this.stackPay = res.chart.map(b =>b.Pay)
+      this.stackPay = res.chart.map(b =>b.Pay)
+  
+      this.stackDepartmentTax = res.chart_Department.map(x =>x.Taxes)
+      console.log(this.stackDepartmentTax)
+  
+      this.stackDepartmentPay = res.chart_Department.map(y =>y.Pay)
+     
+      
+      this.stackManagerTax = res.chart_Manager.map(l =>l.Taxes)
+  
+      this.stackManagerPay = res.chart_Manager.map(m =>m.Pay)
+      this.stackManagerMarkup = res.chart_Manager.map(m =>m.Markup)
+  
+      
+      this.stackLocationTax = res.location_saving.map(l =>l.Taxes)
+  
+      this.stackLocationPay = res.location_saving.map(m =>m.Pay)
+      this.stackLocationMarkup = res.location_saving.map(m =>m.Markup)
+
+
+       this.barChart();
+      this.bubbleChart();
+      this.histogramChart();
+      this.barBChart();
+      this.pieChart();
+      this.Stack();
 this.pieChart();
       setTimeout(() => {
         this.isVendor = false;
@@ -740,8 +1406,32 @@ this.pieChart();
       this.WC_admin_TAX = res.WC_Admin_TAX;
       this.WC_tAX = res.WC_TAX;
 
+      this.stackPay = res.chart.map(b =>b.Pay)
+      this.stackPay = res.chart.map(b =>b.Pay)
+  
+      this.stackDepartmentTax = res.chart_Department.map(x =>x.Taxes)
+      console.log(this.stackDepartmentTax)
+  
+      this.stackDepartmentPay = res.chart_Department.map(y =>y.Pay)
+     
+      
+      this.stackManagerTax = res.chart_Manager.map(l =>l.Taxes)
+  
+      this.stackManagerPay = res.chart_Manager.map(m =>m.Pay)
+      this.stackManagerMarkup = res.chart_Manager.map(m =>m.Markup)
+  
+      
+      this.stackLocationTax = res.location_saving.map(l =>l.Taxes)
+  
+      this.stackLocationPay = res.location_saving.map(m =>m.Pay)
+      this.stackLocationMarkup = res.location_saving.map(m =>m.Markup)
+
       this.barChart();
+      this.bubbleChart();
+      this.histogramChart();
+      this.barBChart();
       this.pieChart();
+
 
       setTimeout(() => {
         this.isDepartment = false;
@@ -756,7 +1446,7 @@ this.pieChart();
   managerDetails: any = [];
 
   selectManager(event) {
-    console.log('select manager',event);
+   
     const m = {
       Manager: event,
       data: this.NameDetails,
@@ -791,8 +1481,33 @@ console.log(res)
       this.WC_admin_TAX = res.WC_Admin_TAX;
       this.WC_tAX = res.WC_TAX;
 
+      this.stackPay = res.chart.map(b =>b.Pay)
+    this.stackPay = res.chart.map(b =>b.Pay)
+
+    this.stackDepartmentTax = res.chart_Department.map(x =>x.Taxes)
+    console.log(this.stackDepartmentTax)
+
+    this.stackDepartmentPay = res.chart_Department.map(y =>y.Pay)
+   
+    
+    this.stackManagerTax = res.chart_Manager.map(l =>l.Taxes)
+
+    this.stackManagerPay = res.chart_Manager.map(m =>m.Pay)
+    this.stackManagerMarkup = res.chart_Manager.map(m =>m.Markup)
+
+    
+    this.stackLocationTax = res.location_saving.map(l =>l.Taxes)
+
+    this.stackLocationPay = res.location_saving.map(m =>m.Pay)
+    this.stackLocationMarkup = res.location_saving.map(m =>m.Markup)
+
       this.barChart();
-this.pieChart();
+      this.bubbleChart();
+      this.histogramChart();
+      this.barBChart();
+      this.pieChart();
+      this.Stack();
+
       setTimeout(() => {
         this.isManger = false;
       }, 1000);
@@ -839,7 +1554,33 @@ this.pieChart();
         this.WC_admin_TAX = res.WC_Admin_TAX;
         this.WC_tAX = res.WC_TAX;
   
+        this.stackPay = res.chart.map(b =>b.Pay)
+        this.stackPay = res.chart.map(b =>b.Pay)
+    
+        this.stackDepartmentTax = res.chart_Department.map(x =>x.Taxes)
+        console.log(this.stackDepartmentTax)
+    
+        this.stackDepartmentPay = res.chart_Department.map(y =>y.Pay)
+       
+        
+        this.stackManagerTax = res.chart_Manager.map(l =>l.Taxes)
+    
+        this.stackManagerPay = res.chart_Manager.map(m =>m.Pay)
+        this.stackManagerMarkup = res.chart_Manager.map(m =>m.Markup)
+    
+        
+        this.stackLocationTax = res.location_saving.map(l =>l.Taxes)
+    
+        this.stackLocationPay = res.location_saving.map(m =>m.Pay)
+        this.stackLocationMarkup = res.location_saving.map(m =>m.Markup)
+
         this.barChart();
+      this.bubbleChart();
+      this.histogramChart();
+      this.barBChart();
+      this.pieChart();
+      this.Stack()
+
   this.pieChart();
         setTimeout(() => {
           this.isManger = false;

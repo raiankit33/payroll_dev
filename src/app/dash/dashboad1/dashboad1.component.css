@@ -16,9 +16,19 @@
    
   }
 
+  .mess {
+   width: 750px;
+
+  }
+
+  .hello{
+    /* background: linear-gradient(to top, #3333cc 0%, #6699ff 100%); */
+
+    background: rgb(17,96,140);
+    background: linear-gradient(0deg, rgba(17,96,140,1) 45%, rgba(10,55,143,1) 99%);
+  }
   .upload{
-      width: 200px;
-      height: 70px;
+    background-image: linear-gradient(135deg, #fccf31 10%, #f55555 100%);
   }
 
   table td{
@@ -135,4 +145,55 @@ font-weight: 400;
   padding: 50px;
   font-size: 20px;
   z-index: 9;
+}
+
+
+
+/* side bar  */
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+
+
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+.sideba {
+  min-width: 250px;
+  max-width: 300px;
+  margin-bottom: 100px;
+  position: fixed;
+}
+
+.sideba.active {
+  margin-left: -250px;
+}
+
+.sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 100vh;
+}
+
+
+.left-nav
+{
+ position: fixed;
+ width: 250px;
+ top:35px;
+ left: 0;
+ bottom: 0;
+
+ padding-top: 50px;
+ z-index: 9;
+}
+
+.sidebar{
+  width: 300px;
 }

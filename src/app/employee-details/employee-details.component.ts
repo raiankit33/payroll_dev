@@ -233,136 +233,262 @@ pieChart(){
 
 
 barChart(){
-  var myChart = new Chart('myChart', {
-    type: 'bar',
-    data: {
-        labels: ['FICA_TAX','FICA_Med_TAX','FEE_TAX','EPLI_TAX','Delivery_TAX','FUI_Sol_TAX','FUI_TAX','SUI_TAX',
-        'Sales_TAX','WC_Admin_TAX','Tech_TAX','FUI_Sol_TAX'],
-        datasets: [{
-            label:'',
-            data: [  this.userObj.FICA_TAX, this.userObj.FICA_Med_TAX , this.userObj.FEE_TAX, this.userObj.EPLI_TAX , 
-              this.userObj.Delivery_TAX , this.userObj.FUI_Sol_TAX ,this.userObj.FUI_TAX , this.userObj.SUI_TAX , this.userObj.Sales_TAX ,
-               this.userObj.WC_Admin_TAX , this.userObj.Tech_TAX , this.FUI_Sol_TAX  ],
-            fill: true,
+//   var myChart = new Chart('myChart', {
+//     type: 'bar',
+//     data: {
+//         labels: ['FICA_TAX','FICA_Med_TAX','FEE_TAX','EPLI_TAX','Delivery_TAX','FUI_Sol_TAX','FUI_TAX','SUI_TAX',
+//         'Sales_TAX','WC_Admin_TAX','Tech_TAX','FUI_Sol_TAX'],
+//         datasets: [{
+//             label:'',
+//             data: [  this.userObj.FICA_TAX, this.userObj.FICA_Med_TAX , this.userObj.FEE_TAX, this.userObj.EPLI_TAX , 
+//               this.userObj.Delivery_TAX , this.userObj.FUI_Sol_TAX ,this.userObj.FUI_TAX , this.userObj.SUI_TAX , this.userObj.Sales_TAX ,
+//                this.userObj.WC_Admin_TAX , this.userObj.Tech_TAX , this.FUI_Sol_TAX  ],
+//             fill: true,
         
-         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 12, 235)',
-          'rgb(25, 66, 68)',
-          'rgb(25, 99, 132)',
-          'rgb(54, 162, 25)',
-          'rgb(255, 205, 86)',
-          'rgb(25, 99, 132)',
-          'rgb(54, 162, 83)',
-          'rgb(255, 25, 86)',
-          'rgb(255, 93, 12)',
-          'rgb(54, 162, 23)',
-          'rgb(255, 25, 8)',
+//          backgroundColor: [
+//           'rgb(255, 99, 132)',
+//           'rgb(54, 12, 235)',
+//           'rgb(25, 66, 68)',
+//           'rgb(25, 99, 132)',
+//           'rgb(54, 162, 25)',
+//           'rgb(255, 205, 86)',
+//           'rgb(25, 99, 132)',
+//           'rgb(54, 162, 83)',
+//           'rgb(255, 25, 86)',
+//           'rgb(255, 93, 12)',
+//           'rgb(54, 162, 23)',
+//           'rgb(255, 25, 8)',
     
-            ],
-            borderColor :[
+//             ],
+//             borderColor :[
       
         
-            ],
-            borderWidth: 3
-        }
+//             ],
+//             borderWidth: 3
+//         }
   
       
       
-      ]
-    },
-    options: {
-      scales: {
-        xAxes: [
+//       ]
+//     },
+//     options: {
+//       scales: {
+//         xAxes: [
+//           {
+//           display: false,
+//           barPercentage: 0.9,
+//           ticks: {
+
+//           }
+//         },{
+//           scaleLabel: {
+//             display: true,
+//             labelString: ' Types of Taxes '
+//           }
+//         }, {
+//           display: false,
+//           ticks: {
+//             autoSkip: false,
+
+//           }
+//         }],
+//         yAxes: [{
+//           scaleLabel: {
+//             display: true,
+//             labelString: ' Taxes in Dollar '
+//           }
+//         }]
+//       }
+//     }
+    
+  
+// });
+
+
+
+var chartData = {
+  labels: ['FICA TAX','FICA MED TAX','FEE TAX','EPLI TAX','DELIVERY TAX','FUI SOL TAX','FUI TAX','SUI TAX',
+        'SALES TAX','WC ADMIN_TAX','TECH TAX','FUI SOL TAX'],
+      datasets: [
           {
-          display: false,
-          barPercentage: 0.9,
-          ticks: {
+              fillColor: "#79D1CF",
+              strokeColor: "#79D1CF",
+              data: [  this.userObj.FICA_TAX, this.userObj.FICA_Med_TAX , this.userObj.FEE_TAX, this.userObj.EPLI_TAX , 
+                this.userObj.Delivery_TAX , this.userObj.FUI_Sol_TAX ,this.userObj.FUI_TAX , this.userObj.SUI_TAX , this.userObj.Sales_TAX ,
+                 this.userObj.WC_Admin_TAX , this.userObj.Tech_TAX , this.FUI_Sol_TAX  ],
+                 backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 12, 235)',
+                            'rgb(25, 66, 68)',
+                            'rgb(25, 99, 132)',
+                            'rgb(54, 162, 25)',
+                            'rgb(255, 205, 86)',
+                            'rgb(25, 99, 132)',
+                            'rgb(54, 162, 83)',
+                            'rgb(255, 25, 86)',
+                            'rgb(255, 93, 12)',
+                            'rgb(54, 162, 23)',
+                            'rgb(255, 25, 8)',
+                      
+                              ],
+          }
+      ]
+  };
 
-          }
-        },{
-          scaleLabel: {
-            display: true,
-            labelString: ' Types of Taxes '
-          }
-        }, {
-          display: false,
-          ticks: {
-            autoSkip: false,
+var opt = {
+  events: false,
+  tooltips: {
+      enabled: false
+  },
+  hover: {
+      animationDuration: 0
+  },
+  animation: {
+      duration: 1,
+      onComplete: function () {
+          var chartInstance = this.chart,
+              ctx = chartInstance.ctx;
+          ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
 
-          }
-        }],
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: ' Taxes in Dollar '
-          }
-        }]
+          this.data.datasets.forEach(function (dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function (bar, index) {
+                  var data = dataset.data[index];                            
+                  ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+          });
       }
-    }
-    
-  
-});
+  }
+};
+var ctx = document.getElementById("myChart"),
+   myLineChart = new Chart(ctx, {
+      type: 'bar',
+      data: chartData,
+      options: opt
+   });
 }
 
 
 doughnutChart(){
-  var myChart = new Chart('doughnut', {
-    type: 'bar',
-    data: {
-        labels: ['','Staffing Company Cost','Total COST','Total Saving ','Markup','Total_PAY'],
-        datasets: [{
-            label:'',
-            data: [  this.userObj.Staffing_Company_Cost, this.userObj.Total_COST , this.userObj.Saving , this.userObj.Markup ,this.userObj.Total_PAY   ],
-            fill: true,
+//   var myChart = new Chart('doughnut', {
+//     type: 'bar',
+//     data: {
+//         labels: ['','Staffing Company Cost','Total COST','Total Saving ','Markup','Total_PAY'],
+//         datasets: [{
+//             label:'',
+//             data: [  this.userObj.Staffing_Company_Cost, this.userObj.Total_COST , this.userObj.Saving , this.userObj.Markup ,this.userObj.Total_PAY   ],
+//             fill: true,
         
-         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(255, 99, 12)',
-          'rgb(54, 16, 235)',
+//          backgroundColor: [
+//           'rgb(255, 99, 132)',
+//           'rgb(54, 162, 235)',
+//           'rgb(255, 205, 86)',
+//           'rgb(255, 99, 12)',
+//           'rgb(54, 16, 235)',
 
-            ],
-            borderWidth: 3
-        }
+//             ],
+//             borderWidth: 3
+//         }
   
       
       
-      ]
-    },
-    options: {
-      scales: {
-        xAxes: [
-          {
-          display: false,
-          barPercentage: 0.9,
-          ticks: {
+//       ]
+//     },
+//     options: {
+//       scales: {
+//         xAxes: [
+//           {
+//           display: false,
+//           barPercentage: 0.9,
+//           ticks: {
 
-          }
-        },{
-          scaleLabel: {
-            display: false,
-            labelString: ' Types of Amount'
-          }
-        }, {
-          display: false,
-          ticks: {
-            autoSkip: false,
+//           }
+//         },{
+//           scaleLabel: {
+//             display: false,
+//             labelString: ' Types of Amount'
+//           }
+//         }, {
+//           display: false,
+//           ticks: {
+//             autoSkip: false,
 
-          }
-        }],
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: ' Amount in Dollar '
-          }
-        }]
-      }
-    }
+//           }
+//         }],
+//         yAxes: [{
+//           scaleLabel: {
+//             display: true,
+//             labelString: ' Amount in Dollar '
+//           }
+//         }]
+//       }
+//     }
     
   
-});
+// });
+
+var chartData = {
+  labels: ['','Staffing Company Cost','Total COST','Total Saving ','Markup','Total_PAY'],
+      datasets: [
+          {
+              fillColor: "#79D1CF",
+              strokeColor: "#79D1CF",
+              data: [  this.userObj.Staffing_Company_Cost, this.userObj.Total_COST , this.userObj.Saving , this.userObj.Markup ,this.userObj.Total_PAY   ],
+                 backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 12, 235)',
+                            'rgb(25, 66, 68)',
+                            'rgb(25, 99, 132)',
+                            'rgb(54, 162, 25)',
+                            'rgb(255, 205, 86)',
+                            'rgb(25, 99, 132)',
+                            'rgb(54, 162, 83)',
+                            'rgb(255, 25, 86)',
+                            'rgb(255, 93, 12)',
+                            'rgb(54, 162, 23)',
+                            'rgb(255, 25, 8)',
+                      
+                              ],
+          }
+      ]
+  };
+
+var opt = {
+  events: false,
+  tooltips: {
+      enabled: false
+  },
+  hover: {
+      animationDuration: 0
+  },
+  animation: {
+      duration: 1,
+      onComplete: function () {
+          var chartInstance = this.chart,
+              ctx = chartInstance.ctx;
+          ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
+
+          this.data.datasets.forEach(function (dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function (bar, index) {
+                  var data = dataset.data[index];                            
+                  ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+          });
+      }
+  }
+};
+var ctx = document.getElementById("doughnut"),
+   myLineChart = new Chart(ctx, {
+      type: 'bar',
+      data: chartData,
+      options: opt
+   });
+
 }
 
   updateDriver(){

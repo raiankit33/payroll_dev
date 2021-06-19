@@ -2,102 +2,89 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-blue colr sidebar sidebar-dark accordion " id="accordionSidebar">
-      <!-- Sidebar - Brand -->
-      <a class=" d-flex align-items-center justify-content-center" >
-        <div class="sidebar-brand-icon ">
-        
-        </div>
-       
-        <!-- <div class="sidebar-brand-text mx-3 " style="color: white; font-size: 30px;">Payroll</div> -->
-        <br>
-      </a>
-      
-      <h3 class="justify-content-center d-flex align-items-center ml-2 " style="color: white; font-size: 22px; padding-bottom: 8px;">Payroll Analysis</h3>
-      <!-- Divider -->  
-      <hr class="sidebar-divider my-0">
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item ">
-        <a class="nav-link"  (click)="showMe()" routerLinkActive="active">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span >Dashboard</span>
-        </a>
-      </li>
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Side Bar
-      </div>
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" (click)="show()"    data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa fa-upload"></i>
-          <span>Uploads </span>
-        </a>
-        
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#" (click)="Batch()" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa fa-history"></i>
-            <span>Batch History</span>
-          </a>
-
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" (click)="Employee()" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa fa-list-ol"></i>
-          <span>Employee List</span>
-        </a>
-
-    </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed"  routerLink="setting" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Settings</span>
-        </a>
-       
-      </li>
-      <!-- Nav Item - Charts -->
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li> -->
- 
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-    </ul>
+   
     <!-- End of Sidebar -->
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column mt-3 " >
       <!-- Main Content -->
-      <div id="content">
+      <div id="content ">
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <!-- header -->
+        <div class="left-nav" >
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="height: 80px;">
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0  mw-100 navbar-search">
             <div class="input-group">
               <img src="../../assets/shoofly.png" class="mt-2" style="width: 200px;">
-             
+            
             </div>
+          
           </form>
+<div  class="row " style="margin-left: 450px;">
+
+  <ul>
+   
+   
+    <li><a   routerLink="dashboad1" routerLinkActive="active">Dashboard</a></li>
+    <li><a   routerLink="batch"  routerLinkActive="active">Batch History</a></li>
+    <li><a  routerLink="setting" routerLinkActive="active">Setting</a></li>
+ </ul>
+
+
+ <!-- <div class="col-xl-3 col-md-6 mb-4 mt-1" style="width: 250px;">
+  <div class="card border hello shadow h-100 py-2">
+    <div class="card-body" (click)="Dashboard()">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-white text-center text-uppercase mt-3">Dashboard</div>
+        
+        </div>
+        <div class="col-auto">
+       
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-xl-3 col-md-6 mb-4" style="width: 250px;" >
+  <div class="card border  hello shadow h-100 py-2">
+    <div class="card-body" (click)="Batch()"  >
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-white text-center text-uppercase mt-3">Batch History</div>
+        
+        </div>
+        <div class="col-auto">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xl-3 col-md-6 mb-4 mt-1" style="width: 250px;">
+  <div class="card border hello shadow h-100 py-2">
+    <div class="card-body" routerLink="setting">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-white text-center text-uppercase mt-3">Settings</div>
+        
+        </div>
+        <div class="col-auto">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+  
+</div>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -127,6 +114,8 @@
                 <span class="badge badge-danger badge-counter">3+</span>
               </a> -->
               <!-- Dropdown - Alerts -->
+
+              
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
@@ -252,10 +241,103 @@
             </li>
           </ul>
         </nav>
+        </div>
         <!-- End of Topbar -->
         <!-- Begin Page Content -->
         <div class="container-fluid">
-   <router-outlet></router-outlet>
+          
+      <!-- <div class="col-xl-12   " style="height: 140px;">
+        <div class="card border shadow h-100 ">
+          <div class="card-body">
+   
+            <div class="space">
+             
+        
+         
+                <div class="col-xl-4 col-md-6 mb-4" style="width: 300px; height: 100px;">
+                  <div class="card border shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-primary text-center  text-uppercase mb-1 ml-2">Batch History</div>
+                        
+                        </div>
+                        <div class="col-auto">
+                      
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-xl-4 col-md-6 mb-4" style="width: 300px;">
+                  <div class="card border shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-primary text-center text-uppercase mb-1 ml-2">Upload Data</div>
+                        
+                        </div>
+                        <div class="col-auto">
+                     
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                
+          <div class="col-xl-4 col-md-6 mb-4" style="width: 300px;">
+            <div class="card border shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-center text-uppercase mb-1 ml-2">Batch History</div>
+                  
+                  </div>
+                  <div class="col-auto">
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          
+          <div class="col-xl-3 col-md-6 mb-4" style="width: 300px;">
+            <div class="card border shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-center text-uppercase mb-1 ml-2">Batch History</div>
+                  
+                  </div>
+                  <div class="col-auto">
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+              </div>
+      
+            
+
+
+              <div class="tools">
+           
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+  <div >
+      <router-outlet></router-outlet>
+      </div>
         </div>
 
         <!-- /.container-fluid -->

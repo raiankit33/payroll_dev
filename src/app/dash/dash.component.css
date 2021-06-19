@@ -11,5 +11,82 @@ a{
     cursor: pointer;
 }
 
+.space{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+.fixed{
+ /* position: fixed;
+ z-index: 10; */
+ position: sticky;
+ top: 0;
+}
+
+.hello{
+    background:  #6699ff 100%;
+  }
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: yellow;
+    padding: 50px;
+    font-size: 20px;
+    z-index: 9;
+  }
+  
+
+  .left-nav
+{
+ position: fixed;
+ width: 100%;
+ height: 70px;
+ top:0px;
+ background-color:blue;
+ left: 0;
+ bottom: 0;
+
+ padding-top: 1px;
+ z-index: 9;
+}
 
 
+
+/* mmm */
+
+
+
+
+nav ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+nav ul li{
+  margin: 0 5px;
+}
+nav ul li a{
+  color: #1447ee;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+nav ul li a.active,
+nav ul li a:hover{
+  color: rgb(234, 235, 240);
+  background: rgb(17,96,140);
+    background: linear-gradient(0deg, rgba(17,96,140,1) )
+}
+nav .menu-btn i{
+  color: rgb(236, 10, 10);
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
