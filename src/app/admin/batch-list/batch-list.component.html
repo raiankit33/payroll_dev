@@ -1,0 +1,53 @@
+<br>
+<br>
+<div class="card shadow col-md-10 cent mb-4 mt-5" style="margin-left: 130px;" >
+    <div class="search_wrap search_wrap_1 mr-4">
+      <div class="drop">
+        <div class="search_box">
+          <input type="text" class="form-control mt-2 ml-2" [(ngModel)]="name" (change)="Search()" style="width: 200px;"
+            placeholder="search...">
+  
+        </div>
+  
+      </div>
+      <div class="table-responsive">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Batch Name</th>
+  
+                <th scope="col">No of Employee</th>
+                <th scope="col">Created at</th>
+              
+  
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let l of batchDetail |  filter: name   ; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td >{{l.Batch_Name}}</td>
+  
+              
+                <td>{{l.employee}}</td>
+               
+                <td>{{l.created_at}}</td>
+                <!-- <td>
+                  <ul>
+                    <li class="list-inline-item">
+                      <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-toggle="modal" data-target=".bd-lg" data-placement="top" (click)="ActivateUser()" title="Edit">InActive</button>
+                    </li>
+                  </ul>
+                </td> -->
+              </tr>
+  
+  
+  
+            </tbody>
+  
+           
+          </table>
+        </div>
+      </div>

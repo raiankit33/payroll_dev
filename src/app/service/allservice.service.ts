@@ -186,5 +186,18 @@ getAdminDetailPage(m){
 }
 
 
+//Admin  part 
+
+
+getSignUpDetail(m){
+  return this.http.post('https://ly4d48q8la.execute-api.us-west-2.amazonaws.com/activateUser/activateUser  ',m)
+}
+
+
+getActivateUser(m){
+  return this.http.post('https://ly4d48q8la.execute-api.us-west-2.amazonaws.com/activateUser/activateUser  ',m)
+}
+
+
 }
 

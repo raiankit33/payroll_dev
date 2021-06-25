@@ -1,41 +1,172 @@
-<br>
-<br>
+
+  
+  <!-- Sidebar -->
+  
+<br><br>
+
+
+  <!-- Content Row -->
+
+
+    <div class="row">
 <div class="card shadow mb-4 mt-5">
   <div class="search_wrap search_wrap_1 mr-4">
-    <div class="search_box" >
-      <input type="text" class="form-control mt-1 ml-2"  [(ngModel)]="name" (change)="Search()" style="width: 200px;"  placeholder="search...">
-      
+    <div class="drop">
+      <div class="search_box">
+        <input type="text" class="form-control mt-2 ml-2" [(ngModel)]="name" (change)="Search()" style="width: 200px;"
+          placeholder="search...">
+
+      </div>
+
+      <div class="dropdown ml-4 mt-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+Filter User
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" (click)="activate()">Active</a>
+          <a class="dropdown-item" (click)="Inactive()">Inactive</a>
+
+        </div>
+      </div>
+<div class="right">
+      <button class="btn btn-primary" data-toggle="modal"  data-target=".bd-example-modal-lg" >Add</button>
+      </div>
     </div>
     <div class="table-responsive">
-    <div class="card-body">
-      <table class="table table-hover">
-        <thead>
-          <tr >
-            <th scope="col">S.No</th>
-            <th scope="col">Batch Name</th>
-            
-            <th scope="col">User Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Created at</th>
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Name</th>
+
            
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let l of showDetail |  filter: name   ; index as i">
-            <th scope="row">{{i+1}}</th>
-          <td >{{l.Batch_Name}}</td>
-          
-            <td>{{l.User_name}}</td>
-            <td>{{l.User_email}}</td>
-            <td>{{l.created_at}}</td>
-          </tr>
-          
+              <th scope="col">Email</th>
+              <th scope="col">Status</th>
+              <th scope="col">Created at</th>
+              <th scope="col">Action</th>
 
-        
-        </tbody>
-      </table>
+            </tr>
+          </thead>
+          <tbody *ngIf="active">
+            <tr *ngFor="let l of showDetail |  filter: name   ; index as i">
+              <th scope="row">{{i+1}}</th>
+              <td (click)="getBatchDetail(l.id)" style="color: blue;cursor: pointer;">{{l.name}}</td>
+
+            
+              <td>{{l.email}}</td>
+              <td><span class="badge badge-success">{{l.status}}</span></td>
+              <td>{{l.create_at}}</td>
+              <td>
+                <ul>
+                  <li class="list-inline-item">
+                    <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-lg" data-placement="top" (click)="InActivateUser(l.id)" title="Edit">InActive</button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+
+
+          </tbody>
+
+          <tbody *ngIf="inactive">
+            <tr *ngFor="let l of signUpDetail |  filter: name   ; index as i">
+              <th scope="row">{{i+1}}</th>
+              <td>{{l.name}}</td>
+              <td>{{l.email}}</td>
+           
+              <td><span class="badge badge-danger">{{l.status}}</span></td>
+              <td>{{l.create_at}}</td>
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-lg" data-placement="top" (click)="ActivateUser(l.id)" title="Edit">Activate</button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+
+
+          </tbody>
+        </table>
+      </div>
     </div>
+
     </div>
+</div>
 
 
+    
+<div class="modal fade bd-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Add Customer</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div >
+
+            <!-- <label class="mt-5" style="margin-left: 200px;"><strong>Validation Done No Error Found</strong></label> -->
+        </div>
+        <div  >
+          <div class="container">
+
+          
+            <div class="content">
+              <form [formGroup]="Myform">
+                <div class="user-details">
+  
+  
+  
  
+                  <div class="input-box">
+                    <span class="details">* Name</span>
+                    <input type="text"  required name="name" formControlName="name" >
+                 
+                  </div>
+                  
+                  <div class="input-box ml-3">
+                    <span class="details">* Email</span>
+                    <input type="email"  required name="email" formControlName="email" >
+                    
+                  </div>
+
+                  <div class="input-box ">
+                    <span class="details">* Password</span>
+                    <input type="password" required name="password" formControlName="password" >
+                    
+                  </div>
+
+
+    
+
+            
+           
+  
+    
+
+  
+                  <div class="button">
+                  <button type="submit" class="btn btn-primary" (click)="submitUser()">Submit</button>
+                  </div>
+  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+    </div>
+</div>
+
+</div>

@@ -28,7 +28,14 @@
         <span>or use your email for registration</span>
         <input type="text" name="name" placeholder="Name">
         <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
+        
+<div class="input-group">
+        <input type="password" name="password" placeholder="Password">    <div class="input-group-append">
+            <span class="input-group-text" style="color: chartreuse;">
+              <i class="fa fa-eye-slash"></i>
+            </span>
+         </div>
+         </div>
         <button>SignUp</button>
     </form>
     </div>
@@ -50,14 +57,17 @@
             <div *ngIf="form.get('email').errors.pattern" style="font-size: 13px;"> Invalid Email</div>
           </div>
        
+       
         <input type="password" formControlName="password" name="password" placeholder="Password" required [ngClass]="
         { 'is-invalid': form.get('password').touched && form.get('password').invalid}">
+       
         <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
             <div *ngIf="form.get('password').errors.required" style="font-size: 13px;"> Password is required</div>
          
             <div *ngIf="form.get('password').errors.minlength" style="font-size: 13px;"> Minimum 8 Character Required</div>
           
           </div>
+
     
         <button (click)="onSubmit()"> Sign In</button><br>
         <button  routerLink="/" id="signIn">Back</button>

@@ -18,7 +18,8 @@ import { AdmindashComponent } from './admin/admindash/admindash.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminSettingComponent } from './admin/admin-setting/admin-setting.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { BatchListComponent } from './admin/batch-list/batch-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AdmindashComponent,
     AdminLoginComponent,
     AdminSettingComponent,
+    BatchListComponent,
     
   
   
@@ -42,6 +44,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    NgxCaptchaModule,
     ReactiveFormsModule,
     AppRoutingModule,
     NgxPaginationModule,

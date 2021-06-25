@@ -11,6 +11,8 @@ import { AuthService } from '../service/auth.service';
 })
 export class SignupComponent implements OnInit {
 
+  siteKey:string = "6LfIOlYbAAAAAOSWpT_3p8j8THR_Am5S0iLQ1kgV"
+
   constructor(private router: Router,
     private service : AuthService) { }
 
@@ -22,6 +24,7 @@ export class SignupComponent implements OnInit {
     name: new FormControl('',Validators.required),
     email: new FormControl('',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
     password: new FormControl('',[Validators.required,Validators.minLength(8)]),
+    recaptcha: new FormControl('',Validators.required),
   })
 
 
@@ -29,7 +32,14 @@ export class SignupComponent implements OnInit {
   onSubmit(){
   
     if(this.form.valid){
-    this.service.SignUp(this.form.value)
+      let s ={
+        name :this.form.value.name,
+        email :this.form.value.email,
+        password :this.form.value.password,
+        recaptcha :this.form.value.recaptcha,
+        status :"Inactive"
+      }
+    this.service.SignUp(s)
       .subscribe(
         (data) => {
           if(data.statusCode==200){

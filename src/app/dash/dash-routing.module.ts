@@ -14,6 +14,7 @@ import { EmployeeListComponent } from '../employee-list/employee-list.component'
 import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
 import { AdmindashComponent } from '../admin/admindash/admindash.component';
 import { AdminSettingComponent } from '../admin/admin-setting/admin-setting.component';
+import { BatchListComponent } from '../admin/batch-list/batch-list.component';
 
 const routes: Routes = [
   { path: '', component: DashComponent,
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'form', component:FormComponent},
     { path: 'setting', component:SettingComponent},
     { path: 'AdminSetting', component:AdminSettingComponent},
+    { path: 'bachList', component:BatchListComponent},
     
     { path: 'batch', component:BatchesComponent},
  

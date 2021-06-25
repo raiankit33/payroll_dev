@@ -55,7 +55,11 @@
             <div *ngIf="form.get('password').errors.minlength" style="font-size: 13px;"> Minimum 8 Character Required</div>
           </div>
        
-      
+          <ngx-recaptcha2 #captchaElem
+          [siteKey]="siteKey"
+    
+          formControlName="recaptcha">
+        </ngx-recaptcha2>
 
     
         <button (click)="onSubmit()" >Register</button><br>

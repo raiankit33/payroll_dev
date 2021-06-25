@@ -1420,8 +1420,8 @@ this.Stack()
 
   Swal.fire({
     icon: 'error',
-    title: 'No Data Found',
-    text: 'Please Try Different Filter !',
+    title: 'No data found',
+    text: 'Please try different filter !',
     
   })
 }
@@ -1823,8 +1823,8 @@ console.log(res)
 
   Swal.fire({
     icon: 'error',
-    title: 'No Data Found',
-    text: 'Please Try Different Filter !',
+    title: 'No data found',
+    text: 'Please try different filter !',
     
   })
 }
