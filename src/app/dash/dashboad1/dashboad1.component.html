@@ -79,7 +79,7 @@
           <option value="{{Detail.id}}"  [selected]="Detail.id" *ngFor="let Detail of Details">{{Detail.Batch_Name}}</option>
         </select>
 
-        <button class="btn btn-primary upload mt-2 ml-5 " (click)="uploadPage()" >Upload Data</button>
+        <button class="btn btn-primary upload mt-2 ml-5 " (click)="uploadPage()" ><b>Upload Data</b></button>
   
     </div>
     </li>
@@ -87,7 +87,7 @@
     <hr class="sidebar-divider">
     <!-- Heading -->
     <div class="sidebar-heading">
-      Interface
+     Filter
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -96,25 +96,28 @@
         <span>Select Manager </span>
       </a>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-       
-          <span class="details text-white"><b> Select Manager </b></span>  
-          <ngx-select-dropdown (change)="selectManager($event.value.name)" tabindex="0"
+        <form  [formGroup]="Myform"  >
+         
+          <ngx-select-dropdown  tabindex="0" formControlName="Manager"  name="Manager"
               [multiple]="false" [config]="config" [options]="manager">
           </ngx-select-dropdown>
-      
+      </form>
       </div>
     </li>
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
+        <i class="fas fa-fw fa fa-certificate"></i>
+    
         <span>Select Department</span>
       </a>
+    
       <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <ngx-select-dropdown (change)="selectDepartment($event.value.name)" tabindex="0"
+        <form  [formGroup]="Myform"  >
+        <ngx-select-dropdown  tabindex="0" formControlName="department"  name="department"
               [multiple]="false" [config]="config" [options]="Department">
           </ngx-select-dropdown>
-        
+       </form>
       </div>
     </li>
 
@@ -124,25 +127,26 @@
         <span>Select Agency </span>
       </a>
       <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-      
-        <ngx-select-dropdown (change)="selectVendor($event.value.name)" tabindex="0"
+        <form  [formGroup]="Myform"  >
+        <ngx-select-dropdown  tabindex="0" formControlName="Agency"  name="Agency"
       [multiple]="false" [config]="config" [options]="agency">
   </ngx-select-dropdown>
-        
+        </form>
       </div>
     </li>
 
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true" aria-controls="collapseUtilities3">
-        <i class="fas fa-fw fa-wrench"></i>
+        <i class="fas fa-fw fa fa-certificate"></i>
         <span> Select State </span>
       </a>
       <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-        <ngx-select-dropdown (change)="selectState($event.value.name)" tabindex="0"
+        <form  [formGroup]="Myform"  >
+        <ngx-select-dropdown  tabindex="0" formControlName="state"  name="state"
         [multiple]="false" [config]="config" [options]="state">
       </ngx-select-dropdown>
-        
+        </form>
       </div>
     </li>
 
@@ -150,10 +154,11 @@
     
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4" aria-expanded="true" aria-controls="collapseUtilities4">
-        <i class="fas fa-fw fa-wrench"></i>
+        <i class="fas fa-fw fa fa-calendar"></i>
         <span> Select Date</span>
       </a>
       <div id="collapseUtilities4" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+       
         <div class="input-box ">
           <span class="details text-white ml-3"><b> Select Start Date </b></span>
           <input type="date" class="form-control ml-2 " formControlName="start_date"  name="start_date"   style="width: 200px;"   >   
@@ -171,10 +176,15 @@
    
         
       </div>
+
+<div class="mt-3">
+      <button class="btn btn-primary ml-5 " (click)="sendFilter()"> Search</button>
+      <button class="btn btn-primary ml-3" (click)="reset()"> Reset</button>
+      </div>
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
+    <hr class="sidebar-divider mt-2">
     <!-- Heading -->
   
     <!-- Nav Item - Pages Collapse Menu -->
@@ -328,10 +338,10 @@
               <!-- Card Body -->
             
               <div class="card-body">
-                <div class="chart-area">
+              <br>
                   <!-- <canvas id="myBarChart"></canvas> -->
                   <canvas id="myChart" height="90px"></canvas>
-                </div>
+                
              
               </div>  
             
@@ -643,7 +653,7 @@
       <div class="row">
 
 
-        <div class="col-xl-6 col-lg-5">
+        <div class="col-xl-4 col-lg-5">
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -683,7 +693,7 @@
             <!-- Card Body -->
             <div class="card-body">
               <div class="chart-pie pt-4 pb-2">
-                <canvas id="Chart" height="130px"></canvas>
+                <canvas id="Chart" height="190px"></canvas>
               </div>
               <div class="mt-4 text-center small">
                 <span></span>
@@ -694,20 +704,23 @@
           </div>
         </div>
   
-        <div class="col-xl-6 col-lg-5">
+       
+
+
+        <div class="col-xl-8 col-lg-5">
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Bubble Chart</h6>
+              <h6 class="m-0 font-weight-bold text-primary" > Department Details </h6>
               <div class="row no-gutters align-items-center tools ">
                 <div class="col-auto">
                   <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
-                  <div class="more-post-optns "    > 
+                  <div class="more-post-optns "   > 
                    
                     <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
                   <ul style="width: 500px;" >
                  <p>
-                  This is a Bubble graph of the division of working hours for the selected data.
+                  This is a Stack graph of the division of Department for the selected data.
                  </p>
                   </ul>
                 </div>
@@ -734,7 +747,7 @@
             <!-- Card Body -->
             <div class="card-body">
               <div class="chart-pie pt-4 pb-2">
-                <canvas id="Bubble" height="140px"></canvas>
+                <canvas id="stack3" height="100px"></canvas>
               </div>
               <div class="mt-4 text-center small">
                 <span></span>
@@ -760,63 +773,14 @@
   
   
   
-        <div class="col-xl-6 col-lg-5">
-          <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary" >Stack - Department </h6>
-              <div class="row no-gutters align-items-center tools ">
-                <div class="col-auto">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
-                  <div class="more-post-optns "   > 
-                   
-                    <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
-                  <ul style="width: 500px;" >
-                 <p>
-                  This is a Histogram graph of the division of Savings for the selected data.
-                 </p>
-                  </ul>
-                </div>
-                </div>
-                <div class="col">
-  
-                </div>
-              </div> 
-              <div class="dropdown no-arrow">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                  aria-labelledby="dropdownMenuLink">
-                  <div class="dropdown-header">Dropdown Header:</div>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </div>
-            </div>
-            <!-- Card Body -->
-            <div class="card-body">
-              <div class="chart-pie pt-4 pb-2">
-                <canvas id="stack3" height="170px"></canvas>
-              </div>
-              <div class="mt-4 text-center small">
-                <span></span>
-                <br>
-  
-              </div>
-            </div>
-          </div>
-        </div>
+     
   
   
         <div class="col-xl-6 col-lg-5">
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Stacked Chart - Manager Details</h6>
+              <h6 class="m-0 font-weight-bold text-primary"> Manager Details</h6>
               <div class="row no-gutters align-items-center tools">
                 <div class="col-auto">
                   <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
@@ -825,7 +789,7 @@
                     <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
                   <ul style="width: 500px;" >
                  <p>
-                  This is a Scatter graph of the division of  hours for the selected data.
+                  This is a Stack graph of the division of Manager for the selected data.
                  </p>
                   </ul>
                 </div>
@@ -852,7 +816,7 @@
             <!-- Card Body -->
             <div class="card-body">
               <div class="chart-pie pt-4 pb-2">
-                <canvas id="stack2" height="170px"></canvas>
+                <canvas id="stack2" height="160px"></canvas>
               </div>
               <div class="mt-4 text-center small">
                 <span></span>
@@ -869,7 +833,7 @@
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary" >Stack chart - Location</h6>
+              <h6 class="m-0 font-weight-bold text-primary" > State Location</h6>
               <div class="row no-gutters align-items-center tools">
                 <div class="col-auto">
                   <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
@@ -878,7 +842,7 @@
                     <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
                   <ul  style="width: 500px;">
                  <p>
-                  This is a Histogram graph of the division of Costs for the selected data.
+                  This is a Stack graph of the division of Costs for the selected data.
                  </p>
                   </ul>
                 </div>
@@ -905,7 +869,7 @@
             <!-- Card Body -->
             <div class="card-body">
               <div class="chart-pie pt-4 pb-2">
-                <canvas id="bubble" height="170px"></canvas>
+                <canvas id="bubble" height="160px"></canvas>
               </div>
               <div class="mt-4 text-center small">
                 <span></span>
@@ -922,7 +886,7 @@
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary" >Stack Bar </h6>
+              <h6 class="m-0 font-weight-bold text-primary" >Vendor Details </h6>
               <div class="row no-gutters align-items-center tools">
                 <div class="col-auto">
                   <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
@@ -960,6 +924,69 @@
               <div class="chart-pie pt-4 pb-2">
                 <canvas id="BChart" height="170px"></canvas>
               </div>
+              <div class="mt-4 text-center small">
+                <span></span>
+                <br>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary" >Vendor Rank</h6>
+             
+              <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                  aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+         
+            <div class="card-body">
+            
+                <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Rank</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Savings(%)</th>
+                     
+                  
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <tr *ngFor="let d of chartVendor;  index as i" >
+                    <th scope="row">{{i+1}}</th>
+                      <td  style="color: blue;">{{d.Worker_Agency}}</td>
+                      <td> {{d.Percentage }}</td>
+                     
+                    
+                     
+                    </tr> 
+                  
+                  
+                  </tbody>
+                </table>
+                </div>
+           
               <div class="mt-4 text-center small">
                 <span></span>
                 <br>

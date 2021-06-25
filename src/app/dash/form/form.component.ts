@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
@@ -8,7 +8,7 @@ import { NgxCSVParserError } from 'ngx-csv-parser';
 import { AllserviceService } from 'src/app/service/allservice.service';
 import { __assign } from 'tslib';
 import { isString } from 'highcharts';
-import { isEmpty } from 'rxjs/operators';
+import { findIndex, isEmpty } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
 declare var $: any;
@@ -321,8 +321,22 @@ run:boolean =true
       this.uniqueNameValidation(this.csvRecords[i]);
       this.uniqueTitleValidation(this.csvRecords[i]);
       this.uniqueZipValidation(this.csvRecords[i]);
+      this.uniqueStaffValidation(this.csvRecords[i])
       this.uniqueCompanyValidation(this.csvRecords[i]);
       this.hasEmptyElement(this.csvRecords[i]);
+      this.uniqueOTPayValidation(this.csvRecords[i]);
+      this.uniqueDoubleTimeValidation(this.csvRecords[i]);
+      this.uniqueOverTimeValidation(this.csvRecords[i]);
+      this.uniqueSTPayValidation(this.csvRecords[i]);
+      this.uniqueTimeValidation(this.csvRecords[i]);
+      this.uniqueMarkupValidation(this.csvRecords[i]);
+      this.uniqueStateValidation(this.csvRecords[i]);
+      this.uniqueDepatmentValidation(this.csvRecords[i]);
+      this.uniqueManagerValidation(this.csvRecords[i]);
+      this.uniqueCityValidation(this.csvRecords[i]);
+      this.uniqueAgencyValidation(this.csvRecords[i]);
+      this.uniqueLocationValidation(this.csvRecords[i]);
+      this.uniqueHeader
     }
     console.log(this.execelValidationError)
   }
@@ -333,7 +347,7 @@ run:boolean =true
   uniqueIdValidation(csvRecords) {
 
     if (isNaN(csvRecords["Worker_Unique_Id"])) {
-      let error = { "Message": "worker Unique Id does not contain String" }
+      let error = { "Message": "worker Unique Id does not contain String value" }
 
       this.execelValidationError.push(error);
     }
@@ -341,55 +355,228 @@ run:boolean =true
 
   uniqueNameValidation(csvRecords) {
 
-    // if (isString(csvRecords["Worker_Name"])) {
+    var  user = csvRecords["Worker_Name"]
 
-    //   let error = { "Message": " valiation error  " }
-    //   this.execelValidationError.push(error);
-    // }
+      for(var i = 0 ;  i<=user ;i++){
+     
+        if (typeof  user === 'string' || user instanceof String) {
+  
+          let error = { "Message": " Worker Name does not contain number  " }
+          this.execelValidationError.push(error);
+          break ;
+        } 
+    }
   }
 
   uniqueTitleValidation(csvRecords) {
-    var user = csvRecords["Worker_Title"];
-    //   if (typeof  user === 'string' || user instanceof String) {
-    //     console.log('user is a string');
-    // } else {
-    //     console.log('user is not a string');
-    // }
+    var user = csvRecords["Worker_Title"] ;
+   
+    for(var i = 0 ;  i<=user ;i++){
+     
+      if (typeof  user === 'string' || user instanceof String) {
+
+        let error = { "Message": " Worker title does not contain number  ", }
+        this.execelValidationError.push(error );
+        break ;
+       }
+
+    }
+  }
+
+  uniqueManagerValidation(csvRecords) {
+    var user = csvRecords["Worker_Manager"] ;
+   
+    for(var i = 0 ;  i<=user ;i++){
+     
+      if (typeof  user === 'string' || user instanceof String) {
+
+        let error = { "Message": " Worker_Manager does not contain number  ", }
+        this.execelValidationError.push(error );
+        break ;
+       }
+
+    }
+  }
+
+  uniqueDepatmentValidation(csvRecords) {
+    var user = csvRecords["Worker_Department"] ;
+   
+    for(var i = 0 ;  i<=user ;i++){
+     
+      if (typeof  user === 'string' || user instanceof String) {
+
+        let error = { "Message": " Worker_Department does not contain number  ", }
+        this.execelValidationError.push(error );
+        break ;
+       }
+
+    }
+  }
+
+
+  uniqueLocationValidation(csvRecords) {
+    var user = csvRecords["Worker_Location"] ;
+   
+    for(var i = 0 ;  i<=user ;i++){
+     
+      if (typeof  user === 'string' || user instanceof String) {
+
+        let error = { "Message": " Worker_Location does not contain number  ", }
+        this.execelValidationError.push(error );
+        break ;
+       }
+
+    }
+  }
+
+  uniqueCityValidation(csvRecords) {
+    var user = csvRecords["Work_City"] ;
+   
+    for(var i = 0 ;  i<=user ;i++){
+     
+      if (typeof  user === 'string' || user instanceof String) {
+
+        let error = { "Message": " Work_City does not contain number  ", }
+        this.execelValidationError.push(error );
+        break ;
+       }
+
+    }
+  }
+
+
+  uniqueStateValidation(csvRecords) {
+    var user = csvRecords["Work_State"] ;
+   
+    for(var i = 0 ;  i<=user ;i++){
+     
+      if (typeof  user === 'string' || user instanceof String) {
+
+        let error = { "Message": " Work_State does not contain number  ", }
+        this.execelValidationError.push(error );
+        break ;
+       }
+
+    }
+  }
+
+  uniqueAgencyValidation(csvRecords) {
+    var user = csvRecords["Worker_Agency"] ;
+   
+    for(var i = 0 ;  i<=user ;i++){
+     
+      if (typeof  user === 'string' || user instanceof String) {
+
+        let error = { "Message": " Worker_Agency does not contain number  ", }
+        this.execelValidationError.push(error );
+        break ;
+       }
+
+    }
   }
 
 
   uniqueZipValidation(csvRecords) {
     if (isNaN(csvRecords["Work_Zip"])) {
-      let error = { "Message": "worker Zip does not contain String" }
+      let error = { "Message": "worker Zip does not contain String value" }
+
+      this.execelValidationError.push(error, );
+    }
+  }
+
+  uniqueStaffValidation(csvRecords) {
+    if (isNaN(csvRecords["Staffing_Company_Cost"])) {
+      let error = { "Message": "Staffing_Company_Cost does not contain String value" }
 
       this.execelValidationError.push(error);
     }
-
-
   }
 
   uniqueCompanyValidation(csvRecords) {
 
     if (isNaN(csvRecords["Worker_Comp_Code"])) {
-      let error = { "Message": "Worker_Comp_Code does not contain String" }
+      let error = { "Message": "Worker_Comp_Code does not contain String value" }
+
+      this.execelValidationError.push(error);
+    }
+  }
+  uniqueTimeValidation(csvRecords) {
+
+    if (isNaN(csvRecords["Standard_Time_H"])) {
+      let error = { "Message": "Worker_Comp_Code does not contain String value" }
 
       this.execelValidationError.push(error);
     }
   }
 
-  arrayIsEmpty(array){
-    //If it's not an array, return FALSE.
-    if(!Array.isArray(array)){
-        return false;
+  uniqueSTPayValidation(csvRecords) {
+
+    if (isNaN(csvRecords["ST_Pay_Rate"])) {
+      let error = { "Message": "ST_Pay_Rate does not contain String value" }
+
+      this.execelValidationError.push(error);
     }
-    //If it is an array, check its length property
-    if(array.length == 0){
-        //Return TRUE if the array is empty
-        return true;
+  }
+
+
+  uniqueOverTimeValidation(csvRecords) {
+
+    if (isNaN(csvRecords["Over_Time_H"])) {
+      let error = { "Message": "Over_Time_H does not contain String value" }
+
+      this.execelValidationError.push(error);
     }
-    //Otherwise, return FALSE.
-    return false;
-}
+  }
+
+  uniqueOTPayValidation(csvRecords) {
+
+    if (isNaN(csvRecords["OT_Pay_Rate"])) {
+      let error = { "Message": "OT_Pay_Rate does not contain String value" }
+
+      this.execelValidationError.push(error);
+    }
+  }
+
+  uniqueDoubleTimeValidation(csvRecords) {
+
+    if (isNaN(csvRecords["Double_Time_H"])) {
+      let error = { "Message": "Double_Time_H does not contain String value" }
+
+      this.execelValidationError.push(error);
+    }
+  }
+
+  uniqueMarkupValidation(csvRecords) {
+
+    if (isNaN(csvRecords["Markup_Percentage"])) {
+      let error = { "Message": "Markup_Percentage does not contain String value" }
+
+      this.execelValidationError.push(error);
+    }
+  }
+
+  
+  uniqueHeader(){
+var user  = this.header
+
+if(user == undefined   ){
+  var error = { "Message": " header is missing " }
+      this.execelValidationError.push(error);
+ }
+  }
+
+ isEmptyObj(object) {
+  for (var key in object) {
+      if (object.hasOwnProperty(key)) {
+        
+          let error = { "Message": "empty does not contain String value", }
+          
+console.log(error)
+      // this.execelValidationError.push(error);
+        
+
+      }
+  }}
 
   hasEmptyElement(csvRecords) {
 
@@ -401,11 +588,10 @@ run:boolean =true
     //   this.execelValidationError.push(error);
     // }
 
-    console.log(this.arrayIsEmpty(csvRecords))
-    if(this.arrayIsEmpty(csvRecords)){
-        var error = { "Message": " Emplty doest not contain Number" }
-     this.execelValidationError.push(error);
-    }
+  
+   this.isEmptyObj(csvRecords)
+      
+    
 
    
 
@@ -419,16 +605,19 @@ run:boolean =true
     if (this.form.valid) {
       this.csvRecords = this.normalizeExcel();
 
-      this.Method()
+      // this.Method()
       let form = {
         batch_name: this.Myform.value.batch_name,
         SUI_pct: this.Myform.value.sui_rate,
         csv: this.csvRecords,
         user_id: this.user.id,
+        user_name: this.user.name,
+        user_email: this.user.email,
       }
       this.isLoading = true
       this.Service.addFile(form).subscribe(res => {
         this.show = false
+        this.router.navigate(['dash/dashboad1']);
         console.log(res);
         setTimeout(() => {
           this.isLoading = false;
@@ -448,9 +637,29 @@ run:boolean =true
     }
   }
 
+  errorMessage :boolean = false;
+  next1() {
+    if (this.Myform.valid) {
+      this.csvRecords = this.normalizeExcel();
+      this.Method()
+      this.step = this.step + 1;
+      if(this.execelValidationError.length > 1){
+        
+         this.errorMessage = true;
+         this.show = false
+      }else{
+        this.show = true;
+        this.errorMessage = false
+      }
+    } else {
+      this.validateAllFormFields(this.Myform);
+    }
+  }
+
 
   validate(){
     this.run = false
+    // this.Method();
  
   }
 
@@ -545,7 +754,7 @@ run:boolean =true
   }
 
   close() {
-    this.router.navigate(['dash/dashboad1']);
+    this.router.navigate(['dash/dashboad']);
     this.setTime = true;
   }
 

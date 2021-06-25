@@ -130,14 +130,14 @@
                    
                     <i class="fas fa-fw fa-dot-circle"></i>
                   <ul style="width: 300px;">
-                    <li class="font-weight-bold" style="font-size: 17px;">FUI Tax -{{userObj.FUI_TAX}} </li>
-                    <li class="font-weight-bold" style="font-size: 17px;">SUI Tax -{{userObj.SUI_TAX}}</li>
-                    <li class="font-weight-bold" style="font-size: 17px;">Sales_TAX -{{userObj.Sales_TAX}}</li>
-                    <li class="font-weight-bold" style="font-size: 17px;">FICA_TAX - {{userObj.FICA_TAX}}</li>
-                    <li class="font-weight-bold" style="font-size: 17px;">FEE_TAX- {{userObj.FEE_TAX}}</li>
-                    <li class="font-weight-bold" style="font-size: 17px;">EPLI_TAX - {{userObj.EPLI_TAX}}</li>
-                    <li class="font-weight-bold" style="font-size: 17px;">Delivery_TAX - {{userObj.Delivery_TAX}}</li>
-                    <li class="font-weight-bold" style="font-size: 17px;">Time_Range - {{userObj.Project_End}}</li>
+                    <li class="font-weight" style="font-size: 17px;">FUI Tax - <strong>{{userObj.FUI_TAX}}</strong> </li>
+                    <li class="font-weight" style="font-size: 17px;">SUI Tax - <strong>{{userObj.SUI_TAX}}</strong></li>
+                    <li class="font-weight" style="font-size: 17px;">Sales TAX - <strong>{{userObj.Sales_TAX}}</strong></li>
+                    <li class="font-weight" style="font-size: 17px;">FICA TAX - <strong>{{userObj.FICA_TAX}}</strong> </li>
+                    <li class="font-weight" style="font-size: 17px;">FEE TAX - <strong>{{userObj.FEE_TAX}}</strong> </li>
+                    <li class="font-weight" style="font-size: 17px;">EPLI TAX - <strong>{{userObj.EPLI_TAX}}</strong></li>
+                    <li class="font-weight" style="font-size: 17px;">Delivery TAX - <strong>{{userObj.Delivery_TAX}}</strong> </li>
+                    <li class="font-weight" style="font-size: 17px;">Start Date - <strong>{{userObj.Project_End}}</strong> </li>
                   </ul>
                 </div>
                 </div>
@@ -212,50 +212,15 @@
    
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
       <h6 class="m-0 font-weight-bold text-primary">  Pie Chart Details</h6>
-      <div class="dropdown no-arrow">
-        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-          aria-labelledby="dropdownMenuLink">
-          <div class="dropdown-header">Dropdown Header:</div>
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </div>
-    </div>
-   
-    <div class="card-body">
-      <div class="chart-pie pt-4 pb-2">
-        <canvas id="Chart" height="220px"></canvas>
-      </div>
-      <div class="mt-4 text-center small">
-        <span></span>
-        <br>
-
-      </div>
-    </div>
-  </div>
-</div> 
-
-
-<div class="col-xl-7 col-lg-5">
-  <div class="card shadow mb-4">
-   
-    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-      <h6 class="m-0 font-weight-bold text-primary"> Bar Chart Details</h6>
       <div class="row no-gutters align-items-center tools ">
         <div class="col-auto">
           <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
           <div class="more-post-optns "    > 
            
             <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
-          <ul style="width: 500px;" >
+          <ul style="width: 470px;" >
          <p>
-          This is a Bubble graph of the division of working hours for the selected data.
+          This is a Pie graph of the division of working hours for the selected data.
          </p>
           </ul>
         </div>
@@ -282,7 +247,60 @@
    
     <div class="card-body">
       <div class="chart-pie pt-4 pb-2">
-        <canvas id="doughnut"  width="130px"></canvas>
+        <canvas id="Chart" height="200px"></canvas>
+      </div>
+      <div class="mt-4 text-center small">
+        <span></span>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+<div class="col-xl-7 col-lg-5">
+  <div class="card shadow mb-4">
+   
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary"> Cost Details</h6>
+      <div class="row no-gutters align-items-center tools ">
+        <div class="col-auto">
+          <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
+          <div class="more-post-optns "    > 
+           
+            <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
+          <ul style="width: 500px;" >
+         <p>
+          This is a bar graph of the division of costs for the selected data.
+         </p>
+          </ul>
+        </div>
+        </div>
+        <div class="col">
+
+        </div>
+      </div> 
+      <div class="dropdown no-arrow">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+          aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-header">Dropdown Header:</div>
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+    </div>
+   
+    <div class="card-body">
+      <div class="chart-pie pt-4 pb-2">
+        <br>
+        <canvas id="doughnut"  width="115px"></canvas>
       </div>
       <div class="mt-4 text-center small">
         <span></span>
@@ -298,7 +316,7 @@
   <div class="card shadow mb-4" style=" height: 450px;" >
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-      <h6 class="m-0 font-weight-bold text-primary"> Bar Chart Details</h6>
+      <h6 class="m-0 font-weight-bold text-primary"> Tax Details</h6>
       <div class="row no-gutters align-items-center tools ">
         <div class="col-auto">
           <div class="h5 mb-0 font-weight-bold text-gray-800 ml-4"> </div>
@@ -307,7 +325,7 @@
             <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
           <ul style="width: 500px;" >
          <p>
-          This is a Bubble graph of the division of working hours for the selected data.
+          This is a bar graph of the division of taxes for the selected data.
          </p>
           </ul>
         </div>
@@ -329,7 +347,8 @@
     <div class="card-body">
       <div class="chart-area">
         <!-- <canvas id="myBarChart"></canvas> -->
-        <canvas id="myChart" height="100px" ></canvas>
+       
+        <canvas id="myChart"  height="100px" ></canvas>
    
       </div>
    

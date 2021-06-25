@@ -233,89 +233,21 @@ pieChart(){
 
 
 barChart(){
-//   var myChart = new Chart('myChart', {
-//     type: 'bar',
-//     data: {
-//         labels: ['FICA_TAX','FICA_Med_TAX','FEE_TAX','EPLI_TAX','Delivery_TAX','FUI_Sol_TAX','FUI_TAX','SUI_TAX',
-//         'Sales_TAX','WC_Admin_TAX','Tech_TAX','FUI_Sol_TAX'],
-//         datasets: [{
-//             label:'',
-//             data: [  this.userObj.FICA_TAX, this.userObj.FICA_Med_TAX , this.userObj.FEE_TAX, this.userObj.EPLI_TAX , 
-//               this.userObj.Delivery_TAX , this.userObj.FUI_Sol_TAX ,this.userObj.FUI_TAX , this.userObj.SUI_TAX , this.userObj.Sales_TAX ,
-//                this.userObj.WC_Admin_TAX , this.userObj.Tech_TAX , this.FUI_Sol_TAX  ],
-//             fill: true,
-        
-//          backgroundColor: [
-//           'rgb(255, 99, 132)',
-//           'rgb(54, 12, 235)',
-//           'rgb(25, 66, 68)',
-//           'rgb(25, 99, 132)',
-//           'rgb(54, 162, 25)',
-//           'rgb(255, 205, 86)',
-//           'rgb(25, 99, 132)',
-//           'rgb(54, 162, 83)',
-//           'rgb(255, 25, 86)',
-//           'rgb(255, 93, 12)',
-//           'rgb(54, 162, 23)',
-//           'rgb(255, 25, 8)',
-    
-//             ],
-//             borderColor :[
-      
-        
-//             ],
-//             borderWidth: 3
-//         }
-  
-      
-      
-//       ]
-//     },
-//     options: {
-//       scales: {
-//         xAxes: [
-//           {
-//           display: false,
-//           barPercentage: 0.9,
-//           ticks: {
-
-//           }
-//         },{
-//           scaleLabel: {
-//             display: true,
-//             labelString: ' Types of Taxes '
-//           }
-//         }, {
-//           display: false,
-//           ticks: {
-//             autoSkip: false,
-
-//           }
-//         }],
-//         yAxes: [{
-//           scaleLabel: {
-//             display: true,
-//             labelString: ' Taxes in Dollar '
-//           }
-//         }]
-//       }
-//     }
-    
-  
-// });
-
-
 
 var chartData = {
-  labels: ['FICA TAX','FICA MED TAX','FEE TAX','EPLI TAX','DELIVERY TAX','FUI SOL TAX','FUI TAX','SUI TAX',
-        'SALES TAX','WC ADMIN_TAX','TECH TAX','FUI SOL TAX'],
+  labels: ['FICA TAX'.split(' ').slice(0),'FICA MED TAX'.split(' ').slice(0),'FEE TAX'.split(' ').slice(0),'EPLI TAX'.split(' ').slice(0),'DELIVERY TAX'.split(' ').slice(0),
+  'FUI SOL TAX'.split(' ').slice(0),'FUI TAX'.split(' ').slice(0),'SUI TAX'.split(' ').slice(0),
+        'SALES TAX'.split(' ').slice(0),'WC ADMIN TAX'.split(' ').slice(0),'TECH TAX'.split(' ').slice(0),'WC TAX'.split(' ').slice(0)],
+     
       datasets: [
           {
               fillColor: "#79D1CF",
               strokeColor: "#79D1CF",
+              label:'Tax' ,
+              
               data: [  this.userObj.FICA_TAX, this.userObj.FICA_Med_TAX , this.userObj.FEE_TAX, this.userObj.EPLI_TAX , 
                 this.userObj.Delivery_TAX , this.userObj.FUI_Sol_TAX ,this.userObj.FUI_TAX , this.userObj.SUI_TAX , this.userObj.Sales_TAX ,
-                 this.userObj.WC_Admin_TAX , this.userObj.Tech_TAX , this.FUI_Sol_TAX  ],
+                 this.userObj.WC_Admin_TAX , this.userObj.Tech_TAX , this.userObj.WC_TAX  ],
                  backgroundColor: [
                             'rgb(255, 99, 132)',
                             'rgb(54, 12, 235)',
@@ -337,9 +269,31 @@ var chartData = {
 
 var opt = {
   events: false,
+  
+  legend: {
+    display: true
+},
   tooltips: {
       enabled: false
   },
+  scales: {
+    xAxes: [
+      {
+      scaleLabel: {
+        display: true,
+        labelString: ' Total Tax ',
+      
+      },
+    }],
+  yAxes: [
+    {
+    scaleLabel: {
+      display: true,
+      labelString: ' Taxes in ($) ',
+    
+    },
+  }]
+},
   hover: {
       animationDuration: 0
   },
@@ -372,70 +326,17 @@ var ctx = document.getElementById("myChart"),
 
 
 doughnutChart(){
-//   var myChart = new Chart('doughnut', {
-//     type: 'bar',
-//     data: {
-//         labels: ['','Staffing Company Cost','Total COST','Total Saving ','Markup','Total_PAY'],
-//         datasets: [{
-//             label:'',
-//             data: [  this.userObj.Staffing_Company_Cost, this.userObj.Total_COST , this.userObj.Saving , this.userObj.Markup ,this.userObj.Total_PAY   ],
-//             fill: true,
-        
-//          backgroundColor: [
-//           'rgb(255, 99, 132)',
-//           'rgb(54, 162, 235)',
-//           'rgb(255, 205, 86)',
-//           'rgb(255, 99, 12)',
-//           'rgb(54, 16, 235)',
+       
 
-//             ],
-//             borderWidth: 3
-//         }
-  
-      
-      
-//       ]
-//     },
-//     options: {
-//       scales: {
-//         xAxes: [
-//           {
-//           display: false,
-//           barPercentage: 0.9,
-//           ticks: {
-
-//           }
-//         },{
-//           scaleLabel: {
-//             display: false,
-//             labelString: ' Types of Amount'
-//           }
-//         }, {
-//           display: false,
-//           ticks: {
-//             autoSkip: false,
-
-//           }
-//         }],
-//         yAxes: [{
-//           scaleLabel: {
-//             display: true,
-//             labelString: ' Amount in Dollar '
-//           }
-//         }]
-//       }
-//     }
-    
-  
-// });
 
 var chartData = {
-  labels: ['','Staffing Company Cost','Total COST','Total Saving ','Markup','Total_PAY'],
+  labels: ['Total COST','Total Saving ','Markup','Total_PAY'],
       datasets: [
           {
               fillColor: "#79D1CF",
               strokeColor: "#79D1CF",
-              data: [  this.userObj.Staffing_Company_Cost, this.userObj.Total_COST , this.userObj.Saving , this.userObj.Markup ,this.userObj.Total_PAY   ],
+              label:'Cost',
+              data: [this.userObj.Total_COST , this.userObj.Saving , this.userObj.Markup ,this.userObj.Total_PAY   ],
                  backgroundColor: [
                             'rgb(255, 99, 132)',
                             'rgb(54, 12, 235)',
@@ -457,9 +358,30 @@ var chartData = {
 
 var opt = {
   events: false,
+  legend: {
+    display: true
+},
   tooltips: {
       enabled: false
   },
+  scales: {
+    xAxes: [
+      {
+      scaleLabel: {
+        display: true,
+        labelString: ' Cost in ($) ',
+      
+      },
+    }],
+  yAxes: [
+    {
+    scaleLabel: {
+      display: true,
+      labelString: ' Cost in ($) ',
+    
+    },
+  }]
+},
   hover: {
       animationDuration: 0
   },

@@ -117,7 +117,7 @@ export class AllserviceService {
   }
 
 
-  // start drop down dashboad api 
+  // start drop down dashboad api filters
 
   getManager(manager) {
 
@@ -144,7 +144,11 @@ export class AllserviceService {
      return this.http.post('https://lv45no88yg.execute-api.us-west-2.amazonaws.com/filterDate/filterDate',d).pipe(catchError(this.handleError))
   }
 
-  // end drop down dashboad api 
+  filterAllData(m){
+    return this.http.post('https://lv45no88yg.execute-api.us-west-2.amazonaws.com/filterAll/filterAll',m)
+  }
+
+  // end drop down dashboad api  filter
 
 
   getState(d){
@@ -161,7 +165,25 @@ getMatchBatch(m){
 }
 
 
+//
 
+//test file 
+postTest(m){
+  return this.http.post('https://zzea8bdb46.execute-api.us-west-2.amazonaws.com/new/new',m)
+}
+
+
+//
+
+
+
+forgetPassword(m){
+  return this.http.post('https://ly4d48q8la.execute-api.us-west-2.amazonaws.com/forgotpassword/forgotpassword  ',m)
+}
+
+getAdminDetailPage(m){
+  return this.http.post('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/BatchPerUser/BatchPerUser  ',m)
+}
 
 
 }

@@ -1,0 +1,616 @@
+<!-- <h1 class="h3 mb-0 text-gray-800 ml-5">Setting</h1> -->
+
+<br>
+<br>
+<br>
+<div class="col-md-11 mt-2">
+  <div class="card card-primary  card-outline ml-5">
+  
+    <div class="card-body">
+      
+      <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Select State Wise</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Bulk Upload</a>
+        </li>
+       
+       
+       
+      </ul>
+      <div class="tab-content" id="custom-content-below-tabContent">
+        <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
+          
+
+          <div class="wrapper">
+            <form  [formGroup]="form"  >
+            <br>
+            <span class="details ml-5">Select State</span>
+            <div class="input-box ml-5 searchbox " >
+                
+                <select name="state_name" class="form-control select2"   (change)="sendStateName($event.target.value)"   style="width: 350px;"  >
+                  <option disabled selected>----SELECT---- </option>
+                  <option value="{{value.States}}" [selected]="value.States"  *ngFor = "let value of Details">{{value.States}} </option>
+                  
+              
+                </select>
+                <img *ngIf="isLoad" class="ml-4" style="width : 30px" src="../../../assets/icons8-spinner.gif" />
+                <!-- <button class="btn btn-primary ml-4">Search</button> -->
+            </div>
+           
+          </form>
+            <br>
+            
+            <!-- *ngIf="SearchDetails.length > 0" -->
+            <div class="col-xl-8 col-lg-7 left"  >
+                <div class="card shadow mb-4" *ngFor="let s of SearchDetails">
+
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary"></h6>
+                    <div class="dropdown no-arrow">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"  (click)="EditSetting(s)" data-toggle="modal" data-target=".bd-edit-modal-lg" aria-haspopup="true" aria-expanded="false">
+                        <i  class="fas fa fa-edit text-primary fa-sm fa-fw text-gray-400"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                       
+                       
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body" style="background-color: #eee;" >
+                    <form [formGroup]="form" >
+                      <div > 
+                            <fieldset class="scheduler-border">
+                                <div class="searchbox">
+                                <legend class="scheduler-border" style="margin-left: 190px;">Percentage(%)</legend>
+                                <legend class="scheduler-border" style="margin-right: 80px;">Capping/Limits($)</legend>
+                                </div>
+                                <div class="form-inline">
+                                  <div class="form-group">
+                                   <b> <label class="ml-3">SUI</label></b>
+                                    <input type="text" class="input form-control  " value="{{s.SUI_pct}} %"  disabled style="width: 280px; margin-left: 120px; border-radius: 19px;" >
+                                  </div>
+                                  <div class="form-group">
+                                    
+                                    <input type="text" class="input form-control ml-4"   value="$ {{s.SUI_cap}}" disabled style="width: 280px; border-radius: 19px;" >
+                                  </div>
+                                 </div>
+                               
+                            </fieldset>
+                    
+                            <fieldset class="user-details">
+                                <legend ></legend>
+                                <div class="form-inline">
+                                  <div class="form-group">
+                                    <b>  <label class="ml-3">FUI</label></b>
+                                    <input type="text" class="input form-control "   value="{{s.FUI_pct}} %"  disabled style="width: 280px; margin-left: 120px; border-radius: 19px;" >
+                                  </div>
+                                  <div class="form-group">
+                                    <input type="text" class="input form-control ml-4"  value="$ {{s.FUI_cap}}" disabled style="width: 280px; border-radius: 19px;" >
+                                  </div>
+                                 
+                                </div>
+                            </fieldset>
+                    
+
+                            <fieldset class="user-details">
+                              <legend ></legend>
+                              <div class="form-inline">
+                                <div class="form-group">
+                                  <b>  <label class="ml-3">FUI Sol</label></b>
+                                  <input type="text" class="input form-control "  value="{{s.FUI_Sol_pct}} %"  disabled style="width: 280px; margin-left: 96px; border-radius: 19px;" >
+                                </div>
+                                <div class="form-group">
+                                  
+                                  <input type="text" class="input form-control ml-4"  value="$ {{s.FUI_Sol_cap}}" disabled style="width: 280px; border-radius: 19px;">
+                                </div>
+                               
+                              </div>
+                          </fieldset>
+                    
+                            <fieldset class="user-details">
+                                <legend ></legend>
+                                <div class="form-inline">
+                                  <div class="form-group">
+                                    <b>  <label class="ml-3">FICA</label></b>
+                                    <input type="text" class="input form-control"  value="{{s.FICA_pct}} %" disabled style="width: 280px; margin-left: 112px; border-radius: 19px;" >
+                                  </div>
+                                  <div class="form-group">
+                                    
+                                    <input type="text" class="input form-control ml-4"  value="$ {{s.FUI_cap}}" disabled  style="width: 280px; border-radius: 19px; " >
+                                  </div>
+                                 
+                                </div>
+                            </fieldset>
+                    
+
+                            <fieldset class="user-details">
+                              <legend ></legend>
+                              <div class="form-inline">
+                                <div class="form-group">
+                                  <b>  <label class="ml-3">FICA Med</label></b>
+                                  <input type="text" class="input form-control "  value="{{s.FICA_Med_pct}} %"  disabled style="width: 280px; margin-left: 75px; border-radius: 19px;" >
+                                </div>
+                                <div class="form-group">
+                                  
+                                  <input type="text" class="input form-control ml-4"  value="$ {{s.FICA_Med_cap}}" disabled style="width: 280px; border-radius: 19px;">
+                                </div>
+                               
+                              </div>
+                          </fieldset>
+
+                            <fieldset class="user-details">
+                                <legend ></legend>
+                                <div class="form-inline">
+                                  <div class="form-group">
+                                    <b>  <label class="ml-3">WC</label></b>
+                                    <input type="text" class="input form-control "  value="{{s.WC_pct}} %"  disabled style="width: 280px; margin-left: 120px; border-radius: 19px;" >
+                                  </div>
+                                  <div class="form-group">
+                                    
+                                    <input type="text" class="input form-control ml-4"  value="$ {{s.WC_cap}}" disabled style="width: 280px; border-radius: 19px;">
+                                  </div>
+                                 
+                                </div>
+                            </fieldset>
+                    
+                            <fieldset class="user-details">
+                                <legend ></legend>
+                                <div class="form-inline">
+                                  <div class="form-group">
+                                    <b>  <label class="ml-3">WC Admin</label></b>
+                                    <input type="text" class="input form-control "  value="{{s.WC_Admin_pct}} %" disabled  style="width: 280px; margin-left: 67px; border-radius: 19px;">
+                                  </div>
+                                  <div class="form-group">
+                                    
+                                    <input type="text" class="input form-control ml-4"   value="$ {{s.WC_Admin_cap}}" disabled style="width: 280px; margin-left: 90px; border-radius: 19px;" >
+                                  </div>
+                                 
+                                </div>
+                            </fieldset>
+                    
+                    
+                            <fieldset class="user-details">
+                                <legend ></legend>
+                                <div class="form-inline">
+                                  <div class="form-group">
+                                    <b>  <label class="ml-3">EPLI</label></b>
+                                    <input type="text" class="input form-control " value="{{s.EPLI_pct}} %"  disabled style="width: 280px; margin-left: 120px; border-radius: 19px;">
+                                  </div>
+                                  <div class="form-group">
+                                    
+                                    <input type="text" class="input form-control ml-4"  value="$ {{s.EPLI_cap}}"  disabled style="width: 280px; margin-left: 90px; border-radius: 19px;">
+                                  </div>
+                                 
+                                </div>
+                            </fieldset>
+                    
+                    
+                            <fieldset class="user-details">
+                                <legend ></legend>
+                                <div class="form-inline">
+                                  <div class="form-group">
+                                    <b>  <label class="ml-3">FEE</label></b>
+                                    <input type="text" class="input form-control "  value="{{s.FEE_pct}} %" disabled style="width: 280px; margin-left: 125px; border-radius: 19px;" >
+                                  </div>
+                                  <div class="form-group">
+                                    
+                                    <input type="text" class="input form-control ml-4"  value="$ {{s.FEE_cap}}" disabled  style="width: 280px; margin-left: 90px; border-radius: 19px;" >
+                                  </div>
+                                 
+                                </div>
+                            </fieldset>
+                    
+
+                            <fieldset class="user-details">
+                              <legend ></legend>
+                              <div class="form-inline">
+                                <div class="form-group">
+                                  <b>  <label class="ml-3">Sales Tax</label></b>
+                                  <input type="text" class="input form-control "  value="{{s.Sales_Tax_pct}} %"  disabled style="width: 280px; margin-left: 82px; border-radius: 19px;" >
+                                </div>
+                                <div class="form-group">
+                                  
+                                  <input type="text" class="input form-control ml-4"  value="$ {{s.Sales_Tax_cap}}" disabled style="width: 280px; border-radius: 19px;">
+                                </div>
+                               
+                              </div>
+                          </fieldset>
+
+
+                            <fieldset class="user-details">
+                                <legend ></legend>
+                                <div class="form-inline">
+                                  <div class="form-group">
+                                    <b>  <label class="ml-3">Tech</label></b>
+                                    <input type="text" class="input form-control "  value="{{s.Tech_pct}} %" disabled style="width: 280px; margin-left: 120px; border-radius: 19px;" >
+                                  </div>
+                                  <div class="form-group">
+                                    
+                                    <input type="text" class="input form-control ml-4"  value="$ {{s.Tech_cap}}" disabled  style="width: 280px; border-radius: 19px; " >
+                                  </div>
+                                 
+                                </div>
+                            </fieldset>
+                    
+                    
+                            <fieldset class="user-details">
+                                <legend ></legend>
+                                <div class="form-inline">
+                                  <div class="form-group">
+                                    <b>  <label class="ml-3">Delivery</label></b>
+                                    <input type="text" class="input form-control "  value="{{s.Delivery_pct}} %"  disabled style="width: 280px; margin-left: 90px; border-radius: 19px;" >
+                                  </div>
+                                  <div class="form-group">
+                                    
+                                    <input type="text" class="input form-control ml-4" value="$ {{s.Delivery_cap}}"  disabled style="width: 280px; border-radius: 19px; " >
+                                  </div>
+                                 
+                                </div>
+                            </fieldset>
+                      </div> </form>
+                  </div>
+                </div>
+              </div>
+            
+              </div>
+            
+
+
+
+        </div>
+        <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+          <br>
+         
+          <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+            
+            <input name="file" required  type="file"   formControlName="upload" name="upload"   (change)="changeListener($event)">
+           
+        <span class="error1" style="display: none;">
+            <i class="error-log fa fa-exclamation-triangle"></i>
+        </span> 
+            <button type="button" class="btn btn-primary" [disabled]="form.invalid"  >
+            
+               Upload</button>
+               <img *ngIf="isLoading" class="ml-3" style="width : 24px;"  src="../../../assets/icons8-spinner.gif" />
+            <!-- <div class="progress mt-3 ">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+                  
+          </div> <br>  -->
+          </form>
+          <br>
+<hr>
+
+          <div class="col-xl-12 col-md-8">
+            <div class="card shadow  mb-4 ml-4 mr-4">
+              <!-- Card Header - Dropdown -->
+              
+              <div class="card-body">
+                
+               
+                  <!-- <canvas id="myBarChart"></canvas> -->
+                  <div class="scroll"   >
+                    <table class="table ">
+                        <thead>
+                          <tr class="d-flex position-sticky">
+              
+                            <th class="col-1 ">State</th>
+                            <th class="col-1">States Abbreviation </th>
+                            <th class="col-1" >SUI Capping</th>
+                            <th class="col-1">SUI %</th>
+                            <th  class="col-1">FICA Capping</th>
+                            <th class="col-1">FICA %</th>
+                            <th class="col-1">FICA Med Capping</th>
+                            <th class="col-1">FICA Med %  </th>
+                            <th class="col-1"> FUI Capping</th>
+                            <th class="col-1">FUI %</th>
+                            <th class="col-1">FUI Sol Capping</th>
+                            <th class="col-1">FUI Sol %</th>
+                            <th class="col-1">WC Capping</th>
+                            <th class="col-1">WC % </th>
+                            <th class="col-1">WC Admin Cap </th>
+                            <th class="col-1">WC Admin %</th>
+                            <th class="col-1">Sales Tax Capping</th>
+                            <th class="col-1">Sales Tax %</th>
+                            <th class="col-1">EPLI Capping</th>
+                            <th class="col-1">EPLI %</th>
+                            <th class="col-1">FEE Capping</th>
+                            <th class="col-1">FEE %</th>
+                            <th class="col-1">Tech Capping</th>
+                            <th class="col-1">Tech %</th>
+                            <th class="col-1">Delivery Capping</th>
+                            <th class="col-1">Delivery %</th>
+                       
+                          </tr>
+                        </thead>
+                        <tbody  style="overflow-x: auto;" >
+                          
+                          <tr class="d-flex" *ngFor = "let value of Details | paginate: { itemsPerPage: 10, currentPage: p }" >
+                            <td class="col-1">{{value.States}}</td>
+                            <td class="col-1">{{value.States_Abb}}</td>
+                            <td class="col-1">{{value.SUI_cap}}</td>
+                           
+                            <td class="col-1">{{value.SUI_pct}}</td>
+                            <td class="col-1" >{{value.FICA_cap}}</td>
+                            <td class="col-1">{{value.FICA_pct}}</td>
+                            <td class="col-1">{{value.FICA_Med_cap}}</td>
+                            <td class="col-1">{{value.FICA_Med_pct}}</td>
+                            <td class="col-1">{{value.FUI_cap}}</td>
+                            <td class="col-1">{{value.FUI_pct}}</td>
+                            
+                            <td class="col-1">{{value.FUI_Sol_cap}}</td>
+                            <td class="col-1">{{value.FUI_Sol_pct}}</td>
+                            <td class="col-1">{{value.WC_cap}}</td>
+                            <td class="col-1">{{value.WC_pct}}</td>
+                            <td class="col-1">{{value.WC_Admin_cap}}</td>
+                            <td class="col-1">{{value.WC_Admin_pct}}</td>
+                            <td class="col-1">{{value.Sales_Tax_cap}}</td>
+                         
+                            <td class="col-1">{{value.Sales_Tax_pct}}</td>
+                            <td class="col-1">{{value.EPLI_cap}}</td>
+                            <td class="col-1">{{value.EPLI_pct}}</td>
+                            <td class="col-1">{{value.FEE_cap}}</td>
+                            <td class="col-1">{{value.FEE_pct}}</td>
+                            <td class="col-1">{{value.Tech_cap}}</td>
+                            <td class="col-1">{{value.Tech_pct}}</td>
+                            <td class="col-1">{{value.Delivery_cap}}</td>
+                            <td class="col-1">{{value.Delivery_pct}}</td>
+                         
+                            
+          
+                        </tr>
+                     
+                        </tbody>
+                      </table>
+                     
+                </div>
+          
+          
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+     
+ 
+        
+      </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+      <!-- jjjjjj -->
+
+
+      <div class="modal  bd-edit-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" >Edit </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div style="justify-content: center;">
+            <div class="container">
+  
+           
+              <div class="content">
+                <form >
+                  <div *ngFor="let s of SearchDetails"> 
+                        <fieldset class="scheduler-border">
+                            <div class="searchbox">
+                            <legend class="scheduler-border" style="margin-left: 150px;">Percentage(%)</legend>
+                            <legend class="scheduler-border" style="margin-right: 1px;">Capping/Limits($)</legend>
+                            </div>
+                            <div class="form-inline">
+                              <div class="form-group">
+                               <b> <label for="exampleInputName2">SUI</label></b>
+                                <input type="text" class="input   form-control " [(ngModel)]="userObj.SUI_pct" name="SUI_pct"  style="width: 280px; margin-left: 90px; border-radius: 19px;" >
+                              </div>
+                              <div class="form-group">
+                                
+                                <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.SUI_cap" name="SUI_cap"   style="width: 280px; border-radius: 19px;" >
+                              </div>
+                             </div>
+                           
+                        </fieldset>
+                
+                        <fieldset class="user-details">
+                            <legend ></legend>
+                            <div class="form-inline">
+                              <div class="form-group">
+                                <b>  <label for="exampleInputName2">FUI</label></b>
+                                <input type="text" class="input form-control "  [(ngModel)]="userObj.FUI_pct" name="FUI_pct"   style="width: 280px; margin-left: 90px; border-radius: 19px;" >
+                              </div>
+                              <div class="form-group">
+                                <input type="text" class="input form-control ml-4" [(ngModel)]="userObj.FUI_cap"  name="FUI_cap"  style="width: 280px; border-radius: 19px;" >
+                              </div>
+                             
+                            </div>
+                        </fieldset>
+                
+                
+                        <fieldset class="user-details">
+                          <legend ></legend>
+                          <div class="form-inline">
+                            <div class="form-group">
+                              <b>  <label class="">FUI Sol</label></b>
+                              <input type="text" class="input form-control " [(ngModel)]="userObj.FUI_Sol_pct"  name="FUI_Sol_cap"    style="width: 280px; margin-left: 59px; border-radius: 19px;" >
+                            </div>
+                            <div class="form-group">
+                              
+                              <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.FUI_Sol_cap" name="FUI_Sol_cap"    style="width: 280px; border-radius: 19px;">
+                            </div>
+                           
+                          </div>
+                      </fieldset>
+
+                        <fieldset class="user-details">
+                            <legend ></legend>
+                            <div class="form-inline">
+                              <div class="form-group">
+                                <b>  <label for="exampleInputName2">FICA</label></b>
+                                <input type="text" class="input form-control "  [(ngModel)]="userObj.FICA_pct"  name="FICA_pct"   style="width: 280px; margin-left: 80px; border-radius: 19px;" >
+                              </div>
+                              <div class="form-group">
+                                
+                                <input type="text" class="input form-control ml-4" [(ngModel)]="userObj.FICA_cap"  name="FICA_cap"   style="width: 280px; border-radius: 19px; " >
+                              </div>
+                             
+                            </div>
+                        </fieldset>
+                
+
+                        <fieldset class="user-details">
+                          <legend ></legend>
+                          <div class="form-inline">
+                            <div class="form-group">
+                              <b>  <label class="">FICA Med</label></b>
+                              <input type="text" class="input form-control "  [(ngModel)]="userObj.FICA_Med_pct" name="FICA_Med_pct"  style="width: 280px; margin-left: 48px; border-radius: 19px;" >
+                            </div>
+                            <div class="form-group">
+                              
+                              <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.FICA_Med_cap" name="FICA_Med_cap"  style="width: 280px; border-radius: 19px;">
+                            </div>
+                           
+                          </div>
+                      </fieldset>
+
+                        <fieldset class="user-details">
+                            <legend ></legend>
+                            <div class="form-inline">
+                              <div class="form-group">
+                                <b>  <label for="exampleInputName2">WC</label></b>
+                                <input type="text" class="input form-control "  [(ngModel)]="userObj.WC_pct" name="WC_pct"   style="width: 280px; margin-left: 90px; border-radius: 19px;" >
+                              </div>
+                              <div class="form-group">
+                                
+                                <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.WC_cap" name="WC_cap"  style="width: 280px; border-radius: 19px;">
+                              </div>
+                             
+                            </div>
+                        </fieldset>
+                
+                        <fieldset class="user-details">
+                            <legend ></legend>
+                            <div class="form-inline">
+                              <div class="form-group">
+                                <b>  <label for="exampleInputName2">WC Admin</label></b>
+                                <input type="text" class="input form-control " [(ngModel)]="userObj.WC_Admin_pct"  name="WC_Admin_pct"  style="width: 280px; margin-left: 36px; border-radius: 19px;">
+                              </div>
+                              <div class="form-group">
+                                
+                                <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.WC_Admin_cap"  name="WC_Admin_cap"   style="width: 280px; margin-left: 90px; border-radius: 19px;" >
+                              </div>
+                             
+                            </div>
+                        </fieldset>
+                
+                
+                        <fieldset class="user-details">
+                            <legend ></legend>
+                            <div class="form-inline">
+                              <div class="form-group">
+                                <b>  <label for="exampleInputName2">EPLI</label></b>
+                                <input type="text" class="input form-control " [(ngModel)]="userObj.EPLI_pct"  name="EPLI_pct"  style="width: 280px; margin-left: 85px; border-radius: 19px;">
+                              </div>
+                              <div class="form-group">
+                                
+                                <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.EPLI_cap" name="EPLI_cap"   style="width: 280px; margin-left: 90px; border-radius: 19px;">
+                              </div>
+                             
+                            </div>
+                        </fieldset>
+                
+                
+                        <fieldset class="user-details">
+                            <legend ></legend>
+                            <div class="form-inline">
+                              <div class="form-group">
+                                <b>  <label for="exampleInputName2">FEE</label></b>
+                                <input type="text" class="input form-control "  [(ngModel)]="userObj.FEE_pct"  name="FEE_pct"   style="width: 280px; margin-left: 90px; border-radius: 19px;" >
+                              </div>
+                              <div class="form-group">
+                                
+                                <input type="text" class="input form-control ml-4" [(ngModel)]="userObj.FEE_cap"  name="FEE_cap"   style="width: 280px; margin-left: 90px; border-radius: 19px;" >
+                              </div>
+                             
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="user-details">
+                          <legend ></legend>
+                          <div class="form-inline">
+                            <div class="form-group">
+                              <b>  <label class="">Sales Tax</label></b>
+                              <input type="text" class="input form-control "  [(ngModel)]="userObj.Sales_Tax_pct" name="Sales_Tax_pct" style="width: 280px; margin-left: 48px; border-radius: 19px;" >
+                            </div>
+                            <div class="form-group">
+                              
+                              <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.Sales_Tax_cap" name="Sales_Tax_pct" style="width: 280px; border-radius: 19px;">
+                            </div>
+                           
+                          </div>
+                      </fieldset>
+                
+                        <fieldset class="user-details">
+                            <legend ></legend>
+                            <div class="form-inline">
+                              <div class="form-group">
+                                <b>  <label for="exampleInputName2">Tech</label></b>
+                                <input type="text" class="input form-control "  [(ngModel)]="userObj.Tech_pct" name="Tech_pct"   style="width: 280px; margin-left: 83px; border-radius: 19px;" >
+                              </div>
+                              <div class="form-group">
+                                
+                                <input type="text" class="input form-control ml-4"   [(ngModel)]="userObj.Tech_cap" name="Tech_cap"  style="width: 280px; border-radius: 19px; " >
+                              </div>
+                             
+                            </div>
+                        </fieldset>
+                
+                
+                        <fieldset class="user-details">
+                            <legend ></legend>
+                            <div class="form-inline">
+                              <div class="form-group">
+                                <b>  <label for="exampleInputName2">Delivery</label></b>
+                                <input type="text" class="input form-control "  [(ngModel)]="userObj.Delivery_pct"  name="Delivery_pct"   style="width: 280px; margin-left: 55px; border-radius: 19px;" >
+                              </div>
+                              <div class="form-group">
+                                
+                                <input type="text" class="input form-control ml-4"  [(ngModel)]="userObj.Delivery_cap" name="Delivery_cap"  style="width: 280px; border-radius: 19px; " >
+                              </div>
+                             
+                            </div>
+                        </fieldset><br>
+                  </div> </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="updateSetting()">Update</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+  
+    </div>
+
+
+

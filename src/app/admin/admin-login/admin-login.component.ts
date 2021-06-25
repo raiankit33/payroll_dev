@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 import Swal from 'sweetalert2';
-import { AuthService} from  '../service/auth.service';
-
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
   user: any;
 
   constructor(private router: Router,
@@ -50,7 +49,7 @@ export class LoginComponent implements OnInit {
       let login ={
         email: this.form.value.email,
         password: this.form.value.password,
-        role : 'user'
+        role : 'admin'
       }
     this.service.authenticateUser(login)
       .subscribe(
@@ -68,7 +67,7 @@ export class LoginComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 1500
               })
-              this.router.navigate(['dash/dashboad1']);
+              this.router.navigate(['dash/AdminDashboad']);
             }else{
               Swal.fire({
                 position: 'top-end',
@@ -78,7 +77,7 @@ export class LoginComponent implements OnInit {
                 timer: 1500
               })
               console.log('success')
-              this.router.navigate(['dash/dashboad']);
+              this.router.navigate(['dash/AdminDashboad']);
             }
             // console.log('success')
             // this.router.navigate(['dash/dashboad']);
@@ -87,7 +86,8 @@ export class LoginComponent implements OnInit {
             console.log('error');
             alert('Oops ! Failed to logged In')
             // this.toastr.error('Oops','Failed to logged In');
-            this.router.navigate(['/']);
+              this.router.navigate(['dash/Alogin']);
+         
           }
         },
         (error) => {

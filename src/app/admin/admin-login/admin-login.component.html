@@ -1,14 +1,20 @@
 <div class="content ">
+    <br>
+<div class="center "   >
+ 
 
-        <br>
-<div class="center ">
-    <img src="../../assets/img/yyy.png" class="" style="width: 200px; height: 50px;">
+        <img src="../../assets/img/yyy.png" class="" style="width: 200px; height: 50px;">
+       
+  
     
+   
 </div>
 <div class="center">
     <h4><strong> Workforce Management Solutions </strong></h4>
 </div>
+  
 <br>
+
 <div class="container " id="container" >
     <div class="form-container sign-up-container">
     
@@ -28,20 +34,16 @@
     </div>
     <div class="form-container sign-in-container">
         <form [formGroup]="form"><br>
-            <h1 >Sign Up</h1>
+            <!-- <img src="../../assets/shoofly.png" class="mt-4 " style="width: 200px;"> -->
+            <h1 > Admin Sign In</h1>
             <div class="social-container">
-            
-
+              
+            <!-- <a href="#" class="social"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="social"><i class="fa fa-google"></i></a>
+            <a href="#" class="social"><i class="fa fa-linkedin"></i></a> -->
         </div>
         
-        <input type="text" formControlName="name" name="name"  placeholder="Name" required [ngClass]="
-        { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
-      
-          <div *ngIf="form.get('name').touched && form.get('name').invalid" class="invalid-feedback">
-            <div *ngIf="form.get('name').errors.required" style="font-size: 13px;"> Name is required</div>
-          </div>
-       
-        <input type="email" formControlName="email" name="email" placeholder="email" required [ngClass]="
+        <input type="email" formControlName="email" name="email"  placeholder="Email"  required [ngClass]="
         { 'is-invalid': form.get('email').touched && form.get('email').invalid}">
         <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
             <div *ngIf="form.get('email').errors.required" style="font-size: 13px;"> Email is required</div>
@@ -52,16 +54,15 @@
         { 'is-invalid': form.get('password').touched && form.get('password').invalid}">
         <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
             <div *ngIf="form.get('password').errors.required" style="font-size: 13px;"> Password is required</div>
+         
             <div *ngIf="form.get('password').errors.minlength" style="font-size: 13px;"> Minimum 8 Character Required</div>
+          
           </div>
-       
-      
-
     
-        <button (click)="onSubmit()" >Register</button><br>
-
-        <button routerLink="/" >Back</button><br>
-       
+        <button (click)="onSubmit()"> Sign In</button><br>
+        <button  routerLink="/" id="signIn">Back</button>
+        <!-- <a style="color: blue; cursor: pointer;" routerLink="forget">Forgot Your Password</a> -->
+       <!-- <p>Don't have an Account ?<a routerLink="signUp" style="color:blue; cursor: pointer;"> Register</a></p> -->
         </form>
     </div>
     <div class="overlay-container">
@@ -71,6 +72,8 @@
                 <h1>Welcome Back!</h1>
                 <p>To keep connected with us please login with your personal info</p>
                 <button class="ghost" id="signIn">Sign In</button>
+
+              
                
             </div>
             <div class="overlay-panel overlay-right">

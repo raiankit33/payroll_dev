@@ -47,17 +47,22 @@
         { 'is-invalid': form.get('email').touched && form.get('email').invalid}">
         <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
             <div *ngIf="form.get('email').errors.required" style="font-size: 13px;"> Email is required</div>
+            <div *ngIf="form.get('email').errors.pattern" style="font-size: 13px;"> Invalid Email</div>
           </div>
        
         <input type="password" formControlName="password" name="password" placeholder="Password" required [ngClass]="
         { 'is-invalid': form.get('password').touched && form.get('password').invalid}">
         <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
             <div *ngIf="form.get('password').errors.required" style="font-size: 13px;"> Password is required</div>
+         
+            <div *ngIf="form.get('password').errors.minlength" style="font-size: 13px;"> Minimum 8 Character Required</div>
+          
           </div>
     
         <button (click)="onSubmit()">Sign In</button><br>
-        <a href="#">Forgot Your Password</a>
-       <p>Don't have an Account ?<a routerLink="signUp" style="color:blue;"> Register</a></p>
+        <a style="color: blue; cursor: pointer;" routerLink="forget">Forgot Your Password</a>
+       <p>Don't have an Account ?<a routerLink="signUp" style="color:blue; cursor: pointer;"> Register</a></p>
+       <p><a routerLink="Alogin"  style="color:blue; cursor: pointer;"> Admin Login</a></p>
         </form>
     </div>
     <div class="overlay-container">

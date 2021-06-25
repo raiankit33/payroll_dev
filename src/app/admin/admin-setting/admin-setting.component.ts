@@ -1,19 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { formatDate, JsonPipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
 import { AllserviceService } from 'src/app/service/allservice.service';
-import { NgxCsvParser } from 'ngx-csv-parser';
-import { NgxCSVParserError } from 'ngx-csv-parser';
 import swal from 'sweetalert2'
 
-
 @Component({
-  selector: 'app-setting',
-  templateUrl: './setting.component.html',
-  styleUrls: ['./setting.component.css']
+  selector: 'app-admin-setting',
+  templateUrl: './admin-setting.component.html',
+  styleUrls: ['./admin-setting.component.css']
 })
-export class SettingComponent implements OnInit {
+export class AdminSettingComponent implements OnInit {
 
   dropDown: any;
   isLoading: boolean = false;

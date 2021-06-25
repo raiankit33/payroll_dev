@@ -13,7 +13,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import {SharedData} from '../app/Shared/sharedData.service';
 import { SignupComponent } from './signup/signup.component';
-
+import { ForgetpassComponent } from './forgetpass/forgetpass.component';
+import { AdmindashComponent } from './admin/admindash/admindash.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AdminSettingComponent } from './admin/admin-setting/admin-setting.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { SignupComponent } from './signup/signup.component';
     EmployeeListComponent,
     EmployeeDetailsComponent,
     SignupComponent,
+    ForgetpassComponent,
+    AdmindashComponent,
+    AdminLoginComponent,
+    AdminSettingComponent,
     
   
   
@@ -36,6 +44,7 @@ import { SignupComponent } from './signup/signup.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    NgxPaginationModule,
     Ng2SearchPipeModule,
    
    

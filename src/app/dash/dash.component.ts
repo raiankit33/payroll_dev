@@ -18,12 +18,24 @@ export class DashComponent implements OnInit {
   agency: any = [];
  state : any = [];
 
+ userRole :boolean = true ;
+ adminRole : boolean = true;
+
   constructor(private router: Router,
     private Service: AllserviceService,) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user"));
 this.getBatchName();
+
+ if(this.user.role == 'user'){
+  this.userRole = true ,
+  this.adminRole = false
+
+ }else if(this.user.role == 'admin'){
+   this.adminRole =true,
+   this.userRole = false
+ }
   }
 
   config = {
@@ -36,13 +48,13 @@ this.getBatchName();
   upload(){
     this.router.navigate(['dash/dashboad']);
   }
-
+ 
   Dashboard(){
     this.router.navigate(['dash/dashboad1']);
   }
 
-  Batch(){
-    this.router.navigate(['dash/batch']);
+  adminSetting(){
+    this.router.navigate(['dash/ASetting']);
   }
 
   Employee(){

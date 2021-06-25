@@ -23,7 +23,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
      
      ],
   imports: [
-
+   
     CommonModule,
     DashRoutingModule,
     Ng2SearchPipeModule,

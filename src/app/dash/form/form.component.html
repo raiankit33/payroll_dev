@@ -11,900 +11,973 @@
     </div>
 </div>
 
-<div  style="height: 700px;">
-<form class="steps" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
+<div style="height: 700px;">
+    <form class="steps" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
 
 
-    <!-- <div class="progress ">
+        <!-- <div class="progress ">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0"
             aria-valuemax="100"></div>
     </div> <br> -->
 
-    <!-- USER INFORMATION FIELD SET -->
-    <fieldset *ngIf="step == 1">
-<form  [formGroup]="Myform" >
-        <h2 class="fs-title">Basic Information</h2>
-        
+        <!-- USER INFORMATION FIELD SET -->
+        <fieldset *ngIf="step == 1">
+            <form [formGroup]="Myform">
+                <h2 class="fs-title">Basic Information</h2>
 
-        
-        <!-- Begin What's Your First Name Field -->
-        <div class="hs_firstname field hs-form-field">
-    <div class="user-details">
 
-            <div class="input-box">
-                <!-- <span class="details">* Batch Name</span> -->
-                <input type="text" placeholder="Batch Name "  required name="batch_name" (change)="matchUniqueBatch($event.target.value)"
-                  formControlName="batch_name" [ngClass]="
-                  { 'is-invalid': Myform.get('batch_name').touched && Myform.get('batch_name').invalid}" >
-                  <div class="invalid-feedback">
-                    <div style="font-size: 13px;"> Batch Name is required</div>
-                  </div>
-                  <div *ngIf="err">
-                    <span *ngIf="open" style="color: red; font-size: 13px;"> {{err}}</span>
-                </div>
-              </div>
-              <div class="input-box">
-                <!-- <span class="details">Remarks</span> -->
 
-                <input type="text" placeholder=" Average SUI Rate"  required name="sui_rate"
-                  formControlName="sui_rate" [ngClass]="
+                <!-- Begin What's Your First Name Field -->
+                <div class="hs_firstname field hs-form-field">
+                    <div class="user-details">
+
+                        <div class="input-box">
+                            <!-- <span class="details">* Batch Name</span> -->
+                            <input type="text" placeholder="Batch Name " required name="batch_name"
+                                (change)="matchUniqueBatch($event.target.value)" formControlName="batch_name" [ngClass]="
+                  { 'is-invalid': Myform.get('batch_name').touched && Myform.get('batch_name').invalid}">
+                            <div class="invalid-feedback">
+                                <div style="font-size: 13px;"> Batch Name is required</div>
+                            </div>
+                            <div *ngIf="err">
+                                <span *ngIf="open" style="color: red; font-size: 13px;"> {{err}}</span>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <!-- <span class="details">Remarks</span> -->
+
+                            <input type="text" placeholder=" Average SUI Rate" required name="sui_rate"
+                                formControlName="sui_rate" [ngClass]="
                   { 'is-invalid': Myform.get('sui_rate').touched && Myform.get('sui_rate').invalid}">
-               
-                  <div class="invalid-feedback">
-                    <div style="font-size: 13px;"> SUI Rate is required</div>
-                  </div>
-              </div>
-            </div>
-            <!-- <label>Upload File? *</label> -->
 
-         <ngx-dropzone (change)="onSelect($event)">
-             <!-- <label style="margin-left: 400px;" > Drag and Drop! or Upload File? *</label> -->
-                <ngx-dropzone-label>Drag and Drop!</ngx-dropzone-label>
-                <ngx-dropzone-preview *ngFor="let f of filess" [removable]="true" [multiple]="false" 
-                    (removed)="onRemove(f)" accept="image/csv" formControlName="upload" name="upload" [ngClass]="
+                            <div class="invalid-feedback">
+                                <div style="font-size: 13px;"> SUI Rate is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <label>Upload File? *</label> -->
+
+                    <ngx-dropzone (change)="onSelect($event)">
+                        <!-- <label style="margin-left: 400px;" > Drag and Drop! or Upload File? *</label> -->
+                        <ngx-dropzone-label>Drag and Drop!</ngx-dropzone-label>
+                        <ngx-dropzone-preview *ngFor="let f of filess" [removable]="true" [multiple]="false"
+                            (removed)="onRemove(f)" accept="image/csv" formControlName="upload" name="upload" [ngClass]="
                     { 'is-invalid': Myform.get('upload').touched && Myform.get('upload').invalid}">
-                 
-                 
-                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                </ngx-dropzone-preview>
-                <div class="invalid-feedback">
-                    <div style="font-size: 13px;"> SUI Rate is required</div>
-                  </div>
-            </ngx-dropzone> 
-           
-        </div>
-
-        <!-- End What's Your First Name Field -->
 
 
-              <div class="progress form-group mt-2"  >
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
-                </div>
-            </div>
-
-    
-        <div class="scroll"  *ngIf="lines.length > 0" >
-            <table class=" table thead-light table-bordered table-striped mt-4" >
-                <thead>
-                    <tr>
-                        <th *ngFor="let item of lines[0]; let i = index">{{item}}</th>
-                    </tr>
-                </thead>
-                <tbody class="tbody">
-
-                    <tr *ngFor="let item of linesR[0]; let i = index">
-                        <td *ngFor="let itemm of lines[0]; let j = index">{{item[j]}}</td>
-
-                    </tr>
-
-                </tbody>
-            </table>
-       </div>
-
-
-  
-
-       
-        <!-- End Total Number of Constituents in Your Database Field --><br>
-
-        <!-- <input type="button" data-page="1" name="next" class="next action-button  " *ngIf="reset" style="margin-left: 10px;"  (click)="clickMe()" value="Reset" /> -->
-        <input type="button" data-page="1" name="next" class="next action-button "   (click)="next()" value="Next" />
-        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i
-                class="question-log fa fa-question-circle"> </i><a href="../../../assets/sample/sample.csv"
-                style="font-size: 19px;">Download Sample File </a> </div>
-</form>
-    </fieldset>
-
-
-
-    <!-- ACQUISITION FIELD SET -->
-    <fieldset *ngIf="step == 2">
-        <form  [formGroup]="form" >
-        <h2 class="fs-title">Data Import Field Match</h2>
-        <div class="content" >
-        <p style="font-size: 16px; color: black; text-align: left;" ><b>Required Field</b></p>
-       <p class="ff" style="font-size: 16px; color: black; margin-left: 870px;" ><b>Your Field</b></p>
-        </div>
-        <div style="overflow-y:auto;">
-            <div class="user-details" style="height: 460px;">
-
-
-
-                <div class="input-box">
-                   
-                    <input type="text" style="color: black;" formControlName="Worker_Unique_Id"  disabled name="name">
-                  
-                </div>
-
-
-                <!-- imported from csv -->
-
-                <div class="input-box">
-                   
-                    <select name="id" class="form-control" formControlName="id" (ngModelChange)="CalledNew($event,'Worker_Unique_Id')"  style="width: 100%;" required [ngClass]="
-                    { 'is-invalid': form.get('id').touched && form.get('id').invalid}" >
-                        <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}} " *ngFor="let item of header">{{item.name}}</option>
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('id').touched && form.get('id').invalid">
-                        <div *ngIf="form.get('id').errors.required" style="font-size: 15px;"> This field is required
+                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                        <div class="invalid-feedback">
+                            <div style="font-size: 13px;"> SUI Rate is required</div>
                         </div>
+                    </ngx-dropzone>
+
+                </div>
+
+                <!-- End What's Your First Name Field -->
+
+
+                <div class="progress form-group mt-2">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                        [style.width.%]="progress">
                     </div>
                 </div>
 
-                <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Worker_Name"  disabled name="name">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
+                <div class="scroll" *ngIf="lines.length > 0">
+                    <table class=" table thead-light table-bordered table-striped mt-4">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let item of lines[0]; let i = index">{{item}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+
+                            <tr *ngFor="let item of linesR[0]; let i = index">
+                                <td *ngFor="let itemm of lines[0]; let j = index">{{item[j]}}</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
                 </div>
 
-                <!-- imported from csv -->
-                <div class="input-box">
 
-                    <select class="form-control" formControlName="Name" name="Name"  (ngModelChange)="CalledNew($event,'Worker_Name')"  style="width: 100%;" required [ngClass]="
-                    { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}" 
-                        >
-                        <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('Name').touched && form.get('Name').invalid">
-                        <div *ngIf="form.get('Name').errors.required" style="font-size: 15px;"> This field is required
+
+
+
+                <!-- End Total Number of Constituents in Your Database Field --><br>
+
+                <!-- <input type="button" data-page="1" name="next" class="next action-button  " *ngIf="reset" style="margin-left: 10px;"  (click)="clickMe()" value="Reset" /> -->
+                <input type="button" data-page="1" name="next" class="next action-button " (click)="next()"
+                    value="Next" />
+                <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i
+                        class="question-log fa fa-question-circle"> </i><a href="../../../assets/sample/sample.csv"
+                        style="font-size: 19px;">Download Sample File </a> </div>
+            </form>
+        </fieldset>
+
+
+
+        <!-- ACQUISITION FIELD SET -->
+        <fieldset *ngIf="step == 2">
+            <form [formGroup]="form">
+                <h2 class="fs-title">Data Import Field Match</h2>
+                <div class="content">
+                    <p style="font-size: 16px; color: black; text-align: left;"><b>Required Field</b></p>
+                    <p class="ff" style="font-size: 16px; color: black; margin-left: 870px;"><b>Your Field</b></p>
+                </div>
+                <div style="overflow-y:auto;">
+                    <div class="user-details" style="height: 460px;">
+
+
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Worker_Unique_Id" disabled
+                                name="name">
+
                         </div>
-                   
-                    </div>
-                </div>
 
 
+                        <!-- imported from csv -->
 
-                <div class="input-box">
+                        <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Worker_Title" disabled
-                        name="Worker_Title">
-                </div>
-
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select class="form-control" formControlName="Title" name="Title"  (ngModelChange)="CalledNew($event,'Worker_Title')"  style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('Title').touched && form.get('Title').invalid}" required
-                       >
-                       <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('Title').touched && form.get('Title').invalid">
-                        <div *ngIf="form.get('Title').errors.required" style="font-size: 15px;"> This field is required
+                            <select name="id" class="form-control" formControlName="id"
+                                (ngModelChange)="CalledNew($event,'Worker_Unique_Id')" style="width: 100%;" required
+                                [ngClass]="
+                    { 'is-invalid': form.get('id').touched && form.get('id').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}} "
+                                    *ngFor="let item of header">{{item.name}}</option>
+                            </select>
+                            <div class="invalid-feedback" *ngIf="form.get('id').touched && form.get('id').invalid">
+                                <div *ngIf="form.get('id').errors.required" style="font-size: 15px;"> This field is
+                                    required
+                                </div>
+                            </div>
                         </div>
-                  
-                    </div>
-                </div>
 
+                        <div class="input-box">
 
-
-                <div class="input-box">
-
-                    <input type="text" formControlName="Worker_Manager"  style="color: black; " disabled
-                        name="Worker_Manager">
-
-                </div>
-
-
-
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select name="Product code" class="form-control" formControlName="Manager" (ngModelChange)="CalledNew($event,'Worker_Manager')"  name="Manager" required
-                        style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('Manager').touched && form.get('Manager').invalid}"
-                       >
-                       <option value="">----SELECT----</option>
-
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-
-
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('Manager').touched && form.get('Manager').invalid">
-                        <div *ngIf="form.get('Manager').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            <input type="text" style="color: black;" formControlName="Worker_Name" disabled name="name">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
                         </div>
-                     
-                    </div>
-                </div>
 
+                        <!-- imported from csv -->
+                        <div class="input-box">
 
+                            <select class="form-control" formControlName="Name" name="Name"
+                                (ngModelChange)="CalledNew($event,'Worker_Name')" style="width: 100%;" required
+                                [ngClass]="
+                    { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+                            </select>
+                            <div class="invalid-feedback" *ngIf="form.get('Name').touched && form.get('Name').invalid">
+                                <div *ngIf="form.get('Name').errors.required" style="font-size: 15px;"> This field is
+                                    required
+                                </div>
 
-
-
-                <div class="input-box">
-
-                    <input type="text" style="color: black;" formControlName="Worker_Department" disabled
-                        name="Worker_Department">
-
-                </div>
-
-
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select class="form-control" formControlName="Department" name="Department" required  (ngModelChange)="CalledNew($event,'Worker_Department')" 
-                        style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('Department').touched && form.get('Department').invalid}"
-                        >
-
-                        <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="form.get('Department').touched && form.get('Department').invalid">
-                        <div *ngIf="form.get('Department').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            </div>
                         </div>
-                     
-                    </div>
-                </div>
-
-
-                <div class="input-box">
-
-                    <input type="text" style="color: black;" formControlName="Worker_Location"  disabled  
-                        name="Worker_Location">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
-
-
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select name="Product code" class="form-control" formControlName="Location" name="Location" required  (ngModelChange)="CalledNew($event,'Worker_Location')"
-                        style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('Location').touched && form.get('Location').invalid}"
-                      >
-                      <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
 
 
 
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('Location').touched && form.get('Location').invalid">
-                        <div *ngIf="form.get('Location').errors.required" style="font-size: 15px;"> This field is
-                            required
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Worker_Title" disabled
+                                name="Worker_Title">
                         </div>
-                     
-                    </div>
-                </div>
 
+                        <!-- imported from csv -->
+                        <div class="input-box">
 
-                <div class="input-box">
+                            <select class="form-control" formControlName="Title" name="Title"
+                                (ngModelChange)="CalledNew($event,'Worker_Title')" style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Title').touched && form.get('Title').invalid}" required>
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('Title').touched && form.get('Title').invalid">
+                                <div *ngIf="form.get('Title').errors.required" style="font-size: 15px;"> This field is
+                                    required
+                                </div>
 
-                    <input type="text" style="color: black;" formControlName="Work_City"  disabled
-                        name="Work_City">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
-
-
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select name="Product code" class="form-control" formControlName="City" name="City" required (ngModelChange)="CalledNew($event,'Work_City')"
-                        style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('City').touched && form.get('City').invalid}"
-                      >
-                      <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-
-
-
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('City').touched && form.get('City').invalid">
-                        <div *ngIf="form.get('City').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            </div>
                         </div>
-                     
-                    </div>
-                </div>
 
 
 
-                <div class="input-box">
+                        <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Work_State"  disabled
-                        name="Work_State">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
+                            <input type="text" formControlName="Worker_Manager" style="color: black; " disabled
+                                name="Worker_Manager">
 
-
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select name="Product code" class="form-control" formControlName="State" (ngModelChange)="CalledNew($event,'Work_State')"
-                     name="State" required
-                        style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('State').touched && form.get('State').invalid}"
-                      >
-                      <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('State').touched && form.get('State').invalid">
-                        <div *ngIf="form.get('State').errors.required" style="font-size: 15px;"> This field is
-                            required
                         </div>
-                     
-                    </div>
-                </div>
 
 
-                <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Work_Zip"  disabled
-                        name="Work_Zip">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select name="Product code" class="form-control" formControlName="Manager"
+                                (ngModelChange)="CalledNew($event,'Worker_Manager')" name="Manager" required
+                                style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Manager').touched && form.get('Manager').invalid}">
+                                <option value="">----SELECT----</option>
+
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
 
 
-                <!-- imported from csv -->
-                <div class="input-box">
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('Manager').touched && form.get('Manager').invalid">
+                                <div *ngIf="form.get('Manager').errors.required" style="font-size: 15px;"> This field is
+                                    required
+                                </div>
 
-                    <select name="Product code" class="form-control" formControlName="Zip" (ngModelChange)="CalledNew($event,'Work_Zip')"
-                    name="Zip" required
-                        style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('Zip').touched && form.get('Zip').invalid}"
-                      >
-                      <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('Zip').touched && form.get('Zip').invalid">
-                        <div *ngIf="form.get('Zip').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            </div>
                         </div>
-                     
-                    </div>
-                </div>
 
-                <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Worker_Comp_Code" disabled name="Worker_Comp_Code">
-                   
-                </div>
 
-                <!-- imported from csv -->
-                <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="Comp_code" (ngModelChange)="CalledNew($event,'Worker_Comp_Code')"
-                    name="Comp_code" 
-                        required style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('Comp_code').touched && form.get('Comp_code').invalid}"
-                       >
-                       <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('Comp_code').touched && form.get('Comp_code').invalid">
-                        <div *ngIf="form.get('Comp_code').errors.required" style="font-size: 15px;"> This field is
-                            required
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Worker_Department" disabled
+                                name="Worker_Department">
+
                         </div>
-                       
-                    </div>
-                </div>
-
-                <div class="input-box">
-
-                    <input type="text" style="color: black;" formControlName="Invoice_Number" disabled  name="invoice">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
 
 
-                <!-- imported from csv -->
-                <div class="input-box">
+                        <!-- imported from csv -->
+                        <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="invoice_Number" (ngModelChange)="CalledNew($event,'Invoice_Number')"
-                        name="invoice_Number" style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('invoice_Number').touched && form.get('invoice_Number').invalid}"
-                       >
-                       <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                            <select class="form-control" formControlName="Department" name="Department" required
+                                (ngModelChange)="CalledNew($event,'Worker_Department')" style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Department').touched && form.get('Department').invalid}">
 
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
 
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('Department').touched && form.get('Department').invalid">
+                                <div *ngIf="form.get('Department').errors.required" style="font-size: 15px;"> This field
+                                    is
+                                    required
+                                </div>
 
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="form.get('invoice_Number').touched && form.get('invoice_Number').invalid">
-                        <div *ngIf="form.get('invoice_Number').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            </div>
                         </div>
-                       
-                    </div>
-                </div>
 
-                <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="ST_Pay_Rate" disabled name="ST_Pay_Rate">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
+                        <div class="input-box">
 
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select class="form-control" formControlName="Pay_Rate" (ngModelChange)="CalledNew($event,'ST_Pay_Rate')" 
-                        name="Pay_Rate" required [ngClass]="
-                    { 'is-invalid': form.get('Pay_Rate').touched && form.get('Pay_Rate').invalid}" style="width: 100%;"
-                       >
-
-                       <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('Pay_Rate').touched && form.get('Pay_Rate').invalid">
-                        <div *ngIf="form.get('Pay_Rate').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            <input type="text" style="color: black;" formControlName="Worker_Location" disabled
+                                name="Worker_Location">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
                         </div>
-                       
-                    </div>
-                </div>
-
-                <div class="input-box">
-
-                    <input type="text" style="color: black;" formControlName="Standard_Time_H"  disabled
-                        name="Standard_Time_H">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
 
 
-                <!-- imported from csv -->
-                <div class="input-box">
+                        <!-- imported from csv -->
+                        <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="standard_Time" (ngModelChange)="CalledNew($event,'Standard_Time_H')"
-                        name="standard_Time" required
-                        style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('standard_Time').touched && form.get('standard_Time').invalid}"
-                      >
-                      <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                            <select name="Product code" class="form-control" formControlName="Location" name="Location"
+                                required (ngModelChange)="CalledNew($event,'Worker_Location')" style="width: 100%;"
+                                [ngClass]="
+                    { 'is-invalid': form.get('Location').touched && form.get('Location').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
 
 
 
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('standard_Time').touched && form.get('standard_Time').invalid">
-                        <div *ngIf="form.get('standard_Time').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('Location').touched && form.get('Location').invalid">
+                                <div *ngIf="form.get('Location').errors.required" style="font-size: 15px;"> This field
+                                    is
+                                    required
+                                </div>
+
+                            </div>
                         </div>
-                     
-                    </div>
-                </div>
-
-                <div class="input-box">
-
-                    <input type="text" style="color: black;" formControlName="Over_Time_H"  disabled
-                        name="Over_Time_H">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
 
 
-                <!-- imported from csv -->
-                <div class="input-box">
+                        <div class="input-box">
 
-                    <select name="Product code" class="form-control" formControlName="OverTime" (ngModelChange)="CalledNew($event,'Over_Time_H')"
-                        name="OverTime" required
-                        style="width: 100%;" [ngClass]="
-                    { 'is-invalid': form.get('OverTime').touched && form.get('OverTime').invalid}"
-                      >
-                      <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-
-
-
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('OverTime').touched && form.get('OverTime').invalid">
-                        <div *ngIf="form.get('OverTime').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            <input type="text" style="color: black;" formControlName="Work_City" disabled
+                                name="Work_City">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
                         </div>
-                     
-                    </div>
-                </div>
 
 
-               
+                        <!-- imported from csv -->
+                        <div class="input-box">
 
-
-                <div class="input-box">
-
-                    <input type="text" style="color: black;" formControlName="Double_Time_H" disabled name="Double_Time_H">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
-
-
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select class="form-control" formControlName="Double_time" (ngModelChange)="CalledNew($event,'Double_Time_H')"
-                        name="Double_time" required [ngClass]="
-                    { 'is-invalid': form.get('Double_time').touched && form.get('Double_time').invalid}" style="width: 100%;"
-                  >
-
-                  <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                            <select name="Product code" class="form-control" formControlName="City" name="City" required
+                                (ngModelChange)="CalledNew($event,'Work_City')" style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('City').touched && form.get('City').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
 
 
 
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('Double_time').touched && form.get('Double_time').invalid">
-                        <div *ngIf="form.get('Double_time').errors.required" style="font-size: 15px;"> This field is required
+                            </select>
+                            <div class="invalid-feedback" *ngIf="form.get('City').touched && form.get('City').invalid">
+                                <div *ngIf="form.get('City').errors.required" style="font-size: 15px;"> This field is
+                                    required
+                                </div>
+
+                            </div>
                         </div>
-                        
-                    </div>
-                </div>
-
-                <div class="input-box">
-
-                    <input type="text" style="color: black;" formControlName="OT_Pay_Rate" disabled name="OT_Pay_Rate">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
 
 
-                <!-- imported from csv -->
-                <div class="input-box">
 
-                    <select class="form-control" formControlName="ot_pay_rate" (ngModelChange)="CalledNew($event,'OT_Pay_Rate')"
-                        name="ot_pay_rate" required [ngClass]="
-                    { 'is-invalid': form.get('ot_pay_rate').touched && form.get('ot_pay_rate').invalid}" style="width: 100%;"
-                  >
+                        <div class="input-box">
 
-                  <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-                    </select>
-                    <div class="invalid-feedback" *ngIf="form.get('ot_pay_rate').touched && form.get('ot_pay_rate').invalid">
-                        <div *ngIf="form.get('ot_pay_rate').errors.required" style="font-size: 15px;"> This field is required
+                            <input type="text" style="color: black;" formControlName="Work_State" disabled
+                                name="Work_State">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
                         </div>
-                        
-                    </div>
-                </div>
 
 
-                <div class="input-box">
+                        <!-- imported from csv -->
+                        <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Worker_Agency"  disabled name="Worker_Agency">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
+                            <select name="Product code" class="form-control" formControlName="State"
+                                (ngModelChange)="CalledNew($event,'Work_State')" name="State" required
+                                style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('State').touched && form.get('State').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('State').touched && form.get('State').invalid">
+                                <div *ngIf="form.get('State').errors.required" style="font-size: 15px;"> This field is
+                                    required
+                                </div>
+
+                            </div>
+                        </div>
 
 
-                <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Work_Zip" disabled
+                                name="Work_Zip">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
+                        </div>
 
 
-                <div class="input-box">
+                        <!-- imported from csv -->
+                        <div class="input-box">
 
-                    <select class="form-control" formControlName="worker_Agency" (ngModelChange)="CalledNew($event,'Worker_Agency')"
-                        name="worker_Agency" required
-                        [ngClass]="
+                            <select name="Product code" class="form-control" formControlName="Zip"
+                                (ngModelChange)="CalledNew($event,'Work_Zip')" name="Zip" required style="width: 100%;"
+                                [ngClass]="
+                    { 'is-invalid': form.get('Zip').touched && form.get('Zip').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+
+                            </select>
+                            <div class="invalid-feedback" *ngIf="form.get('Zip').touched && form.get('Zip').invalid">
+                                <div *ngIf="form.get('Zip').errors.required" style="font-size: 15px;"> This field is
+                                    required
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Worker_Comp_Code" disabled
+                                name="Worker_Comp_Code">
+
+                        </div>
+
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select name="Product code" class="form-control" formControlName="Comp_code"
+                                (ngModelChange)="CalledNew($event,'Worker_Comp_Code')" name="Comp_code" required
+                                style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('Comp_code').touched && form.get('Comp_code').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('Comp_code').touched && form.get('Comp_code').invalid">
+                                <div *ngIf="form.get('Comp_code').errors.required" style="font-size: 15px;"> This field
+                                    is
+                                    required
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Invoice_Number" disabled
+                                name="invoice">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
+                        </div>
+
+
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select name="Product code" class="form-control" formControlName="invoice_Number"
+                                (ngModelChange)="CalledNew($event,'Invoice_Number')" name="invoice_Number"
+                                style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('invoice_Number').touched && form.get('invoice_Number').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+
+
+
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('invoice_Number').touched && form.get('invoice_Number').invalid">
+                                <div *ngIf="form.get('invoice_Number').errors.required" style="font-size: 15px;"> This
+                                    field is
+                                    required
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="ST_Pay_Rate" disabled
+                                name="ST_Pay_Rate">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
+                        </div>
+
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select class="form-control" formControlName="Pay_Rate"
+                                (ngModelChange)="CalledNew($event,'ST_Pay_Rate')" name="Pay_Rate" required [ngClass]="
+                    { 'is-invalid': form.get('Pay_Rate').touched && form.get('Pay_Rate').invalid}"
+                                style="width: 100%;">
+
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('Pay_Rate').touched && form.get('Pay_Rate').invalid">
+                                <div *ngIf="form.get('Pay_Rate').errors.required" style="font-size: 15px;"> This field
+                                    is
+                                    required
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Standard_Time_H" disabled
+                                name="Standard_Time_H">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
+                        </div>
+
+
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select name="Product code" class="form-control" formControlName="standard_Time"
+                                (ngModelChange)="CalledNew($event,'Standard_Time_H')" name="standard_Time" required
+                                style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('standard_Time').touched && form.get('standard_Time').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+
+
+
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('standard_Time').touched && form.get('standard_Time').invalid">
+                                <div *ngIf="form.get('standard_Time').errors.required" style="font-size: 15px;"> This
+                                    field is
+                                    required
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Over_Time_H" disabled
+                                name="Over_Time_H">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
+                        </div>
+
+
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select name="Product code" class="form-control" formControlName="OverTime"
+                                (ngModelChange)="CalledNew($event,'Over_Time_H')" name="OverTime" required
+                                style="width: 100%;" [ngClass]="
+                    { 'is-invalid': form.get('OverTime').touched && form.get('OverTime').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+
+
+
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('OverTime').touched && form.get('OverTime').invalid">
+                                <div *ngIf="form.get('OverTime').errors.required" style="font-size: 15px;"> This field
+                                    is
+                                    required
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Double_Time_H" disabled
+                                name="Double_Time_H">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
+                        </div>
+
+
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select class="form-control" formControlName="Double_time"
+                                (ngModelChange)="CalledNew($event,'Double_Time_H')" name="Double_time" required
+                                [ngClass]="
+                    { 'is-invalid': form.get('Double_time').touched && form.get('Double_time').invalid}"
+                                style="width: 100%;">
+
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+
+
+
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('Double_time').touched && form.get('Double_time').invalid">
+                                <div *ngIf="form.get('Double_time').errors.required" style="font-size: 15px;"> This
+                                    field is required
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="OT_Pay_Rate" disabled
+                                name="OT_Pay_Rate">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
+                        </div>
+
+
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select class="form-control" formControlName="ot_pay_rate"
+                                (ngModelChange)="CalledNew($event,'OT_Pay_Rate')" name="ot_pay_rate" required [ngClass]="
+                    { 'is-invalid': form.get('ot_pay_rate').touched && form.get('ot_pay_rate').invalid}"
+                                style="width: 100%;">
+
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('ot_pay_rate').touched && form.get('ot_pay_rate').invalid">
+                                <div *ngIf="form.get('ot_pay_rate').errors.required" style="font-size: 15px;"> This
+                                    field is required
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Worker_Agency" disabled
+                                name="Worker_Agency">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
+                        </div>
+
+
+                        <!-- imported from csv -->
+
+
+                        <div class="input-box">
+
+                            <select class="form-control" formControlName="worker_Agency"
+                                (ngModelChange)="CalledNew($event,'Worker_Agency')" name="worker_Agency" required
+                                [ngClass]="
                     { 'is-invalid': form.get('worker_Agency').touched && form.get('worker_Agency').invalid}"
-                        style="width: 100%;" >
+                                style="width: 100%;">
 
-                        <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
 
 
 
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="form.get('worker_Agency').touched && form.get('worker_Agency').invalid">
-                        <div *ngIf="form.get('worker_Agency').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('worker_Agency').touched && form.get('worker_Agency').invalid">
+                                <div *ngIf="form.get('worker_Agency').errors.required" style="font-size: 15px;"> This
+                                    field is
+                                    required
+                                </div>
+
+                            </div>
                         </div>
-                      
-                    </div>
-                </div>
 
 
 
 
-                <div class="input-box">
+                        <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Markup_Percentage"  disabled
-                        name="Markup_Percentage">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
-
-                <!-- imported from csv -->
-
-                <div class="input-box">
-
-                    <select style="color: black;" formControlName="markup_Percentage" (ngModelChange)="CalledNew($event,'Markup_Percentage')"
-                        class="form-control"
-                        name="Markup_Percentage" style="width: 100%;" required
-                        [ngClass]="
-                        { 'is-invalid': form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid}" >
-
-                        <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid">
-                        <div *ngIf="form.get('markup_Percentage').errors.required" style="font-size: 15px;"> This field
-                            is required
+                            <input type="text" style="color: black;" formControlName="Markup_Percentage" disabled
+                                name="Markup_Percentage">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
                         </div>
-                    
-                        
-                    </div>
-                </div>
 
-                <div class="input-box">
+                        <!-- imported from csv -->
 
-                    <input type="text" style="color: black;" formControlName="Week_Start_Date"  disabled name="Week_Start_Date">
-                    <div class="invalid-feedback">
-                        <div> This field is required</div>
-                    </div>
-                </div>
+                        <div class="input-box">
 
-                <!-- imported from csv -->
-                <div class="input-box">
+                            <select style="color: black;" formControlName="markup_Percentage"
+                                (ngModelChange)="CalledNew($event,'Markup_Percentage')" class="form-control"
+                                name="Markup_Percentage" style="width: 100%;" required
+                                [ngClass]="
+                        { 'is-invalid': form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid}">
 
-                    <select class="form-control" formControlName="Start_Date" (ngModelChange)="CalledNew($event,'Week_Start_Date')"
-                        name="Start_Date" style="width: 100%;"
-                        required [ngClass]="
-                    { 'is-invalid': form.get('Start_Date').touched && form.get('Start_Date').invalid}"
-                        >
-                        <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="form.get('Start_Date').touched && form.get('Start_Date').invalid">
-                        <div *ngIf="form.get('Start_Date').errors.required" style="font-size: 15px;"> This field is
-                            required
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('markup_Percentage').touched && form.get('markup_Percentage').invalid">
+                                <div *ngIf="form.get('markup_Percentage').errors.required" style="font-size: 15px;">
+                                    This field
+                                    is required
+                                </div>
+
+
+                            </div>
                         </div>
-                        
-                    </div>
-                </div>
 
-                <div class="input-box">
+                        <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Project_End"  disabled 
-                        name="Project_End">
-                    
-                </div>
-
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select class="form-control" formControlName="project_End" (ngModelChange)="CalledNew($event,'Project_End')"
-                        name="project_End" style="width: 100%;"
-                        required [ngClass]="
-                    { 'is-invalid': form.get('project_End').touched && form.get('project_End').invalid}"
-                        >
-
-                        <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-
-
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="form.get('project_End').touched && form.get('project_End').invalid">
-                        <div *ngIf="form.get('project_End').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            <input type="text" style="color: black;" formControlName="Week_Start_Date" disabled
+                                name="Week_Start_Date">
+                            <div class="invalid-feedback">
+                                <div> This field is required</div>
+                            </div>
                         </div>
-                      
-                    </div>
-                </div>
 
-                <div class="input-box">
+                        <!-- imported from csv -->
+                        <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="DT_Pay_Rate"  disabled 
-                        name="DT_Pay_Rate">
-                    
-                </div>
+                            <select class="form-control" formControlName="Start_Date"
+                                (ngModelChange)="CalledNew($event,'Week_Start_Date')" name="Start_Date"
+                                style="width: 100%;" required [ngClass]="
+                    { 'is-invalid': form.get('Start_Date').touched && form.get('Start_Date').invalid}">
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('Start_Date').touched && form.get('Start_Date').invalid">
+                                <div *ngIf="form.get('Start_Date').errors.required" style="font-size: 15px;"> This field
+                                    is
+                                    required
+                                </div>
 
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select class="form-control" formControlName="dT_Pay_Rate" (ngModelChange)="CalledNew($event,'DT_Pay_Rate')"
-                        name="dT_Pay_Rate" style="width: 100%;"
-                        required [ngClass]="
-                    { 'is-invalid': form.get('dT_Pay_Rate').touched && form.get('dT_Pay_Rate').invalid}"
-                        >
-
-                        <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-
-
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="form.get('dT_Pay_Rate').touched && form.get('dT_Pay_Rate').invalid">
-                        <div *ngIf="form.get('dT_Pay_Rate').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            </div>
                         </div>
-                      
-                    </div>
-                </div>
 
-                <div class="input-box">
+                        <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Work_State_Abb"  disabled 
-                        name="Work_State_Abb">
-                    
-                </div>
+                            <input type="text" style="color: black;" formControlName="Project_End" disabled
+                                name="Project_End">
 
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select class="form-control" formControlName="work_State_Abb" (ngModelChange)="CalledNew($event,'Work_State_Abb')"
-                        name="work_State_Abb" style="width: 100%;"
-                        required [ngClass]="
-                    { 'is-invalid': form.get('work_State_Abb').touched && form.get('work_State_Abb').invalid}"
-                        >
-
-                        <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
-
-
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="form.get('work_State_Abb').touched && form.get('work_State_Abb').invalid">
-                        <div *ngIf="form.get('work_State_Abb').errors.required" style="font-size: 15px;"> This field is
-                            required
                         </div>
-                      
-                    </div>
-                </div>
 
-                <div class="input-box">
+                        <!-- imported from csv -->
+                        <div class="input-box">
 
-                    <input type="text" style="color: black;" formControlName="Staffing_Company_Cost"  disabled 
-                        name="Staffing_Company_Cost">
-                    
-                </div>
+                            <select class="form-control" formControlName="project_End"
+                                (ngModelChange)="CalledNew($event,'Project_End')" name="project_End"
+                                style="width: 100%;" required [ngClass]="
+                    { 'is-invalid': form.get('project_End').touched && form.get('project_End').invalid}">
 
-                <!-- imported from csv -->
-                <div class="input-box">
-
-                    <select class="form-control" formControlName="staffing_Company_Cost" (ngModelChange)="CalledNew($event,'Staffing_Company_Cost')"
-                        name="staffing_Company_Cost" style="width: 100%;"
-                        required [ngClass]="
-                    { 'is-invalid': form.get('staffing_Company_Cost').touched && form.get('staffing_Company_Cost').invalid}"
-                        >
-
-                        <option value="">----SELECT----</option>
-                        <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}" *ngFor="let item of header">{{item.name}}</option>
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
 
 
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="form.get('staffing_Company_Cost').touched && form.get('staffing_Company_Cost').invalid">
-                        <div *ngIf="form.get('staffing_Company_Cost').errors.required" style="font-size: 15px;"> This field is
-                            required
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('project_End').touched && form.get('project_End').invalid">
+                                <div *ngIf="form.get('project_End').errors.required" style="font-size: 15px;"> This
+                                    field is
+                                    required
+                                </div>
+
+                            </div>
                         </div>
-                      
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="DT_Pay_Rate" disabled
+                                name="DT_Pay_Rate">
+
+                        </div>
+
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select class="form-control" formControlName="dT_Pay_Rate"
+                                (ngModelChange)="CalledNew($event,'DT_Pay_Rate')" name="dT_Pay_Rate"
+                                style="width: 100%;" required [ngClass]="
+                    { 'is-invalid': form.get('dT_Pay_Rate').touched && form.get('dT_Pay_Rate').invalid}">
+
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+
+
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('dT_Pay_Rate').touched && form.get('dT_Pay_Rate').invalid">
+                                <div *ngIf="form.get('dT_Pay_Rate').errors.required" style="font-size: 15px;"> This
+                                    field is
+                                    required
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Work_State_Abb" disabled
+                                name="Work_State_Abb">
+
+                        </div>
+
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select class="form-control" formControlName="work_State_Abb"
+                                (ngModelChange)="CalledNew($event,'Work_State_Abb')" name="work_State_Abb"
+                                style="width: 100%;" required [ngClass]="
+                    { 'is-invalid': form.get('work_State_Abb').touched && form.get('work_State_Abb').invalid}">
+
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+
+
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('work_State_Abb').touched && form.get('work_State_Abb').invalid">
+                                <div *ngIf="form.get('work_State_Abb').errors.required" style="font-size: 15px;"> This
+                                    field is
+                                    required
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+
+                            <input type="text" style="color: black;" formControlName="Staffing_Company_Cost" disabled
+                                name="Staffing_Company_Cost">
+
+                        </div>
+
+                        <!-- imported from csv -->
+                        <div class="input-box">
+
+                            <select class="form-control" formControlName="staffing_Company_Cost"
+                                (ngModelChange)="CalledNew($event,'Staffing_Company_Cost')" name="staffing_Company_Cost"
+                                style="width: 100%;" required
+                                [ngClass]="
+                    { 'is-invalid': form.get('staffing_Company_Cost').touched && form.get('staffing_Company_Cost').invalid}">
+
+                                <option value="">----SELECT----</option>
+                                <option [disabled]="disableIfSelected(item.name)" value="{{item.name}}"
+                                    *ngFor="let item of header">{{item.name}}</option>
+
+
+                            </select>
+                            <div class="invalid-feedback"
+                                *ngIf="form.get('staffing_Company_Cost').touched && form.get('staffing_Company_Cost').invalid">
+                                <div *ngIf="form.get('staffing_Company_Cost').errors.required" style="font-size: 15px;">
+                                    This field is
+                                    required
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
+
+
                 </div>
-            </div>
-
-
-        </div>
-
-
-        
-
-        <!-- THIS FIELD IS NOT EDITABLE | GRAYED OUT -->
-
-        <!-- End Calc of Total Number of Donors Fields -->
-        <input type="button" data-page="2" name="previous" (click)="previous()" class="previous action-button"
-            value="Previous" /> 
-            
-<button type="button" data-toggle="modal" 
-data-target=".bd-example-modal-lg" class="btn btn-primary">Add </button>
-            <img *ngIf="isLoading" style="width : 24px;" class="mr-3"  src="../../../assets/icons8-spinner.gif" />
-            <!-- <input type="button" data-page="2" name="next" class="next action-button"  *ngIf="run" (click)="validate()"  value="Validate" />
-            <input type="button" data-page="2" name="next" class="next action-button"  *ngIf=" !run"   value="submit" /> -->
-            <input type="button" data-page="2" name="next" class="next action-button"  *ngIf="show "(click)="submit()" value="Submit" />
-        <input type="button" data-page="2" name="next" class="next action-button" *ngIf="!show" (click)="next()" value="Next" />
-    
-   </form>
-    </fieldset>
 
 
 
-    <!-- Cultivation FIELD SET -->
-    <fieldset *ngIf="step == 3" >
-        <h2 class="fs-title">PayRoll</h2>
-        <div class="">
-            <!-- Begin Average Gift Size in Year 1 Field -->
-            <div class="row justify-content-center">
-                <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" style="height: 200px;" class="fit-image">
+
+                <!-- End Calc of Total Number of Donors Fields -->
+                <input type="button" data-page="2" name="previous" (click)="previous()" class="previous action-button"
+                    value="Previous" />
+
+                <!-- <button type="button" data-toggle="modal" 
+data-target=".bd-example-modal-lg" class="btn btn-primary">Add </button> -->
+                <img *ngIf="isLoading" style="width : 24px;" class="mr-3" src="../../../assets/icons8-spinner.gif" />
+                <!-- <input type="button" data-page="2" name="next" class="next action-button"  data-toggle="modal" 
+            data-target=".bd-example-modal-lg" *ngIf="run" (click)="validate()"  style="margin-left: 10px;" value="Validate" /> -->
+                <!-- <input type="button" data-page="2" name="next" class="next action-button"  *ngIf=" !run"   value="submit" /> -->
+
+                <input type="button" data-page="2" name="next" class="next action-button" (click)="next1()"
+                    value="Next" />
+
+            </form>
+        </fieldset>
+
+
+
+        <!-- Cultivation FIELD SET -->
+        <fieldset *ngIf="step == 3">
+          
+            <div class="">
+                <!-- Begin Average Gift Size in Year 1 Field -->
+                <div class="row justify-content-center">
+                    <!-- <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" style="height: 200px;" class="fit-image"> -->
                 </div>
             </div>
             <!-- End Average Gift Size in Year 1 Field -->
             <!-- Begin Average Gift Size in Year 2 Field -->
             <div class="form-item webform-component webform-component-textfield hs_average_gift_size_in_year_2 field hs-form-field"
                 id="webform-component-cultivation--amount-2">
-
+                <!-- 
                 <label style="color: purple;" style="font-size: 40px; margin-right: 100px;">
-                    Thank you For Uploading the Payroll Document  </label>
-    <br>
+                    Thank you for uploading the payroll document  </label> -->
 
-  
-                    
+                <div *ngIf="errorMessage" class="mt-5">
+                    <label style="color: purple;" style="font-size: 40px; margin-right: 100px;">
+                        Please correct the data and upload file again. </label>
+                    <br>
+
+                    <div class="content" *ngFor="let error of execelValidationError">
+                        <label class="ml-3"><strong>{{error.Message}}</strong></label><br>
+                    </div>
+
+                    <input type="button" data-page="2" name="next" class="next action-button" (click)="close()"
+                        value="Go to upload" />
+                </div>
+
+              
                 <span class="error1" style="display: none;">
                     <i class="error-log fa fa-exclamation-triangle"></i>
                 </span>
             </div>
             <!-- End Average Gift Size in Year 2 Field -->
-        </div>
-        <br>
 
-        <!-- End Average Gift Size Perchent Change Field -->
-        <!-- <input type="button" data-page="3" name="previous" class="previous action-button" value="Previous" /> -->
-        <input type="button" data-page="3" name="" (click)="close()"  style="width: 250px; background-color: purple; color: white; margin-left: 400px;" value="Proceed To Dashboad" />
-        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"></div>
-    </fieldset>
+            <br>
 
-</form>
+            <!-- End Average Gift Size Perchent Change Field -->
+            <!-- <input type="button" data-page="3" name="previous" class="previous action-button" value="Previous" /> -->
+            <!-- <input type="button" data-page="3" name="" (click)="close()"
+                style="width: 250px; background-color: purple; color: white; margin-left: 400px;"
+                value="Proceed to dashboad" /> -->
+                <div *ngIf="show">
+                    <input type="button" data-page="2" style="width: 250px; background-color: purple; color: white;  margin-right: 380px;"  name="next" class="next action-button" (click)="submit()"
+                        value="Submit" />
+                </div>
+            <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"></div>
+        </fieldset>
+
+    </form>
 </div>
 
 
 
 <div class="modal fade bd-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-lg">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title">Error</h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  
-        <div class="content" *ngFor ="let error of execelValidationError">
-   <label>{{error.Message}}</label><br>
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Error</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div *ngIf="execelValidationError">
 
-   
-         
+                <!-- <label class="mt-5" style="margin-left: 200px;"><strong>Validation Done No Error Found</strong></label> -->
+            </div>
+            <div *ngIf="execelValidationError" class="mt-5">
+                <div class="content" *ngFor="let error of execelValidationError">
+                    <label class="ml-3">{{error.Message}}</label><br>
+                </div>
+
+            </div>
+
+
         </div>
-     
+    </div>
 
-
-    
-  </div>
 </div>
-
-</div> 
