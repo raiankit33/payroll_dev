@@ -12,7 +12,7 @@ import { AuthService} from  '../service/auth.service';
 })
 export class LoginComponent implements OnInit {
   user: any;
-
+  isLoading :boolean=false
   constructor(private router: Router,
     // private toastr: ToastrService,
     private service : AuthService) { }
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       onSubmit(){
  
     if(this.form.valid){
-
+this.isLoading = true
       let login ={
         email: this.form.value.email,
         password: this.form.value.password,
@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
             this.service.storeUserData(data.token, data.user);
             // this.toastr.success('Success ! logged In');
             if(data.user.data == true){
+              this.isLoading =false
               console.log('success')
               Swal.fire({
                 position: 'top-end',

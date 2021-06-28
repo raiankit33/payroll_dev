@@ -110,6 +110,7 @@ export class EmployeeDetailsComponent implements OnInit {
   error: string;
    
   allData : any ;
+  isSpinner: boolean;
   
 
 
@@ -432,12 +433,15 @@ dashboadData(Worker_Id){
 getEmployee(allData ,Worker_Id,){
 let tt ={
   Worker_Unique_Id : Worker_Id,
-  data : allData
+  data : allData,
+  
 }
+this.isSpinner = true ;
 console.log(tt,"tt")
 
   this.Service.getEmployeeList(tt).subscribe((res:any) => {
  console.log(res)
+ this.isSpinner =false;
  this.userObj =  res.data[0]
 this.barChart();
 this.doughnutChart();
@@ -446,9 +450,11 @@ this.pieChart();
 }
 
 
-getState() {
-
-  this.Service.getSetting().subscribe((res: any) => {
+getState() { 
+  let s ={
+    AuthToken :this.user.token
+  }
+  this.Service.getSetting(s).subscribe((res: any) => {
     this.Details = res.data;
    
   }, (error) => {

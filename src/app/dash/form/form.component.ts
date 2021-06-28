@@ -323,7 +323,7 @@ run:boolean =true
       this.uniqueZipValidation(this.csvRecords[i]);
       this.uniqueStaffValidation(this.csvRecords[i])
       this.uniqueCompanyValidation(this.csvRecords[i]);
-      this.hasEmptyElement(this.csvRecords[i]);
+      // this.hasEmptyElement(this.csvRecords[i]);
       this.uniqueOTPayValidation(this.csvRecords[i]);
       this.uniqueDoubleTimeValidation(this.csvRecords[i]);
       this.uniqueOverTimeValidation(this.csvRecords[i]);
@@ -336,6 +336,7 @@ run:boolean =true
       this.uniqueCityValidation(this.csvRecords[i]);
       this.uniqueAgencyValidation(this.csvRecords[i]);
       this.uniqueLocationValidation(this.csvRecords[i]);
+      this.uniqueWork_StateValidation(this.csvRecords[i]);
       this.uniqueHeader
     }
     console.log(this.execelValidationError)
@@ -519,6 +520,23 @@ run:boolean =true
   }
 
 
+  uniqueWork_StateValidation(csvRecords) {
+
+    var user = csvRecords["Work_State_Abb"] ;
+   
+    for(var i = 0 ;  i<=user ;i++){
+     
+      if (typeof  user === 'string' || user instanceof String) {
+
+        let error = { "Message": " Work_State_Abb does not contain number  ", }
+        this.execelValidationError.push(error );
+        break ;
+       }
+
+    }
+  }
+
+
   uniqueOverTimeValidation(csvRecords) {
 
     if (isNaN(csvRecords["Over_Time_H"])) {
@@ -613,6 +631,7 @@ console.log(error)
         user_id: this.user.id,
         user_name: this.user.name,
         user_email: this.user.email,
+        AuthToken:this.user.token
       }
       this.isLoading = true
       this.Service.addFile(form).subscribe(res => {

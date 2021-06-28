@@ -15,6 +15,7 @@ import { EmployeeDetailsComponent } from '../employee-details/employee-details.c
 import { AdmindashComponent } from '../admin/admindash/admindash.component';
 import { AdminSettingComponent } from '../admin/admin-setting/admin-setting.component';
 import { BatchListComponent } from '../admin/batch-list/batch-list.component';
+import { SpinnerComponent } from '../comman/spinner/spinner.component';
 
 const routes: Routes = [
   { path: '', component: DashComponent,
@@ -32,6 +33,7 @@ const routes: Routes = [
  
     { path: 'employeeList', component:EmployeeListComponent},
     { path: 'employeeDetails', component:EmployeeDetailsComponent},
+    { path: 'spinner', component:SpinnerComponent},
   ]
  }
 ];

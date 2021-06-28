@@ -61,6 +61,25 @@
 
 
 <div class="wrapper">
+
+  <div class="spinner_overlay" *ngIf="isSpinner" >
+  </div>
+       
+  
+        <div class="spinner" *ngIf="isSpinner">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+
+<!-- 
+        <div id="loader" *ngIf="isSpinner">
+          <div id="shadow"></div>
+          <div id="box"></div>
+        </div> -->
+
   <div class="left-nav" >
  
   <!-- Sidebar -->
@@ -114,9 +133,12 @@
     
       <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <form  [formGroup]="Myform"  >
-        <ngx-select-dropdown  tabindex="0" formControlName="department"  name="department"
+        
+        <ngx-select-dropdown  tabindex="0" formControlName="department"  name="department" 
               [multiple]="false" [config]="config" [options]="Department">
+              <div class="dropD" ></div>
           </ngx-select-dropdown>
+      
        </form>
       </div>
     </li>
@@ -158,7 +180,7 @@
         <span> Select Date</span>
       </a>
       <div id="collapseUtilities4" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-       
+        <form  [formGroup]="form"  >
         <div class="input-box ">
           <span class="details text-white ml-3"><b> Select Start Date </b></span>
           <input type="date" class="form-control ml-2 " formControlName="start_date"  name="start_date"   style="width: 200px;"   >   
@@ -167,9 +189,10 @@
 
     <div class="input-box ">
         <span class="details text-white"><b> Select End Date </b></span>
-        <input type="date" class="form-control  ml-2" formControlName="end_date"  id="date" name="end_date"  style="width:200px;"   >
+        <input type="date" class="form-control  ml-2" formControlName="week_end_date"   name="week_end_date"  style="width:200px;"   >
       
     </div>
+    </form>
     <button class="btn btn-primary  mt-3 " (click)="selectDate()"  style="width: 80px; height: 40px;">Search</button>
     <!-- <button type="button" class="btn btn-outline-success text-white border-white">Success</button> -->
  

@@ -14,7 +14,7 @@ name :any;
   Details = [];
   error: string;
   isLoad:boolean =false
-
+  isSpinner :boolean = false
   batches :any =[];
 
   value : string;
@@ -85,13 +85,16 @@ name :any;
   SendName(batchName){
     let g ={
       id : batchName,
-      user_id : this.user.id
+      user_id : this.user.id,
+      AuthToken : this.user.token
     }
+    this.isSpinner = true ;
     console.log(g)
     this.isLoad =true
     this.Service.getSingleBatch(g).subscribe((res: any) => {
       this.SearchDetails = res.data;
       console.log(res)
+      this.isSpinner = false
       console.log(this.SearchDetails,"hhhhhhhhh")
       setTimeout(() => {
         this.isLoad = false;

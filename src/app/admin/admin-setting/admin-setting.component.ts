@@ -188,8 +188,13 @@ Myform = new FormGroup({
 
   onSubmit() {
     this.isLoading = true;
+ 
     if(this.form.value.upload){
-      this.Service.register(this.csvRecords).subscribe(res => {
+         let up ={
+      csv : this.csvRecords,
+      AuthToken :this.user.token
+    }
+      this.Service.register(up).subscribe(res => {
 
         setTimeout(() => {
           this.isLoading = false;
@@ -214,8 +219,11 @@ Myform = new FormGroup({
 
 
   getSetting() {
+    let s ={
+      AuthToken :this.user.token
+    }
 
-    this.Service.getSetting().subscribe((res: any) => {
+    this.Service.getSetting(s).subscribe((res: any) => {
       this.Details = res.data;
 
     var length =this.Details.length
@@ -235,7 +243,12 @@ Myform = new FormGroup({
   }
 
   updateSetting() {
-    this.Service.UpdateSetting(this.userObj).subscribe(res => {
+    let update ={
+    update : this.userObj ,
+    AuthToken : this.user.token
+
+    }
+    this.Service.UpdateSetting(update).subscribe(res => {
       this.getSetting();
       swal.fire(
         'File updated successfully!',
@@ -249,12 +262,14 @@ Myform = new FormGroup({
   isLoad: boolean = false;
   sendStateName(event) {
     let name = {
-      States:event 
+      States:event ,
+      AuthToken :this.user.token
     }
     console.log(name)
     this.isLoad = true
     this.Service.PostSetting(name).subscribe((res: any) => {
       this.SearchDetails = res.data;
+      console.log(this.SearchDetails)
       setTimeout(() => {
         this.isLoad = false;
       }, 1000);

@@ -32,9 +32,9 @@ export class AllserviceService {
       .pipe(catchError(this.handleError));
   }
 
-  getSetting() {
+  getSetting(m) {
 
-    return this.http.get('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/getPayrollSetting/getPayrollSetting')
+    return this.http.post('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/getPayrollSettingAll/getPayrollSettingAll',m)
       .pipe(catchError(this.handleError));
   }
 
@@ -197,6 +197,12 @@ getSignUpDetail(m){
 getActivateUser(m){
   return this.http.post('https://ly4d48q8la.execute-api.us-west-2.amazonaws.com/activateUser/activateUser  ',m)
 }
+
+
+getCustomer(m){
+  return this.http.post('https://kev3fwtqj2.execute-api.us-west-2.amazonaws.com/adminseedata/adminseedata',m)
+}
+
 
 
 }

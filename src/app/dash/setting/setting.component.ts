@@ -217,8 +217,10 @@ Myform = new FormGroup({
 
 
   getSetting() {
-
-    this.Service.getSetting().subscribe((res: any) => {
+    let s ={
+      AuthToken :this.user.token
+    }
+    this.Service.getSetting(s).subscribe((res: any) => {
       this.Details = res.data;
 
     var length =this.Details.length
@@ -278,7 +280,8 @@ Myform = new FormGroup({
     Dental: this.Myform.value.Dental,
     FourK: this.Myform.value.FourK,
     Bonus: this.Myform.value.Bonus,
-    user_id : this.user.id
+    user_id : this.user.id,
+    AuthToken : this.user.token
    }
 
       this.Service.postTest(v).subscribe(res => {

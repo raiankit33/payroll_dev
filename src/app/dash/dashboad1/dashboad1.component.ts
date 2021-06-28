@@ -31,7 +31,7 @@ export class Dashboad1Component implements OnInit {
   Details = [];
   isLoad: boolean = false
   AllDetail: any = [];
-
+  isSpinner : boolean = false
   NameDetails = [];
   vendorDetails :any = [];
   error: string;
@@ -101,11 +101,8 @@ export class Dashboad1Component implements OnInit {
 
   form = new FormGroup({
 
-    id: new FormControl(''),
-    // start_date:[formatDate(this.post.start_date,'MM-DD-YY','en'), [Validators.required]],
-   
      start_date:new FormControl(''),
-   end_date: new FormControl('',[Validators.required]),
+     week_end_date: new FormControl(''),
 
   })
 
@@ -144,9 +141,9 @@ export class Dashboad1Component implements OnInit {
   getSetting() {
     let tt ={
       user_id : this.user.id,
-     
-    }
+      AuthToken : this.user.token
 
+    }
     this.Service.showThem(tt).subscribe((res: any) => {
       this.Details = res.dic;
 console.log(this.Details)
@@ -210,12 +207,15 @@ stackDepartmentName = [];
      stackLocationMarkup = [];
 
   ShowName(Batch) {
-    
+   
     let tt = {
       id: Batch,
-      user_id : this.user.id
+      user_id : this.user.id,
+      AuthToken:this.user.token
+
     }
-    console.log(event, "first load")
+    this.isSpinner  = true;
+  
     this.isLoad = true
 
     this.Service.getSingleBatch(tt).subscribe((res: any) => {
@@ -307,8 +307,8 @@ this.stackcost= res.chart.Cost
 
 
       setTimeout(() => {
-        this.isLoad = false;
-      }, 1000);
+      this.isSpinner = false
+      }, 2000);
 
       console.log(res)
       this.cost = res.T_Cost;
@@ -620,120 +620,7 @@ var opt = {
   }
  
   barBChart(){
-  //   var myChart = new Chart('BChart', {
-  //     type: 'bar',
-  //     data: {
-  //         labels: ['Stack Cost','Stack Cost','Stack Cost'],
-  //         datasets: [
-  //           {
-  //             label:'data 1',
-  //             data: [ this.stackPay[0],this.stackTax[0]],
-  //             fill: true,
-          
-  //          backgroundColor: 
-  //           'rgb(255, 99, 132)',
-         
-          
 
-  //             borderColor :[
-               
-          
-  //             ],
-  //             borderWidth: 3
-  //         },
-  //         {
-  //           label:'data 2',
-  //           data: [this.stackPay[1], this.stackTax[1]],
-  //           fill: true,
-        
-  //        backgroundColor:   'rgb(54, 162, 235)',
-      
-        
-            
-  //           borderColor :[
-            
-         
-        
-  //           ],
-  //           borderWidth: 3
-  //       },
-  //       {
-  //         label:'data 3',
-  //         data: [this.stackPay[3], this.stackTax[3]],
-  //         fill: true,
-      
-  //      backgroundColor:     'rgb(255, 99, 12)',
-  
-    
-  //         borderColor :[
-          
-       
-      
-  //         ],
-  //         borderWidth: 3
-  //     },
-  //     {
-  //       label:'data 4',
-  //       data: [this.stackPay[4], this.stackTax[4]],
-  //       fill: true,
-    
-  //    backgroundColor:   'rgb(255, 205, 86)',
-
-    
-    
-  //       borderColor :[
-        
-     
-    
-  //       ],
-  //       borderWidth: 3
-  //   },
- 
-   
-    
-        
-        
-  //       ]
-  //     },
-  //     options: {
-  //       scales: {
-  //         xAxes: [ {
-  // stacked : true
-  //         },
-  //           {
-  //           display: false,
-  //           barPercentage: 1.2,
-  //           ticks: {
-
-  //           }
-  //         },{
-  //           scaleLabel: {
-  //             display: true,
-  //             labelString: ' Types of Taxes '
-  //           }
-  //         }, {
-  //           display: false,
-  //           ticks: {
-  //             autoSkip: false,
-
-  //           }
-  //         }],
-  //         yAxes: [{
-  // stacked : true
-  //         },
-            
-  //           {
-  //           scaleLabel: {
-            
-  //             display: true,
-  //             labelString: ' Taxes in Dollar '
-  //           }
-  //         }]
-  //       }
-  //     }
-      
-    
-  // });
 
 
   var chartData = {
@@ -844,30 +731,7 @@ var opt = {
 
 
   pieChart(){
-    // var myChart = new Chart('Chart', {
-    //   type: 'pie',
-    //   data: {
-    //     labels: ['Double time Total', 'over time Total ', 'standard time Total'],
-
-    //     datasets: [{
-
-    //       data: [this.Double_time_Total, this.over_time_Total, this.standard_time_Total],
-    //       fill: true,
-
-    //       backgroundColor: [
-    //         'rgb(255, 99, 132)',
-    //         'rgb(54, 162, 235)',
-    //         'rgb(255, 205, 86)'
-    //       ],
-    //       borderWidth: 3
-    //     }
-
-    //     ]
-    //   },
-    //   options: {
-
-    //   }
-    // });
+ 
 
 
     
@@ -926,99 +790,7 @@ var opt = {
   }
 
   histogramChart(){
-  //   var myChart = new Chart('stack2', {
-  //     type: 'bar',
-  //     data: {
-  //         labels: ['Stack Cost','Stack Cost','Stack Cost'],
-  //         datasets: [
-  //           {
-  //             label:'data 1',
-  //             data: [ this.stackManagerPay[0],this.stackManagerTax[0]],
-  //             fill: true,
-          
-  //          backgroundColor: 
-  //           'rgb(255, 99, 132)',
-         
-          
 
-  //             borderColor :[
-               
-          
-  //             ],
-  //             borderWidth: 3
-  //         },
-  //         {
-  //           label:'data 2',
-  //           data: [ this.stackManagerPay[1],this.stackManagerTax[1]],
-  //           fill: true,
-        
-  //        backgroundColor:   'rgb(54, 162, 235)',
-      
-        
-            
-  //           borderColor :[
-            
-         
-        
-  //           ],
-  //           borderWidth: 3
-  //       },
-  //       {
-  //         label:'data 3',
-  //         data: [ this.stackManagerPay[3],this.stackManagerTax[3]],
-  //         fill: true,
-      
-  //      backgroundColor:     'rgb(255, 99, 12)',
-  
-    
-  //         borderColor :[
-          
-       
-      
-  //         ],
-  //         borderWidth: 3
-  //     },
-  //     {
-  //       label:'data 4',
-  //       data: [ this.stackManagerPay[4],this.stackManagerTax[4]],
-  //       fill: true,
-    
-  //    backgroundColor:   'rgb(255, 205, 86)',
-
-    
-    
-  //       borderColor :[
-        
-     
-    
-  //       ],
-  //       borderWidth: 3
-  //   },
- 
-   
-    
-        
-        
-  //       ]
-  //     },
-  //     options: {
-  //       scales: {
-  //         xAxes: [ {
-  // stacked : true
-  //         },
-     
-  //         ],
-  //         yAxes: [{
-  // stacked : true
-  //         },
-            
-         
-  //         ]
-  //       }
-  //     }
-      
-    
-  // });
 
 
   var chartData = {
@@ -1347,19 +1119,22 @@ var opt = {
   
     var date = {
         Week_Start_Date : this.formatDate(this.form.value.start_date),
-        Week_End_Date : this.formatDate(this.form.value.end_date),
+        Week_End_Date : this.formatDate(this.form.value.week_end_date),
         data : this.NameDetails,
-        user_id : this.user.id
+        user_id : this.user.id ,
+        AuthToken :this.user.token
 
     }
-  
+    console.log(date,'date')
+
+  this.isSpinner = true ;
 
 
  this.Service.getDate(date).subscribe( (res:any)=>{
      this.dateRange = res.date
 
 if(res.statusCode == 200){
-
+this.isSpinner = false
   this.job_type = res.Title_saving;
   this.locationType = res.location_saving;
 
@@ -1416,7 +1191,7 @@ this.barBChart();
 this.pieChart();
 this.Stack()
 }else{
-
+this.isSpinner = false
 
   Swal.fire({
     icon: 'error',
@@ -1429,7 +1204,10 @@ this.Stack()
  
 
      
- })
+ },(error) => {
+  this.error = 'Server Down Please try After Sometime ..! '
+}
+)
   }
 
   isVendor : boolean = false ;
@@ -1672,7 +1450,9 @@ console.log(res)
       const m = {
         // Work_State: event,
         data: this.NameDetails,
-        user_id : this.user.id
+        user_id : this.user.id,
+        AuthToken:this.user.token
+      
       }
       console.log(m)
       this.isManger = true;
@@ -1747,6 +1527,7 @@ console.log(res)
   
 
     sendFilter(){
+      this.isSpinner = true
  var all = {
     
   Manager :this.Myform.value.Manager,
@@ -1754,12 +1535,16 @@ console.log(res)
   Agency :this.Myform.value.Agency,
   state :this.Myform.value.state,
   data : this.NameDetails,
+  AuthToken :this.user.token
+
+ 
  }
  console.log(all)
 
       this.Service.filterAllData(all).subscribe((res: any) => {
 
 if(res.statusCode == 200){
+  this.isSpinner =false
   this.job_type = res.Title_saving;
   this.locationType = res.location_saving;
 
@@ -1829,18 +1614,23 @@ console.log(res)
   })
 }
 
-      })
+      },(error) => {
+        this.error = 'Server Down Please try After Sometime ..! '
+      }
+    )
     }
 
 reset(){
+  this.isSpinner = true ;
   var length = this.Details.length;
   let bb = {
     id: this.Details[length - 1].id,
-    user_id : this.user.id
+    user_id : this.user.id ,
+    AuthToken :this.user.token
   }
   this.Service.getSingleBatch(bb).subscribe((res: any) => {
  this.Myform.reset();
-
+this.isSpinner = false
 
     this.highestSaving = res.Top_highest_Saving;
     this.leastSaving = res.Top_lowest_Saving ;

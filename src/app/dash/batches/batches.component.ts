@@ -33,7 +33,7 @@ export class BatchesComponent implements OnInit {
   getSetting() {
     let tt ={
       user_id : this.user.id,
-     
+     AuthToken : this.user.token
     }
     
     this.Service.showThem(tt).subscribe((res: any) => {

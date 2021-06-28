@@ -10,9 +10,11 @@ import { AllserviceService } from 'src/app/service/allservice.service';
 export class BatchListComponent implements OnInit {
 name:string
 batchDetail = []
+  user: any;
   constructor(private router: Router,  private actRouter: ActivatedRoute, private Service : AllserviceService,) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
     this.actRouter.paramMap.subscribe(params => {
       console.log("parammap",params.get('batch'));
       // console.log("paramma2",JSON.parse( params.get('data')));
@@ -36,12 +38,18 @@ batchDetail = []
   getBatchDetail(Id){
 
     let b = {
-      user_id :Id
+      user_id :Id,
+      AuthToken:this.user.token
     }
-    this.Service.showThem(b).subscribe((res: any) => {
+    this.Service.getCustomer(b).subscribe((res: any) => {
  this.batchDetail =res.dic
  console.log(res)
     })
+  }
+
+
+  Back(){
+    this.router.navigate(['dash/AdminDashboad']);
   }
 
 }

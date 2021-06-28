@@ -6,9 +6,11 @@
 
 
   <!-- Content Row -->
+ 
+<app-spinner *ngIf="isSpinner"></app-spinner>
+  
+     
 
-
-    <div class="row">
 <div class="card shadow mb-4 mt-5">
   <div class="search_wrap search_wrap_1 mr-4">
     <div class="drop">
@@ -26,11 +28,12 @@ Filter User
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" (click)="activate()">Active</a>
           <a class="dropdown-item" (click)="Inactive()">Inactive</a>
+          <a class="dropdown-item" (click)="pendingU()">Pending</a>
 
         </div>
       </div>
 <div class="right">
-      <button class="btn btn-primary" data-toggle="modal"  data-target=".bd-example-modal-lg" >Add</button>
+      <button class="btn btn-primary mt-2" data-toggle="modal"  data-target=".bd-example-modal-lg" >Add User</button>
       </div>
     </div>
     <div class="table-responsive">
@@ -62,7 +65,7 @@ Filter User
                 <ul>
                   <li class="list-inline-item">
                     <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
-                      data-toggle="modal" data-target=".bd-lg" data-placement="top" (click)="InActivateUser(l.id)" title="Edit">InActive</button>
+                      data-toggle="modal" data-target=".bd-lg" data-placement="top" (click)="InActivateUser(l.id)" title="Edit">Deactivate</button>
                   </li>
                 </ul>
               </td>
@@ -94,7 +97,33 @@ Filter User
 
 
           </tbody>
+
+          
+          <tbody *ngIf="pending">
+            <tr *ngFor="let l of penDetail |  filter: name   ; index as i">
+              <th scope="row">{{i+1}}</th>
+              <td>{{l.name}}</td>
+              <td>{{l.email}}</td>
+           
+              <td><span class="badge badge-secondary">{{l.status}}</span></td>
+              <td>{{l.create_at}}</td>
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-lg" data-placement="top" (click)="ActivateUser(l.id)" title="Edit">Activate</button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+
+
+          </tbody>
         </table>
+
+       
       </div>
     </div>
 
@@ -108,7 +137,7 @@ aria-hidden="true">
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Add Customer</h4>
+            <h4 class="modal-title">Add User</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

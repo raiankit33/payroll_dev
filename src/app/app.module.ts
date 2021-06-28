@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,10 @@ import { AdminSettingComponent } from './admin/admin-setting/admin-setting.compo
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { BatchListComponent } from './admin/batch-list/batch-list.component';
+import { SpinnerComponent } from './comman/spinner/spinner.component';
+import { AllserviceService } from './service/allservice.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +39,7 @@ import { BatchListComponent } from './admin/batch-list/batch-list.component';
     AdminLoginComponent,
     AdminSettingComponent,
     BatchListComponent,
+    SpinnerComponent,
     
   
   
@@ -44,6 +49,7 @@ import { BatchListComponent } from './admin/batch-list/batch-list.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+
     NgxCaptchaModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -52,7 +58,9 @@ import { BatchListComponent } from './admin/batch-list/batch-list.component';
    
    
   ],
-  providers: [SharedData],
-  bootstrap: [AppComponent]
+  providers: [SharedData,AllserviceService],
+  bootstrap: [AppComponent],
+
+
 })
 export class AppModule { }
