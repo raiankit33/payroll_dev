@@ -59,10 +59,10 @@
           
           </div>
     
-        <button (click)="onSubmit()">  <img  class="ml-3" style="width : 24px;"  *ngIf="isLoading"  src="../../assets/images/Rolling-1s-200px.gif" /> Sign In</button><br>
+        <button [disabled]="form.invalid && isLoading" (click)="onSubmit()">  <img  class="ml-3" style="width : 24px;"  *ngIf="isLoading"  src="../../assets/images/Rolling-1s-200px.gif" /> Sign In</button><br>
         <a style="color: blue; cursor: pointer;" routerLink="forget">Forgot Your Password</a>
        <p>Don't have an Account ?<a routerLink="signUp" style="color:blue; cursor: pointer;"> Register</a></p>
-       <p><a routerLink="Alogin"  style="color:blue; cursor: pointer;"> Admin Login</a></p>
+       <span><a routerLink="Alogin"  style="color:blue; cursor: pointer;"> Admin Login</a></span>
         </form>
     </div>
     <div class="overlay-container">

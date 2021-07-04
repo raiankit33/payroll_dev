@@ -94,7 +94,7 @@ nav .menu-btn i{
 
 
 /* // new header  */
-
+/* 
 nav{
   display: flex;
   height: 80px;
@@ -115,6 +115,7 @@ nav .logo{
 nav ul{
   display: flex;
   flex-wrap: wrap;
+  margin-top: 22px;
   float: right;
   list-style: none;
 }
@@ -126,6 +127,7 @@ nav ul li a{
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
+ 
   padding: 8px 15px;
   border-radius: 5px;
   letter-spacing: 1px;
@@ -145,6 +147,11 @@ nav .menu-btn i{
 }
 input[type="checkbox"]{
   display: none;
+}
+
+.vl {
+  border-left: 3px solid rgb(138, 141, 138);
+  height: 35px;
 }
 @media (max-width: 1000px){
   nav{
@@ -191,4 +198,8 @@ input[type="checkbox"]{
     background: none;
     color: cyan;
   }
-}
+
+  .vl {
+   display: none;
+  }
+} */

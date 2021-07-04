@@ -22,6 +22,8 @@ pending : boolean =false
   penDetail: any[];
 
   isSpinner :boolean = false;
+  err: string;
+  open: boolean = false;
 
 
   constructor(private router: Router,
@@ -59,7 +61,7 @@ pending : boolean =false
   }
 
   getDetail(){
-    this.isSpinner =true
+   
     let vv ={
       
         AuthToken:this.user.token  
@@ -67,7 +69,7 @@ pending : boolean =false
     this.Service.getAdminDetailPage(vv).subscribe((res:any)=>{
 console.log(res)
  this.Detail = res.dic
-this.isSpinner =false
+
 
  this.showDetail = this.Detail.filter(data => data.status == 'Active');
 
@@ -109,13 +111,21 @@ this.active = false
       }
       this.Auth.SignUp(s).subscribe((data) => {
  this.getDetail();
- this.Myform.reset()
+
  if(data.statusCode == 200){
+  this.Myform.reset()
   Swal.fire(
     'User added successfully!',
     '',
     'success'
   )
+ }else if(data.statusCode == 403) {
+  
+    this.err = "This email is already registered. ",
+      this.open = true;
+    setTimeout(() => {
+      this.open = false
+    }, 3000);
  }
       })
   }

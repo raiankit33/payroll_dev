@@ -456,6 +456,7 @@ getState() {
   }
   this.Service.getSetting(s).subscribe((res: any) => {
     this.Details = res.data;
+    console.log(res)
    
   }, (error) => {
     this.error = 'Server Down Please try After Sometime ..! '
@@ -466,6 +467,7 @@ getState() {
 
 
 getEmployeeStateData(event){
+  this.isSpinner = true
   let send ={
     State :  event ,
     data : this.userObj,
@@ -474,6 +476,7 @@ getEmployeeStateData(event){
 
   this.Service.getEmployeeState(send).subscribe((res : any )=>{
       this.userObj = res.data
+      this.isSpinner = false
            this.pieChart();
            this.doughnutChart();
            this.barChart();             

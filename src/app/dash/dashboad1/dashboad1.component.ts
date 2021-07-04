@@ -1206,6 +1206,13 @@ this.isSpinner = false
      
  },(error) => {
   this.error = 'Server Down Please try After Sometime ..! '
+  this.isSpinner =false
+  Swal.fire({
+    icon: 'error',
+    title: 'Token mismatch',
+    text: 'Please try again!',
+    
+  })
 }
 )
   }
@@ -1603,7 +1610,7 @@ console.log(res)
   this.pieChart();
   this.Stack();
 }else if(res.statusCode == 403){
- 
+ this.isSpinner =false
 
 
   Swal.fire({
@@ -1616,6 +1623,13 @@ console.log(res)
 
       },(error) => {
         this.error = 'Server Down Please try After Sometime ..! '
+        this.isSpinner =false
+        Swal.fire({
+          icon: 'error',
+          title: 'Token mismatch',
+          text: 'Please try again!',
+          
+        })
       }
     )
     }

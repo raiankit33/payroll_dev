@@ -42,7 +42,11 @@ name :any;
       }
     })
     
+    this.isSpinner = true ;
     
+    setTimeout(() => {
+      this.isSpinner = false ;
+    }, 4000);
   }
 
 
@@ -65,11 +69,12 @@ name :any;
   getList(batchName) {
 
     let d ={
-      user_id : this.user.id
+      user_id : this.user.id,
+      AuthToken : this.user.token
     }
   
     this.Service.showThem(d).subscribe((res: any) => {
-      
+      console.log(res)
       this.Details = res.dic;
       if(batchName){
        
@@ -88,7 +93,7 @@ name :any;
       user_id : this.user.id,
       AuthToken : this.user.token
     }
-    this.isSpinner = true ;
+   
     console.log(g)
     this.isLoad =true
     this.Service.getSingleBatch(g).subscribe((res: any) => {

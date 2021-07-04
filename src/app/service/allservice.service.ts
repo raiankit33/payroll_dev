@@ -38,6 +38,11 @@ export class AllserviceService {
       .pipe(catchError(this.handleError));
   }
 
+  // getAllState(s){
+  //   return this.http.post('https://zzea8bdb46.execute-api.us-west-2.amazonaws.com/getOnlyState/getOnlyState',s)
+  //   .pipe(catchError(this.handleError));
+  // }
+
 
   PostSetting(name) {
 

@@ -32,13 +32,13 @@ forgetPass(){
  }
   this.Service.forgetPassword(hh).subscribe((res:any) =>{
  if(res.statusCode == 200){
-
+ this.router.navigate(['/'])
   Swal.fire({
   
     icon: 'success',
     title: 'Password send successfully',
     showConfirmButton: false,
-    timer: 3000
+    timer: 2000  
   })
  }else{
   Swal.fire({

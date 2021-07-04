@@ -13,7 +13,7 @@ export class BatchesComponent implements OnInit {
   count : number = 5;
   Details = [];
   error: string;
-
+  isSpinner :boolean = false
   name: any;
   total_count: any;
   time: any;
@@ -26,11 +26,17 @@ export class BatchesComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.getSetting();
+
+    this.isSpinner =true ;
+    setTimeout(() => {
+      this.isSpinner = false
+      }, 2000);
    
   }
 
 
   getSetting() {
+  
     let tt ={
       user_id : this.user.id,
      AuthToken : this.user.token
@@ -38,7 +44,7 @@ export class BatchesComponent implements OnInit {
     
     this.Service.showThem(tt).subscribe((res: any) => {
       this.Details = res.dic;
-
+      
 
      console.log(this.Details)
      this.total_count = res.dic.length;
@@ -49,6 +55,13 @@ export class BatchesComponent implements OnInit {
      //this.time = res.time[0];
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
+   
+      Swal.fire({
+        icon: 'error',
+        title: 'Token mismatch',
+        text: 'Please try again!',
+        
+      })
     }
 
     );
@@ -76,7 +89,8 @@ export class BatchesComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         let d ={
-          Batch_Name : s.Batch_Name
+          Batch_Name : s.Batch_Name,
+          AuthToken : this.user.token
         }
         this.Service.deleteBatch(d).subscribe((res: any) => {
           this.getSetting();

@@ -29,10 +29,7 @@
     <div class="form-container sign-in-container">
         <form [formGroup]="form"><br>
             <h1 >Sign Up</h1>
-            <div class="social-container">
-            
-
-        </div>
+        <br>
         
         <input type="text" formControlName="name" name="name"  placeholder="Name" required [ngClass]="
         { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
@@ -66,7 +63,7 @@
     
         <button (click)="onSubmit()" >Register</button><br>
 
-        <button routerLink="/" >Back</button><br>
+        <button class="mb-2" routerLink="/" >Back</button><br>
        
         </form>
     </div>

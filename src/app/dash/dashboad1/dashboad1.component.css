@@ -53,6 +53,10 @@
     
       flex-direction: column;
     }
+
+    .left-nav{
+      display: none;
+    }
   }
 
 
@@ -139,7 +143,7 @@ font-weight: 400;
 .more-post-optns:hover::before {
   transform: translate(-50%, -50%) scale(1);
 }
- /* delete icon css  end  */
+ /* hover icon css  end  */
 
 
  .sticky {
@@ -199,11 +203,27 @@ font-weight: 400;
  z-index: 9;
 }
 
+
+.content-sort{
+ 
+ margin-left: 250px;
+}
+
 .sidebar{
   width: 300px;
 }
 
+@media (max-width: 650px) {
+.left-nav{
+  display: none;
+}
 
+.content-sort{
+ 
+  margin-left: 10px;
+ }
+
+}
 
 /* //spinner */
 

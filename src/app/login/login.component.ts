@@ -86,6 +86,7 @@ this.isLoading = true
         
           } else {
             console.log('error');
+            this.isLoading = false
             alert('Oops ! Failed to logged In')
             // this.toastr.error('Oops','Failed to logged In');
             this.router.navigate(['/']);

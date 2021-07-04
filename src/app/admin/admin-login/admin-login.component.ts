@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class AdminLoginComponent implements OnInit {
   user: any;
-
+  isLoading :boolean =false
   constructor(private router: Router,
     // private toastr: ToastrService,
     private service : AuthService) { }
@@ -45,7 +45,7 @@ export class AdminLoginComponent implements OnInit {
       onSubmit(){
  
     if(this.form.valid){
-
+      this.isLoading = true
       let login ={
         email: this.form.value.email,
         password: this.form.value.password,
@@ -55,6 +55,7 @@ export class AdminLoginComponent implements OnInit {
       .subscribe(
         (data) => {
           if(data.statusCode==200){
+            this.isLoading = false
             // localStorage.setItem('AuthToken', data.token);
             this.service.storeUserData(data.token, data.user);
             // this.toastr.success('Success ! logged In');
@@ -84,6 +85,7 @@ export class AdminLoginComponent implements OnInit {
         
           } else {
             console.log('error');
+            this.isLoading = false
             alert('Oops ! Failed to logged In')
             // this.toastr.error('Oops','Failed to logged In');
               this.router.navigate(['dash/Alogin']);

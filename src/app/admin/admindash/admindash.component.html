@@ -166,7 +166,9 @@ aria-hidden="true">
                   <div class="input-box ml-3">
                     <span class="details">* Email</span>
                     <input type="email"  required name="email" formControlName="email" >
-                    
+                    <div *ngIf="err">
+                      <span *ngIf="open" style="color: red;"> {{err}}</span>
+                  </div>
                   </div>
 
                   <div class="input-box ">

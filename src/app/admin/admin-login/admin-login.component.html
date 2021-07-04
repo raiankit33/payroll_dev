@@ -69,7 +69,7 @@
           </div>
 
     
-        <button (click)="onSubmit()"> Sign In</button><br>
+        <button (click)="onSubmit()">  <img  class="ml-3" style="width : 24px;"  *ngIf="isLoading"  src="../../assets/images/Rolling-1s-200px.gif" />  Sign In</button><br>
         <button  routerLink="/" id="signIn">Back</button>
         <!-- <a style="color: blue; cursor: pointer;" routerLink="forget">Forgot Your Password</a> -->
        <!-- <p>Don't have an Account ?<a routerLink="signUp" style="color:blue; cursor: pointer;"> Register</a></p> -->
