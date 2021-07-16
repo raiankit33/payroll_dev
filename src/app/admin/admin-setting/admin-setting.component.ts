@@ -19,6 +19,7 @@ export class AdminSettingComponent implements OnInit {
   SearchDetails = [];
   p: number = 1;
   user: any;
+  isSpinner :boolean
 
   constructor(private http: HttpClient,
     private Service: AllserviceService,
@@ -27,6 +28,13 @@ export class AdminSettingComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.getSetting();
+    
+    this.isSpinner =true ;
+
+    
+    setTimeout(() => {
+      this.isSpinner = false
+      }, 4000);
 
   }
 

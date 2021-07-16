@@ -13,6 +13,16 @@
   justify-content: space-around;
 }
 
+.side{
+  margin-left: 50px;
+}
+
+@media (max-width: 650px) {
+  .side{
+    margin-left: 5px;
+  }
+}
+
 
 .table tr{
   text-align: center;
