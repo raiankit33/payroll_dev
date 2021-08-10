@@ -1219,158 +1219,14 @@ this.isSpinner = false
 
   isVendor : boolean = false ;
 
-  selectVendor(event) {
-    console.log(event)
-    const v = {
-      // Worker_Agency: event,
-      data: this.NameDetails,
-      user_id : this.user.id
-    }
-    console.log(v)
-    this.isVendor = true;
-    this.Service.getVendor(v).subscribe((res: any) => {
-      this.vendorDetails = res.data;
-
-
-      this.job_type = res.Title_saving;
-      this.locationType = res.location_saving;
-
-      this.highestSaving = res.Top_highest_Saving;
-      this.leastSaving = res.Top_lowest_Saving ;
-      this.highestCost = res.Top_highest_Cost;
-      this.leastCost = res.Top_lowest_Cost ;
-
-console.log(this.vendorDetails)
-      this.cost = res.T_Cost;
-      this.markup = res.T_Markup;
-      this.tax = res.T_Tax;
-      this.saving = res.T_Saving;
-      this.EPLI_tAX = res.EPLI_TAX;
-      this.FEE_tAX = res.FEE_TAX;
-      this.FICA_med_TAX = res.FICA_Med_TAX;
-      this.FICA_tAX = res.FICA_TAX;
-      this.FUI_tol_TAX = res.FUI_Sol_TAX;
-      this.FUI_tAX = res.FUI_TAX;
-      this.over_time_Total = res.Over_Time_Total;
-      this.sUI_tAX = res.SUI_TAX;
-      this.Tech_tAX = res.Tech_TAX;
-      this.WC_admin_TAX = res.WC_Admin_TAX;
-      this.WC_tAX = res.WC_TAX;
-
-
-      this.stackName = res.chart.map(b =>b.Worker_Agency)
-      this.stackPay = res.chart.map(b =>b.Pay)
-      this.stackPay = res.chart.map(b =>b.Pay)
-      this.stackMarkup = res.chart.map(b =>b.Markup)
+  // selectVendor() {
   
-      this.stackDepartmentName = res.chart_Department.map(x =>x.Worker_Department)
-      this.stackDepartmentTax = res.chart_Department.map(x =>x.Taxes)
-      this.stackDepartmentPay = res.chart_Department.map(y =>y.Pay)
-      this.stackDepartmentMarkup = res.chart_Department.map(y =>y.Markup)
+
+  // }
+
+  // selectDepartment() {
   
-      //manager
-      this.stackManagerName = res.chart_Manager.map(l =>l.Worker_Manager)
-      this.stackManagerTax = res.chart_Manager.map(l =>l.Taxes)
-      this.stackManagerPay = res.chart_Manager.map(m =>m.Pay)
-      this.stackManagerMarkup = res.chart_Manager.map(m =>m.Markup)
-  
-      //location
-      this.stackLocationState = res.location_saving.map(l =>l.State)
-      this.stackLocationTax = res.location_saving.map(l =>l.Taxes)
-      this.stackLocationPay = res.location_saving.map(m =>m.Pay)
-      this.stackLocationMarkup = res.location_saving.map(m =>m.Markup)
-
-
-       this.barChart();
-      this.bubbleChart();
-      this.histogramChart();
-      this.barBChart();
-      this.pieChart();
-      this.Stack();
-this.pieChart();
-      setTimeout(() => {
-        this.isVendor = false;
-      }, 1000);
-
-
-    })
-
-  }
-
-  selectDepartment(event) {
-    console.log(event)
-    const m = {
-      // Worker_Department: event,
-      data: this.NameDetails,
-      user_id : this.user.id
-    }
-    console.log(m)
-    this.isDepartment = true;
-    this.Service.getDepartment(m).subscribe((res: any) => {
-      this.managerDetails = res.data;
-
-      this.job_type = res.Title_saving;
-      this.locationType = res.location_saving;
-
-      this.highestSaving = res.Top_highest_Saving;
-      this.leastSaving = res.Top_lowest_Saving ;
-      this.highestCost = res.Top_highest_Cost;
-      this.leastCost = res.Top_lowest_Cost ;
-
-      this.cost = res.T_Cost;
-      this.markup = res.T_Markup;
-      this.tax = res.T_Tax;
-      this.saving = res.T_Saving;
-      this.EPLI_tAX = res.EPLI_TAX;
-      this.FEE_tAX = res.FEE_TAX;
-      this.FICA_med_TAX = res.FICA_Med_TAX;
-      this.FICA_tAX = res.FICA_TAX;
-      this.FUI_tol_TAX = res.FUI_Sol_TAX;
-      this.FUI_tAX = res.FUI_TAX;
-      this.over_time_Total = res.Over_Time_Total;
-      this.sUI_tAX = res.SUI_TAX;
-      this.Tech_tAX = res.Tech_TAX;
-      this.WC_admin_TAX = res.WC_Admin_TAX;
-      this.WC_tAX = res.WC_TAX;
-
-      this.stackName = res.chart.map(b =>b.Worker_Agency)
-      this.stackPay = res.chart.map(b =>b.Pay)
-      this.stackPay = res.chart.map(b =>b.Pay)
-      this.stackMarkup = res.chart.map(b =>b.Markup)
-  
-      this.stackDepartmentName = res.chart_Department.map(x =>x.Worker_Department)
-      this.stackDepartmentTax = res.chart_Department.map(x =>x.Taxes)
-      this.stackDepartmentPay = res.chart_Department.map(y =>y.Pay)
-      this.stackDepartmentMarkup = res.chart_Department.map(y =>y.Markup)
-  
-      //manager
-      this.stackManagerName = res.chart_Manager.map(l =>l.Worker_Manager).filter(chart_Manager => !! chart_Manager)
-      this.stackManagerTax = res.chart_Manager.map(l =>l.Taxes)
-      this.stackManagerPay = res.chart_Manager.map(m =>m.Pay)
-      this.stackManagerMarkup = res.chart_Manager.map(m =>m.Markup)
-  
-      //location
-      this.stackLocationState = res.location_saving.map(l =>l.State).filter(location_saving => !! location_saving)
-      this.stackLocationTax = res.location_saving.map(l =>l.Taxes)
-      this.stackLocationPay = res.location_saving.map(m =>m.Pay)
-      this.stackLocationMarkup = res.location_saving.map(m =>m.Markup)
-
-      this.barChart();
-      this.bubbleChart();
-      this.histogramChart();
-      this.barBChart();
-      this.pieChart();
-
-
-      setTimeout(() => {
-        this.isDepartment = false;
-      }, 1000);
-
-      console.log(this.managerDetails, "manager")
-    })
-
-
-  }
+  // }
 
   managerDetails: any = [];
 
@@ -1546,7 +1402,7 @@ console.log(res)
 
  
  }
- console.log(all)
+
 
       this.Service.filterAllData(all).subscribe((res: any) => {
 
@@ -1666,6 +1522,10 @@ this.isSpinner = false
     this.Tech_tAX = res.Tech_TAX;
     this.WC_admin_TAX = res.WC_Admin_TAX;
     this.WC_tAX = res.WC_TAX;
+
+
+    this.job_type = res.Title_saving.slice(0,10) ;
+    this.locationType = res.location_saving;
   
     this.chartVendor = res.chart
     this.stackTax = res.chart.map(a =>a.Taxes)

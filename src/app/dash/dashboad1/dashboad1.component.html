@@ -592,7 +592,7 @@
                             <tbody>
                               <tr *ngFor="let l of job_type ; index as i">
                                 <th scope="row">{{i+1}}</th>
-                                <td (click)="sendData(d.Worker_Unique_Id)" style="color: blue;">{{l.Worker_Title}}</td>
+                                <td  >{{l.Worker_Title}}</td>
                                 <td> {{l.saving | currency:'USD' : 'symbol':'3.1-2'}}</td>
                                
                               </tr>

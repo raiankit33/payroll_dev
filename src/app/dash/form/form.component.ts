@@ -36,6 +36,7 @@ export class FormComponent implements OnInit {
   open: boolean = false;
 run:boolean =true
 
+
   execelValidationError = []
 
   constructor(private router: Router,
@@ -622,7 +623,7 @@ console.log(error)
   submit() {
     if (this.form.valid) {
       this.csvRecords = this.normalizeExcel();
-
+ this.isLoading =true;
       // this.Method()
       let form = {
         batch_name: this.Myform.value.batch_name,
@@ -635,7 +636,8 @@ console.log(error)
       }
       this.isLoading = true
       this.Service.addFile(form).subscribe(res => {
-        this.show = false
+        this.show = false 
+        this.isLoading =false;
         this.router.navigate(['dash/dashboad1']);
         console.log(res);
         setTimeout(() => {

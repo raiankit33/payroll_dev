@@ -886,7 +886,7 @@
 
                 <!-- <button type="button" data-toggle="modal" 
 data-target=".bd-example-modal-lg" class="btn btn-primary">Add </button> -->
-                <img *ngIf="isLoading" style="width : 24px;" class="mr-3" src="../../../assets/icons8-spinner.gif" />
+                <!-- <img *ngIf="isLoading" style="width : 24px;" class="mr-3" src="../../../assets/icons8-spinner.gif" /> -->
                 <!-- <input type="button" data-page="2" name="next" class="next action-button"  data-toggle="modal" 
             data-target=".bd-example-modal-lg" *ngIf="run" (click)="validate()"  style="margin-left: 10px;" value="Validate" /> -->
                 <!-- <input type="button" data-page="2" name="next" class="next action-button"  *ngIf=" !run"   value="submit" /> -->
@@ -944,8 +944,9 @@ data-target=".bd-example-modal-lg" class="btn btn-primary">Add </button> -->
                 style="width: 250px; background-color: purple; color: white; margin-left: 400px;"
                 value="Proceed to dashboad" /> -->
                 <div *ngIf="show">
-                    <input type="button" data-page="2" style="width: 250px; background-color: purple; color: white;  margin-right: 380px;"  name="next" class="next action-button" (click)="submit()"
-                        value="Submit" />
+                    <!-- <input type="button" data-page="2" style="width: 250px; background-color: purple; color: white;  margin-right: 380px;"  name="next" class="next action-button" (click)="submit()"
+                        value="Submit" /> -->
+                        <button class="btn btn-primary"  (click)="submit()" style="width: 200px; height: 50px; background-color: #7B1FA2; color: white;  margin-right: 380px;"  ><img  class="ml-3" style="width : 24px;"  *ngIf="isLoading"  src="../../../assets/submit.gif" />Submit</button>
                 </div>
             <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"></div>
         </fieldset>
